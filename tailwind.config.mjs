@@ -6,28 +6,28 @@ export default {
       colors: {
         brand: {
           50: '#f0fdf4',
-          100: '#dcfce7',
-          200: '#bbf7d0',
+          100: '#dcf8c6', // WhatsApp chat bubble green
+          200: '#bbf2c8',
           300: '#86efac',
           400: '#4ade80',
-          500: '#22c55e',
-          600: '#16a34a',
-          700: '#15803d',
-          800: '#166534',
-          900: '#14532d',
-          950: '#052e16',
+          500: '#25d366', // WhatsApp vibrant green
+          600: '#128c7e', // WhatsApp signature teal-green
+          700: '#075e54', // WhatsApp deep dark teal
+          800: '#054c44',
+          900: '#033a34',
+          950: '#012420',
         },
         surface: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
+          50: '#f0f2f5', // WhatsApp web background
+          100: '#efeae2', // WhatsApp chat wallpaper tone
+          200: '#e9edef', // WhatsApp light gray borders
+          300: '#d1d7db', // WhatsApp dividers
+          400: '#8696a0', // WhatsApp subtext
+          500: '#667781',
+          600: '#54656f', // WhatsApp primary secondary text
+          700: '#3b4a54',
+          800: '#202c33',
+          900: '#111b21', // WhatsApp darkest text
         }
       },
       fontFamily: {

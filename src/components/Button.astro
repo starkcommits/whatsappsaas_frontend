@@ -1,7 +1,7 @@
 ---
 interface Props {
   href?: string;
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'white';
   size?: 'sm' | 'md' | 'lg';
   type?: 'button' | 'submit' | 'reset';
   class?: string;
@@ -28,9 +28,10 @@ const baseStyles = 'inline-flex items-center justify-center font-medium rounded-
 
 const variants = {
   primary: 'bg-brand-600 hover:bg-brand-700 text-white shadow-sm hover:shadow-card-hover font-semibold',
-  secondary: 'bg-brand-50 hover:bg-brand-100 text-brand-900 border border-brand-200',
+  secondary: 'bg-brand-50 hover:bg-brand-100 text-brand-900 border border-brand-200 font-semibold',
   outline: 'border border-surface-300 hover:border-surface-400 bg-white hover:bg-surface-50 text-surface-800 shadow-sm',
   ghost: 'text-surface-700 hover:text-surface-900 hover:bg-surface-100',
+  white: 'bg-white hover:bg-brand-50 text-brand-950 border border-transparent shadow-md font-bold',
 };
 
 const sizes = {

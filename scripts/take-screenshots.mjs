@@ -37,7 +37,7 @@ for (const p of pages) {
   for (const vp of viewports) {
     const filename = `${p.name}-${vp.label}.png`;
     const dest = path.join(outDir, filename);
-    const cmd = `"${chromePath}" --headless --hide-scrollbars --window-size=${vp.width},${vp.height} --screenshot="${dest}" "${url}"`;
+    const cmd = `"${chromePath}" --headless=new --disable-gpu --hide-scrollbars --window-size=${vp.width},${vp.height} --screenshot="${dest}" "${url}"`;
     try {
       execSync(cmd, { stdio: 'pipe' });
       const stats = fs.statSync(dest);

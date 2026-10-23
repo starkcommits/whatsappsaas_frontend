@@ -1,6 +1,22 @@
+# Dependencies
 node_modules/
+node_modules
+
+# Production build artifacts
 dist/
 .astro/
+
+# Local environment configuration
 .env
 .env.production
+.env.local
+.env.*.local
+!.env.example
+
+# Operating system & Editor files
 .DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
