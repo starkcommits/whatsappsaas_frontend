@@ -1,0 +1,65 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+  id?: string;
+  target?: string;
+  rel?: string;
+  isAppCta?: boolean;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  type = 'button',
+  class: className = '',
+  id,
+  target,
+  rel,
+  isAppCta = false,
+  ...rest
+} = Astro.props;
+
+const baseStyles = 'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none select-none';
+
+const variants = {
+  primary: 'bg-brand-600 hover:bg-brand-700 text-white shadow-sm hover:shadow-card-hover font-semibold',
+  secondary: 'bg-brand-50 hover:bg-brand-100 text-brand-900 border border-brand-200',
+  outline: 'border border-surface-300 hover:border-surface-400 bg-white hover:bg-surface-50 text-surface-800 shadow-sm',
+  ghost: 'text-surface-700 hover:text-surface-900 hover:bg-surface-100',
+};
+
+const sizes = {
+  sm: 'text-xs px-3.5 py-1.5 gap-1.5',
+  md: 'text-sm px-5 py-2.5 gap-2',
+  lg: 'text-base px-6 py-3.5 gap-2.5 font-semibold',
+};
+
+const combinedClasses = `${baseStyles} ${variants[variant]} ${sizes[size]} ${isAppCta ? 'js-utm-link' : ''} ${className}`;
+---
+
+{href ? (
+  <a
+    href={href}
+    class={combinedClasses}
+    id={id}
+    target={target}
+    rel={target === '_blank' ? 'noopener noreferrer' : rel}
+    {...rest}
+  >
+    <slot />
+  </a>
+) : (
+  <button
+    type={type}
+    class={combinedClasses}
+    id={id}
+    {...rest}
+  >
+    <slot />
+  </button>
+)}

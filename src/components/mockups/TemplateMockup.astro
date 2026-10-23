@@ -1,0 +1,79 @@
+---
+// Rich HTML/CSS mockup of WhatsApp Template Builder with Live Meta Preview
+---
+
+<div class="bg-white rounded-xl shadow-lg border border-surface-200 overflow-hidden text-left text-xs font-sans">
+  <div class="bg-surface-900 text-white px-4 py-2 flex items-center justify-between border-b border-surface-800">
+    <div class="flex items-center gap-2">
+      <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+      <span class="font-medium text-surface-200">Meta Template Builder • Status: <strong class="text-emerald-400 font-semibold">APPROVED BY META</strong></span>
+    </div>
+    <span class="text-[10px] bg-surface-800 text-surface-300 px-2 py-0.5 rounded">Category: MARKETING</span>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-12 min-h-[340px]">
+    <!-- Left: Template Form Fields (7 cols) -->
+    <div class="md:col-span-7 p-4 border-r border-surface-200 space-y-3 bg-surface-50/40">
+      <div>
+        <label class="block text-[11px] font-semibold text-surface-700 mb-1">Template Name</label>
+        <input type="text" readonly value="diwali_exclusive_offer_v2" class="w-full bg-white border border-surface-300 rounded px-2.5 py-1 text-[11px] font-mono text-surface-800" />
+      </div>
+
+      <div>
+        <label class="block text-[11px] font-semibold text-surface-700 mb-1">Header Media</label>
+        <div class="flex items-center gap-2 text-[10px] text-surface-600 bg-white border border-surface-200 p-2 rounded">
+          <span class="bg-brand-100 text-brand-800 px-1.5 py-0.5 rounded font-medium">Image</span>
+          <span>festive_banner_2026.png (1080x600)</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-[11px] font-semibold text-surface-700 mb-1">Body Text (with variables)</label>
+        <div class="bg-white border border-surface-300 rounded p-2 text-[11px] font-mono text-surface-700 space-y-1">
+          <p>Hello {"{{1}}"},</p>
+          <p>Celebrate the festival with 25% off our premium collection. Use code <span class="text-brand-700 font-semibold">{"{{2}}"}</span> at checkout before <span class="text-brand-700 font-semibold">{"{{3}}"}</span>.</p>
+          <p class="text-[10px] text-surface-500">Reply STOP to unsubscribe.</p>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-[11px] font-semibold text-surface-700 mb-1">Interactive Buttons</label>
+        <div class="space-y-1 text-[10px]">
+          <div class="flex items-center gap-2 bg-white border border-surface-200 px-2 py-1 rounded">
+            <span class="text-surface-400">🔗 URL Button:</span>
+            <span class="font-medium text-surface-800">Visit Offer Page</span>
+          </div>
+          <div class="flex items-center gap-2 bg-white border border-surface-200 px-2 py-1 rounded">
+            <span class="text-surface-400">⚡ Quick Reply:</span>
+            <span class="font-medium text-surface-800">Chat with Agent</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: WhatsApp Live Chat Preview (5 cols) -->
+    <div class="md:col-span-5 p-4 bg-emerald-50/50 flex flex-col justify-center items-center">
+      <div class="w-full max-w-[240px] bg-white rounded-xl shadow-md border border-surface-200 overflow-hidden text-[11px]">
+        <!-- Preview Banner -->
+        <div class="bg-brand-700 h-20 flex items-center justify-center text-white text-center p-2">
+          <span class="font-bold tracking-tight text-xs">Festive Festive Sale 25% OFF</span>
+        </div>
+        <!-- Bubble Body -->
+        <div class="p-2.5 space-y-2">
+          <p class="text-surface-800 leading-relaxed text-[10.5px]">
+            Hello <strong>Rahul</strong>,<br/><br/>
+            Celebrate the festival with 25% off our premium collection. Use code <strong class="text-brand-700">FESTIVE25</strong> at checkout before <strong>Nov 15</strong>.<br/><br/>
+            <span class="text-[9px] text-surface-400">Reply STOP to unsubscribe.</span>
+          </p>
+          <div class="text-[8.5px] text-surface-400 text-right">11:05 AM</div>
+        </div>
+        <!-- Buttons -->
+        <div class="border-t border-surface-100 divide-y divide-surface-100 bg-surface-50/60 text-center font-medium text-brand-700 text-[10px]">
+          <div class="py-1.5 hover:bg-surface-100">Visit Offer Page ↗</div>
+          <div class="py-1.5 hover:bg-surface-100">Chat with Agent</div>
+        </div>
+      </div>
+      <span class="text-[10px] text-surface-500 mt-2">Live preview synced with Meta API</span>
+    </div>
+  </div>
+</div>

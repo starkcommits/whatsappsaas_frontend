@@ -1,0 +1,28 @@
+---
+interface Props {
+  id?: string;
+  class?: string;
+  containerClass?: string;
+  background?: 'default' | 'muted' | 'white' | 'brand';
+}
+
+const {
+  id,
+  class: className = '',
+  containerClass = '',
+  background = 'default',
+} = Astro.props;
+
+const bgStyles = {
+  default: 'bg-transparent',
+  muted: 'bg-surface-100/60 border-y border-surface-200/80',
+  white: 'bg-white border-y border-surface-200/60',
+  brand: 'bg-brand-900 text-white',
+};
+---
+
+<section id={id} class={`py-16 md:py-24 ${bgStyles[background]} ${className}`}>
+  <div class={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${containerClass}`}>
+    <slot />
+  </div>
+</section>

@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import { siteConfig } from '../config/site';
+
+const lastUpdated = 'October 23, 2026';
+---
+
+<Layout
+  title={`Acceptable Use Policy — ${siteConfig.name}`}
+  description={`Acceptable Use Policy for ${siteConfig.name}. Strict rules prohibiting spam, scraped contact lists, and enforcing WhatsApp messaging standards.`}
+>
+  <Section background="default" class="py-12 md:py-16">
+    <div class="max-w-3xl mx-auto bg-white border border-surface-200 rounded-3xl p-6 sm:p-10 shadow-card">
+      <!-- Draft Banner -->
+      <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs font-medium mb-8 flex items-center justify-between">
+        <span>⚠️ <strong>DRAFT — Pending Formal Legal Review</strong></span>
+        <span class="text-amber-700">Last Updated: {lastUpdated}</span>
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-surface-900 tracking-tight mb-4">
+        Acceptable Use Policy (AUP)
+      </h1>
+
+      <div class="prose prose-sm max-w-none text-surface-700 space-y-6 leading-relaxed">
+        <p>
+          This Acceptable Use Policy ("AUP") defines the rules and restrictions governing all messaging and API usage on the <strong>{siteConfig.name}</strong> platform, operated by <strong>{siteConfig.legalName}</strong> ("Company").
+        </p>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          1. Zero Tolerance for Spam
+        </h2>
+        <p>
+          {siteConfig.name} is built strictly for legitimate business-to-customer communication. We enforce a zero-tolerance policy against unsolicited bulk messaging (spam). Every outbound template message or campaign broadcast must be sent to an individual who has explicitly opted in to receive communication from your organization.
+        </p>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          2. Prohibited Contact Sourcing
+        </h2>
+        <p>
+          You are strictly prohibited from uploading, importing, or targeting contacts obtained via:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-xs sm:text-sm">
+          <li><strong>Purchased Lists:</strong> Third-party marketing directories, business registries, or lead generation databases.</li>
+          <li><strong>Scraped Numbers:</strong> Phone numbers extracted automatically from websites, social media directories, Google Maps, or public databases.</li>
+          <li><strong>Co-Registration Schemes:</strong> Contacts gained through deceptive or bundled opt-in checkboxes on unrelated websites.</li>
+        </ul>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          3. Mandatory Opt-In and Consent Logging
+        </h2>
+        <p>
+          Whenever importing contacts into {siteConfig.name}, you must tag the verified consent origin (e.g., website contact form, in-store QR code, past customer purchase, or paper contract). You must maintain verifiable proof of opt-in and produce it upon request in the event of a customer dispute or Meta compliance audit.
+        </p>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          4. Obligation to Honor STOP / Opt-Outs
+        </h2>
+        <p>
+          Under WhatsApp Business guidelines, recipients must have an effortless way to stop receiving communications:
+        </p>
+        <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm">
+          <li>Our automated compliance engine detects keywords such as <code>STOP</code>, <code>UNSUBSCRIBE</code>, and <code>CANCEL</code>.</li>
+          <li>You may not attempt to circumvent or clear automated suppression records for unsubscribed contacts.</li>
+          <li>Any manual request by a contact via chat to cease messages must be resolved immediately by your team.</li>
+        </ul>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          5. Prohibited Content and Use Cases
+        </h2>
+        <p>
+          You may not use {siteConfig.name} to transmit, broadcast, or facilitate:
+        </p>
+        <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm">
+          <li>Illegal goods, unregulated pharmaceuticals, or prescription drugs</li>
+          <li>Pyramid schemes, multi-level marketing (MLM), or deceptive "get rich quick" offers</li>
+          <li>Phishing, malware delivery, or fraudulent impersonation of financial institutions or government agencies</li>
+          <li>Hate speech, harassment, defamation, or sexually explicit content</li>
+          <li>Unauthorized lottery, gambling, or predatory lending promotions</li>
+        </ul>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          6. Meta Quality Rating Protection
+        </h2>
+        <p>
+          Meta assigns a phone number quality rating (Green / Yellow / Red) based on customer block and report rates. If your workspace generates an abnormally high block rate or receives repeated spam flags from Meta, {siteConfig.legalName} reserves the right to immediately suspend campaign broadcast functionality to protect the shared infrastructure and platform integrity.
+        </p>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          7. Reporting Violations
+        </h2>
+        <p>
+          If you suspect an account is abusing {siteConfig.name} or sending unauthorized broadcasts, please report the details to our compliance desk at <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-700 underline">{siteConfig.supportEmail}</a>.
+        </p>
+      </div>
+    </div>
+  </Section>
+</Layout>

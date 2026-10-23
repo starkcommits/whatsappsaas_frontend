@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import { siteConfig } from '../config/site';
+
+const lastUpdated = 'October 23, 2026';
+---
+
+<Layout
+  title={`Refund and Cancellation Policy — ${siteConfig.name}`}
+  description={`7-day money-back guarantee policy for ${siteConfig.name} lifetime license by ${siteConfig.legalName}. Learn how to request a full refund.`}
+>
+  <Section background="default" class="py-12 md:py-16">
+    <div class="max-w-3xl mx-auto bg-white border border-surface-200 rounded-3xl p-6 sm:p-10 shadow-card">
+      <!-- Draft Banner -->
+      <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs font-medium mb-8 flex items-center justify-between">
+        <span>⚠️ <strong>DRAFT — Pending Formal Legal Review</strong></span>
+        <span class="text-amber-700">Last Updated: {lastUpdated}</span>
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-surface-900 tracking-tight mb-4">
+        Refund and Cancellation Policy
+      </h1>
+
+      <div class="prose prose-sm max-w-none text-surface-700 space-y-6 leading-relaxed">
+        <p>
+          At <strong>{siteConfig.legalName}</strong>, we stand behind the reliability and utility of <strong>{siteConfig.name}</strong>. We offer an unconditional <strong>7-day money-back guarantee</strong> on all new Lifetime Access license purchases.
+        </p>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          1. 7-Day Money-Back Guarantee
+        </h2>
+        <p>
+          If you purchase {siteConfig.name} and decide within <strong>seven (7) calendar days</strong> of payment that the platform does not suit your operational needs, you are entitled to a full 100% refund of your one-time software license fee ($50 / ₹4,199).
+        </p>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          2. How to Request a Refund
+        </h2>
+        <p>
+          To initiate a refund, please send an email to our support desk:
+        </p>
+        <div class="p-4 bg-surface-50 border border-surface-200 rounded-xl space-y-2 text-xs sm:text-sm">
+          <p><strong>To:</strong> <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-700 underline">{siteConfig.supportEmail}</a></p>
+          <p><strong>Subject:</strong> Refund Request — [Your Workspace Name or Order ID]</p>
+          <p><strong>Required Information:</strong></p>
+          <ul class="list-disc pl-5 space-y-1 text-surface-600">
+            <li>Your registered account email address</li>
+            <li>Payment receipt or Gateway Transaction Reference ID</li>
+            <li>(Optional) A brief sentence on why {siteConfig.name} did not work for you (helps us improve)</li>
+          </ul>
+        </div>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          3. Refund Processing Time
+        </h2>
+        <p>
+          Once your refund request is received and verified:
+        </p>
+        <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm">
+          <li>We will acknowledge your request within 24 business hours.</li>
+          <li>The refund will be issued directly through our payment processor (Razorpay / Stripe) back to your original source payment method (credit card, debit card, UPI, or net banking).</li>
+          <li>Banks and card networks typically credit the funds to your account within <strong>5 to 7 business days</strong>.</li>
+        </ul>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          4. Cancellation of Service
+        </h2>
+        <p>
+          Because {siteConfig.name} operates on a one-time lifetime license model with <strong>zero recurring subscription fees</strong>, there are no ongoing monthly or annual invoices to cancel.
+        </p>
+        <p>
+          When a refund is approved and processed within the 7-day guarantee window, your workspace license and API access will be permanently deactivated. You may export all contact records and historical campaign logs prior to submitting your refund request.
+        </p>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          5. Meta Message Costs are Non-Refundable
+        </h2>
+        <p>
+          Please note that any per-conversation messaging fees charged directly by Meta Platforms, Inc. for outbound broadcasts or service conversations are billed directly by Meta and are strictly non-refundable by {siteConfig.legalName}.
+        </p>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          6. Contact Us
+        </h2>
+        <p>
+          For any questions concerning billing or refunds, please contact:<br/>
+          <strong>{siteConfig.legalName}</strong><br/>
+          Email: <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-700 underline">{siteConfig.supportEmail}</a><br/>
+          Address: {siteConfig.address}
+        </p>
+      </div>
+    </div>
+  </Section>
+</Layout>

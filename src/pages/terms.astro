@@ -1,0 +1,109 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import { siteConfig } from '../config/site';
+import { lifetimePlan } from '../data/plans';
+
+const lastUpdated = 'October 23, 2026';
+---
+
+<Layout
+  title={`Terms of Service — ${siteConfig.name}`}
+  description={`Terms of Service for ${siteConfig.name}, operated by ${siteConfig.legalName}. Scope of lifetime license, fair-use limits, Meta terms, and compliance.`}
+>
+  <Section background="default" class="py-12 md:py-16">
+    <div class="max-w-3xl mx-auto bg-white border border-surface-200 rounded-3xl p-6 sm:p-10 shadow-card">
+      <!-- Draft Banner -->
+      <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs font-medium mb-8 flex items-center justify-between">
+        <span>⚠️ <strong>DRAFT — Pending Formal Legal Review</strong></span>
+        <span class="text-amber-700">Last Updated: {lastUpdated}</span>
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-surface-900 tracking-tight mb-4">
+        Terms of Service
+      </h1>
+
+      <div class="prose prose-sm max-w-none text-surface-700 space-y-6 leading-relaxed">
+        <p>
+          These Terms of Service ("Terms") govern your purchase, access, and use of <strong>{siteConfig.name}</strong>, a WhatsApp Business management software platform provided by <strong>{siteConfig.legalName}</strong> ("Company", "we", "us", or "our").
+        </p>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          1. The "Lifetime Access" License
+        </h2>
+        <div class="p-4 bg-surface-50 border border-surface-200 rounded-xl text-xs sm:text-sm">
+          <p class="font-bold text-surface-900 mb-1">Definition of "Lifetime":</p>
+          <p>
+            "Lifetime Access" refers strictly to the <strong>operational lifetime of the {siteConfig.name} software product</strong>, not the lifetime of the individual purchaser or customer. While we intend to support and maintain the platform indefinitely, in the event of unforeseen product retirement or insolvency, we will provide at least 60 days advance notice to all active users with full data export options.
+          </p>
+        </div>
+        <p>
+          Upon payment of the one-time software license fee of ${lifetimePlan.priceUSD}{lifetimePlan.priceINR ? ` (₹${lifetimePlan.priceINR.toLocaleString('en-IN')})` : ''}, you receive a non-exclusive, non-transferable license to access the platform without ongoing recurring platform software fees.
+        </p>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          2. Fair-Use Workspace Limits
+        </h2>
+        <p>
+          To maintain platform stability and service quality across all users, the Lifetime Access plan is subject to the following default fair-use capacity limits:
+        </p>
+        <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm">
+          {lifetimePlan.limits.map((limit) => (
+            <li><strong>{limit.label}:</strong> {limit.value} ({limit.description})</li>
+          ))}
+        </ul>
+        <p>
+          Workspaces exceeding these allowances may purchase modular add-ons as they become available or contact support for tailored capacity.
+        </p>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          3. Direct Meta Billing and Relationship
+        </h2>
+        <p>
+          <strong>You are directly responsible for all conversation fees charged by Meta Platforms, Inc.</strong> {siteConfig.name} does not charge or collect per-message fees and does not mark up Meta rates. You must maintain a valid payment method inside your own Meta Business Manager. Any rate changes, billing disputes, or payment suspensions originating from Meta are governed exclusively by Meta's Terms of Service.
+        </p>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          4. WhatsApp & Meta Policy Compliance
+        </h2>
+        <p>
+          You agree to comply fully with the <a href="https://www.whatsapp.com/legal/business-policy" target="_blank" rel="noopener noreferrer" class="text-brand-700 underline">WhatsApp Business Messaging Policy</a> and <a href="https://www.whatsapp.com/legal/commerce-policy" target="_blank" rel="noopener noreferrer" class="text-brand-700 underline">WhatsApp Commerce Policy</a>. You explicitly warrant that:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-xs sm:text-sm">
+          <li>You have secured explicit, verifiable opt-in consent from every recipient before sending any broadcast message.</li>
+          <li>You will never upload scraped, purchased, or third-party phone lists.</li>
+          <li>You will respect all automated and manual opt-out requests (STOP / UNSUBSCRIBE) immediately.</li>
+          <li>You will not use the platform for unauthorized spam, phishing, unlawful goods, or misleading promotional campaigns.</li>
+        </ul>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          5. Meta Non-Affiliation
+        </h2>
+        <p>
+          {siteConfig.metaDisclaimer}
+        </p>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          6. Account Termination
+        </h2>
+        <p>
+          We reserve the right to suspend or terminate workspace access immediately, without refund, if we detect fraudulent activity, egregious spamming that jeopardizes platform IP reputations, or violations of Meta's acceptable use policies.
+        </p>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          7. Governing Law and Jurisdiction
+        </h2>
+        <p>
+          These Terms are governed by and construed in accordance with the laws of India. Any disputes arising out of these Terms shall be subject to the exclusive jurisdiction of the competent courts in Uttar Pradesh, India.
+        </p>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          8. Support Contact
+        </h2>
+        <p>
+          For questions regarding these Terms, contact <strong>{siteConfig.legalName}</strong> at <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-700 underline">{siteConfig.supportEmail}</a>.
+        </p>
+      </div>
+    </div>
+  </Section>
+</Layout>

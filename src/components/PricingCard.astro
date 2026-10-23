@@ -1,0 +1,146 @@
+---
+import { lifetimePlan } from '../data/plans';
+import { siteConfig } from '../config/site';
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  showFullDetails?: boolean;
+  class?: string;
+}
+
+const { showFullDetails = true, class: className = '' } = Astro.props;
+---
+
+<div class={`bg-white rounded-3xl border-2 border-brand-600/90 p-8 sm:p-10 shadow-xl relative overflow-hidden ${className}`}>
+  <!-- Top Highlight Badge -->
+  <div class="absolute top-0 right-0 bg-brand-600 text-white text-xs font-bold uppercase tracking-wider py-1.5 px-6 rounded-bl-2xl shadow-xs">
+    {lifetimePlan.badge}
+  </div>
+
+  <div class="max-w-3xl">
+    <div class="mb-6">
+      <h3 class="text-2xl sm:text-3xl font-extrabold text-surface-900 tracking-tight">
+        {lifetimePlan.name}
+      </h3>
+      <p class="text-surface-600 text-sm mt-1.5">
+        {lifetimePlan.billingText}
+      </p>
+    </div>
+
+    <!-- Pricing Figures (USD and INR) -->
+    <div class="flex flex-wrap items-baseline gap-4 py-4 border-y border-surface-200">
+      <div class="flex items-baseline gap-1">
+        <span class="text-4xl sm:text-5xl font-black text-surface-900 tracking-tight">
+          ${lifetimePlan.priceUSD}
+        </span>
+        <span class="text-xs text-surface-500 font-medium">USD one-time</span>
+      </div>
+
+      {lifetimePlan.priceINR !== null && (
+        <div class="flex items-baseline gap-1 bg-brand-50 px-3 py-1.5 rounded-xl border border-brand-200">
+          <span class="text-2xl sm:text-3xl font-bold text-brand-900">
+            ₹{lifetimePlan.priceINR.toLocaleString('en-IN')}
+          </span>
+          <span class="text-xs text-brand-700 font-medium">INR (All-inclusive)</span>
+        </div>
+      )}
+    </div>
+
+    <!-- Prominent zero-markup callout -->
+    <div class="my-6 p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200 flex items-start gap-3">
+      <div class="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0 mt-0.5">
+        <Icon name="check" class="w-4 h-4" />
+      </div>
+      <div>
+        <p class="text-sm font-bold text-emerald-950">
+          {lifetimePlan.markupDisclaimer}
+        </p>
+        <p class="text-xs text-emerald-800 mt-1 leading-relaxed">
+          Zero middleman fees. You link your own Meta Business Account via embedded signup and pay Meta directly at wholesale platform rates.
+        </p>
+      </div>
+    </div>
+
+    <!-- Primary CTA Button -->
+    <div class="my-6">
+      <Button
+        href={siteConfig.links.signup}
+        size="lg"
+        class="w-full text-base py-4 font-bold shadow-md"
+        isAppCta={true}
+      >
+        Get Lifetime Access for ${lifetimePlan.priceUSD}
+        <Icon name="arrow-right" class="w-4 h-4 ml-1" />
+      </Button>
+      <p class="text-center text-xs text-surface-500 mt-2 font-medium">
+        🛡️ {lifetimePlan.guaranteeText}
+      </p>
+    </div>
+
+    <!-- Included Core Features -->
+    <div class="pt-6 border-t border-surface-200">
+      <h4 class="text-sm font-bold text-surface-900 uppercase tracking-wider mb-4">
+        What's included for life:
+      </h4>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-surface-700">
+        {lifetimePlan.highlights.map((item) => (
+          <div class="flex items-start gap-2.5">
+            <span class="text-brand-600 shrink-0 mt-1">
+              <Icon name="check" class="w-4 h-4" />
+            </span>
+            <span class="text-xs leading-normal">{item}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {showFullDetails && (
+      <div class="mt-8 pt-8 border-t border-surface-200 space-y-6">
+        <div>
+          <h4 class="text-sm font-bold text-surface-900 uppercase tracking-wider mb-3">
+            Fair-Use Workspace Allowances:
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            {lifetimePlan.limits.map((limit) => (
+              <div class="p-3 bg-surface-50 border border-surface-200 rounded-xl">
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-surface-600">{limit.label}</span>
+                  <span class="font-bold text-surface-900">{limit.value}</span>
+                </div>
+                {limit.description && (
+                  <p class="text-[11px] text-surface-500">{limit.description}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-sm font-bold text-surface-900 uppercase tracking-wider">
+              Optional Modular Add-Ons:
+            </h4>
+            <span class="text-[11px] bg-surface-200 text-surface-700 font-semibold px-2 py-0.5 rounded">
+              Coming Soon
+            </span>
+          </div>
+          <p class="text-xs text-surface-600 mb-3">
+            Need higher capacity later? Modular add-ons let you expand specific workspace limits without forced recurring tier upgrades.
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            {lifetimePlan.addons.map((addon) => (
+              <div class="p-3 bg-white border border-surface-200 rounded-xl">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="font-bold text-surface-800">{addon.title}</span>
+                  <span class="text-[10px] text-amber-700 bg-amber-50 border border-amber-200 px-1.5 py-0.2 rounded font-medium">Soon</span>
+                </div>
+                <p class="text-[11px] text-surface-500">{addon.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
+</div>

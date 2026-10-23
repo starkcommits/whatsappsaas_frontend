@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import { siteConfig } from '../config/site';
+
+const lastUpdated = 'October 23, 2026';
+---
+
+<Layout
+  title={`Privacy Policy — ${siteConfig.name}`}
+  description={`Privacy Policy for ${siteConfig.name}, operated by ${siteConfig.legalName}. Learn how customer data, messages, and contact records are handled.`}
+>
+  <Section background="default" class="py-12 md:py-16">
+    <div class="max-w-3xl mx-auto bg-white border border-surface-200 rounded-3xl p-6 sm:p-10 shadow-card">
+      <!-- Draft Banner -->
+      <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs font-medium mb-8 flex items-center justify-between">
+        <span>⚠️ <strong>DRAFT — Pending Formal Legal Review</strong></span>
+        <span class="text-amber-700">Last Updated: {lastUpdated}</span>
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-surface-900 tracking-tight mb-4">
+        Privacy Policy
+      </h1>
+
+      <div class="prose prose-sm max-w-none text-surface-700 space-y-6 leading-relaxed">
+        <p>
+          This Privacy Policy explains how <strong>{siteConfig.legalName}</strong> ("Company", "we", "us", or "our") collects, uses, processes, and safeguards information when you register for and use the <strong>{siteConfig.name}</strong> platform located at <code>{siteConfig.domain}</code> and its dashboard at <code>{siteConfig.appUrl}</code>.
+        </p>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          1. Data Controller and Entity
+        </h2>
+        <p>
+          The data controller responsible for personal data processed under this policy is:<br/>
+          <strong>{siteConfig.legalName}</strong><br/>
+          {siteConfig.address}<br/>
+          Contact email: <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-700 underline">{siteConfig.supportEmail}</a>
+        </p>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          2. Information We Collect
+        </h2>
+        <p>
+          We collect information strictly necessary to provide the messaging platform service:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-xs sm:text-sm">
+          <li><strong>Account Registration Data:</strong> Your name, business name, email address, password hash, and two-factor authentication credentials.</li>
+          <li><strong>Billing Information:</strong> Payment transaction references processed via authorized payment gateways (e.g., Razorpay / Stripe). We never store raw credit/debit card numbers on our servers.</li>
+          <li><strong>WhatsApp Business Account Metadata:</strong> WhatsApp Business Account ID (WABA ID), phone number ID, and authorization tokens issued by Meta during Embedded Signup.</li>
+          <li><strong>Customer Contact Lists:</strong> Contacts uploaded by you via CSV, including phone numbers, names, consent source labels, and tags.</li>
+          <li><strong>Message Content and Logs:</strong> Text of customer inquiries, outbound template messages, delivery status timestamps (sent, delivered, read, failed), and incoming replies.</li>
+        </ul>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          3. How Data is Processed (Direct Meta Integration)
+        </h2>
+        <p>
+          {siteConfig.name} connects directly to the official <strong>Meta WhatsApp Cloud API</strong>. When you send or receive WhatsApp messages, message payloads transit directly between our servers and Meta's infrastructure. We do not sell, rent, or monetize your contact records or message content to any third parties.
+        </p>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          4. No Third-Party Tracking or Ad Pixels
+        </h2>
+        <p>
+          The marketing website (<code>{siteConfig.domain}</code>) does not load Google Analytics, Meta tracking pixels, or third-party behavioral trackers. As a result, no intrusive cookie banners or cross-site tracking scripts are deployed.
+        </p>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          5. Customer Consent & Data Protection Obligations
+        </h2>
+        <p>
+          You (the business customer) act as the primary data controller for the individual end-user phone numbers uploaded to your workspace. You warrant that you have obtained all necessary, explicit opt-in consents under applicable privacy laws (such as GDPR, DPDP Act 2023, and Meta Business Terms) before importing contacts or triggering broadcast campaigns.
+        </p>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          6. Data Retention, Export, and Deletion
+        </h2>
+        <p>
+          You retain full ownership of your data at all times:
+        </p>
+        <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm">
+          <li>You may export full CSV archives of contact records and campaign analytics from your dashboard.</li>
+          <li>You may delete individual contact records, message threads, or your entire workspace at any time.</li>
+          <li>Upon account deletion, all associated workspace tokens, contacts, and logs are permanently purged from active databases within 30 days.</li>
+        </ul>
+
+        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
+          7. Contact Information
+        </h2>
+        <p>
+          If you have questions or data protection requests regarding this policy, please write to our privacy officer at <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-700 underline">{siteConfig.supportEmail}</a>.
+        </p>
+      </div>
+    </div>
+  </Section>
+</Layout>

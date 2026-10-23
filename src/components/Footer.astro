@@ -1,0 +1,116 @@
+---
+import { siteConfig } from '../config/site';
+
+const currentYear = new Date().getFullYear();
+
+const productLinks = [
+  { label: 'Features', href: '/features' },
+  { label: 'How It Works', href: '/how-it-works' },
+  { label: 'Pricing ($50 Lifetime)', href: '/pricing' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Contact & Support', href: '/contact' },
+];
+
+const legalLinks = [
+  { label: 'Privacy Policy', href: '/privacy' },
+  { label: 'Terms of Service', href: '/terms' },
+  { label: 'Refund & Cancellation', href: '/refund' },
+  { label: 'Acceptable Use Policy', href: '/acceptable-use' },
+  { label: 'Shipping & Delivery', href: '/shipping-and-delivery' },
+];
+---
+
+<footer class="bg-surface-900 text-surface-300 border-t border-surface-800 pt-16 pb-12 text-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-surface-800">
+      <!-- Col 1 & 2: Brand & Company Info -->
+      <div class="lg:col-span-2 space-y-4">
+        <a href="/" class="flex items-center gap-2" aria-label="ONO Home">
+          <div class="w-8 h-8 rounded-lg bg-brand-600 text-white flex items-center justify-center font-black tracking-tight text-base">
+            O
+          </div>
+          <span class="font-extrabold text-xl tracking-tight text-white">
+            {siteConfig.name}
+          </span>
+        </a>
+        <p class="text-surface-400 text-xs sm:text-sm leading-relaxed max-w-sm">
+          WhatsApp Business inbox and campaign software for small businesses and growing teams. Connect your number, manage conversations, and pay zero markup.
+        </p>
+
+        <div class="text-xs text-surface-400 space-y-1 pt-2">
+          <p><strong class="text-surface-300 font-semibold">{siteConfig.legalName}</strong></p>
+          <p>{siteConfig.address}</p>
+          <p>Support: <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-400 hover:underline">{siteConfig.supportEmail}</a></p>
+        </div>
+      </div>
+
+      <!-- Col 3: Navigation -->
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Product</h3>
+        <ul class="space-y-2 text-xs">
+          {productLinks.map((item) => (
+            <li>
+              <a href={item.href} class="text-surface-400 hover:text-white transition-colors">
+                {item.label}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href={siteConfig.links.login} class="text-surface-400 hover:text-white transition-colors js-utm-link">
+              App Login
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Compliance & Legal -->
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Legal & Policies</h3>
+        <ul class="space-y-2 text-xs">
+          {legalLinks.map((item) => (
+            <li>
+              <a href={item.href} class="text-surface-400 hover:text-white transition-colors">
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Col 5: Security & Platform Trust -->
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Platform Model</h3>
+        <div class="space-y-3 text-xs text-surface-400 leading-relaxed">
+          <p>
+            <strong class="text-surface-200">One-Time License:</strong> No monthly recurring platform subscription.
+          </p>
+          <p>
+            <strong class="text-surface-200">Direct Meta Billing:</strong> You pay Meta directly at official rates for WhatsApp conversations.
+          </p>
+          <div class="pt-2">
+            <span class="inline-flex items-center gap-1.5 bg-surface-800 text-brand-400 px-2.5 py-1 rounded text-[11px] font-mono border border-surface-700">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span>
+              7-Day Refund Policy
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mandatory Meta Non-Affiliation Disclaimer & Copyright -->
+    <div class="pt-8 space-y-4 text-xs text-surface-500">
+      <div class="p-4 rounded-xl bg-surface-950/60 border border-surface-800/80 leading-relaxed">
+        <p class="font-medium text-surface-400">
+          <strong>Notice:</strong> {siteConfig.metaDisclaimer}
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 text-[11px]">
+        <p>© {currentYear} {siteConfig.legalName}. All rights reserved.</p>
+        <p class="text-surface-500">
+          Hosted on Cloudflare Pages • No tracking cookies or analytics scripts
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

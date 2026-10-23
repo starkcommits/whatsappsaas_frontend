@@ -1,0 +1,172 @@
+---
+// Rich HTML/CSS product mockup of the ONO shared team inbox
+---
+
+<div class="bg-white rounded-xl shadow-lg border border-surface-200 overflow-hidden text-left text-xs font-sans">
+  <!-- Top App Navigation Bar -->
+  <div class="bg-surface-900 text-white px-4 py-2.5 flex items-center justify-between border-b border-surface-800">
+    <div class="flex items-center gap-3">
+      <span class="font-bold tracking-tight text-brand-400 text-sm">ONO</span>
+      <span class="text-surface-400">/</span>
+      <span class="text-surface-200 font-medium flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        Acme Retail (+91 98765 43210)
+      </span>
+    </div>
+    <div class="flex items-center gap-3 text-surface-300">
+      <span class="bg-surface-800 px-2 py-0.5 rounded text-[11px] text-surface-300">Live Sync</span>
+      <span class="w-6 h-6 rounded-full bg-brand-700 text-white font-semibold flex items-center justify-center text-[10px]">JD</span>
+    </div>
+  </div>
+
+  <!-- Workspace 3-Column Split -->
+  <div class="grid grid-cols-1 md:grid-cols-12 min-h-[380px]">
+    <!-- Left: Conversations List (4 cols) -->
+    <div class="md:col-span-4 border-r border-surface-200 bg-surface-50/50 flex flex-col">
+      <div class="p-3 border-b border-surface-200 bg-white">
+        <div class="relative">
+          <input
+            type="text"
+            readonly
+            value="Search contacts or chats..."
+            class="w-full bg-surface-100 border border-surface-200 rounded-lg px-2.5 py-1.5 text-[11px] text-surface-500 cursor-default"
+          />
+        </div>
+        <div class="flex gap-1.5 mt-2">
+          <span class="bg-brand-100 text-brand-800 font-medium px-2 py-0.5 rounded-full text-[10px]">All (24)</span>
+          <span class="bg-surface-100 text-surface-600 px-2 py-0.5 rounded-full text-[10px]">Assigned to me</span>
+          <span class="bg-surface-100 text-surface-600 px-2 py-0.5 rounded-full text-[10px]">Unassigned</span>
+        </div>
+      </div>
+
+      <!-- Active Chat List Items -->
+      <div class="divide-y divide-surface-100 overflow-y-auto">
+        <!-- Item 1 (Selected) -->
+        <div class="p-3 bg-brand-50/60 border-l-4 border-brand-600 cursor-pointer">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-semibold text-surface-900 text-xs">Aarav Sharma</span>
+            <span class="text-[10px] text-surface-400">10:42 AM</span>
+          </div>
+          <p class="text-surface-600 truncate text-[11px] mb-1.5">Yes, please confirm our consultation slot for tomorrow.</p>
+          <div class="flex items-center justify-between text-[10px]">
+            <span class="bg-brand-200/80 text-brand-900 px-1.5 py-0.5 rounded font-medium">VIP Lead</span>
+            <span class="text-surface-500">Agent: Priya S.</span>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="p-3 hover:bg-surface-100/60 transition-colors">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-medium text-surface-800 text-xs">Pooja Patel</span>
+            <span class="text-[10px] text-surface-400">09:15 AM</span>
+          </div>
+          <p class="text-surface-500 truncate text-[11px] mb-1.5">Can you share the product catalog PDF?</p>
+          <div class="flex items-center justify-between text-[10px]">
+            <span class="bg-surface-200 text-surface-700 px-1.5 py-0.5 rounded">Catalog Inquiry</span>
+            <span class="text-amber-600 font-medium">Unassigned</span>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="p-3 hover:bg-surface-100/60 transition-colors">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-medium text-surface-800 text-xs">Vikram Malhotra</span>
+            <span class="text-[10px] text-surface-400">Yesterday</span>
+          </div>
+          <p class="text-surface-500 truncate text-[11px] mb-1.5">STOP</p>
+          <div class="flex items-center justify-between text-[10px]">
+            <span class="bg-red-100 text-red-700 px-1.5 py-0.5 rounded font-medium">Opted Out (Auto)</span>
+            <span class="text-surface-400">System</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Center & Right: Active Thread (8 cols) -->
+    <div class="md:col-span-8 flex flex-col bg-white">
+      <!-- Conversation Header -->
+      <div class="p-3 border-b border-surface-200 flex items-center justify-between bg-surface-50/30">
+        <div>
+          <div class="flex items-center gap-2">
+            <h4 class="font-bold text-surface-900 text-xs">Aarav Sharma</h4>
+            <span class="text-surface-400 text-[11px]">+91 98112 34567</span>
+            <span class="bg-emerald-100 text-emerald-800 text-[10px] px-1.5 py-0.5 rounded font-medium">Consent: Website Form</span>
+          </div>
+          <p class="text-[10px] text-surface-500">Assigned to: <strong class="text-surface-700 font-medium">Priya S.</strong> • Channel: WhatsApp Cloud API</p>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="bg-surface-100 text-surface-700 px-2 py-1 rounded border border-surface-200 text-[10px] font-medium">Transfer</span>
+          <span class="bg-surface-100 text-surface-700 px-2 py-1 rounded border border-surface-200 text-[10px] font-medium">Resolve</span>
+        </div>
+      </div>
+
+      <!-- Message History Pane -->
+      <div class="p-4 space-y-3 flex-1 bg-surface-50/20 overflow-y-auto">
+        <!-- Inbound Customer Message -->
+        <div class="flex justify-start">
+          <div class="max-w-[78%] bg-white border border-surface-200 rounded-2xl rounded-tl-sm p-3 shadow-xs">
+            <p class="text-surface-800 text-[11px]">Hello! I saw your service broadcast. Can I book a consultation session for our team?</p>
+            <div class="text-[9px] text-surface-400 text-right mt-1">10:38 AM</div>
+          </div>
+        </div>
+
+        <!-- Internal Note (Private to Team) -->
+        <div class="flex justify-center my-1">
+          <div class="bg-amber-50 border border-amber-200 text-amber-900 rounded-lg px-3 py-1.5 text-[10px] flex items-center gap-1.5 shadow-xs">
+            <span class="font-bold text-amber-700">🔒 Team Note:</span> Verified customer from Bangalore tech meet. Offered slot B.
+          </div>
+        </div>
+
+        <!-- Outbound Template / Flow Trigger Message -->
+        <div class="flex justify-end">
+          <div class="max-w-[78%] bg-brand-50 border border-brand-200 text-brand-950 rounded-2xl rounded-tr-sm p-3 shadow-xs">
+            <p class="text-[11px]">Hi Aarav! Absolutely. Please click the button below to choose your preferred time slot directly in WhatsApp:</p>
+            <div class="mt-2 pt-2 border-t border-brand-200/80">
+              <span class="block text-center font-medium text-brand-700 bg-white py-1 rounded border border-brand-300 text-[10px]">
+                📅 Open Appointment Form (Flow)
+              </span>
+            </div>
+            <div class="text-[9px] text-brand-700 text-right mt-1">10:40 AM • Read ✓✓</div>
+          </div>
+        </div>
+
+        <!-- Inbound Confirmation -->
+        <div class="flex justify-start">
+          <div class="max-w-[78%] bg-white border border-surface-200 rounded-2xl rounded-tl-sm p-3 shadow-xs">
+            <p class="text-surface-800 text-[11px]">Yes, please confirm our consultation slot for tomorrow at 3:00 PM.</p>
+            <div class="text-[9px] text-surface-400 text-right mt-1">10:42 AM</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reply Composer with Canned Replies and Notes -->
+      <div class="p-3 border-t border-surface-200 bg-white">
+        <div class="flex items-center justify-between mb-1.5 text-[10px]">
+          <div class="flex gap-2">
+            <span class="font-semibold text-brand-700 border-b-2 border-brand-600 pb-0.5">Customer Reply</span>
+            <span class="text-surface-500 hover:text-surface-800 cursor-pointer">Internal Note</span>
+          </div>
+          <div class="flex gap-1.5">
+            <span class="bg-surface-100 hover:bg-surface-200 text-surface-700 px-1.5 py-0.5 rounded cursor-pointer border border-surface-200">
+              ⚡ #confirm_booking
+            </span>
+            <span class="bg-surface-100 hover:bg-surface-200 text-surface-700 px-1.5 py-0.5 rounded cursor-pointer border border-surface-200">
+              ⚡ #meeting_link
+            </span>
+          </div>
+        </div>
+        <div class="flex gap-2">
+          <input
+            type="text"
+            readonly
+            value="Great, you're booked! Sending calendar invite to your email now."
+            class="flex-1 bg-surface-50 border border-surface-200 rounded-lg px-3 py-1.5 text-[11px] text-surface-800"
+          />
+          <button type="button" class="bg-brand-600 text-white font-medium px-3 py-1.5 rounded-lg text-[11px] shadow-xs cursor-default">
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

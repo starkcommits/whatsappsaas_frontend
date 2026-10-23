@@ -1,0 +1,165 @@
+---
+import { siteConfig } from '../config/site';
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+
+const navItems = [
+  { label: 'Features', href: '/features' },
+  { label: 'How It Works', href: '/how-it-works' },
+  { label: 'Pricing', href: '/pricing' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
+];
+---
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-surface-200/80 transition-all duration-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 sm:h-20">
+      <!-- Wordmark Logo Placeholder -->
+      <a href="/" class="flex items-center gap-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-lg p-1" aria-label="ONO Home">
+        <div class="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center font-black tracking-tight text-lg shadow-xs group-hover:bg-brand-700 transition-colors">
+          O
+        </div>
+        <div class="flex flex-col">
+          <span class="font-black text-xl tracking-tight text-surface-900 leading-none group-hover:text-brand-700 transition-colors">
+            {siteConfig.name}
+          </span>
+          <span class="text-[9px] uppercase tracking-wider text-surface-500 font-bold">
+            WhatsApp SaaS
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-1 lg:gap-2" aria-label="Main Navigation">
+        {navItems.map((item) => {
+          const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
+          return (
+            <a
+              href={item.href}
+              class={`px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                isActive
+                  ? 'text-brand-700 bg-brand-50 font-semibold'
+                  : 'text-surface-600 hover:text-surface-900 hover:bg-surface-100'
+              }`}
+            >
+              {item.label}
+            </a>
+          );
+        })}
+      </nav>
+
+      <!-- Desktop Auth / CTA Links -->
+      <div class="hidden sm:flex items-center gap-3">
+        <Button
+          href={siteConfig.links.login}
+          variant="ghost"
+          size="sm"
+          class="text-surface-700 font-semibold hover:text-surface-900"
+          isAppCta={true}
+        >
+          Login
+        </Button>
+
+        <Button
+          href={siteConfig.links.signup}
+          variant="primary"
+          size="sm"
+          isAppCta={true}
+        >
+          Get Lifetime Access
+        </Button>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="flex sm:hidden items-center gap-2">
+        <Button
+          href={siteConfig.links.signup}
+          variant="primary"
+          size="sm"
+          class="text-xs px-2.5 py-1.5"
+          isAppCta={true}
+        >
+          Get Access
+        </Button>
+
+        <button
+          id="mobile-menu-button"
+          type="button"
+          class="p-2 rounded-lg text-surface-600 hover:text-surface-900 hover:bg-surface-100 focus:outline-none focus:ring-2 focus:ring-brand-600"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+        >
+          <span id="menu-icon-open">
+            <Icon name="menu" class="w-6 h-6" />
+          </span>
+          <span id="menu-icon-close" class="hidden">
+            <Icon name="close" class="w-6 h-6" />
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Collapsible Menu -->
+  <div id="mobile-menu" class="hidden sm:hidden border-b border-surface-200 bg-white px-4 pt-2 pb-6 space-y-3 shadow-lg">
+    <nav class="flex flex-col space-y-1" aria-label="Mobile Navigation">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class={`px-3 py-2.5 rounded-lg text-base font-medium ${
+            currentPath === item.href
+              ? 'text-brand-700 bg-brand-50 font-bold'
+              : 'text-surface-700 hover:bg-surface-100'
+          }`}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+    <div class="pt-4 border-t border-surface-200 flex flex-col gap-2.5">
+      <Button
+        href={siteConfig.links.login}
+        variant="outline"
+        size="md"
+        class="w-full text-center"
+        isAppCta={true}
+      >
+        Login to Dashboard
+      </Button>
+      <Button
+        href={siteConfig.links.signup}
+        variant="primary"
+        size="md"
+        class="w-full text-center"
+        isAppCta={true}
+      >
+        Get Lifetime Access ($50)
+      </Button>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle logic
+  const menuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  if (menuButton && mobileMenu && iconOpen && iconClose) {
+    menuButton.addEventListener('click', () => {
+      const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', (!isExpanded).toString());
+      mobileMenu.classList.toggle('hidden');
+      iconOpen.classList.toggle('hidden');
+      iconClose.classList.toggle('hidden');
+    });
+  }
+</script>

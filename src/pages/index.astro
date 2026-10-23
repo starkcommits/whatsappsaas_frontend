@@ -1,0 +1,382 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
+import DeviceFrame from '../components/DeviceFrame.astro';
+import InboxMockup from '../components/mockups/InboxMockup.astro';
+import TemplateMockup from '../components/mockups/TemplateMockup.astro';
+import CampaignMockup from '../components/mockups/CampaignMockup.astro';
+import ConsentMockup from '../components/mockups/ConsentMockup.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import PricingCard from '../components/PricingCard.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { featuresList } from '../data/features';
+import { lifetimePlan } from '../data/plans';
+import { homeFAQ } from '../data/faq';
+import { siteConfig } from '../config/site';
+
+const steps = [
+  {
+    step: '01',
+    title: 'Connect Number',
+    desc: 'Link your WhatsApp Business number via official Meta Embedded Signup in just a few clicks.',
+    icon: 'connect',
+  },
+  {
+    step: '02',
+    title: 'Import Contacts & Consent',
+    desc: 'Upload CSV customer files with verified opt-in sources and assign targeted audience tags.',
+    icon: 'contacts',
+  },
+  {
+    step: '03',
+    title: 'Send Template Campaigns',
+    desc: 'Compose approved Meta templates, personalize with dynamic variables, and track delivery live.',
+    icon: 'campaign',
+  },
+  {
+    step: '04',
+    title: 'Reply from Shared Inbox',
+    desc: 'Collaborate with your team to answer questions, assign chats, and close sales with canned replies.',
+    icon: 'inbox',
+  },
+];
+
+const homeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: siteConfig.name,
+  url: siteConfig.siteUrl,
+  description: siteConfig.description,
+};
+---
+
+<Layout
+  title={`${siteConfig.name} — WhatsApp Business Platform with Zero Markup`}
+  description={siteConfig.description}
+  jsonLd={homeJsonLd}
+>
+  <!-- Hero Section -->
+  <section class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden bg-gradient-to-b from-brand-50/40 via-surface-50 to-surface-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto space-y-6">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 bg-brand-100/80 text-brand-900 border border-brand-200 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold shadow-2xs">
+          <span class="w-2 h-2 rounded-full bg-brand-600"></span>
+          <span>One-Time License: ${lifetimePlan.priceUSD} {lifetimePlan.priceINR ? `(₹${lifetimePlan.priceINR.toLocaleString('en-IN')})` : ''} • Zero Message Markup</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-surface-900 tracking-tight leading-[1.12]">
+          The WhatsApp Business platform for customer chats and campaigns
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="text-base sm:text-lg md:text-xl text-surface-600 leading-relaxed max-w-2xl mx-auto">
+          Shared team inbox, template broadcast campaigns, CSV contact import with verified consent tracking, and WhatsApp Flows. Pay once, own it for life.
+        </p>
+
+        <!-- Hero CTAs -->
+        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+          <Button
+            href={siteConfig.links.signup}
+            size="lg"
+            class="w-full sm:w-auto shadow-md text-base"
+            isAppCta={true}
+          >
+            Get lifetime access (${lifetimePlan.priceUSD})
+            <Icon name="arrow-right" class="w-4 h-4 ml-1" />
+          </Button>
+
+          <Button
+            href="#how-it-works"
+            variant="outline"
+            size="lg"
+            class="w-full sm:w-auto"
+          >
+            See how it works
+          </Button>
+        </div>
+
+        <!-- Trust highlights under CTA -->
+        <div class="flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-xs text-surface-500 pt-2 font-medium">
+          <span class="flex items-center gap-1.5">
+            <Icon name="check" class="w-3.5 h-3.5 text-brand-600" /> Official Meta Cloud API
+          </span>
+          <span class="flex items-center gap-1.5">
+            <Icon name="check" class="w-3.5 h-3.5 text-brand-600" /> Direct Meta Billing (No Markup)
+          </span>
+          <span class="flex items-center gap-1.5">
+            <Icon name="check" class="w-3.5 h-3.5 text-brand-600" /> 7-Day Refund Guarantee
+          </span>
+        </div>
+      </div>
+
+      <!-- Hero Product Mockup (DeviceFrame with InboxMockup) -->
+      <div class="mt-12 sm:mt-16 max-w-5xl mx-auto">
+        <DeviceFrame
+          browserUrl="https://app.flexing.in/inbox"
+          caption="Interactive preview of ONO's shared team inbox with live chat assignments and canned replies."
+        >
+          <InboxMockup />
+        </DeviceFrame>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it Works Strip (4 Steps) -->
+  <Section id="how-it-works" background="white" class="border-y border-surface-200/80">
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-brand-700 mb-2">
+        Simple 4-Step Process
+      </h2>
+      <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-surface-900 tracking-tight">
+        How {siteConfig.name} Works
+      </h3>
+      <p class="text-surface-600 text-sm sm:text-base mt-3">
+        From connecting your business number to launching your first campaign in minutes.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+      {steps.map((item) => (
+        <div class="bg-surface-50 border border-surface-200/80 rounded-2xl p-6 relative flex flex-col justify-between hover:border-brand-300 transition-colors">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-2xl font-black font-mono text-brand-600">
+                {item.step}
+              </span>
+              <div class="w-9 h-9 rounded-xl bg-white border border-surface-200 text-brand-700 flex items-center justify-center shadow-2xs">
+                <Icon name={item.icon} class="w-4 h-4" />
+              </div>
+            </div>
+            <h4 class="text-base font-bold text-surface-900 mb-2">
+              {item.title}
+            </h4>
+            <p class="text-xs sm:text-sm text-surface-600 leading-relaxed">
+              {item.desc}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-10">
+      <Button href="/how-it-works" variant="secondary" size="md">
+        Read detailed onboarding guide
+        <Icon name="arrow-right" class="w-4 h-4 ml-1" />
+      </Button>
+    </div>
+  </Section>
+
+  <!-- Deep Dive 1: Shared Team Inbox -->
+  <Section background="default">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-5 space-y-5">
+        <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-700 bg-brand-50 border border-brand-200 px-3 py-1 rounded-full">
+          <Icon name="inbox" class="w-3.5 h-3.5" />
+          <span>Shared Team Inbox</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-surface-900 tracking-tight leading-tight">
+          Never miss a customer message again
+        </h2>
+        <p class="text-surface-600 text-sm sm:text-base leading-relaxed">
+          Centralize your incoming customer inquiries. Multiple agents can work the inbox simultaneously without stepping on each other's toes.
+        </p>
+        <ul class="space-y-3 text-sm text-surface-700 pt-2">
+          <li class="flex items-start gap-2.5">
+            <span class="text-brand-600 mt-1"><Icon name="check" class="w-4 h-4" /></span>
+            <span><strong>Live conversation updates:</strong> Messages stream in real-time across your team's browser tabs.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-brand-600 mt-1"><Icon name="check" class="w-4 h-4" /></span>
+            <span><strong>One-click agent assignment:</strong> Route chats to specific staff members or reassign with context.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-brand-600 mt-1"><Icon name="check" class="w-4 h-4" /></span>
+            <span><strong>Private internal notes:</strong> Leave teammate-only comments inside the chat thread without the customer seeing.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-brand-600 mt-1"><Icon name="check" class="w-4 h-4" /></span>
+            <span><strong>Canned responses:</strong> Pre-save replies for operating hours, payment info, FAQs, and common links.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-7">
+        <DeviceFrame browserUrl="https://app.flexing.in/inbox">
+          <InboxMockup />
+        </DeviceFrame>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Deep Dive 2: Templates & Campaigns -->
+  <Section background="muted">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-7 order-2 lg:order-1">
+        <div class="space-y-6">
+          <DeviceFrame browserUrl="https://app.flexing.in/campaigns">
+            <CampaignMockup />
+          </DeviceFrame>
+          <div class="hidden sm:block">
+            <DeviceFrame browserUrl="https://app.flexing.in/templates">
+              <TemplateMockup />
+            </DeviceFrame>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 order-1 lg:order-2 space-y-5">
+        <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-700 bg-brand-50 border border-brand-200 px-3 py-1 rounded-full">
+          <Icon name="campaign" class="w-3.5 h-3.5" />
+          <span>Templates & Broadcasts</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-surface-900 tracking-tight leading-tight">
+          Launch targeted campaigns with approved Meta templates
+        </h2>
+        <p class="text-surface-600 text-sm sm:text-base leading-relaxed">
+          Create rich media templates with personalization variables, submit directly to Meta for rapid approval, and broadcast to consented customer segments.
+        </p>
+        <ul class="space-y-3 text-sm text-surface-700 pt-2">
+          <li class="flex items-start gap-2.5">
+            <span class="text-brand-600 mt-1"><Icon name="check" class="w-4 h-4" /></span>
+            <span><strong>Interactive live preview:</strong> Review how your messages appear on iOS and Android before sending.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-brand-600 mt-1"><Icon name="check" class="w-4 h-4" /></span>
+            <span><strong>Dynamic personalization:</strong> Inject customer names, invoice numbers, order tracking, and unique promo codes.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-brand-600 mt-1"><Icon name="check" class="w-4 h-4" /></span>
+            <span><strong>Real-time delivery analytics:</strong> Monitor Sent, Delivered, Read, and Inbound Replies live.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Deep Dive 3: Consent Tools & Compliance -->
+  <Section background="default">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-5 space-y-5">
+        <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-700 bg-brand-50 border border-brand-200 px-3 py-1 rounded-full">
+          <Icon name="shield-check" class="w-3.5 h-3.5" />
+          <span>Compliance & Consent</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-surface-900 tracking-tight leading-tight">
+          Built-in consent tools to keep your business number protected
+        </h2>
+        <p class="text-surface-600 text-sm sm:text-base leading-relaxed">
+          WhatsApp requires verifiable opt-in. {siteConfig.name} enforces compliance guardrails to ensure your broadcasts only reach contacts who actively agreed to hear from you.
+        </p>
+        <ul class="space-y-3 text-sm text-surface-700 pt-2">
+          <li class="flex items-start gap-2.5">
+            <span class="text-brand-600 mt-1"><Icon name="check" class="w-4 h-4" /></span>
+            <span><strong>Opt-in links & QR codes:</strong> Generate one-click chat links and printable QR codes for checkout counters.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-brand-600 mt-1"><Icon name="check" class="w-4 h-4" /></span>
+            <span><strong>Automated STOP handling:</strong> When contacts text STOP, they are instantly suppressed from future campaigns.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-brand-600 mt-1"><Icon name="check" class="w-4 h-4" /></span>
+            <span><strong>CSV consent source tagging:</strong> Record the exact origin of each contact during file import.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-7">
+        <DeviceFrame browserUrl="https://app.flexing.in/compliance">
+          <ConsentMockup />
+        </DeviceFrame>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Complete Feature Grid (Strictly FEATURES 1-10) -->
+  <Section background="white">
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-brand-700 mb-2">
+        Platform Capabilities
+      </h2>
+      <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-surface-900 tracking-tight">
+        Everything you need to manage WhatsApp at scale
+      </h3>
+      <p class="text-surface-600 text-sm sm:text-base mt-3">
+        Every feature in {siteConfig.name} is built directly on official Meta APIs with strict compliance, transparency, and reliability.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {featuresList.map((feature) => (
+        <FeatureCard
+          number={feature.number}
+          title={feature.title}
+          description={feature.shortDesc}
+          badge={feature.badge}
+          icon={feature.icon}
+        />
+      ))}
+    </div>
+
+    <div class="text-center mt-10">
+      <Button href="/features" variant="secondary" size="md">
+        Explore full feature details & specifications
+        <Icon name="arrow-right" class="w-4 h-4 ml-1" />
+      </Button>
+    </div>
+  </Section>
+
+  <!-- Pricing Section -->
+  <Section id="pricing" background="default">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-brand-700 mb-2">
+        Simple Honest Pricing
+      </h2>
+      <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-surface-900 tracking-tight">
+        One plan. Lifetime access. Zero markup.
+      </h3>
+      <p class="text-surface-600 text-sm sm:text-base mt-3">
+        No monthly recurring subscription. You pay once for the software, and pay Meta directly for your message conversations.
+      </p>
+    </div>
+
+    <div class="max-w-3xl mx-auto">
+      <PricingCard showFullDetails={true} />
+    </div>
+  </Section>
+
+  <!-- FAQ Section -->
+  <Section background="white">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-brand-700 mb-2">
+        Got Questions?
+      </h2>
+      <h3 class="text-2xl sm:text-3xl font-extrabold text-surface-900 tracking-tight">
+        Frequently Asked Questions
+      </h3>
+      <p class="text-surface-600 text-sm sm:text-base mt-2">
+        Clear, transparent answers about our lifetime model, Meta billing, and setup.
+      </p>
+    </div>
+
+    <FaqAccordion items={homeFAQ} />
+
+    <div class="text-center mt-8">
+      <p class="text-xs text-surface-500">
+        Have a specific question not covered here?{' '}
+        <a href="/contact" class="text-brand-700 font-semibold hover:underline">
+          Contact our team directly
+        </a>.
+      </p>
+    </div>
+  </Section>
+
+  <!-- Final CTA Band -->
+  <Section background="default" class="pt-0">
+    <CtaBand />
+  </Section>
+</Layout>

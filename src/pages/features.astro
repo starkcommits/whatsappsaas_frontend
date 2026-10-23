@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { featuresList } from '../data/features';
+import { siteConfig } from '../config/site';
+
+const featuresJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: `${siteConfig.name} Platform Features`,
+  description: 'Complete breakdown of official WhatsApp Business features in ONO',
+  itemListElement: featuresList.map((feature, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: feature.title,
+    description: feature.shortDesc,
+  })),
+};
+---
+
+<Layout
+  title={`Features — ${siteConfig.name} WhatsApp Business Platform`}
+  description="Explore the complete feature suite of ONO: shared inbox, template campaigns, consent tracking, WhatsApp Flows, team roles and developer APIs."
+  jsonLd={featuresJsonLd}
+>
+  <!-- Page Header -->
+  <section class="py-16 md:py-24 bg-gradient-to-b from-brand-50/50 via-surface-50 to-surface-50 border-b border-surface-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
+      <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-700 bg-brand-100/70 border border-brand-200 px-3.5 py-1 rounded-full mb-4">
+        <span>Verified Capabilities</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-surface-900 tracking-tight leading-tight">
+        Built strictly on official WhatsApp APIs
+      </h1>
+      <p class="text-base sm:text-lg text-surface-600 mt-4 leading-relaxed">
+        Everything you need to run collaborative team support, launch personalized broadcast campaigns, and stay 100% compliant with WhatsApp platform rules.
+      </p>
+
+      <!-- Quick Jump Pills -->
+      <div class="flex flex-wrap items-center justify-center gap-2 pt-8 text-xs font-medium">
+        {featuresList.map((feature) => (
+          <a
+            href={`#${feature.id}`}
+            class="bg-white hover:bg-brand-50 text-surface-700 hover:text-brand-800 border border-surface-200 hover:border-brand-300 px-3 py-1.5 rounded-lg transition-colors shadow-2xs"
+          >
+            {feature.number}. {feature.title}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Feature Sections (One section per FEATURES item) -->
+  <div class="divide-y divide-surface-200">
+    {featuresList.map((feature, index) => (
+      <Section id={feature.id} background={index % 2 === 0 ? 'white' : 'default'} class="scroll-mt-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <!-- Left: Number & Main Benefit -->
+          <div class="lg:col-span-5 space-y-4">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-brand-100 text-brand-800 font-mono font-bold flex items-center justify-center text-sm border border-brand-200">
+                0{feature.number}
+              </span>
+              {feature.badge && (
+                <span class="text-xs font-semibold uppercase tracking-wider text-brand-700 bg-brand-50 border border-brand-200 px-3 py-0.5 rounded-full">
+                  {feature.badge}
+                </span>
+              )}
+            </div>
+
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-surface-900 tracking-tight leading-snug">
+              {feature.title}
+            </h2>
+
+            <p class="text-base font-medium text-brand-900/90 leading-relaxed">
+              {feature.shortDesc}
+            </p>
+
+            <p class="text-sm text-surface-600 leading-relaxed">
+              {feature.detailedDesc}
+            </p>
+          </div>
+
+          <!-- Right: Key Specifications & Points -->
+          <div class="lg:col-span-7 bg-surface-50/80 rounded-2xl border border-surface-200 p-6 sm:p-8">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-surface-500 mb-4 flex items-center gap-2">
+              <Icon name="check" class="w-4 h-4 text-brand-600" />
+              <span>Key Capabilities & Benefits</span>
+            </h3>
+            <ul class="space-y-3.5 text-sm text-surface-700">
+              {feature.keyPoints.map((point) => (
+                <li class="flex items-start gap-3">
+                  <span class="w-5 h-5 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center shrink-0 mt-0.5">
+                    <Icon name="check" class="w-3.5 h-3.5" />
+                  </span>
+                  <span class="leading-relaxed">{point}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div class="mt-6 pt-5 border-t border-surface-200/80 flex items-center justify-between text-xs text-surface-500">
+              <span>Included in Lifetime Plan</span>
+              <Button href={siteConfig.links.signup} variant="ghost" size="sm" class="text-brand-700 hover:text-brand-900 font-semibold p-0 hover:bg-transparent" isAppCta={true}>
+                Get access →
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Section>
+    ))}
+  </div>
+
+  <!-- Bottom CTA Band -->
+  <Section background="default" class="pt-8">
+    <CtaBand />
+  </Section>
+</Layout>

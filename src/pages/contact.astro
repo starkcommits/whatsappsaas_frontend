@@ -1,0 +1,188 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
+import { siteConfig } from '../config/site';
+
+const contactEndpoint = siteConfig.contactEndpoint;
+const fallbackMailto = `mailto:${siteConfig.supportEmail}?subject=Inquiry%20about%20${encodeURIComponent(siteConfig.name)}`;
+---
+
+<Layout
+  title={`Contact & Support — ${siteConfig.name}`}
+  description={`Get in touch with the ${siteConfig.name} team at ${siteConfig.legalName}. Questions about features, lifetime license, or onboarding support.`}
+>
+  <section class="py-16 md:py-24 bg-gradient-to-b from-brand-50/50 via-surface-50 to-surface-50 border-b border-surface-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
+      <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-700 bg-brand-100/70 border border-brand-200 px-3.5 py-1 rounded-full mb-4">
+        <span>We're Here to Help</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-surface-900 tracking-tight leading-tight">
+        Contact {siteConfig.name} Support
+      </h1>
+      <p class="text-base sm:text-lg text-surface-600 mt-4 leading-relaxed">
+        Have questions before purchasing lifetime access? Need assistance with Meta Business verification? Reach out to our team directly.
+      </p>
+    </div>
+  </section>
+
+  <Section background="white">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-5xl mx-auto">
+      <!-- Left: Contact Information & Legal Entity -->
+      <div class="lg:col-span-5 space-y-6">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-surface-900 mb-2">
+            Company & Office Details
+          </h2>
+          <p class="text-sm text-surface-600 leading-relaxed">
+            {siteConfig.name} is operated by {siteConfig.legalName}. We provide honest, prompt email support to all customers.
+          </p>
+        </div>
+
+        <div class="space-y-4 pt-4 border-t border-surface-200 text-sm">
+          <div class="p-4 bg-surface-50 rounded-2xl border border-surface-200">
+            <span class="text-xs font-bold uppercase tracking-wider text-surface-500 block mb-1">Support Email</span>
+            <a href={`mailto:${siteConfig.supportEmail}`} class="text-base font-bold text-brand-700 hover:underline break-all">
+              {siteConfig.supportEmail}
+            </a>
+            <p class="text-xs text-surface-500 mt-1">Typical response time: under 24 business hours.</p>
+          </div>
+
+          <div class="p-4 bg-surface-50 rounded-2xl border border-surface-200">
+            <span class="text-xs font-bold uppercase tracking-wider text-surface-500 block mb-1">Company Legal Name</span>
+            <p class="text-sm font-bold text-surface-900">{siteConfig.legalName}</p>
+          </div>
+
+          <div class="p-4 bg-surface-50 rounded-2xl border border-surface-200">
+            <span class="text-xs font-bold uppercase tracking-wider text-surface-500 block mb-1">Registered Address</span>
+            <p class="text-sm text-surface-800 leading-relaxed">{siteConfig.address}</p>
+          </div>
+
+          <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-200 text-xs text-emerald-900 leading-relaxed">
+            <strong class="font-bold block mb-1">7-Day Guarantee Support:</strong>
+            Refund requests can be emailed directly to <a href={`mailto:${siteConfig.supportEmail}`} class="font-bold underline">{siteConfig.supportEmail}</a> with your order transaction ID for swift processing.
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Contact Form -->
+      <div class="lg:col-span-7 bg-white rounded-3xl border border-surface-200 p-6 sm:p-8 shadow-card">
+        <h3 class="text-xl font-bold text-surface-900 mb-1">
+          Send Us a Message
+        </h3>
+        <p class="text-xs text-surface-500 mb-6">
+          Fill out the form below or write directly to <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-600 underline">{siteConfig.supportEmail}</a>.
+        </p>
+
+        <form
+          id="contact-form"
+          action={contactEndpoint || fallbackMailto}
+          method={contactEndpoint ? 'POST' : 'GET'}
+          class="space-y-4"
+        >
+          <!-- Spam Honeypot Field (Hidden from humans) -->
+          <div style="display: none !important;" aria-hidden="true">
+            <label for="honeypot_website">Do not fill this field</label>
+            <input type="text" id="honeypot_website" name="honeypot_website" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div>
+            <label for="name" class="block text-xs font-bold uppercase tracking-wider text-surface-700 mb-1.5">
+              Your Full Name <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              placeholder="e.g. Rahul Sharma"
+              class="w-full bg-surface-50 border border-surface-300 rounded-xl px-4 py-2.5 text-sm text-surface-900 focus:bg-white focus:border-brand-600 transition-colors"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block text-xs font-bold uppercase tracking-wider text-surface-700 mb-1.5">
+              Work Email Address <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="you@company.com"
+              class="w-full bg-surface-50 border border-surface-300 rounded-xl px-4 py-2.5 text-sm text-surface-900 focus:bg-white focus:border-brand-600 transition-colors"
+            />
+          </div>
+
+          <div>
+            <label for="message" class="block text-xs font-bold uppercase tracking-wider text-surface-700 mb-1.5">
+              Your Message or Question <span class="text-red-500">*</span>
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              required
+              placeholder="How can we help you? (e.g., questions about connecting a phone number, team permissions, etc.)"
+              class="w-full bg-surface-50 border border-surface-300 rounded-xl p-4 text-sm text-surface-900 focus:bg-white focus:border-brand-600 transition-colors leading-relaxed"
+            ></textarea>
+          </div>
+
+          <div class="pt-2">
+            <Button
+              type="submit"
+              size="lg"
+              class="w-full font-bold shadow-md"
+            >
+              Send Message
+              <Icon name="arrow-right" class="w-4 h-4 ml-1" />
+            </Button>
+          </div>
+
+          <div id="form-status" class="hidden text-xs p-3 rounded-lg text-center mt-3 font-medium"></div>
+
+          <p class="text-center text-xs text-surface-400 pt-2">
+            We value your privacy. We never share or sell contact details to third parties.
+          </p>
+        </form>
+      </div>
+    </div>
+  </Section>
+</Layout>
+
+<script is:inline define:vars={{ contactEndpoint, supportEmail: siteConfig.supportEmail, productName: siteConfig.name }}>
+  const form = document.getElementById('contact-form');
+  const statusDiv = document.getElementById('form-status');
+  const honeypot = document.getElementById('honeypot_website');
+
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      // Check honeypot
+      if (honeypot && honeypot.value.trim() !== '') {
+        e.preventDefault();
+        console.warn('Bot submission blocked.');
+        return;
+      }
+
+      // If no custom endpoint is set, construct clean mailto link
+      if (!contactEndpoint) {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        const subject = encodeURIComponent(`${productName} Inquiry from ${name}`);
+        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+        
+        window.location.href = `mailto:${supportEmail}?subject=${subject}&body=${body}`;
+        
+        if (statusDiv) {
+          statusDiv.className = 'text-xs p-3 rounded-lg text-center mt-3 font-medium bg-emerald-50 text-emerald-800 border border-emerald-200';
+          statusDiv.textContent = 'Opening your email client to send message...';
+          statusDiv.classList.remove('hidden');
+        }
+      }
+    });
+  }
+</script>
