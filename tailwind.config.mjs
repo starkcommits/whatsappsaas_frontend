@@ -61,7 +61,21 @@ export default {
         'xl': '0.75rem',
         '2xl': '1rem',
         '3xl': '1.5rem',
-      }
+      },
+      keyframes: {
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(calc(-100% - var(--gap, 1rem)))' },
+        },
+        'marquee-vertical': {
+          from: { transform: 'translateY(0)' },
+          to: { transform: 'translateY(calc(-100% - var(--gap, 1rem)))' },
+        },
+      },
+      animation: {
+        marquee: 'marquee var(--duration, 40s) linear infinite',
+        'marquee-vertical': 'marquee-vertical var(--duration, 40s) linear infinite',
+      },
     },
   },
   plugins: [],

@@ -1,0 +1,55 @@
+---
+interface Props {
+  class?: string;
+  className?: string;
+  reverse?: boolean;
+  pauseOnHover?: boolean;
+  vertical?: boolean;
+  repeat?: number;
+  ariaLabel?: string;
+  ariaLive?: 'off' | 'polite' | 'assertive';
+  ariaRole?: any;
+}
+
+const {
+  class: classProp,
+  className = '',
+  reverse = false,
+  pauseOnHover = false,
+  vertical = false,
+  repeat = 4,
+  ariaLabel,
+  ariaLive = 'off',
+  ariaRole = 'marquee',
+  ...rest
+} = Astro.props;
+
+const customClasses = classProp || className;
+const slotContent = await Astro.slots.render('default');
+---
+
+<div
+  {...rest}
+  data-slot="marquee"
+  class={`group flex overflow-hidden p-2 [--duration:40s] [--gap:1rem] [gap:var(--gap)] ${
+    vertical ? 'flex-col' : 'flex-row'
+  } ${customClasses}`}
+  aria-label={ariaLabel}
+  aria-live={ariaLive}
+  role={ariaRole}
+  tabindex="0"
+>
+  {Array.from({ length: repeat }).map(() => (
+    <div
+      class={`flex shrink-0 justify-around ${
+        !vertical
+          ? 'animate-marquee flex-row [gap:var(--gap)]'
+          : 'animate-marquee-vertical flex-col [gap:var(--gap)]'
+      } ${pauseOnHover ? 'group-hover:[animation-play-state:paused]' : ''} ${
+        reverse ? '[animation-direction:reverse]' : ''
+      }`}
+    >
+      <Fragment set:html={slotContent} />
+    </div>
+  ))}
+</div>

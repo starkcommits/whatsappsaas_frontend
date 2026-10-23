@@ -12,6 +12,7 @@ import FeatureCard from '../components/FeatureCard.astro';
 import PricingCard from '../components/PricingCard.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
 import CtaBand from '../components/CtaBand.astro';
+import Marquee from '../components/Marquee.astro';
 import { featuresList } from '../data/features';
 import { lifetimePlan } from '../data/plans';
 import { homeFAQ } from '../data/faq';
@@ -60,7 +61,70 @@ const homeJsonLd = {
 >
   <!-- Hero Section -->
   <section class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden bg-gradient-to-b from-brand-50/40 via-surface-50 to-surface-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Background Animated Marquee -->
+    <div class="absolute inset-0 pointer-events-none select-none overflow-hidden opacity-30 sm:opacity-40 -z-0 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)]">
+      <div class="space-y-4 -rotate-1 scale-105 origin-center pt-4">
+        <!-- Row 1: Forward -->
+        <Marquee pauseOnHover={false} class="[--duration:55s] [--gap:1rem]">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 border border-brand-200/60 shadow-xs text-xs text-surface-800 whitespace-nowrap">
+            <span class="w-2 h-2 rounded-full bg-brand-500"></span>
+            <span class="font-semibold text-surface-900">Direct Cloud API</span>
+            <span class="text-surface-500">• Meta Embedded Signup</span>
+          </div>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 border border-brand-200/60 shadow-xs text-xs text-surface-800 whitespace-nowrap">
+            <span class="text-brand-600 font-bold">✓✓</span>
+            <span class="font-semibold text-surface-900">98.5% Delivery Rate</span>
+            <span class="text-surface-500">• 1,822 Messages Read</span>
+          </div>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 border border-brand-200/60 shadow-xs text-xs text-surface-800 whitespace-nowrap">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span class="font-semibold text-surface-900">Aarav Sharma</span>
+            <span class="text-surface-500">"Booked consultation slot"</span>
+          </div>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 border border-brand-200/60 shadow-xs text-xs text-surface-800 whitespace-nowrap">
+            <span class="text-brand-700 font-bold">$0</span>
+            <span class="font-semibold text-surface-900">Zero Message Markup</span>
+            <span class="text-surface-500">• Pay Meta directly</span>
+          </div>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 border border-brand-200/60 shadow-xs text-xs text-surface-800 whitespace-nowrap">
+            <span class="w-2 h-2 rounded-full bg-brand-500"></span>
+            <span class="font-semibold text-surface-900">Priya S.</span>
+            <span class="text-surface-500">Assigned 4 active chats</span>
+          </div>
+        </Marquee>
+
+        <!-- Row 2: Reverse -->
+        <Marquee reverse pauseOnHover={false} class="[--duration:60s] [--gap:1rem]">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 border border-brand-200/60 shadow-xs text-xs text-surface-800 whitespace-nowrap">
+            <span class="text-brand-600">🛡️</span>
+            <span class="font-semibold text-surface-900">Consent Verified</span>
+            <span class="text-surface-500">• Auto STOP suppression</span>
+          </div>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 border border-brand-200/60 shadow-xs text-xs text-surface-800 whitespace-nowrap">
+            <span class="text-brand-600">⚡</span>
+            <span class="font-semibold text-surface-900">Canned Reply</span>
+            <span class="text-surface-500">#confirm_booking sent</span>
+          </div>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 border border-brand-200/60 shadow-xs text-xs text-surface-800 whitespace-nowrap">
+            <span class="text-brand-600">📱</span>
+            <span class="font-semibold text-surface-900">WhatsApp Flow</span>
+            <span class="text-surface-500">Lead intake form submitted</span>
+          </div>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 border border-brand-200/60 shadow-xs text-xs text-surface-800 whitespace-nowrap">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span class="font-semibold text-surface-900">Meta Template Approved</span>
+            <span class="text-surface-500">festive_offer_v2</span>
+          </div>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 border border-brand-200/60 shadow-xs text-xs text-surface-800 whitespace-nowrap">
+            <span class="text-brand-600">🔒</span>
+            <span class="font-semibold text-surface-900">Two-Factor Auth</span>
+            <span class="text-surface-500">Owner security audit logged</span>
+          </div>
+        </Marquee>
+      </div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto space-y-6">
         <!-- Badge -->
         <div class="inline-flex items-center gap-2 bg-brand-100/80 text-brand-900 border border-brand-200 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold shadow-2xs">
