@@ -1,0 +1,132 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { siteConfig } from '../config/site';
+
+const securityFeatures = [
+  {
+    title: 'Two-Factor Authentication (2FA)',
+    desc: 'Workspace owners can enforce standard TOTP two-factor authentication for login using apps like Google Authenticator or 1Password.',
+    tag: 'Authentication',
+  },
+  {
+    title: 'Tenant Isolation',
+    desc: 'All database queries are scoped by workspace ID at the ORM layer. Data from one organization is never accessible by another.',
+    tag: 'Architecture',
+  },
+  {
+    title: 'Hashed API Keys',
+    desc: 'API keys are hashed with SHA-256 before storage in the database. The plaintext secret is displayed only once upon creation.',
+    tag: 'API Security',
+  },
+  {
+    title: 'Encrypted Meta Tokens',
+    desc: 'Permanent WhatsApp Cloud API access tokens and embedded signup credentials are encrypted at rest using industry-standard cryptography.',
+    tag: 'Data at Rest',
+  },
+  {
+    title: 'Signature-Verified Webhooks',
+    desc: 'Incoming WhatsApp events from Meta are authenticated using HMAC SHA-256 signature verification to prevent spoofing.',
+    tag: 'Network',
+  },
+  {
+    title: 'Unalterable Audit Logs',
+    desc: 'Every sensitive action—user logins, agent assignment changes, contact exports, and API key revocations—is recorded with timestamp and actor.',
+    tag: 'Auditing',
+  },
+  {
+    title: 'Data Export & Deletion',
+    desc: 'You can export complete contact files and message logs in CSV format at any time. When you close your workspace, your data is permanently deleted.',
+    tag: 'Data Control',
+  },
+  {
+    title: 'Consent-Guarded Delivery',
+    desc: 'Campaign messages are checked against an opt-in ledger and suppression list before dispatch to prevent delivery to unsubscribed numbers.',
+    tag: 'Compliance',
+  },
+];
+---
+
+<Layout
+  title={`Security & Tenancy — ${siteConfig.name}`}
+  description="Security architecture, two-factor authentication, tenant isolation, hashed API keys, and data privacy controls in ONO."
+>
+  <!-- Header -->
+  <section class="py-16 md:py-24 bg-ink-50/60 border-b border-ink-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
+      <div class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-brand-700 bg-brand-50 border border-brand-100 px-3.5 py-1 rounded-full mb-4">
+        <span>Security & Architecture</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-ink-950 tracking-tight font-display leading-tight">
+        Calm, reliable security and tenant control
+      </h1>
+      <p class="text-base sm:text-lg text-ink-500 mt-4 leading-relaxed">
+        We prioritize transparency and defensive software engineering. Here are the exact technical safeguards implemented in ONO.
+      </p>
+    </div>
+  </section>
+
+  <!-- Non-Claim Notice -->
+  <Section background="white">
+    <div class="max-w-4xl mx-auto">
+      <div class="p-5 sm:p-6 rounded-2xl bg-ink-50 border border-ink-200 text-xs sm:text-sm text-ink-700 leading-relaxed space-y-2">
+        <p class="font-bold text-ink-950 font-display">
+          Our commitment to truth in security claims:
+        </p>
+        <p>
+          We do not claim compliance certifications that we have not formally audited (such as SOC 2, ISO 27001, or HIPAA). We list only true technical controls that exist inside the codebase, verified by automated unit tests and architectural review.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Security Controls Grid -->
+  <Section background="default" class="border-t border-ink-100">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-brand-700 mb-2">
+          Technical Controls
+        </h2>
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-ink-950 font-display tracking-tight">
+          How ONO protects your customer conversations
+        </h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {securityFeatures.map((item) => (
+          <div class="p-6 sm:p-7 rounded-2xl bg-white border border-ink-100 shadow-soft space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-mono font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-ink-50 text-ink-700 border border-ink-100">
+                {item.tag}
+              </span>
+            </div>
+            <h4 class="text-lg font-bold text-ink-950 font-display">
+              {item.title}
+            </h4>
+            <p class="text-xs sm:text-sm text-ink-500 leading-relaxed">
+              {item.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <!-- Data Ownership & Privacy Policy Link -->
+  <Section background="white">
+    <div class="max-w-3xl mx-auto text-center space-y-4">
+      <h3 class="text-2xl font-extrabold text-ink-950 font-display">
+        Your data belongs to you
+      </h3>
+      <p class="text-sm text-ink-500 leading-relaxed">
+        ONO is a software tool, not a data broker. We never sell, rent, or monetize your contact records or message content. Read our full <a href="/privacy" class="text-brand-700 font-semibold underline underline-offset-2">Privacy Policy</a> and <a href="/acceptable-use" class="text-brand-700 font-semibold underline underline-offset-2">Acceptable Use Policy</a>.
+      </p>
+    </div>
+  </Section>
+
+  <!-- CTA -->
+  <Section background="default">
+    <CtaBand />
+  </Section>
+</Layout>

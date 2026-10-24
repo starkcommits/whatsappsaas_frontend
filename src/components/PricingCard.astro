@@ -2,7 +2,6 @@
 import { lifetimePlan } from '../data/plans';
 import { siteConfig } from '../config/site';
 import Button from './Button.astro';
-import Icon from './Icon.astro';
 
 interface Props {
   showFullDetails?: boolean;
@@ -12,130 +11,129 @@ interface Props {
 const { showFullDetails = true, class: className = '' } = Astro.props;
 ---
 
-<div class={`bg-white rounded-3xl border-2 border-brand-600/90 p-8 sm:p-10 shadow-xl relative overflow-hidden ${className}`}>
+<div class={`bg-white rounded-3xl border border-ink-100 p-8 sm:p-10 shadow-soft-lg relative overflow-hidden ${className}`}>
   <!-- Top Highlight Badge -->
-  <div class="absolute top-0 right-0 bg-brand-600 text-white text-xs font-bold uppercase tracking-wider py-1.5 px-6 rounded-bl-2xl shadow-xs">
+  <div class="absolute top-0 right-0 bg-brand-600 text-white text-[11px] font-mono font-bold uppercase tracking-wider py-1.5 px-6 rounded-bl-2xl shadow-xs">
     {lifetimePlan.badge}
   </div>
 
   <div class="max-w-3xl">
     <div class="mb-6">
-      <h3 class="text-2xl sm:text-3xl font-extrabold text-surface-900 tracking-tight">
+      <h3 class="text-2xl sm:text-3xl font-extrabold text-ink-950 tracking-tight font-display">
         {lifetimePlan.name}
       </h3>
-      <p class="text-surface-600 text-sm mt-1.5">
+      <p class="text-ink-500 text-sm mt-1.5 leading-relaxed">
         {lifetimePlan.billingText}
       </p>
     </div>
 
     <!-- Pricing Figures (USD and INR) -->
-    <div class="flex flex-wrap items-baseline gap-4 py-4 border-y border-surface-200">
-      <div class="flex items-baseline gap-1">
-        <span class="text-4xl sm:text-5xl font-black text-surface-900 tracking-tight">
+    <div class="flex flex-wrap items-baseline gap-4 py-5 border-y border-ink-100">
+      <div class="flex items-baseline gap-1.5">
+        <span class="text-4xl sm:text-5xl font-black text-ink-950 tracking-tight font-display">
           ${lifetimePlan.priceUSD}
         </span>
-        <span class="text-xs text-surface-500 font-medium">USD one-time</span>
+        <span class="text-xs text-ink-500 font-mono">USD one-time</span>
       </div>
 
       {lifetimePlan.priceINR !== null && (
-        <div class="flex items-baseline gap-1 bg-brand-50 px-3 py-1.5 rounded-xl border border-brand-200">
-          <span class="text-2xl sm:text-3xl font-bold text-brand-900">
-            ₹{lifetimePlan.priceINR.toLocaleString('en-IN')}
+        <div class="flex items-baseline gap-1.5 bg-brand-50 px-3.5 py-1.5 rounded-xl border border-brand-100">
+          <span class="text-xl sm:text-2xl font-bold text-brand-900 font-display">
+            {lifetimePlan.priceINRFormatted}
           </span>
-          <span class="text-xs text-brand-700 font-medium">INR (All-inclusive)</span>
+          <span class="text-[11px] text-brand-700 font-mono font-medium">(approximate)</span>
         </div>
       )}
     </div>
 
     <!-- Prominent zero-markup callout -->
-    <div class="my-6 p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200 flex items-start gap-3">
-      <div class="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0 mt-0.5">
-        <Icon name="check" class="w-4 h-4" />
+    <div class="my-6 p-4 rounded-2xl bg-brand-50/60 border border-brand-100 flex items-start gap-3">
+      <div class="w-5 h-5 rounded-full bg-brand-600 text-white flex items-center justify-center shrink-0 mt-0.5">
+        <svg class="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
       </div>
       <div>
-        <p class="text-sm font-bold text-emerald-950">
+        <p class="text-xs sm:text-sm font-bold text-brand-900">
           {lifetimePlan.markupDisclaimer}
         </p>
-        <p class="text-xs text-emerald-800 mt-1 leading-relaxed">
-          Zero middleman fees. You link your own Meta Business Account via embedded signup and pay Meta directly at wholesale platform rates.
+        <p class="text-xs text-ink-500 mt-1 leading-relaxed">
+          Zero middleman fees. You link your own Meta Business Account via embedded signup and pay Meta directly at Meta's rates.
         </p>
       </div>
     </div>
 
-    <!-- Primary CTA Button -->
+    <!-- CTA Button -->
     <div class="my-6">
       <Button
         href={siteConfig.links.signup}
+        variant="primary"
         size="lg"
-        class="w-full text-base py-4 font-bold shadow-md"
+        class="w-full text-base font-bold shadow-soft"
         isAppCta={true}
       >
-        Get Lifetime Access for ${lifetimePlan.priceUSD}
-        <Icon name="arrow-right" class="w-4 h-4 ml-1" />
+        Get lifetime access (${lifetimePlan.priceUSD})
       </Button>
-      <p class="text-center text-xs text-surface-500 mt-2 font-medium">
-        🛡️ {lifetimePlan.guaranteeText}
+      <p class="text-center text-xs text-ink-500 mt-2 font-mono">
+        {lifetimePlan.guaranteeText}
       </p>
     </div>
 
-    <!-- Included Core Features -->
-    <div class="pt-6 border-t border-surface-200">
-      <h4 class="text-sm font-bold text-surface-900 uppercase tracking-wider mb-4">
-        What's included for life:
-      </h4>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-surface-700">
-        {lifetimePlan.highlights.map((item) => (
-          <div class="flex items-start gap-2.5">
-            <span class="text-brand-600 shrink-0 mt-1">
-              <Icon name="check" class="w-4 h-4" />
-            </span>
-            <span class="text-xs leading-normal">{item}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-
     {showFullDetails && (
-      <div class="mt-8 pt-8 border-t border-surface-200 space-y-6">
+      <div class="mt-8 pt-8 border-t border-ink-100 space-y-8">
+        <!-- Core Plan Highlights -->
         <div>
-          <h4 class="text-sm font-bold text-surface-900 uppercase tracking-wider mb-3">
-            Fair-Use Workspace Allowances:
+          <h4 class="text-xs font-bold uppercase tracking-wider text-ink-500 mb-3 font-mono">
+            Included in Lifetime License
           </h4>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            {lifetimePlan.limits.map((limit) => (
-              <div class="p-3 bg-surface-50 border border-surface-200 rounded-xl">
-                <div class="flex justify-between items-center mb-1">
-                  <span class="text-surface-600">{limit.label}</span>
-                  <span class="font-bold text-surface-900">{limit.value}</span>
-                </div>
-                {limit.description && (
-                  <p class="text-[11px] text-surface-500">{limit.description}</p>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-ink-700">
+            {lifetimePlan.highlights.map((feature) => (
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-brand-600 shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span class="leading-relaxed">{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Fair-Use Limits -->
+        <div id="limits" class="pt-4 border-t border-ink-100">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-ink-500 mb-3 font-mono">
+            Fair-Use Workspace Limits
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {lifetimePlan.limits.map((item) => (
+              <div class="p-3.5 rounded-xl bg-ink-50 border border-ink-100">
+                <div class="text-xs font-bold text-ink-950">{item.label}</div>
+                <div class="text-base font-bold text-brand-700 font-display mt-0.5">{item.value}</div>
+                {item.description && (
+                  <p class="text-[11px] text-ink-500 mt-1">{item.description}</p>
                 )}
               </div>
             ))}
           </div>
         </div>
 
-        <div>
+        <!-- Optional Add-ons -->
+        <div class="pt-4 border-t border-ink-100">
           <div class="flex items-center justify-between mb-3">
-            <h4 class="text-sm font-bold text-surface-900 uppercase tracking-wider">
-              Optional Modular Add-Ons:
+            <h4 class="text-xs font-bold uppercase tracking-wider text-ink-500 font-mono">
+              Modular Add-Ons (Optional)
             </h4>
-            <span class="text-[11px] bg-surface-200 text-surface-700 font-semibold px-2 py-0.5 rounded">
-              Coming Soon
-            </span>
+            <span class="text-[10px] font-mono text-ink-500 uppercase">Coming Soon</span>
           </div>
-          <p class="text-xs text-surface-600 mb-3">
-            Need higher capacity later? Modular add-ons let you expand specific workspace limits without forced recurring tier upgrades.
-          </p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {lifetimePlan.addons.map((addon) => (
-              <div class="p-3 bg-white border border-surface-200 rounded-xl">
-                <div class="flex items-center justify-between mb-1">
-                  <span class="font-bold text-surface-800">{addon.title}</span>
-                  <span class="text-[10px] text-amber-700 bg-amber-50 border border-amber-200 px-1.5 py-0.2 rounded font-medium">Soon</span>
+              <div class="p-3.5 rounded-xl border border-dashed border-ink-200 bg-ink-50/50">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-xs font-bold text-ink-900">{addon.title}</span>
+                  <span class="text-[9px] font-mono font-semibold px-2 py-0.5 rounded bg-ink-200 text-ink-700">
+                    Coming Soon
+                  </span>
                 </div>
-                <p class="text-[11px] text-surface-500">{addon.description}</p>
+                <p class="text-[11px] text-ink-500 mt-1 leading-snug">{addon.description}</p>
               </div>
             ))}
           </div>

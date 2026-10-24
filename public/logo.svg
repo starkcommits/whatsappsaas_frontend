@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 32" width="44" height="32" fill="none">
+  <!-- Left Ring -->
+  <circle cx="12" cy="16" r="7.5" stroke="#0E8A68" stroke-width="3.5"/>
+  <!-- Connecting Bridge (O-N-O link) -->
+  <path d="M19.5 16h5" stroke="#12A57D" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- Right Ring -->
+  <circle cx="32" cy="16" r="7.5" stroke="#0E8A68" stroke-width="3.5"/>
+</svg>

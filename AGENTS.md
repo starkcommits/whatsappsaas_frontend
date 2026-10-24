@@ -3,12 +3,12 @@
 ## Fill-ins (the owner edits these; do not invent values)
 PRODUCT_NAME: ONO
 DOMAIN: flexing.in            (site at https://flexing.in, app at https://app.flexing.in)
-SUPPORT_EMAIL: tinkal.nitmz@gmail.com
+SUPPORT_EMAIL: support@flexing.in
 COMPANY_LEGAL_NAME: ONO India Private Limited
-COMPANY_ADDRESS: Noida, Uttar Pradesh, India   (needed for legal pages and Razorpay)
+COMPANY_ADDRESS: Sector 62, Noida, Uttar Pradesh 201309, India   (needed for legal pages and Razorpay)
 PRICE_USD: 50
 PRICE_INR: 4199
-LOGO: not ready yet, use a simple text wordmark placeholder
+LOGO: geometric ONO link mark (two rings connected by a bridge)
 
 ## What this is
 The public marketing website for {PRODUCT_NAME}, a WhatsApp Business platform:
@@ -17,7 +17,7 @@ WhatsApp Flows, team roles and an API. The product dashboard is a separate Djang
 app at app.DOMAIN and is FINISHED. This site never contains product logic.
 
 ## Decisions already made (do not ask)
-- Astro (static output) + Tailwind. No React, no CMS, no backend, no database.
+- Astro (static output) + Tailwind. React is allowed ONLY as islands via @astrojs/react for interactive components. Everything else stays .astro.
 - Deploy target: Cloudflare Pages. Output must be fully static.
 - Self-host fonts (no Google Fonts requests). No analytics or tracking scripts, so no
   cookie banner is needed.
@@ -68,3 +68,10 @@ app at app.DOMAIN and is FINISHED. This site never contains product logic.
   stop and ask me in chat with options and a recommendation.
 - I may answer in chat or write "ANSWER:" under an entry in docs/OPEN_QUESTIONS.md.
   Re-read that file at the start of each task and apply my answers.
+
+## Addendum (design pass)
+- Every number, name and chart inside a product visual is SAMPLE DATA and must be captioned "Sample data".
+- No third-party logos or integration claims. API and webhooks may be mentioned without logos.
+- Never use the word "official" for Meta, and never imply partnership. Say "Built on Meta's WhatsApp Business Platform (Cloud API)".
+- Support email must be a domain address from env (SUPPORT_EMAIL), never a free-mail address.
+- Mock browser bars use the host of PUBLIC_APP_URL, never any other domain.

@@ -3,59 +3,60 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
+      spacing: {
+        '4.5': '1.125rem',
+      },
       colors: {
-        brand: {
-          50: '#f0fdf4',
-          100: '#dcf8c6', // WhatsApp chat bubble green
-          200: '#bbf2c8',
-          300: '#86efac',
-          400: '#4ade80',
-          500: '#25d366', // WhatsApp vibrant green
-          600: '#128c7e', // WhatsApp signature teal-green
-          700: '#075e54', // WhatsApp deep dark teal
-          800: '#054c44',
-          900: '#033a34',
-          950: '#012420',
+        ink: {
+          50: '#F5F7F9',
+          100: '#E8ECF0',
+          300: '#B8C2CC',
+          500: '#5B6B7C',
+          700: '#243447',
+          900: '#0B1B2E',
+          950: '#07111F',
         },
         surface: {
-          50: '#f0f2f5', // WhatsApp web background
-          100: '#efeae2', // WhatsApp chat wallpaper tone
-          200: '#e9edef', // WhatsApp light gray borders
-          300: '#d1d7db', // WhatsApp dividers
-          400: '#8696a0', // WhatsApp subtext
-          500: '#667781',
-          600: '#54656f', // WhatsApp primary secondary text
-          700: '#3b4a54',
-          800: '#202c33',
-          900: '#111b21', // WhatsApp darkest text
-        }
+          50: '#F5F7F9',
+          100: '#E8ECF0',
+          200: '#E8ECF0',
+          300: '#B8C2CC',
+          400: '#8A99A8',
+          500: '#5B6B7C',
+          600: '#415162',
+          700: '#243447',
+          800: '#142335',
+          900: '#0B1B2E',
+          950: '#07111F',
+        },
+        brand: {
+          50: '#EEF9F5',
+          100: '#D9F3EA',
+          200: '#B5E8D6',
+          300: '#7CD4B7',
+          400: '#3EBD95',
+          500: '#12A57D',
+          600: '#0B7F5F',
+          700: '#0B6B52',
+          800: '#08503D',
+          900: '#05372A',
+          950: '#021F17',
+        },
+        signal: '#D7F75B',
+        success: '#12A57D',
+        warning: '#F5A524',
+        danger: '#E5484D',
+        info: '#3B82F6',
       },
       fontFamily: {
-        sans: [
-          'Inter',
-          'ui-sans-serif',
-          'system-ui',
-          '-apple-system',
-          'BlinkMacSystemFont',
-          '"Segoe UI"',
-          'Roboto',
-          '"Helvetica Neue"',
-          'Arial',
-          'sans-serif',
-        ],
-        mono: [
-          'ui-monospace',
-          'SFMono-Regular',
-          'Menlo',
-          'Monaco',
-          'Consolas',
-          'monospace',
-        ],
+        display: ['Manrope', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
       boxShadow: {
-        'card': '0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03)',
-        'card-hover': '0 10px 25px -5px rgba(22, 163, 74, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.03)',
-        'modal': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+        'hairline': '0 0 0 1px #E8ECF0',
+        'soft': '0 2px 8px -2px rgba(7, 17, 31, 0.05), 0 1px 3px -1px rgba(7, 17, 31, 0.03)',
+        'soft-lg': '0 12px 28px -6px rgba(7, 17, 31, 0.08), 0 4px 10px -2px rgba(7, 17, 31, 0.04)',
       },
       borderRadius: {
         'xl': '0.75rem',
@@ -63,18 +64,28 @@ export default {
         '3xl': '1.5rem',
       },
       keyframes: {
+        'fade-rise': {
+          '0%': { opacity: '0', transform: 'translateY(12px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
         marquee: {
           from: { transform: 'translateX(0)' },
           to: { transform: 'translateX(calc(-100% - var(--gap, 1rem)))' },
         },
-        'marquee-vertical': {
-          from: { transform: 'translateY(0)' },
-          to: { transform: 'translateY(calc(-100% - var(--gap, 1rem)))' },
+        'accordion-down': {
+          from: { height: '0px' },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0px' },
         },
       },
       animation: {
+        'fade-rise': 'fade-rise 0.4s ease-out forwards',
         marquee: 'marquee var(--duration, 40s) linear infinite',
-        'marquee-vertical': 'marquee-vertical var(--duration, 40s) linear infinite',
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
       },
     },
   },

@@ -1,0 +1,317 @@
+---
+import ProductFrame from './ProductFrame.astro';
+import InboxMockup from './mockups/InboxMockup.astro';
+import TemplateMockup from './mockups/TemplateMockup.astro';
+import CampaignMockup from './mockups/CampaignMockup.astro';
+import ConsentMockup from './mockups/ConsentMockup.astro';
+
+interface Props {
+  id?: string;
+  class?: string;
+}
+
+const { id, class: className = '' } = Astro.props;
+
+const tourTabs = [
+  {
+    id: 'tab-inbox',
+    panelId: 'panel-inbox',
+    title: 'Shared Team Inbox',
+    badge: 'Live Collaboration',
+    description: 'Centralize conversations across your team. Multiple agents work the inbox simultaneously with live conversation updates, member assignment, and private internal notes.',
+    features: [
+      'Live message updates across team members',
+      'One-click agent assignment and conversation triage',
+      'Private internal notes hidden from customers',
+      'Pre-saved canned replies for common questions',
+    ],
+    path: '/whatsapp/inbox/+919876543210/',
+  },
+  {
+    id: 'tab-templates',
+    panelId: 'panel-templates',
+    title: 'Template Builder',
+    badge: 'Meta Sync',
+    description: 'Design interactive WhatsApp templates with variables, headers, and quick-reply buttons. Preview in real time and submit directly to Meta for instant approval.',
+    features: [
+      'Interactive chat preview while typing',
+      'Support for text, image, and document headers',
+      'Personalization placeholders (e.g. {{1}}, {{2}})',
+      'Approval status tracking in your dashboard',
+    ],
+    path: '/templates',
+  },
+  {
+    id: 'tab-campaigns',
+    panelId: 'panel-campaigns',
+    title: 'Campaign Broadcasts',
+    badge: 'Targeted Outreach',
+    description: 'Broadcast approved templates to opted-in audiences. Schedule delivery for optimal engagement and track delivery, read receipts, and incoming replies live.',
+    features: [
+      'Targeted broadcasts to segmented customer lists',
+      'Automated rate-limiting matching Meta throughput',
+      'Delivery metrics: Sent, Delivered, Read, and Replies',
+      'Detailed delivery log per contact',
+    ],
+    path: '/campaigns',
+  },
+  {
+    id: 'tab-consent',
+    panelId: 'panel-consent',
+    title: 'Consent & Opt-in Ledger',
+    badge: 'Built-in Compliance',
+    description: 'Ensure messages only go to customers who agreed. Built-in opt-in links, QR codes, automated STOP keyword handling, and full consent audit trails.',
+    features: [
+      'Click-to-chat opt-in links and QR codes',
+      'Automatic unsubscribe when contacts reply STOP',
+      'Strict suppression list preventing unwanted delivery',
+      'Exportable proof of consent records',
+    ],
+    path: '/consent',
+  },
+];
+---
+
+<section id={id} class={`py-20 sm:py-28 bg-ink-950 text-white border-y border-ink-900 ${className}`} style="background-color: #07111F;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-ink-900 border border-ink-800 text-xs font-mono uppercase tracking-wider text-brand-300 font-semibold mb-3">
+        <span>Product Tour</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight font-display text-white">
+        Explore ONO's operational workflow
+      </h2>
+      <p class="text-ink-400 text-base sm:text-lg mt-3 leading-relaxed">
+        Four integrated capabilities designed for calm, transparent WhatsApp customer communication.
+      </p>
+    </div>
+
+    <!-- ARIA Tablist -->
+    <div
+      role="tablist"
+      aria-label="Product Features"
+      class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10 max-w-4xl mx-auto"
+      id="tour-tablist"
+    >
+      {tourTabs.map((tab, idx) => (
+        <button
+          role="tab"
+          id={tab.id}
+          aria-controls={tab.panelId}
+          aria-selected={idx === 0 ? 'true' : 'false'}
+          tabindex={idx === 0 ? '0' : '-1'}
+          class={`px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 border ${
+            idx === 0
+              ? 'bg-ink-800 text-white border-brand-500 shadow-soft'
+              : 'bg-ink-900/60 text-ink-400 border-ink-800 hover:text-white hover:bg-ink-900'
+          }`}
+        >
+          {tab.title}
+        </button>
+      ))}
+    </div>
+
+    <!-- Tab Panels Container -->
+    <div class="max-w-6xl mx-auto">
+      
+      <!-- Panel 1: Inbox -->
+      <div
+        role="tabpanel"
+        id={tourTabs[0].panelId}
+        aria-labelledby={tourTabs[0].id}
+        class="tour-panel grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
+      >
+        <div class="lg:col-span-5 space-y-4">
+          <span class="inline-block text-[11px] font-mono uppercase tracking-wider text-brand-300 bg-brand-950/60 border border-brand-800/80 px-2.5 py-1 rounded-md">
+            {tourTabs[0].badge}
+          </span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white font-display">
+            {tourTabs[0].title}
+          </h3>
+          <p class="text-sm text-ink-300 leading-relaxed">
+            {tourTabs[0].description}
+          </p>
+          <ul class="space-y-2 pt-2 text-xs text-ink-300">
+            {tourTabs[0].features.map((item) => (
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-brand-400 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="lg:col-span-7">
+          <ProductFrame path={tourTabs[0].path} caption="Sample data • Live inbox mockup">
+            <InboxMockup />
+          </ProductFrame>
+        </div>
+      </div>
+
+      <!-- Panel 2: Templates -->
+      <div
+        role="tabpanel"
+        id={tourTabs[1].panelId}
+        aria-labelledby={tourTabs[1].id}
+        class="tour-panel hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
+      >
+        <div class="lg:col-span-5 space-y-4">
+          <span class="inline-block text-[11px] font-mono uppercase tracking-wider text-brand-300 bg-brand-950/60 border border-brand-800/80 px-2.5 py-1 rounded-md">
+            {tourTabs[1].badge}
+          </span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white font-display">
+            {tourTabs[1].title}
+          </h3>
+          <p class="text-sm text-ink-300 leading-relaxed">
+            {tourTabs[1].description}
+          </p>
+          <ul class="space-y-2 pt-2 text-xs text-ink-300">
+            {tourTabs[1].features.map((item) => (
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-brand-400 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="lg:col-span-7">
+          <ProductFrame path={tourTabs[1].path} caption="Sample data • Template editor preview">
+            <TemplateMockup />
+          </ProductFrame>
+        </div>
+      </div>
+
+      <!-- Panel 3: Campaigns -->
+      <div
+        role="tabpanel"
+        id={tourTabs[2].panelId}
+        aria-labelledby={tourTabs[2].id}
+        class="tour-panel hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
+      >
+        <div class="lg:col-span-5 space-y-4">
+          <span class="inline-block text-[11px] font-mono uppercase tracking-wider text-brand-300 bg-brand-950/60 border border-brand-800/80 px-2.5 py-1 rounded-md">
+            {tourTabs[2].badge}
+          </span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white font-display">
+            {tourTabs[2].title}
+          </h3>
+          <p class="text-sm text-ink-300 leading-relaxed">
+            {tourTabs[2].description}
+          </p>
+          <ul class="space-y-2 pt-2 text-xs text-ink-300">
+            {tourTabs[2].features.map((item) => (
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-brand-400 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="lg:col-span-7">
+          <ProductFrame path={tourTabs[2].path} caption="Sample data • Campaign reporting dashboard">
+            <CampaignMockup />
+          </ProductFrame>
+        </div>
+      </div>
+
+      <!-- Panel 4: Consent -->
+      <div
+        role="tabpanel"
+        id={tourTabs[3].panelId}
+        aria-labelledby={tourTabs[3].id}
+        class="tour-panel hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
+      >
+        <div class="lg:col-span-5 space-y-4">
+          <span class="inline-block text-[11px] font-mono uppercase tracking-wider text-brand-300 bg-brand-950/60 border border-brand-800/80 px-2.5 py-1 rounded-md">
+            {tourTabs[3].badge}
+          </span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white font-display">
+            {tourTabs[3].title}
+          </h3>
+          <p class="text-sm text-ink-300 leading-relaxed">
+            {tourTabs[3].description}
+          </p>
+          <ul class="space-y-2 pt-2 text-xs text-ink-300">
+            {tourTabs[3].features.map((item) => (
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-brand-400 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="lg:col-span-7">
+          <ProductFrame path={tourTabs[3].path} caption="Sample data • Consent tracking ledger">
+            <ConsentMockup />
+          </ProductFrame>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  // Accessible ARIA tabs keyboard handling and switching
+  const tablist = document.getElementById('tour-tablist');
+  if (tablist) {
+    const tabs = Array.from(tablist.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const panels = Array.from(document.querySelectorAll<HTMLElement>('.tour-panel'));
+
+    function selectTab(newTab: HTMLButtonElement) {
+      tabs.forEach((tab) => {
+        const isSelected = tab === newTab;
+        tab.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+        tab.setAttribute('tabindex', isSelected ? '0' : '-1');
+        if (isSelected) {
+          tab.classList.add('bg-ink-800', 'text-white', 'border-brand-500', 'shadow-soft');
+          tab.classList.remove('bg-ink-900/60', 'text-ink-400', 'border-ink-800');
+        } else {
+          tab.classList.remove('bg-ink-800', 'text-white', 'border-brand-500', 'shadow-soft');
+          tab.classList.add('bg-ink-900/60', 'text-ink-400', 'border-ink-800');
+        }
+      });
+
+      const targetId = newTab.getAttribute('aria-controls');
+      panels.forEach((panel) => {
+        if (panel.id === targetId) {
+          panel.classList.remove('hidden');
+        } else {
+          panel.classList.add('hidden');
+        }
+      });
+    }
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => selectTab(tab));
+
+      tab.addEventListener('keydown', (e) => {
+        let targetIndex = -1;
+        if (e.key === 'ArrowRight') {
+          targetIndex = (index + 1) % tabs.length;
+        } else if (e.key === 'ArrowLeft') {
+          targetIndex = (index - 1 + tabs.length) % tabs.length;
+        } else if (e.key === 'Home') {
+          targetIndex = 0;
+        } else if (e.key === 'End') {
+          targetIndex = tabs.length - 1;
+        }
+
+        if (targetIndex !== -1) {
+          e.preventDefault();
+          tabs[targetIndex].focus();
+          selectTab(tabs[targetIndex]);
+        }
+      });
+    });
+  }
+</script>

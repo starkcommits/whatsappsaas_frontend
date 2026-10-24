@@ -2,47 +2,68 @@
 import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
 import Button from '../components/Button.astro';
-import Icon from '../components/Icon.astro';
-import DeviceFrame from '../components/DeviceFrame.astro';
+import ProductFrame from '../components/ProductFrame.astro';
 import InboxMockup from '../components/mockups/InboxMockup.astro';
+import ConsentMockup from '../components/mockups/ConsentMockup.astro';
 import TemplateMockup from '../components/mockups/TemplateMockup.astro';
 import CampaignMockup from '../components/mockups/CampaignMockup.astro';
-import ConsentMockup from '../components/mockups/ConsentMockup.astro';
-import FeatureCard from '../components/FeatureCard.astro';
-import PricingCard from '../components/PricingCard.astro';
-import FaqAccordion from '../components/FaqAccordion.astro';
+import ApiWebhooksCard from '../components/ApiWebhooksCard.astro';
+import ComparisonTable from '../components/ComparisonTable.astro';
 import CtaBand from '../components/CtaBand.astro';
-import Marquee from '../components/Marquee.astro';
-import { featuresList } from '../data/features';
-import { lifetimePlan } from '../data/plans';
+import HeroSampleConversations from '../islands/HeroSampleConversations';
+import TabbedTour from '../islands/TabbedTour';
+import PricingCard from '../islands/PricingCard';
+import FaqAccordion from '../islands/FaqAccordion';
 import { homeFAQ } from '../data/faq';
+import { lifetimePlan } from '../data/plans';
 import { siteConfig } from '../config/site';
 
 const steps = [
   {
     step: '01',
-    title: 'Connect Number',
-    desc: 'Link your WhatsApp Business number via official Meta Embedded Signup in just a few clicks.',
-    icon: 'connect',
+    title: 'Connect number',
+    desc: 'Link your business phone number via Meta Embedded Signup in a few clicks.',
   },
   {
     step: '02',
-    title: 'Import Contacts & Consent',
-    desc: 'Upload CSV customer files with verified opt-in sources and assign targeted audience tags.',
-    icon: 'contacts',
+    title: 'Import contacts with consent',
+    desc: 'Upload CSV lists with verified opt-in sources and assign targeted audience tags.',
   },
   {
     step: '03',
-    title: 'Send Template Campaigns',
-    desc: 'Compose approved Meta templates, personalize with dynamic variables, and track delivery live.',
-    icon: 'campaign',
+    title: 'Send template campaigns',
+    desc: 'Compose approved Meta templates, add dynamic variables, and schedule delivery.',
   },
   {
     step: '04',
-    title: 'Reply from Shared Inbox',
-    desc: 'Collaborate with your team to answer questions, assign chats, and close sales with canned replies.',
-    icon: 'inbox',
+    title: 'Reply from shared inbox',
+    desc: 'Triage customer inquiries, assign chats to teammates, and answer with canned replies.',
   },
+];
+
+const outcomes = [
+  {
+    title: 'Never lose track of a customer conversation',
+    desc: 'Replace chaotic personal phones with a shared workspace. Multiple agents work the inbox simultaneously, assign chats, and leave private internal notes.',
+    tag: 'Shared Inbox',
+  },
+  {
+    title: 'Broadcast campaigns without getting banned',
+    desc: 'Deliver approved Meta message templates only to contacts with verified opt-in. Inbound STOP replies automatically unsubscribe contacts from future broadcasts.',
+    tag: 'Consent Ledger',
+  },
+  {
+    title: 'Protect your margins with zero markup',
+    desc: 'Pay a one-time software license. Connect directly to Meta\'s Cloud API and pay Meta at their baseline rates, with zero middleman per-message fees.',
+    tag: 'Direct Meta Rates',
+  },
+];
+
+const useCasePreviews = [
+  { title: 'Retail & D2C Brands', desc: 'Dispatch order notifications, handle customer inquiries, and launch seasonal campaigns.' },
+  { title: 'Clinics & Healthcare', desc: 'Manage patient appointments, send reminders, and collect intake forms via WhatsApp Flows.' },
+  { title: 'Education & Coaching', desc: 'Coordinate batch admissions, answer syllabus questions, and announce intake deadlines.' },
+  { title: 'Real Estate & Services', desc: 'Route property inquiries to specific agents and schedule site visits with in-chat forms.' },
 ];
 
 const homeJsonLd = {
@@ -55,392 +76,486 @@ const homeJsonLd = {
 ---
 
 <Layout
-  title={`${siteConfig.name} — WhatsApp Business Platform with Zero Markup`}
+  title={`${siteConfig.name} — Calm, reliable WhatsApp operations for growing teams`}
   description={siteConfig.description}
   jsonLd={homeJsonLd}
 >
-  <!-- Hero Section -->
-  <section class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden bg-gradient-to-b from-brand-50/40 via-surface-50 to-surface-50">
-    <!-- Background Animated Marquee -->
-    <div class="absolute inset-0 pointer-events-none select-none overflow-hidden opacity-30 sm:opacity-40 -z-0 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)]">
-      <div class="space-y-4 -rotate-1 scale-105 origin-center pt-4">
-        <!-- Row 1: Forward -->
-        <Marquee pauseOnHover={false} class="[--duration:55s] [--gap:1rem]">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 border border-brand-200/60 shadow-xs text-xs text-surface-800 whitespace-nowrap">
-            <span class="w-2 h-2 rounded-full bg-brand-500"></span>
-            <span class="font-semibold text-surface-900">Direct Cloud API</span>
-            <span class="text-surface-500">• Meta Embedded Signup</span>
+  <!-- 1. Hero Section -->
+  <section class="relative pt-12 pb-18 sm:pt-20 sm:pb-24 border-b border-ink-100 bg-ink-50/50 overflow-hidden">
+    <!-- Subtle Grid Background -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#E8ECF0_1px,transparent_1px),linear-gradient(to_bottom,#E8ECF0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40 pointer-events-none"></div>
+
+    <!-- Animated Sample Conversation Chips in Background (React Island) -->
+    <HeroSampleConversations client:idle />
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left Hero Copy (Core ONO Value Proposition with Animated Rotator) -->
+        <div class="lg:col-span-6 space-y-6 text-left">
+          
+          <!-- One-Time License & Zero Markup Badge -->
+          <div>
+            <Button
+              href="/pricing"
+              variant="secondary"
+              size="sm"
+              class="gap-2.5 rounded-full px-4 text-xs font-mono font-medium text-ink-800 bg-white hover:bg-ink-50 border border-ink-200/80 shadow-soft"
+            >
+              <span class="w-2 h-2 rounded-full bg-brand-500 shrink-0"></span>
+              <span>One-time license: ${lifetimePlan.priceUSD} ({lifetimePlan.priceINRFormatted}) • Zero message markup</span>
+              <svg class="w-3.5 h-3.5 text-ink-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14"></path>
+                <path d="M12 5l7 7-7 7"></path>
+              </svg>
+            </Button>
           </div>
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 border border-brand-200/60 shadow-xs text-xs text-surface-800 whitespace-nowrap">
-            <span class="text-brand-600 font-bold">✓✓</span>
-            <span class="font-semibold text-surface-900">98.5% Delivery Rate</span>
-            <span class="text-surface-500">• 1,822 Messages Read</span>
+
+          <!-- Headline with Animated Rotating Core Capabilities -->
+          <div class="flex gap-4 flex-col">
+            <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-[2.2rem] xl:text-[2.5rem] font-extrabold text-ink-950 font-display tracking-tight leading-[1.18]">
+              <span class="block text-ink-950">Every customer conversation on WhatsApp,</span>
+              <span class="relative flex w-full justify-start overflow-hidden text-brand-600 h-[1.3em]">
+                {[
+                  "in one shared team inbox.",
+                  "with zero message markup.",
+                  "with verified opt-in consent.",
+                  "with approved Meta templates.",
+                  "with interactive WhatsApp Flows."
+                ].map((title, index) => (
+                  <span
+                    class={`hero-rotator-title absolute inset-0 flex items-center font-bold left-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap ${
+                      index === 0
+                        ? 'opacity-100 translate-y-0'
+                        : 'opacity-0 translate-y-[140%] pointer-events-none'
+                    }`}
+                    data-index={index}
+                  >
+                    {title}
+                  </span>
+                ))}
+              </span>
+            </h1>
+
+            <!-- Subheading paragraph grounded in AGENTS.md -->
+            <p class="text-base sm:text-lg leading-relaxed tracking-tight text-ink-500 max-w-2xl font-normal">
+              ONO helps your team connect your business WhatsApp number via Meta Cloud API, broadcast template campaigns to contacts who agreed, and reply together from a shared team inbox. Pay once for lifetime access. No monthly subscription, and zero per-message markup.
+            </p>
           </div>
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 border border-brand-200/60 shadow-xs text-xs text-surface-800 whitespace-nowrap">
+
+          <!-- Primary & Secondary CTAs -->
+          <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+            <Button
+              href={siteConfig.links.signup}
+              variant="primary"
+              size="lg"
+              class="gap-3 font-semibold shadow-soft"
+              isAppCta={true}
+            >
+              <span>Get lifetime access (${lifetimePlan.priceUSD})</span>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14"></path>
+                <path d="M12 5l7 7-7 7"></path>
+              </svg>
+            </Button>
+
+            <Button
+              href="#how-it-works"
+              variant="secondary"
+              size="lg"
+              class="gap-3 font-semibold shadow-soft"
+            >
+              <span>See how it works</span>
+              <svg class="w-4 h-4 text-ink-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="10 8 16 12 10 16 10 8"></polygon>
+              </svg>
+            </Button>
+          </div>
+
+          <!-- 4-Item Fact Strip -->
+          <div class="pt-6 border-t border-ink-100 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs text-ink-700">
+            <div class="flex items-center gap-1.5 font-medium">
+              <svg class="w-4 h-4 text-brand-600 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>Pay once</span>
+            </div>
+            <div class="flex items-center gap-1.5 font-medium">
+              <svg class="w-4 h-4 text-brand-600 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>No message markup</span>
+            </div>
+            <div class="flex items-center gap-1.5 font-medium">
+              <svg class="w-4 h-4 text-brand-600 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>7-day refund</span>
+            </div>
+            <div class="flex items-center gap-1.5 font-medium">
+              <svg class="w-4 h-4 text-brand-600 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>Consent built in</span>
+            </div>
+          </div>
+
+          <p class="text-xs text-ink-500 font-mono">
+            Built on Meta's WhatsApp Business Platform (Cloud API).
+          </p>
+
+        </div>
+
+        <!-- Right Hero Visual with Layered ProductFrame & Floating Chips -->
+        <div class="lg:col-span-6 relative">
+          
+          <!-- Floating Sample Data Chip: Top Right -->
+          <div class="hidden sm:flex items-center gap-2 absolute -top-4 -right-4 z-20 bg-white border border-ink-100 shadow-soft-lg px-3 py-1.5 rounded-xl text-xs font-medium text-ink-900">
             <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-            <span class="font-semibold text-surface-900">Aarav Sharma</span>
-            <span class="text-surface-500">"Booked consultation slot"</span>
+            <span>Template approved</span>
+            <span class="text-[10px] font-mono text-ink-400">Sample data</span>
           </div>
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 border border-brand-200/60 shadow-xs text-xs text-surface-800 whitespace-nowrap">
-            <span class="text-brand-700 font-bold">$0</span>
-            <span class="font-semibold text-surface-900">Zero Message Markup</span>
-            <span class="text-surface-500">• Pay Meta directly</span>
-          </div>
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 border border-brand-200/60 shadow-xs text-xs text-surface-800 whitespace-nowrap">
-            <span class="w-2 h-2 rounded-full bg-brand-500"></span>
-            <span class="font-semibold text-surface-900">Priya S.</span>
-            <span class="text-surface-500">Assigned 4 active chats</span>
-          </div>
-        </Marquee>
 
-        <!-- Row 2: Reverse -->
-        <Marquee reverse pauseOnHover={false} class="[--duration:60s] [--gap:1rem]">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 border border-brand-200/60 shadow-xs text-xs text-surface-800 whitespace-nowrap">
-            <span class="text-brand-600">🛡️</span>
-            <span class="font-semibold text-surface-900">Consent Verified</span>
-            <span class="text-surface-500">• Auto STOP suppression</span>
+          <!-- Floating Sample Data Chip: Bottom Left -->
+          <div class="hidden sm:flex items-center gap-2 absolute -bottom-4 -left-4 z-20 bg-white border border-ink-100 shadow-soft-lg px-3 py-1.5 rounded-xl text-xs font-medium text-ink-900">
+            <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+            <span>Consent: website form</span>
+            <span class="text-[10px] font-mono text-ink-400">Sample data</span>
           </div>
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 border border-brand-200/60 shadow-xs text-xs text-surface-800 whitespace-nowrap">
-            <span class="text-brand-600">⚡</span>
-            <span class="font-semibold text-surface-900">Canned Reply</span>
-            <span class="text-surface-500">#confirm_booking sent</span>
-          </div>
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 border border-brand-200/60 shadow-xs text-xs text-surface-800 whitespace-nowrap">
-            <span class="text-brand-600">📱</span>
-            <span class="font-semibold text-surface-900">WhatsApp Flow</span>
-            <span class="text-surface-500">Lead intake form submitted</span>
-          </div>
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 border border-brand-200/60 shadow-xs text-xs text-surface-800 whitespace-nowrap">
-            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-            <span class="font-semibold text-surface-900">Meta Template Approved</span>
-            <span class="text-surface-500">festive_offer_v2</span>
-          </div>
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 border border-brand-200/60 shadow-xs text-xs text-surface-800 whitespace-nowrap">
-            <span class="text-brand-600">🔒</span>
-            <span class="font-semibold text-surface-900">Two-Factor Auth</span>
-            <span class="text-surface-500">Owner security audit logged</span>
-          </div>
-        </Marquee>
-      </div>
-    </div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto space-y-6">
-        <!-- Badge -->
-        <div class="inline-flex items-center gap-2 bg-brand-100/80 text-brand-900 border border-brand-200 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold shadow-2xs">
-          <span class="w-2 h-2 rounded-full bg-brand-600"></span>
-          <span>One-Time License: ${lifetimePlan.priceUSD} {lifetimePlan.priceINR ? `(₹${lifetimePlan.priceINR.toLocaleString('en-IN')})` : ''} • Zero Message Markup</span>
+          <!-- Main Hero Inbox ProductFrame -->
+          <ProductFrame path="/whatsapp/inbox/+919876543210/" caption="Sample data • ONO dashboard inbox preview">
+            <InboxMockup />
+          </ProductFrame>
+
         </div>
 
-        <!-- Headline -->
-        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-surface-900 tracking-tight leading-[1.12]">
-          The WhatsApp Business platform for customer chats and campaigns
-        </h1>
-
-        <!-- Subheadline -->
-        <p class="text-base sm:text-lg md:text-xl text-surface-600 leading-relaxed max-w-2xl mx-auto">
-          Shared team inbox, template broadcast campaigns, CSV contact import with verified consent tracking, and WhatsApp Flows. Pay once, own it for life.
-        </p>
-
-        <!-- Hero CTAs -->
-        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-          <Button
-            href={siteConfig.links.signup}
-            size="lg"
-            class="w-full sm:w-auto shadow-md text-base"
-            isAppCta={true}
-          >
-            Get lifetime access (${lifetimePlan.priceUSD})
-            <Icon name="arrow-right" class="w-4 h-4 ml-1" />
-          </Button>
-
-          <Button
-            href="#how-it-works"
-            variant="outline"
-            size="lg"
-            class="w-full sm:w-auto"
-          >
-            See how it works
-          </Button>
-        </div>
-
-        <!-- Trust highlights under CTA -->
-        <div class="flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-xs text-surface-500 pt-2 font-medium">
-          <span class="flex items-center gap-1.5">
-            <Icon name="check" class="w-3.5 h-3.5 text-brand-600" /> Official Meta Cloud API
-          </span>
-          <span class="flex items-center gap-1.5">
-            <Icon name="check" class="w-3.5 h-3.5 text-brand-600" /> Direct Meta Billing (No Markup)
-          </span>
-          <span class="flex items-center gap-1.5">
-            <Icon name="check" class="w-3.5 h-3.5 text-brand-600" /> 7-Day Refund Guarantee
-          </span>
-        </div>
-      </div>
-
-      <!-- Hero Product Mockup (DeviceFrame with InboxMockup) -->
-      <div class="mt-12 sm:mt-16 max-w-5xl mx-auto">
-        <DeviceFrame
-          browserUrl="https://app.flexing.in/inbox"
-          caption="Interactive preview of ONO's shared team inbox with live chat assignments and canned replies."
-        >
-          <InboxMockup />
-        </DeviceFrame>
       </div>
     </div>
   </section>
 
-  <!-- How it Works Strip (4 Steps) -->
-  <Section id="how-it-works" background="white" class="border-y border-surface-200/80">
-    <div class="text-center max-w-3xl mx-auto mb-14">
-      <h2 class="text-xs font-bold uppercase tracking-wider text-brand-700 mb-2">
-        Simple 4-Step Process
-      </h2>
-      <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-surface-900 tracking-tight">
-        How {siteConfig.name} Works
-      </h3>
-      <p class="text-surface-600 text-sm sm:text-base mt-3">
-        From connecting your business number to launching your first campaign in minutes.
-      </p>
-    </div>
+  <!-- 2. "From scattered chats to one workflow" (3 Outcome Cards) -->
+  <Section background="white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+        <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-brand-700 mb-2">
+          Operational Clarity
+        </h2>
+        <h3 class="text-3xl sm:text-4xl font-extrabold text-ink-950 font-display tracking-tight">
+          From scattered chats to one workflow
+        </h3>
+        <p class="text-sm sm:text-base text-ink-500 mt-3 leading-relaxed">
+          Centralize your incoming messages, template broadcasts, and contact lists into one structured workspace.
+        </p>
+      </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-      {steps.map((item) => (
-        <div class="bg-surface-50 border border-surface-200/80 rounded-2xl p-6 relative flex flex-col justify-between hover:border-brand-300 transition-colors">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-2xl font-black font-mono text-brand-600">
-                {item.step}
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {outcomes.map((item) => (
+          <div class="rounded-2xl border border-ink-100 bg-ink-50/50 p-6 sm:p-8 flex flex-col justify-between shadow-soft hover:border-ink-200 transition-all duration-150">
+            <div class="space-y-3">
+              <span class="text-[10px] font-mono font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-white text-ink-700 border border-ink-100">
+                {item.tag}
               </span>
-              <div class="w-9 h-9 rounded-xl bg-white border border-surface-200 text-brand-700 flex items-center justify-center shadow-2xs">
-                <Icon name={item.icon} class="w-4 h-4" />
-              </div>
+              <h4 class="text-xl font-bold text-ink-950 font-display leading-snug">
+                {item.title}
+              </h4>
+              <p class="text-xs sm:text-sm text-ink-500 leading-relaxed">
+                {item.desc}
+              </p>
             </div>
-            <h4 class="text-base font-bold text-surface-900 mb-2">
-              {item.title}
-            </h4>
-            <p class="text-xs sm:text-sm text-surface-600 leading-relaxed">
-              {item.desc}
-            </p>
           </div>
-        </div>
-      ))}
-    </div>
-
-    <div class="text-center mt-10">
-      <Button href="/how-it-works" variant="secondary" size="md">
-        Read detailed onboarding guide
-        <Icon name="arrow-right" class="w-4 h-4 ml-1" />
-      </Button>
+        ))}
+      </div>
     </div>
   </Section>
 
-  <!-- Deep Dive 1: Shared Team Inbox -->
-  <Section background="default">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-      <div class="lg:col-span-5 space-y-5">
-        <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-700 bg-brand-50 border border-brand-200 px-3 py-1 rounded-full">
-          <Icon name="inbox" class="w-3.5 h-3.5" />
-          <span>Shared Team Inbox</span>
-        </div>
-        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-surface-900 tracking-tight leading-tight">
-          Never miss a customer message again
+  <!-- 3. Dark Ink Section: Tabbed Tour (React Island via Radix Tabs with ARIA Keyboard Support) -->
+  <TabbedTour client:visible id="tour">
+    <div slot="inbox">
+      <ProductFrame path="/whatsapp/inbox/+919876543210/" caption="Sample data • Live inbox mockup">
+        <InboxMockup />
+      </ProductFrame>
+    </div>
+    <div slot="templates">
+      <ProductFrame path="/templates" caption="Sample data • Template editor preview">
+        <TemplateMockup />
+      </ProductFrame>
+    </div>
+    <div slot="campaigns">
+      <ProductFrame path="/campaigns" caption="Sample data • Campaign reporting dashboard">
+        <CampaignMockup />
+      </ProductFrame>
+    </div>
+    <div slot="consent">
+      <ProductFrame path="/consent" caption="Sample data • Consent tracking ledger">
+        <ConsentMockup />
+      </ProductFrame>
+    </div>
+  </TabbedTour>
+
+  <!-- 4. API & Webhooks Strip (Zero Logos) -->
+  <ApiWebhooksCard />
+
+  <!-- 5. How It Works Timeline (4 Steps) -->
+  <Section id="how-it-works" background="white" class="border-b border-ink-100">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+        <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-brand-700 mb-2">
+          Simple 4-Step Process
         </h2>
-        <p class="text-surface-600 text-sm sm:text-base leading-relaxed">
-          Centralize your incoming customer inquiries. Multiple agents can work the inbox simultaneously without stepping on each other's toes.
+        <h3 class="text-3xl sm:text-4xl font-extrabold text-ink-950 font-display tracking-tight">
+          How ONO works
+        </h3>
+        <p class="text-sm sm:text-base text-ink-500 mt-2">
+          From connecting your number to broadcasting your first campaign.
         </p>
-        <ul class="space-y-3 text-sm text-surface-700 pt-2">
-          <li class="flex items-start gap-2.5">
-            <span class="text-brand-600 mt-1"><Icon name="check" class="w-4 h-4" /></span>
-            <span><strong>Live conversation updates:</strong> Messages stream in real-time across your team's browser tabs.</span>
-          </li>
-          <li class="flex items-start gap-2.5">
-            <span class="text-brand-600 mt-1"><Icon name="check" class="w-4 h-4" /></span>
-            <span><strong>One-click agent assignment:</strong> Route chats to specific staff members or reassign with context.</span>
-          </li>
-          <li class="flex items-start gap-2.5">
-            <span class="text-brand-600 mt-1"><Icon name="check" class="w-4 h-4" /></span>
-            <span><strong>Private internal notes:</strong> Leave teammate-only comments inside the chat thread without the customer seeing.</span>
-          </li>
-          <li class="flex items-start gap-2.5">
-            <span class="text-brand-600 mt-1"><Icon name="check" class="w-4 h-4" /></span>
-            <span><strong>Canned responses:</strong> Pre-save replies for operating hours, payment info, FAQs, and common links.</span>
-          </li>
-        </ul>
       </div>
 
-      <div class="lg:col-span-7">
-        <DeviceFrame browserUrl="https://app.flexing.in/inbox">
-          <InboxMockup />
-        </DeviceFrame>
-      </div>
-    </div>
-  </Section>
-
-  <!-- Deep Dive 2: Templates & Campaigns -->
-  <Section background="muted">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-      <div class="lg:col-span-7 order-2 lg:order-1">
-        <div class="space-y-6">
-          <DeviceFrame browserUrl="https://app.flexing.in/campaigns">
-            <CampaignMockup />
-          </DeviceFrame>
-          <div class="hidden sm:block">
-            <DeviceFrame browserUrl="https://app.flexing.in/templates">
-              <TemplateMockup />
-            </DeviceFrame>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        {steps.map((item) => (
+          <div class="bg-ink-50 border border-ink-100 rounded-2xl p-6 relative flex flex-col justify-between shadow-soft">
+            <div>
+              <div class="text-2xl font-black font-mono text-brand-600 mb-3">
+                {item.step}
+              </div>
+              <h4 class="text-base font-bold text-ink-950 font-display mb-2">
+                {item.title}
+              </h4>
+              <p class="text-xs sm:text-sm text-ink-500 leading-relaxed">
+                {item.desc}
+              </p>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
 
-      <div class="lg:col-span-5 order-1 lg:order-2 space-y-5">
-        <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-700 bg-brand-50 border border-brand-200 px-3 py-1 rounded-full">
-          <Icon name="campaign" class="w-3.5 h-3.5" />
-          <span>Templates & Broadcasts</span>
-        </div>
-        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-surface-900 tracking-tight leading-tight">
-          Launch targeted campaigns with approved Meta templates
-        </h2>
-        <p class="text-surface-600 text-sm sm:text-base leading-relaxed">
-          Create rich media templates with personalization variables, submit directly to Meta for rapid approval, and broadcast to consented customer segments.
-        </p>
-        <ul class="space-y-3 text-sm text-surface-700 pt-2">
-          <li class="flex items-start gap-2.5">
-            <span class="text-brand-600 mt-1"><Icon name="check" class="w-4 h-4" /></span>
-            <span><strong>Interactive live preview:</strong> Review how your messages appear on iOS and Android before sending.</span>
-          </li>
-          <li class="flex items-start gap-2.5">
-            <span class="text-brand-600 mt-1"><Icon name="check" class="w-4 h-4" /></span>
-            <span><strong>Dynamic personalization:</strong> Inject customer names, invoice numbers, order tracking, and unique promo codes.</span>
-          </li>
-          <li class="flex items-start gap-2.5">
-            <span class="text-brand-600 mt-1"><Icon name="check" class="w-4 h-4" /></span>
-            <span><strong>Real-time delivery analytics:</strong> Monitor Sent, Delivered, Read, and Inbound Replies live.</span>
-          </li>
-        </ul>
+      <div class="text-center mt-10">
+        <a
+          href="/how-it-works"
+          class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-700 hover:text-brand-800 underline underline-offset-4"
+        >
+          <span>Read detailed onboarding guide</span>
+          <span>→</span>
+        </a>
       </div>
     </div>
   </Section>
 
-  <!-- Deep Dive 3: Consent Tools & Compliance -->
-  <Section background="default">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-      <div class="lg:col-span-5 space-y-5">
-        <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-700 bg-brand-50 border border-brand-200 px-3 py-1 rounded-full">
-          <Icon name="shield-check" class="w-3.5 h-3.5" />
-          <span>Compliance & Consent</span>
-        </div>
-        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-surface-900 tracking-tight leading-tight">
-          Built-in consent tools to keep your business number protected
-        </h2>
-        <p class="text-surface-600 text-sm sm:text-base leading-relaxed">
-          WhatsApp requires verifiable opt-in. {siteConfig.name} enforces compliance guardrails to ensure your broadcasts only reach contacts who actively agreed to hear from you.
-        </p>
-        <ul class="space-y-3 text-sm text-surface-700 pt-2">
-          <li class="flex items-start gap-2.5">
-            <span class="text-brand-600 mt-1"><Icon name="check" class="w-4 h-4" /></span>
-            <span><strong>Opt-in links & QR codes:</strong> Generate one-click chat links and printable QR codes for checkout counters.</span>
-          </li>
-          <li class="flex items-start gap-2.5">
-            <span class="text-brand-600 mt-1"><Icon name="check" class="w-4 h-4" /></span>
-            <span><strong>Automated STOP handling:</strong> When contacts text STOP, they are instantly suppressed from future campaigns.</span>
-          </li>
-          <li class="flex items-start gap-2.5">
-            <span class="text-brand-600 mt-1"><Icon name="check" class="w-4 h-4" /></span>
-            <span><strong>CSV consent source tagging:</strong> Record the exact origin of each contact during file import.</span>
-          </li>
-        </ul>
-      </div>
+  <!-- 6. Consent & Compliance Spotlight -->
+  <Section background="default" class="border-b border-ink-100">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <div class="lg:col-span-5 space-y-4">
+          <span class="inline-flex items-center text-xs font-mono font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-brand-50 text-brand-700 border border-brand-100">
+            Compliance First
+          </span>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-ink-950 font-display tracking-tight leading-tight">
+            Consent tracking that protects your number
+          </h3>
+          <p class="text-sm sm:text-base text-ink-500 leading-relaxed">
+            Meta monitors recipient block and spam rates closely. ONO protects your business phone number with automated opt-in tracking and instant STOP keyword handling.
+          </p>
 
-      <div class="lg:col-span-7">
-        <DeviceFrame browserUrl="https://app.flexing.in/compliance">
-          <ConsentMockup />
-        </DeviceFrame>
+          <ul class="space-y-2.5 pt-2 text-xs sm:text-sm text-ink-700">
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-brand-600 shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>Opt-in links & QR codes for websites and store counters</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-brand-600 shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>Automatic unsubscribe when customers reply STOP</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-brand-600 shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>Exportable proof of consent ledger for compliance reviews</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-7">
+          <ProductFrame path="/compliance" caption="Sample data • Consent tracking ledger">
+            <ConsentMockup />
+          </ProductFrame>
+        </div>
+
       </div>
     </div>
   </Section>
 
-  <!-- Complete Feature Grid (Strictly FEATURES 1-10) -->
+  <!-- 7. Pricing & Two-Column Comparison -->
   <Section background="white">
-    <div class="text-center max-w-3xl mx-auto mb-14">
-      <h2 class="text-xs font-bold uppercase tracking-wider text-brand-700 mb-2">
-        Platform Capabilities
-      </h2>
-      <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-surface-900 tracking-tight">
-        Everything you need to manage WhatsApp at scale
-      </h3>
-      <p class="text-surface-600 text-sm sm:text-base mt-3">
-        Every feature in {siteConfig.name} is built directly on official Meta APIs with strict compliance, transparency, and reliability.
-      </p>
-    </div>
+    <div class="max-w-7xl mx-auto space-y-12">
+      <div class="text-center max-w-2xl mx-auto">
+        <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-brand-700 mb-2">
+          Straightforward Pricing
+        </h2>
+        <h3 class="text-3xl sm:text-4xl font-extrabold text-ink-950 font-display tracking-tight">
+          One payment. Zero recurring fees.
+        </h3>
+        <p class="text-sm sm:text-base text-ink-500 mt-2">
+          No monthly tiers. You own the software and pay Meta directly for messaging.
+        </p>
+      </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {featuresList.map((feature) => (
-        <FeatureCard
-          number={feature.number}
-          title={feature.title}
-          description={feature.shortDesc}
-          badge={feature.badge}
-          icon={feature.icon}
-        />
-      ))}
-    </div>
+      <div class="max-w-4xl mx-auto">
+        <PricingCard client:visible showFullDetails={false} />
+      </div>
 
-    <div class="text-center mt-10">
-      <Button href="/features" variant="secondary" size="md">
-        Explore full feature details & specifications
-        <Icon name="arrow-right" class="w-4 h-4 ml-1" />
-      </Button>
+      <div class="max-w-5xl mx-auto pt-6">
+        <ComparisonTable />
+      </div>
     </div>
   </Section>
 
-  <!-- Pricing Section -->
-  <Section id="pricing" background="default">
-    <div class="text-center max-w-3xl mx-auto mb-12">
-      <h2 class="text-xs font-bold uppercase tracking-wider text-brand-700 mb-2">
-        Simple Honest Pricing
-      </h2>
-      <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-surface-900 tracking-tight">
-        One plan. Lifetime access. Zero markup.
-      </h3>
-      <p class="text-surface-600 text-sm sm:text-base mt-3">
-        No monthly recurring subscription. You pay once for the software, and pay Meta directly for your message conversations.
-      </p>
-    </div>
-
-    <div class="max-w-3xl mx-auto">
-      <PricingCard showFullDetails={true} />
+  <!-- 8. Security & Tenancy Summary -->
+  <Section background="default" class="border-y border-ink-100">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+      <div class="md:col-span-7 space-y-3">
+        <span class="text-xs font-mono font-semibold uppercase tracking-wider text-brand-700 bg-brand-50 border border-brand-100 px-3 py-1 rounded-full">
+          Security & Tenancy
+        </span>
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-ink-950 font-display tracking-tight">
+          Built for privacy and data isolation
+        </h3>
+        <p class="text-sm text-ink-500 leading-relaxed">
+          Two-factor authentication for workspace owners, strict tenant database isolation, hashed API keys, encrypted Meta credentials, and unalterable audit logging.
+        </p>
+      </div>
+      <div class="md:col-span-5 flex flex-col sm:flex-row md:flex-col gap-3 justify-end">
+        <a
+          href="/security"
+          class="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-white border border-ink-100 text-xs sm:text-sm font-semibold text-ink-900 shadow-soft hover:bg-ink-50 transition-colors"
+        >
+          View security architecture →
+        </a>
+      </div>
     </div>
   </Section>
 
-  <!-- FAQ Section -->
+  <!-- 9. Use Cases Preview -->
   <Section background="white">
-    <div class="text-center max-w-3xl mx-auto mb-12">
-      <h2 class="text-xs font-bold uppercase tracking-wider text-brand-700 mb-2">
-        Got Questions?
-      </h2>
-      <h3 class="text-2xl sm:text-3xl font-extrabold text-surface-900 tracking-tight">
-        Frequently Asked Questions
-      </h3>
-      <p class="text-surface-600 text-sm sm:text-base mt-2">
-        Clear, transparent answers about our lifetime model, Meta billing, and setup.
-      </p>
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-brand-700 mb-2">
+          Use Cases
+        </h2>
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-ink-950 font-display tracking-tight">
+          Workflows across industries
+        </h3>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {useCasePreviews.map((uc) => (
+          <div class="p-5 rounded-2xl bg-ink-50 border border-ink-100 space-y-2">
+            <h4 class="text-sm font-bold text-ink-950 font-display">{uc.title}</h4>
+            <p class="text-xs text-ink-500 leading-relaxed">{uc.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="/use-cases" class="text-xs font-semibold text-brand-700 hover:text-brand-800 underline underline-offset-4">
+          Explore all industry use cases →
+        </a>
+      </div>
     </div>
+  </Section>
 
-    <FaqAccordion items={homeFAQ} />
+  <!-- 10. FAQ & Final CTA Band -->
+  <Section background="default" class="border-t border-ink-100">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-brand-700 mb-2">
+          FAQ
+        </h2>
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-ink-950 font-display tracking-tight">
+          Frequently asked questions
+        </h3>
+      </div>
 
-    <div class="text-center mt-8">
-      <p class="text-xs text-surface-500">
-        Have a specific question not covered here?{' '}
-        <a href="/contact" class="text-brand-700 font-semibold hover:underline">
-          Contact our team directly
-        </a>.
-      </p>
+      <FaqAccordion client:visible items={homeFAQ} />
     </div>
   </Section>
 
   <!-- Final CTA Band -->
-  <Section background="default" class="pt-0">
+  <Section background="white">
     <CtaBand />
   </Section>
+
+  <script>
+    function initHeroWordRotator() {
+      const titles = document.querySelectorAll<HTMLElement>('.hero-rotator-title');
+      if (!titles.length) return;
+      
+      let currentIndex = 0;
+      const total = titles.length;
+
+      const hashMatch = window.location.hash.match(/rotator-(\d+)/);
+      if (hashMatch) {
+        currentIndex = parseInt(hashMatch[1], 10) % total;
+      }
+
+      titles.forEach((el, idx) => {
+        if (idx === currentIndex) {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        } else {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(140%)';
+        }
+      });
+
+      // Expose manual switcher for testing or preview
+      (window as unknown as { __setHeroRotatorIndex?: (idx: number) => void }).__setHeroRotatorIndex = (idx: number) => {
+        const target = idx % total;
+        titles.forEach((el, i) => {
+          el.style.transition = 'none';
+          if (i === target) {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          } else {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(140%)';
+          }
+        });
+        currentIndex = target;
+      };
+
+      setInterval(() => {
+        const prevIndex = currentIndex;
+        currentIndex = (currentIndex + 1) % total;
+
+        titles.forEach((el, idx) => {
+          if (idx === currentIndex) {
+            el.style.transition = 'transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease';
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          } else if (idx === prevIndex) {
+            el.style.transition = 'transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease';
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(-140%)';
+          } else {
+            el.style.transition = 'none';
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(140%)';
+          }
+        });
+      }, 2400);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initHeroWordRotator);
+    } else {
+      initHeroWordRotator();
+    }
+    document.addEventListener('astro:after-swap', initHeroWordRotator);
+  </script>
 </Layout>

@@ -1,0 +1,150 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { siteConfig } from '../config/site';
+
+const scenarios = [
+  {
+    title: 'Retail & Direct-to-Consumer Brands',
+    industry: 'Retail & D2C',
+    summary: 'Coordinate customer order questions, dispatch delivery status updates with approved templates, and launch seasonal campaigns to opted-in shoppers.',
+    workflows: [
+      'Shared inbox for support staff to resolve order status questions',
+      'Automated template alerts for order confirmation and shipping dispatch',
+      'Opt-in QR codes on packaging inserts and store receipt footers',
+      'Instant STOP handling protecting brand sender reputation',
+    ],
+    sampleTemplate: 'Hi {{1}}, your order #{{2}} has shipped! Track package: https://example.com/track',
+  },
+  {
+    title: 'Healthcare Clinics & Wellness Centers',
+    industry: 'Clinics & Wellness',
+    summary: 'Allow front-desk staff to manage patient inquiries, send appointment reminders, and collect intake details using interactive WhatsApp Flows.',
+    workflows: [
+      'Multi-agent desk assignment so staff never step on each other',
+      'Automated appointment confirmation templates with quick replies',
+      'WhatsApp Flows native forms for patient check-in questionnaire',
+      'Strict consent recording verifying patient opted in for reminders',
+    ],
+    sampleTemplate: 'Hello {{1}}, confirming your consultation for tomorrow at {{2}}. Reply 1 to confirm.',
+  },
+  {
+    title: 'Education & Training Institutes',
+    industry: 'Education & Coaching',
+    summary: 'Handle course inquiries, share schedule announcements, and broadcast intake deadlines to prospective students who requested info.',
+    workflows: [
+      'Central inbox for admissions counselors with private team notes',
+      'Template campaigns for application deadlines and webinar links',
+      'In-chat Flows for course preference and branch selection',
+      'Segment contacts by batch, program interest, or enrollment status',
+    ],
+    sampleTemplate: 'Hi {{1}}, registrations for the {{2}} cohort close this Friday. View details: https://example.com/cohort',
+  },
+  {
+    title: 'Real Estate & Property Management',
+    industry: 'Real Estate & Rentals',
+    summary: 'Route incoming property inquiries to specific agents, schedule site visits via in-chat forms, and maintain audit records of client interactions.',
+    workflows: [
+      'One-click chat assignment to regional or project-specific sales agents',
+      'WhatsApp Flows for site visit appointment scheduling',
+      'Private notes on client budget, preferred location, and readiness',
+      'Exportable conversation logs for compliance and dispute prevention',
+    ],
+    sampleTemplate: 'Hello {{1}}, thank you for inquiring about {{2}}. Would you like to schedule a site visit this Saturday?',
+  },
+  {
+    title: 'Local Home & Professional Services',
+    industry: 'Local Services',
+    summary: 'Coordinate service dispatch, send booking confirmations, and request customer feedback after a job is completed.',
+    workflows: [
+      'Canned responses for operating hours, pricing cards, and service areas',
+      'Appointment reminder broadcasts minimizing no-shows',
+      'Post-service customer feedback forms via WhatsApp Flows',
+      'Direct contact CSV import from local booking records',
+    ],
+    sampleTemplate: 'Hi {{1}}, our technician is scheduled for tomorrow between {{2}}. Reply RESCHEDULE if needed.',
+  },
+];
+---
+
+<Layout
+  title={`Use Cases — ${siteConfig.name} WhatsApp Business Platform`}
+  description="Operational scenarios for retail brands, healthcare clinics, education institutes, real estate agents, and local service teams."
+>
+  <!-- Header -->
+  <section class="py-16 md:py-24 bg-ink-50/60 border-b border-ink-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
+      <div class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-brand-700 bg-brand-50 border border-brand-100 px-3.5 py-1 rounded-full mb-4">
+        <span>Operational Scenarios</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-ink-950 tracking-tight font-display leading-tight">
+        How growing teams use ONO
+      </h1>
+      <p class="text-base sm:text-lg text-ink-500 mt-4 leading-relaxed">
+        Realistic operational workflows across industries. Generic scenarios based on real operational needs, with zero fabricated customer claims.
+      </p>
+    </div>
+  </section>
+
+  <!-- Scenarios List -->
+  <div class="divide-y divide-ink-100">
+    {scenarios.map((item, index) => (
+      <Section background={index % 2 === 0 ? 'white' : 'default'}>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-6xl mx-auto">
+          
+          <!-- Column 1: Overview -->
+          <div class="lg:col-span-5 space-y-3">
+            <span class="text-[10px] font-mono font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-brand-50 text-brand-700 border border-brand-100">
+              {item.industry}
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-ink-950 font-display tracking-tight leading-snug">
+              {item.title}
+            </h2>
+            <p class="text-sm text-ink-500 leading-relaxed">
+              {item.summary}
+            </p>
+          </div>
+
+          <!-- Column 2: Workflows & Sample Template -->
+          <div class="lg:col-span-7 bg-white rounded-2xl border border-ink-100 p-6 sm:p-8 shadow-soft space-y-6">
+            <div>
+              <h3 class="text-xs font-mono font-semibold uppercase tracking-wider text-ink-500 mb-3">
+                Key Team Workflows
+              </h3>
+              <ul class="space-y-2 text-xs sm:text-sm text-ink-700">
+                {item.workflows.map((wf) => (
+                  <li class="flex items-start gap-2">
+                    <svg class="w-4 h-4 text-brand-600 shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="leading-relaxed">{wf}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="pt-4 border-t border-ink-100">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[11px] font-mono font-semibold text-ink-500 uppercase">Sample Meta Template</span>
+                <span class="text-[10px] font-mono text-brand-700 bg-brand-50 px-2 py-0.5 rounded border border-brand-100">Approved Format</span>
+              </div>
+              <div class="p-3.5 rounded-xl bg-ink-50 border border-ink-100 text-xs font-mono text-ink-800 leading-relaxed">
+                "{item.sampleTemplate}"
+              </div>
+              <p class="text-[10px] text-ink-400 font-mono mt-1.5">
+                Sample data • Meta template approval required prior to broadcast
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </Section>
+    ))}
+  </div>
+
+  <!-- Bottom CTA -->
+  <Section background="white">
+    <CtaBand />
+  </Section>
+</Layout>

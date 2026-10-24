@@ -1,172 +1,482 @@
 ---
-// Rich HTML/CSS product mockup of the ONO shared team inbox
+// Authentic HTML/CSS product mockup matching the ONO Django dashboard layout (production state)
+interface Props {
+  customerName?: string;
+  phoneNumber?: string;
+  isVip?: boolean;
+  vipLabel?: string;
+  consentState?: 'granted' | 'pending' | 'revoked' | 'none';
+  consentSource?: string;
+  templates?: Array<{ id: string; label: string; shortcut: string }>;
+  compactSidebar?: boolean;
+}
+
+const {
+  customerName = "Aarav Sharma",
+  phoneNumber = "+91 98765 43210",
+  isVip = true,
+  vipLabel = "VIP Lead",
+  consentState = "granted",
+  consentSource = "Website Form",
+  templates = [
+    { id: "confirm_booking", label: "Confirm booking", shortcut: "#confirm_booking" },
+    { id: "meeting_link", label: "Meeting link", shortcut: "#meeting_link" },
+  ],
+  compactSidebar = false,
+} = Astro.props;
+
+const consentConfig = {
+  granted: {
+    bg: 'bg-emerald-50',
+    text: 'text-emerald-800',
+    border: 'border-emerald-200/80',
+    dot: 'bg-emerald-500',
+    label: consentSource ? `Consent: ${consentSource}` : 'Consent verified',
+    status: 'Verified Opt-in',
+  },
+  pending: {
+    bg: 'bg-amber-50',
+    text: 'text-amber-800',
+    border: 'border-amber-200/80',
+    dot: 'bg-amber-500',
+    label: 'Consent pending',
+    status: 'Pending Opt-in',
+  },
+  revoked: {
+    bg: 'bg-rose-50',
+    text: 'text-rose-800',
+    border: 'border-rose-200/80',
+    dot: 'bg-rose-500',
+    label: 'Consent revoked',
+    status: 'Unsubscribed / STOP',
+  },
+  none: {
+    bg: 'bg-slate-100',
+    text: 'text-slate-600',
+    border: 'border-slate-200',
+    dot: 'bg-slate-400',
+    label: 'No consent',
+    status: 'No consent record',
+  },
+}[consentState] || {
+  bg: 'bg-emerald-50',
+  text: 'text-emerald-800',
+  border: 'border-emerald-200/80',
+  dot: 'bg-emerald-500',
+  label: `Consent: ${consentSource}`,
+  status: 'Verified Opt-in',
+};
 ---
 
-<div class="bg-white rounded-xl shadow-lg border border-surface-200 overflow-hidden text-left text-xs font-sans">
-  <!-- Top App Navigation Bar -->
-  <div class="bg-surface-900 text-white px-4 py-2.5 flex items-center justify-between border-b border-surface-800">
-    <div class="flex items-center gap-3">
-      <span class="font-bold tracking-tight text-brand-400 text-sm">ONO</span>
-      <span class="text-surface-400">/</span>
-      <span class="text-surface-200 font-medium flex items-center gap-1.5">
-        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-        Acme Retail (+91 98765 43210)
-      </span>
-    </div>
-    <div class="flex items-center gap-3 text-surface-300">
-      <span class="bg-surface-800 px-2 py-0.5 rounded text-[11px] text-surface-300">Live Sync</span>
-      <span class="w-6 h-6 rounded-full bg-brand-700 text-white font-semibold flex items-center justify-center text-[10px]">JD</span>
-    </div>
-  </div>
-
-  <!-- Workspace 3-Column Split -->
-  <div class="grid grid-cols-1 md:grid-cols-12 min-h-[380px]">
-    <!-- Left: Conversations List (4 cols) -->
-    <div class="md:col-span-4 border-r border-surface-200 bg-surface-50/50 flex flex-col">
-      <div class="p-3 border-b border-surface-200 bg-white">
-        <div class="relative">
-          <input
-            type="text"
-            readonly
-            value="Search contacts or chats..."
-            class="w-full bg-surface-100 border border-surface-200 rounded-lg px-2.5 py-1.5 text-[11px] text-surface-500 cursor-default"
-          />
+<div class="bg-white rounded-xl shadow-lg border border-surface-200 overflow-hidden text-left text-xs font-sans inbox-mockup-wrapper flex min-h-[460px]">
+  
+  <!-- Left App Sidebar (Matches real Django dashboard) -->
+  <aside class={`hidden sm:flex flex-col justify-between ${compactSidebar ? 'w-36' : 'w-38 sm:w-40 lg:w-42'} shrink-0 bg-[#0B1320] text-slate-300 border-r border-slate-800 p-2 sm:p-2.5 select-none`}>
+    <div class="space-y-3">
+      
+      <!-- Workspace Switcher Header -->
+      <div class="flex items-center gap-2 px-2 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800">
+        <div class="w-6 h-6 rounded-md bg-emerald-600 text-white flex items-center justify-center font-mono font-bold text-[11px] shrink-0 shadow-xs">
+          &lt;/&gt;
         </div>
-        <div class="flex gap-1.5 mt-2">
-          <span class="bg-brand-100 text-brand-800 font-medium px-2 py-0.5 rounded-full text-[10px]">All (24)</span>
-          <span class="bg-surface-100 text-surface-600 px-2 py-0.5 rounded-full text-[10px]">Assigned to me</span>
-          <span class="bg-surface-100 text-surface-600 px-2 py-0.5 rounded-full text-[10px]">Unassigned</span>
-        </div>
-      </div>
-
-      <!-- Active Chat List Items -->
-      <div class="divide-y divide-surface-100 overflow-y-auto">
-        <!-- Item 1 (Selected) -->
-        <div class="p-3 bg-brand-50/60 border-l-4 border-brand-600 cursor-pointer">
-          <div class="flex items-center justify-between mb-1">
-            <span class="font-semibold text-surface-900 text-xs">Aarav Sharma</span>
-            <span class="text-[10px] text-surface-400">10:42 AM</span>
-          </div>
-          <p class="text-surface-600 truncate text-[11px] mb-1.5">Yes, please confirm our consultation slot for tomorrow.</p>
-          <div class="flex items-center justify-between text-[10px]">
-            <span class="bg-brand-200/80 text-brand-900 px-1.5 py-0.5 rounded font-medium">VIP Lead</span>
-            <span class="text-surface-500">Agent: Priya S.</span>
-          </div>
-        </div>
-
-        <!-- Item 2 -->
-        <div class="p-3 hover:bg-surface-100/60 transition-colors">
-          <div class="flex items-center justify-between mb-1">
-            <span class="font-medium text-surface-800 text-xs">Pooja Patel</span>
-            <span class="text-[10px] text-surface-400">09:15 AM</span>
-          </div>
-          <p class="text-surface-500 truncate text-[11px] mb-1.5">Can you share the product catalog PDF?</p>
-          <div class="flex items-center justify-between text-[10px]">
-            <span class="bg-surface-200 text-surface-700 px-1.5 py-0.5 rounded">Catalog Inquiry</span>
-            <span class="text-amber-600 font-medium">Unassigned</span>
-          </div>
-        </div>
-
-        <!-- Item 3 -->
-        <div class="p-3 hover:bg-surface-100/60 transition-colors">
-          <div class="flex items-center justify-between mb-1">
-            <span class="font-medium text-surface-800 text-xs">Vikram Malhotra</span>
-            <span class="text-[10px] text-surface-400">Yesterday</span>
-          </div>
-          <p class="text-surface-500 truncate text-[11px] mb-1.5">STOP</p>
-          <div class="flex items-center justify-between text-[10px]">
-            <span class="bg-red-100 text-red-700 px-1.5 py-0.5 rounded font-medium">Opted Out (Auto)</span>
-            <span class="text-surface-400">System</span>
+        <div class="min-w-0 flex-1">
+          <div class="font-semibold text-white text-xs truncate">Acme Workspace</div>
+          <div class="text-[9px] text-slate-400 flex items-center gap-1">
+            <span>Switch workspace</span>
+            <span class="text-[8px]">⌄</span>
           </div>
         </div>
       </div>
+
+      <!-- Navigation Menu -->
+      <nav class="space-y-0.5 text-[11px]" aria-label="Dashboard Navigation">
+        
+        <!-- Dashboard -->
+        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
+          <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          <span class="truncate">Dashboard</span>
+        </div>
+
+        <!-- Setup Wizard -->
+        <div class="flex items-center justify-between px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
+          <div class="flex items-center gap-2 min-w-0">
+            <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+            </svg>
+            <span class="truncate">Setup Wizard</span>
+          </div>
+          <span class="text-[9px] font-mono px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0 ml-1">Active</span>
+        </div>
+
+        <!-- Inbox (Active) -->
+        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md bg-[#0E8A68] text-white font-medium shadow-xs cursor-default">
+          <svg class="w-3.5 h-3.5 text-white shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <span class="truncate">Inbox</span>
+        </div>
+
+        <!-- Contacts -->
+        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
+          <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          <span class="truncate">Contacts</span>
+        </div>
+
+        <!-- Labels -->
+        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
+          <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7.01" y2="7"></line>
+          </svg>
+          <span class="truncate">Labels</span>
+        </div>
+
+        <!-- Opt-in Links -->
+        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
+          <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+          <span class="truncate">Opt-in Links</span>
+        </div>
+
+        <!-- Blocked Users -->
+        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
+          <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+          </svg>
+          <span class="truncate">Blocked Users</span>
+        </div>
+
+        <!-- Templates -->
+        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
+          <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          <span class="truncate">Templates</span>
+        </div>
+
+        <!-- Flows -->
+        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
+          <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="6" height="6" rx="1"></rect>
+            <rect x="16" y="3" width="6" height="6" rx="1"></rect>
+            <rect x="9" y="15" width="6" height="6" rx="1"></rect>
+            <path d="M5 9v3a2 2 0 0 0 2 2h2"></path>
+            <path d="M19 9v3a2 2 0 0 1-2 2h-2"></path>
+          </svg>
+          <span class="truncate">Flows</span>
+        </div>
+
+        <!-- Campaigns -->
+        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
+          <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+          <span class="truncate">Campaigns</span>
+        </div>
+
+        <!-- Analytics -->
+        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
+          <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+          <span class="truncate">Analytics</span>
+        </div>
+      </nav>
+
+      <!-- Settings Section -->
+      <div class="pt-2 border-t border-slate-800/80">
+        <div class="text-[9px] font-mono uppercase tracking-wider text-slate-500 px-2 mb-1">Settings</div>
+        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors text-[11px] cursor-default">
+          <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="9" y1="15" x2="15" y2="15"></line>
+          </svg>
+          <span class="truncate">Invoices &amp; GST</span>
+        </div>
+      </div>
     </div>
 
-    <!-- Center & Right: Active Thread (8 cols) -->
-    <div class="md:col-span-8 flex flex-col bg-white">
-      <!-- Conversation Header -->
-      <div class="p-3 border-b border-surface-200 flex items-center justify-between bg-surface-50/30">
-        <div>
-          <div class="flex items-center gap-2">
-            <h4 class="font-bold text-surface-900 text-xs">Aarav Sharma</h4>
-            <span class="text-surface-400 text-[11px]">+91 98112 34567</span>
-            <span class="bg-emerald-100 text-emerald-800 text-[10px] px-1.5 py-0.5 rounded font-medium">Consent: Website Form</span>
-          </div>
-          <p class="text-[10px] text-surface-500">Assigned to: <strong class="text-surface-700 font-medium">Priya S.</strong> • Channel: WhatsApp Cloud API</p>
+    <!-- User Profile Footer -->
+    <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between">
+      <div class="flex items-center gap-2 min-w-0">
+        <div class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-[9px] shrink-0">
+          T
         </div>
-        <div class="flex items-center gap-1.5">
-          <span class="bg-surface-100 text-surface-700 px-2 py-1 rounded border border-surface-200 text-[10px] font-medium">Transfer</span>
-          <span class="bg-surface-100 text-surface-700 px-2 py-1 rounded border border-surface-200 text-[10px] font-medium">Resolve</span>
+        <div class="min-w-0">
+          <div class="text-[10px] font-semibold text-white truncate">Tinkal Kumar</div>
+          <div class="text-[8px] text-slate-400 font-mono truncate">tinkal@flexing.in</div>
+        </div>
+      </div>
+      <button type="button" aria-label="Sign out" class="text-slate-400 hover:text-white p-1 transition-colors">
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16 17 21 12 16 7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Workspace Area -->
+  <main class="flex-1 flex flex-col bg-slate-50 min-w-0">
+    
+    <!-- Top Contact Header Bar: Polished 2-Row Identity Layout & Actions -->
+    <header class="bg-white border-b border-slate-200 px-3 sm:px-3.5 py-2 flex items-center justify-between gap-2.5 shrink-0 min-w-0 select-none">
+      
+      <!-- Customer Identity & Status Metadata (Primary Focal Point) -->
+      <div class="min-w-0 flex-1">
+        
+        <!-- Row 1: Customer Name + Aligned Compact VIP Lead Badge -->
+        <div class="flex items-center gap-1.5 min-w-0">
+          <div class="font-bold text-slate-900 text-xs sm:text-sm tracking-tight truncate leading-tight">
+            {customerName}
+          </div>
+          {isVip && (
+            <span 
+              class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[10px] font-medium leading-none whitespace-nowrap bg-emerald-50 text-emerald-700 border border-emerald-200/80 shrink-0"
+              title={`Customer tier: ${vipLabel}`}
+              aria-label={`Status: ${vipLabel}`}
+            >
+              <svg class="w-2.5 h-2.5 text-emerald-600 shrink-0 fill-current" viewBox="0 0 24 24">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
+              <span>{vipLabel}</span>
+            </span>
+          )}
+        </div>
+
+        <!-- Row 2: Phone Number + Restrained Consent Status Metadata -->
+        <div class="flex items-center gap-1.5 mt-0.5 text-[11px] text-slate-500 font-mono min-w-0">
+          <span class="shrink-0">{phoneNumber}</span>
+          <span class="text-slate-300 text-[9px] shrink-0" aria-hidden="true">•</span>
+          
+          <!-- Redesigned Compact Consent Indicator (Metadata status pill, not a CTA) -->
+          <span
+            class={`inline-flex items-center gap-1 px-1.5 py-0.2 rounded text-[10px] font-sans font-medium whitespace-nowrap shrink-0 ${consentConfig.bg} ${consentConfig.text} border ${consentConfig.border}`}
+            title={`Opt-in consent verified via ${consentSource}`}
+            role="status"
+            aria-label={consentConfig.label}
+          >
+            <span class={`w-1.5 h-1.5 rounded-full ${consentConfig.dot} shrink-0`}></span>
+            <span>{consentSource}</span>
+          </span>
+        </div>
+
+      </div>
+
+      <!-- Header Action Controls: Compact, Well-Spaced, Accessible -->
+      <div class="flex items-center gap-1 sm:gap-1.5 shrink-0">
+        <button 
+          type="button" 
+          class="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md text-[10px] font-medium border border-slate-200 text-slate-700 bg-white hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-2xs whitespace-nowrap focus:outline-none focus:ring-1 focus:ring-emerald-500"
+          aria-label="Transfer conversation"
+        >
+          Transfer
+        </button>
+        <button 
+          type="button" 
+          class="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md text-[10px] font-medium border border-slate-200 text-slate-700 bg-white hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-2xs whitespace-nowrap focus:outline-none focus:ring-1 focus:ring-emerald-500"
+          aria-label="Resolve conversation"
+        >
+          Resolve
+        </button>
+        <button 
+          type="button" 
+          aria-label="Help & Keyboard Shortcuts" 
+          title="Help & Shortcuts (?)"
+          class="w-6 h-6 rounded-md border border-slate-200 text-slate-500 bg-white hover:bg-slate-50 hover:text-slate-700 flex items-center justify-center text-xs shadow-2xs transition-colors focus:outline-none focus:ring-1 focus:ring-emerald-500"
+        >
+          ?
+        </button>
+      </div>
+
+    </header>
+
+    <!-- Message Thread Pane (Production Active State) -->
+    <div class="flex-1 p-3 sm:p-4 space-y-3 overflow-y-auto bg-slate-100/60 flex flex-col justify-end">
+      
+      <!-- Inbound Customer Inquiry -->
+      <div class="flex justify-start">
+        <div class="max-w-[85%] sm:max-w-[70%] bg-white border border-slate-200 rounded-2xl rounded-tl-sm p-3 shadow-2xs">
+          <p class="text-slate-800 text-[11px] leading-relaxed">
+            Hello! I saw your service broadcast. Can I book a consultation session for our team tomorrow?
+          </p>
+          <div class="text-[9px] text-slate-400 text-right mt-1">10:38 AM</div>
         </div>
       </div>
 
-      <!-- Message History Pane -->
-      <div class="p-4 space-y-3 flex-1 bg-surface-50/20 overflow-y-auto">
-        <!-- Inbound Customer Message -->
-        <div class="flex justify-start">
-          <div class="max-w-[78%] bg-white border border-surface-200 rounded-2xl rounded-tl-sm p-3 shadow-xs">
-            <p class="text-surface-800 text-[11px]">Hello! I saw your service broadcast. Can I book a consultation session for our team?</p>
-            <div class="text-[9px] text-surface-400 text-right mt-1">10:38 AM</div>
-          </div>
+      <!-- Private Team Internal Note (Key ONO capability) -->
+      <div class="flex justify-center my-0.5">
+        <div class="bg-amber-50 border border-amber-200 text-amber-900 rounded-lg px-3 py-1.5 text-[10px] flex items-center gap-1.5 shadow-2xs">
+          <span class="font-bold text-amber-800">🔒 Team Note:</span> High-priority client inquiry. Offered priority booking slot.
         </div>
+      </div>
 
-        <!-- Internal Note (Private to Team) -->
-        <div class="flex justify-center my-1">
-          <div class="bg-amber-50 border border-amber-200 text-amber-900 rounded-lg px-3 py-1.5 text-[10px] flex items-center gap-1.5 shadow-xs">
-            <span class="font-bold text-amber-700">🔒 Team Note:</span> Verified customer from Bangalore tech meet. Offered slot B.
-          </div>
-        </div>
-
-        <!-- Outbound Template / Flow Trigger Message -->
-        <div class="flex justify-end">
-          <div class="max-w-[78%] bg-brand-50 border border-brand-200 text-brand-950 rounded-2xl rounded-tr-sm p-3 shadow-xs">
-            <p class="text-[11px]">Hi Aarav! Absolutely. Please click the button below to choose your preferred time slot directly in WhatsApp:</p>
-            <div class="mt-2 pt-2 border-t border-brand-200/80">
-              <span class="block text-center font-medium text-brand-700 bg-white py-1 rounded border border-brand-300 text-[10px]">
-                📅 Open Appointment Form (Flow)
-              </span>
+      <!-- Outbound Team Reply with WhatsApp Flow Form Button -->
+      <div class="flex justify-end">
+        <div class="max-w-[85%] sm:max-w-[70%] bg-[#E7F6F1] border border-emerald-200 text-emerald-950 rounded-2xl rounded-tr-sm p-3 shadow-2xs">
+          <p class="text-[11px] leading-relaxed">
+            Hi Aarav! Absolutely. Please tap below to choose your preferred time slot directly in WhatsApp:
+          </p>
+          <div class="mt-2 pt-2 border-t border-emerald-200/80">
+            <div class="block text-center font-medium text-emerald-800 bg-white py-1.5 rounded-lg border border-emerald-300 text-[10px] shadow-2xs flex items-center justify-center gap-1.5">
+              <span>📅 Open Booking Form (Flow)</span>
+              <span class="text-emerald-600 text-[10px]">→</span>
             </div>
-            <div class="text-[9px] text-brand-700 text-right mt-1">10:40 AM • Read ✓✓</div>
           </div>
-        </div>
-
-        <!-- Inbound Confirmation -->
-        <div class="flex justify-start">
-          <div class="max-w-[78%] bg-white border border-surface-200 rounded-2xl rounded-tl-sm p-3 shadow-xs">
-            <p class="text-surface-800 text-[11px]">Yes, please confirm our consultation slot for tomorrow at 3:00 PM.</p>
-            <div class="text-[9px] text-surface-400 text-right mt-1">10:42 AM</div>
+          <div class="text-[9px] text-emerald-700 text-right mt-1.5 font-medium">
+            10:40 AM • Read <span class="text-emerald-600 font-bold">✓✓</span>
           </div>
         </div>
       </div>
 
-      <!-- Reply Composer with Canned Replies and Notes -->
-      <div class="p-3 border-t border-surface-200 bg-white">
-        <div class="flex items-center justify-between mb-1.5 text-[10px]">
-          <div class="flex gap-2">
-            <span class="font-semibold text-brand-700 border-b-2 border-brand-600 pb-0.5">Customer Reply</span>
-            <span class="text-surface-500 hover:text-surface-800 cursor-pointer">Internal Note</span>
-          </div>
-          <div class="flex gap-1.5">
-            <span class="bg-surface-100 hover:bg-surface-200 text-surface-700 px-1.5 py-0.5 rounded cursor-pointer border border-surface-200">
-              ⚡ #confirm_booking
-            </span>
-            <span class="bg-surface-100 hover:bg-surface-200 text-surface-700 px-1.5 py-0.5 rounded cursor-pointer border border-surface-200">
-              ⚡ #meeting_link
-            </span>
-          </div>
+      <!-- Inbound Customer Confirmation -->
+      <div class="flex justify-start">
+        <div class="max-w-[85%] sm:max-w-[70%] bg-white border border-slate-200 rounded-2xl rounded-tl-sm p-3 shadow-2xs">
+          <p class="text-slate-800 text-[11px] leading-relaxed">
+            Form submitted! Selected tomorrow at 3:00 PM. Looking forward to it!
+          </p>
+          <div class="text-[9px] text-slate-400 text-right mt-1">10:42 AM</div>
         </div>
-        <div class="flex gap-2">
-          <input
-            type="text"
-            readonly
-            value="Great, you're booked! Sending calendar invite to your email now."
-            class="flex-1 bg-surface-50 border border-surface-200 rounded-lg px-3 py-1.5 text-[11px] text-surface-800"
-          />
-          <button type="button" class="bg-brand-600 text-white font-medium px-3 py-1.5 rounded-lg text-[11px] shadow-xs cursor-default">
-            Send
+      </div>
+
+      <!-- Simulated WhatsApp Live Typing Bubble -->
+      <div class="flex justify-start pt-0.5">
+        <div class="bg-white/90 border border-slate-200 rounded-2xl rounded-tl-sm px-3 py-1 shadow-2xs flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce [animation-delay:-0.3s]"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce [animation-delay:-0.15s]"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce"></span>
+          <span class="text-[9px] text-slate-400 ml-1">Customer is active</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Message Composer Bar with Canned Replies & Accessible Quick-Reply Shortcuts -->
+    <footer class="bg-white border-t border-slate-200 p-2.5 sm:p-3 shrink-0 space-y-2">
+      
+      <!-- Composer Toolbar Header: Tabs (Left) & Quick-Reply Template Chips (Right) -->
+      <div class="flex flex-wrap items-center justify-between gap-1.5 pb-0.5 text-[11px]">
+        
+        <!-- Reply Mode Tabs (Customer Reply vs Internal Note) -->
+        <div class="flex items-center gap-1 shrink-0" role="tablist" aria-label="Reply mode switcher">
+          <button
+            type="button"
+            role="tab"
+            aria-selected="true"
+            class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md font-medium text-[10px] text-emerald-800 bg-emerald-50/90 border border-emerald-200/90 transition-colors shadow-2xs cursor-default"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+            <span>Customer Reply</span>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md font-normal text-[10px] text-slate-500 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+          >
+            <svg class="w-2.5 h-2.5 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <span>Internal Note</span>
           </button>
         </div>
+
+        <!-- Quick-Reply Template Chips (Human-Readable Labels, Preserved Shortcuts, Non-Clipping Scroll) -->
+        <div 
+          class="flex items-center gap-1 overflow-x-auto no-scrollbar py-0.5 max-w-full"
+          role="toolbar" 
+          aria-label="Quick reply template shortcuts"
+        >
+          {templates.map((tpl) => (
+            <button
+              type="button"
+              data-template-id={tpl.shortcut}
+              title={`Insert template: ${tpl.shortcut}`}
+              aria-label={`Quick reply: ${tpl.label} (${tpl.shortcut})`}
+              class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-medium text-slate-600 bg-slate-100/90 hover:bg-emerald-50 hover:text-emerald-800 hover:border-emerald-300 border border-slate-200 transition-colors whitespace-nowrap shrink-0 group focus:outline-none focus:ring-1 focus:ring-emerald-500 shadow-2xs"
+            >
+              <svg class="w-2.5 h-2.5 text-amber-500 group-hover:text-emerald-600 shrink-0 fill-current" viewBox="0 0 24 24">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+              <span>{tpl.label}</span>
+            </button>
+          ))}
+        </div>
+
       </div>
-    </div>
-  </div>
+
+      <!-- Main Message Composer Input Box & Sending Controls -->
+      <div class="flex items-center gap-1.5 pt-0.5">
+        
+        <!-- Attachment Icon -->
+        <button 
+          type="button" 
+          aria-label="Attach file or media" 
+          title="Attach media"
+          class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100 transition-colors shrink-0 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+        >
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+          </svg>
+        </button>
+
+        <!-- Template Browser Shortcut Icon -->
+        <button 
+          type="button" 
+          aria-label="Browse message templates" 
+          title="Browse approved Meta templates (/)" 
+          class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100 transition-colors shrink-0 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+        >
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+        </button>
+
+        <!-- Text Input Box with Cursor -->
+        <div class="flex-1 min-w-0 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-[11px] text-slate-800 flex items-center shadow-2xs">
+          <span class="truncate">Great, you're booked! Calendar invite sent.</span>
+          <span class="inline-block w-0.5 h-3 bg-emerald-600 animate-pulse ml-0.5 align-middle shrink-0" aria-hidden="true"></span>
+        </div>
+
+        <!-- Send Message Button -->
+        <button
+          type="button"
+          aria-label="Send WhatsApp message"
+          class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#10B981] hover:bg-[#059669] text-white flex items-center justify-center shrink-0 shadow-xs cursor-pointer transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-1"
+        >
+          <svg class="w-3.5 h-3.5 -rotate-45 ml-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+
+      </div>
+
+    </footer>
+
+  </main>
 </div>

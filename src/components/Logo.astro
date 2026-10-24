@@ -1,0 +1,82 @@
+---
+interface Props {
+  variant?: 'horizontal' | 'stacked' | 'icon' | 'reversed';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  class?: string;
+  showWordmark?: boolean;
+}
+
+const {
+  variant = 'horizontal',
+  size = 'md',
+  class: className = '',
+  showWordmark = variant !== 'icon',
+} = Astro.props;
+
+// Size maps
+const iconSizes = {
+  sm: { w: 28, h: 20, ringR: 5, stroke: 2.2, bridge: 3.5, cx1: 8, cx2: 20 },
+  md: { w: 38, h: 26, ringR: 6.5, stroke: 3, bridge: 4.5, cx1: 10.5, cx2: 27.5 },
+  lg: { w: 48, h: 32, ringR: 7.5, stroke: 3.5, bridge: 5.5, cx1: 13, cx2: 35 },
+  xl: { w: 64, h: 42, ringR: 10, stroke: 4.5, bridge: 7.5, cx1: 17, cx2: 47 },
+};
+
+const textSizes = {
+  sm: 'text-lg',
+  md: 'text-xl',
+  lg: 'text-2xl',
+  xl: 'text-3xl',
+};
+
+const isReversed = variant === 'reversed';
+const ringColor = isReversed ? '#12A57D' : '#0E8A68';
+const bridgeColor = isReversed ? '#D7F75B' : '#12A57D';
+const textColor = isReversed ? 'text-white' : 'text-ink-950';
+
+const currentIcon = iconSizes[size];
+---
+
+<div class={`inline-flex items-center gap-2.5 select-none ${variant === 'stacked' ? 'flex-col gap-1.5' : ''} ${className}`}>
+  <!-- Geometric O-N-O Link Mark -->
+  <svg
+    viewBox={`0 0 ${currentIcon.w} ${currentIcon.h}`}
+    width={currentIcon.w}
+    height={currentIcon.h}
+    fill="none"
+    class="shrink-0 transition-transform duration-200 group-hover:scale-105"
+    aria-hidden="true"
+  >
+    <!-- Left Ring -->
+    <circle
+      cx={currentIcon.cx1}
+      cy={currentIcon.h / 2}
+      r={currentIcon.ringR}
+      stroke={ringColor}
+      stroke-width={currentIcon.stroke}
+    />
+    <!-- Connecting Bridge (Conversation in both directions) -->
+    <line
+      x1={currentIcon.cx1 + currentIcon.ringR - 0.5}
+      y1={currentIcon.h / 2}
+      x2={currentIcon.cx2 - currentIcon.ringR + 0.5}
+      y2={currentIcon.h / 2}
+      stroke={bridgeColor}
+      stroke-width={currentIcon.stroke}
+      stroke-linecap="round"
+    />
+    <!-- Right Ring -->
+    <circle
+      cx={currentIcon.cx2}
+      cy={currentIcon.h / 2}
+      r={currentIcon.ringR}
+      stroke={ringColor}
+      stroke-width={currentIcon.stroke}
+    />
+  </svg>
+
+  {showWordmark && (
+    <span class={`font-extrabold tracking-tight font-display ${textSizes[size]} ${textColor} leading-none`}>
+      ONO
+    </span>
+  )}
+</div>

@@ -2,7 +2,6 @@
 import { siteConfig } from '../config/site';
 import { lifetimePlan } from '../data/plans';
 import Button from './Button.astro';
-import Icon from './Icon.astro';
 
 interface Props {
   title?: string;
@@ -12,57 +11,58 @@ interface Props {
 }
 
 const {
-  title = 'Ready to streamline your WhatsApp business conversations?',
-  subtitle = `Get full lifetime access for just $${lifetimePlan.priceUSD}${lifetimePlan.priceINR ? ` (₹${lifetimePlan.priceINR.toLocaleString('en-IN')})` : ''} one-time. No monthly fees, no markup on WhatsApp messages.`,
+  title = 'Every customer conversation on WhatsApp, in one shared inbox',
+  subtitle = `Get lifetime access for $${lifetimePlan.priceUSD} (${lifetimePlan.priceINRFormatted}) one-time. No monthly fees, no markup on WhatsApp messages.`,
   buttonText = 'Get lifetime access',
   class: className = '',
 } = Astro.props;
 ---
 
-<div class={`relative bg-gradient-to-br from-brand-900 via-brand-800 to-surface-900 text-white rounded-3xl p-8 sm:p-12 md:p-16 shadow-2xl overflow-hidden ${className}`}>
-  <!-- Decorative background subtle glow rings -->
-  <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-brand-500/10 blur-3xl pointer-events-none"></div>
-  <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-emerald-400/10 blur-3xl pointer-events-none"></div>
+<div class={`relative bg-ink-950 text-white rounded-3xl p-8 sm:p-12 md:p-16 border border-ink-800 shadow-soft-lg overflow-hidden ${className}`} style="background-color: #07111F;">
+  <!-- Subtle gradient background -->
+  <div class="absolute inset-0 bg-radial-[circle_at_top_right] from-brand-600/10 via-transparent to-transparent pointer-events-none"></div>
 
   <div class="relative z-10 max-w-3xl mx-auto text-center space-y-6">
-    <div class="inline-flex items-center gap-2 bg-brand-500/20 border border-brand-400/30 text-brand-200 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
-      <span>⚡ One-Time License</span>
+    <div class="inline-flex items-center gap-2 bg-ink-900 border border-ink-800 text-brand-300 px-3.5 py-1 rounded-full text-xs font-mono uppercase tracking-wider font-semibold">
+      <span>One-time license</span>
       <span>•</span>
-      <span>7-Day Refund Guarantee</span>
+      <span>7-day refund guarantee</span>
     </div>
 
-    <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white leading-tight">
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white font-display leading-tight">
       {title}
     </h2>
 
-    <p class="text-base sm:text-lg text-brand-100/90 leading-relaxed max-w-2xl mx-auto">
+    <p class="text-base sm:text-lg text-ink-300 leading-relaxed max-w-2xl mx-auto">
       {subtitle}
     </p>
 
     <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
       <Button
         href={siteConfig.links.signup}
-        variant="white"
+        variant="primary"
         size="lg"
-        class="w-full sm:w-auto text-brand-950 font-bold shadow-lg"
+        class="w-full sm:w-auto font-bold shadow-soft"
         isAppCta={true}
       >
-        <span class="text-brand-950 font-bold">{buttonText}</span>
-        <Icon name="arrow-right" class="w-4 h-4 ml-1 text-brand-950 stroke-[2.5]" />
+        <span>{buttonText}</span>
+        <svg class="w-4 h-4 ml-1.5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
       </Button>
 
       <Button
         href="/how-it-works"
-        variant="ghost"
+        variant="secondary"
         size="lg"
-        class="w-full sm:w-auto text-white hover:bg-white/10 hover:text-white border border-white/20"
+        class="w-full sm:w-auto bg-ink-900 text-white hover:bg-ink-800 border-ink-700"
       >
         See how it works
       </Button>
     </div>
 
-    <p class="text-xs text-brand-200/80 pt-2">
-      Connect your WhatsApp number in minutes via official Meta Embedded Signup.
+    <p class="text-xs text-ink-400 pt-2 font-mono">
+      Built on Meta's WhatsApp Business Platform (Cloud API).
     </p>
   </div>
 </div>

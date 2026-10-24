@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
 import Icon from '../components/Icon.astro';
 import CtaBand from '../components/CtaBand.astro';
-import DeviceFrame from '../components/DeviceFrame.astro';
+import ProductFrame from '../components/ProductFrame.astro';
 import InboxMockup from '../components/mockups/InboxMockup.astro';
 import { siteConfig } from '../config/site';
 
@@ -20,7 +20,7 @@ const prerequisites = [
   },
   {
     title: 'A Valid Payment Method in Meta',
-    desc: 'You link your own credit or debit card directly inside Meta Business Manager so Meta can bill you at their official conversation rates with zero markup.',
+    desc: 'You link your own credit or debit card directly inside Meta Business Manager so Meta can bill you at their standard conversation rates with zero markup.',
     icon: 'tag',
   },
 ];
@@ -39,10 +39,10 @@ const onboardingSteps = [
   {
     step: 'Step 2',
     title: 'Connect your Phone Number via Meta Embedded Signup',
-    description: 'Click "Connect WhatsApp" in your dashboard to open the official Meta popup. Log into your Meta account and select or register your business phone number.',
+    description: 'Click "Connect WhatsApp" in your dashboard to open the Meta Embedded Signup popup. Log into your Meta account and select or register your business phone number.',
     bullets: [
-      'Official Meta popup dialog handles all authentication',
-      'No complicated Cloud API tokens or server hosting needed',
+      'Meta Embedded Signup handles authentication directly',
+      'No complex Cloud API tokens or server hosting needed',
       'Your phone number connects directly to your WhatsApp Business Account (WABA)'
     ]
   },
@@ -189,9 +189,9 @@ const onboardingSteps = [
     </div>
 
     <div class="max-w-5xl mx-auto">
-      <DeviceFrame browserUrl="https://app.flexing.in/inbox">
+      <ProductFrame path="/inbox" caption="Sample data • Shared team inbox interface">
         <InboxMockup />
-      </DeviceFrame>
+      </ProductFrame>
     </div>
   </Section>
 

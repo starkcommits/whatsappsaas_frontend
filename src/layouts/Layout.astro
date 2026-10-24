@@ -74,15 +74,17 @@ const structuredData = jsonLd
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    <!-- Favicon -->
+    <!-- Favicon & Touch Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     <!-- Structured Data (JSON-LD) -->
     {structuredData.map((data) => (
       <script type="application/ld+json" set:html={JSON.stringify(data)} />
     ))}
   </head>
-  <body class="min-h-screen flex flex-col bg-surface-50 text-surface-900 font-sans antialiased">
+  <body class="min-h-screen flex flex-col bg-white text-ink-900 font-sans antialiased selection:bg-brand-100 selection:text-brand-700">
     <!-- Skip to main content link for accessibility -->
     <a
       href="#main-content"
@@ -98,6 +100,25 @@ const structuredData = jsonLd
     </main>
 
     <Footer />
+
+    <!-- Scroll Reveal Motion Script -->
+    <script is:inline>
+      (function() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate-fade-rise');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+          observer.observe(el);
+        });
+      })();
+    </script>
 
     <!-- UTM Forwarding Client Script -->
     <script is:inline>

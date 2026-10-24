@@ -1,0 +1,40 @@
+---
+interface Props {
+  as?: 'div' | 'article' | 'section';
+  variant?: 'white' | 'subtle' | 'dark';
+  padding?: 'none' | 'sm' | 'md' | 'lg';
+  hoverEffect?: boolean;
+  class?: string;
+}
+
+const {
+  as: Component = 'div',
+  variant = 'white',
+  padding = 'md',
+  hoverEffect = false,
+  class: className = '',
+  ...rest
+} = Astro.props;
+
+const variants = {
+  white: 'bg-white border-ink-100 text-ink-900',
+  subtle: 'bg-ink-50/70 border-ink-100 text-ink-900',
+  dark: 'bg-ink-950 border-ink-800 text-ink-100',
+};
+
+const paddings = {
+  none: 'p-0',
+  sm: 'p-4 sm:p-5',
+  md: 'p-6 sm:p-8',
+  lg: 'p-8 sm:p-12',
+};
+
+const hoverClasses = hoverEffect ? 'hover:border-ink-300 hover:shadow-soft-lg transition-all duration-200' : '';
+---
+
+<Component
+  class={`rounded-2xl border ${variants[variant]} ${paddings[padding]} shadow-soft ${hoverClasses} ${className}`}
+  {...rest}
+>
+  <slot />
+</Component>

@@ -1,11 +1,19 @@
+@import '@fontsource/manrope/700.css';
+@import '@fontsource/manrope/800.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/jetbrains-mono/500.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --color-primary: 18 140 126;
-    --color-primary-dark: 7 94 84;
+    --font-display: 'Manrope', 'Inter', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   }
 
   html {
@@ -16,8 +24,22 @@
   }
 
   body {
-    @apply bg-surface-50 text-surface-900 font-sans selection:bg-brand-200 selection:text-brand-900;
+    background-color: #FFFFFF;
+    color: #0B1B2E;
+    font-family: var(--font-body);
     min-height: 100vh;
+    font-size: 1.0625rem; /* ~17px */
+    line-height: 1.6;
+  }
+
+  ::selection {
+    background-color: #D9F3EA;
+    color: #0B6B52;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
   }
 
   /* Accessible focus styles */
@@ -27,7 +49,8 @@
   textarea:focus-visible,
   select:focus-visible,
   summary:focus-visible {
-    @apply outline-none ring-2 ring-brand-600 ring-offset-2 ring-offset-white;
+    outline: 2px solid #0E8A68;
+    outline-offset: 2px;
   }
 }
 
@@ -46,4 +69,86 @@
 /* Custom details accordion marker */
 details summary::-webkit-details-marker {
   display: none;
+}
+
+/* Infinite Marquee Animations */
+@-webkit-keyframes marquee {
+  0% { -webkit-transform: translateX(0); transform: translateX(0); }
+  100% { -webkit-transform: translateX(calc(-100% - var(--gap, 1rem))); transform: translateX(calc(-100% - var(--gap, 1rem))); }
+}
+@keyframes marquee {
+  0% { -webkit-transform: translateX(0); transform: translateX(0); }
+  100% { -webkit-transform: translateX(calc(-100% - var(--gap, 1rem))); transform: translateX(calc(-100% - var(--gap, 1rem))); }
+}
+
+@-webkit-keyframes marquee-vertical {
+  0% { -webkit-transform: translateY(0); transform: translateY(0); }
+  100% { -webkit-transform: translateY(calc(-100% - var(--gap, 1.25rem))); transform: translateY(calc(-100% - var(--gap, 1.25rem))); }
+}
+@keyframes marquee-vertical {
+  0% { -webkit-transform: translateY(0); transform: translateY(0); }
+  100% { -webkit-transform: translateY(calc(-100% - var(--gap, 1.25rem))); transform: translateY(calc(-100% - var(--gap, 1.25rem))); }
+}
+
+.animate-marquee {
+  -webkit-animation: marquee var(--duration, 30s) linear infinite;
+  animation: marquee var(--duration, 30s) linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-vertical {
+  -webkit-animation: marquee-vertical var(--duration, 24s) linear infinite;
+  animation: marquee-vertical var(--duration, 24s) linear infinite;
+  will-change: transform;
+}
+
+.marquee-reverse {
+  -webkit-animation-direction: reverse !important;
+  animation-direction: reverse !important;
+}
+
+/* Shimmer Highlight Animation */
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.animate-shimmer {
+  background-size: 200% auto;
+  animation: shimmer 5s ease-in-out infinite;
+}
+
+/* Floating Card Animations */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+.animate-float {
+  animation: float-slow 4s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 4.5s ease-in-out infinite;
+}
+
+/* Scrollbar utilities */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

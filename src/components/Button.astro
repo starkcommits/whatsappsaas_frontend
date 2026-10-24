@@ -1,7 +1,7 @@
 ---
 interface Props {
   href?: string;
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'white';
+  variant?: 'primary' | 'secondary' | 'ghost' | 'white';
   size?: 'sm' | 'md' | 'lg';
   type?: 'button' | 'submit' | 'reset';
   class?: string;
@@ -24,20 +24,19 @@ const {
   ...rest
 } = Astro.props;
 
-const baseStyles = 'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none select-none';
+const baseStyles = 'inline-flex items-center justify-center rounded-xl transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none select-none';
 
 const variants = {
-  primary: 'bg-brand-600 hover:bg-brand-700 text-white shadow-sm hover:shadow-card-hover font-semibold',
-  secondary: 'bg-brand-50 hover:bg-brand-100 text-brand-900 border border-brand-200 font-semibold',
-  outline: 'border border-surface-300 hover:border-surface-400 bg-white hover:bg-surface-50 text-surface-800 shadow-sm',
-  ghost: 'text-surface-700 hover:text-surface-900 hover:bg-surface-100',
-  white: 'bg-white hover:bg-brand-50 text-brand-950 border border-transparent shadow-md font-bold',
+  primary: 'bg-brand-600 hover:bg-brand-700 text-white shadow-soft font-semibold',
+  secondary: 'bg-ink-50 hover:bg-ink-100 text-ink-900 border border-ink-100 font-semibold shadow-soft',
+  ghost: 'text-ink-700 hover:text-ink-950 hover:bg-ink-50 font-medium',
+  white: 'bg-white hover:bg-ink-50 text-ink-950 border border-ink-100 shadow-soft font-semibold',
 };
 
 const sizes = {
-  sm: 'text-xs px-3.5 py-1.5 gap-1.5',
-  md: 'text-sm px-5 py-2.5 gap-2',
-  lg: 'text-base px-6 py-3.5 gap-2.5 font-semibold',
+  sm: 'text-xs px-3.5 py-2 gap-1.5 min-h-[38px]',
+  md: 'text-sm px-5 py-2.5 gap-2 min-h-[44px]', // 44px touch target per WCAG 2.2 AA
+  lg: 'text-base px-6 py-3.5 gap-2.5 min-h-[48px] font-semibold',
 };
 
 const combinedClasses = `${baseStyles} ${variants[variant]} ${sizes[size]} ${isAppCta ? 'js-utm-link' : ''} ${className}`;

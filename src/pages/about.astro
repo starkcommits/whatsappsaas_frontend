@@ -2,23 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
 import Icon from '../components/Icon.astro';
-import CtaBand from '../components/CtaBand.astro';
 import { siteConfig } from '../config/site';
 
 const values = [
   {
-    title: 'Zero Message Markup',
-    desc: 'You should pay Meta directly for what Meta charges. We never insert ourselves as a billing toll booth on your customer conversations.',
-    icon: 'tag',
-  },
-  {
     title: 'One-Time Licensing',
-    desc: 'Small businesses do not need another $100/month recurring software bill for basic customer inbox and broadcast tools.',
+    desc: 'Small businesses do not need another recurring software subscription for basic team inbox and broadcast campaigns.',
     icon: 'check',
   },
   {
-    title: 'Direct Meta Connectivity',
-    desc: 'All messaging runs on the official Meta WhatsApp Cloud API via your own Business Manager. No third-party scrapers or unstable workarounds.',
+    title: 'Direct Meta Cloud API',
+    desc: 'All messaging runs on Meta\'s WhatsApp Business Platform (Cloud API) via your own Business Manager. Zero scrapers or unofficial workarounds.',
     icon: 'connect',
   },
   {
@@ -34,71 +28,72 @@ const values = [
   description={`Learn about ${siteConfig.legalName} and our mission to provide transparent, one-time licensed WhatsApp software for growing businesses.`}
 >
   <!-- Header -->
-  <section class="py-16 md:py-24 bg-gradient-to-b from-brand-50/50 via-surface-50 to-surface-50 border-b border-surface-200">
+  <section class="py-16 md:py-24 bg-ink-50/60 border-b border-ink-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
-      <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-700 bg-brand-100/70 border border-brand-200 px-3.5 py-1 rounded-full mb-4">
+      <div class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-brand-700 bg-brand-50 border border-brand-100 px-3.5 py-1 rounded-full mb-4">
         <span>About Our Platform</span>
       </div>
-      <h1 class="text-3xl sm:text-5xl font-extrabold text-surface-900 tracking-tight leading-tight">
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-ink-950 tracking-tight font-display leading-tight">
         Transparent WhatsApp tools for growing businesses
       </h1>
-      <p class="text-base sm:text-lg text-surface-600 mt-4 leading-relaxed">
-        {siteConfig.name} is developed and maintained by {siteConfig.legalName}. We believe business software should be simple, affordable, and honest.
+      <p class="text-base sm:text-lg text-ink-500 mt-4 leading-relaxed">
+        {siteConfig.name} is developed and maintained by {siteConfig.legalName}. We believe business software should be clear, reliable, and honest.
       </p>
     </div>
   </section>
 
   <!-- Narrative Section -->
   <Section background="white">
-    <div class="max-w-3xl mx-auto space-y-6 text-base text-surface-700 leading-relaxed">
-      <h2 class="text-2xl font-bold text-surface-900 tracking-tight">
+    <div class="max-w-3xl mx-auto space-y-6 text-base text-ink-700 leading-relaxed">
+      <h2 class="text-2xl font-bold text-ink-950 font-display tracking-tight">
         Why we built {siteConfig.name}
       </h2>
       <p>
-        WhatsApp has become the primary channel for businesses to connect with customers across India and globally. However, most existing software platforms lock businesses into expensive recurring subscriptions—and worse, tack on hidden 30% to 100% markups on top of Meta's actual messaging rates.
+        WhatsApp is the primary channel for businesses to connect with customers across India and globally. However, most existing platforms lock businesses into recurring monthly subscriptions and add markups on top of Meta's messaging rates.
       </p>
       <p>
-        We built <strong>{siteConfig.name}</strong> to offer a straightforward alternative: pay a single one-time license fee to own the platform, and connect directly to official Meta APIs so you pay Meta at exact wholesale rates.
+        We built <strong>{siteConfig.name}</strong> to offer a straightforward alternative: pay a single one-time license fee to own the platform, and connect directly to Meta's WhatsApp Business Platform (Cloud API) so you pay Meta at their exact rates.
       </p>
       <p>
-        There are no artificial message fees, no multi-year lock-in contracts, and no bloated feature sets you will never touch. Just a rock-solid shared team inbox, verified consent tracking, approved template broadcasts, and in-chat WhatsApp Flows.
+        There are no per-message software markups, no recurring monthly fees, and no unneeded complexity. Just a shared team inbox, verified consent tracking, approved template broadcasts, and in-chat WhatsApp Flows.
       </p>
 
-      <div class="p-6 rounded-2xl bg-surface-50 border border-surface-200 mt-8 space-y-2 text-sm">
-        <h3 class="font-bold text-surface-900">Company Information</h3>
-        <p><span class="text-surface-500">Legal Entity:</span> <strong>{siteConfig.legalName}</strong></p>
-        <p><span class="text-surface-500">Registered Office:</span> {siteConfig.address}</p>
-        <p><span class="text-surface-500">Inquiries:</span> <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-700 hover:underline">{siteConfig.supportEmail}</a></p>
+      <div class="p-6 rounded-2xl bg-ink-50 border border-ink-100 mt-8 space-y-2 text-sm">
+        <h3 class="font-bold text-ink-950 font-display">Company Information</h3>
+        <p><span class="text-ink-500">Legal Entity:</span> <strong>{siteConfig.legalName}</strong></p>
+        <p><span class="text-ink-500">Registered Office:</span> {siteConfig.address}</p>
+        <p><span class="text-ink-500">Inquiries:</span> <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-700 hover:underline">{siteConfig.supportEmail}</a></p>
       </div>
     </div>
   </Section>
 
   <!-- Core Principles Grid -->
-  <Section background="default">
-    <div class="text-center max-w-3xl mx-auto mb-12">
-      <h2 class="text-xs font-bold uppercase tracking-wider text-brand-700 mb-1">
-        Our Operating Principles
-      </h2>
-      <h3 class="text-2xl sm:text-3xl font-extrabold text-surface-900 tracking-tight">
-        What we stand for
-      </h3>
-    </div>
+  <Section background="default" class="border-t border-ink-100">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-brand-700 mb-2">
+          Core Operating Principles
+        </h2>
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-ink-950 font-display tracking-tight">
+          How we design and operate {siteConfig.name}
+        </h3>
+      </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-      {values.map((v) => (
-        <div class="bg-white border border-surface-200 rounded-2xl p-6 sm:p-7 shadow-card">
-          <div class="w-10 h-10 rounded-xl bg-brand-50 border border-brand-200 text-brand-700 flex items-center justify-center mb-4">
-            <Icon name={v.icon} class="w-5 h-5" />
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        {values.map((v) => (
+          <div class="p-6 rounded-2xl bg-white border border-ink-100 shadow-soft space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-brand-50 border border-brand-100 text-brand-700 flex items-center justify-center">
+              <Icon name={v.icon} class="w-5 h-5" />
+            </div>
+            <h4 class="text-base font-bold text-ink-950 font-display">
+              {v.title}
+            </h4>
+            <p class="text-xs sm:text-sm text-ink-500 leading-relaxed">
+              {v.desc}
+            </p>
           </div>
-          <h4 class="text-lg font-bold text-surface-900 mb-2">{v.title}</h4>
-          <p class="text-sm text-surface-600 leading-relaxed">{v.desc}</p>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
-  </Section>
-
-  <!-- Bottom CTA Band -->
-  <Section background="white" class="pt-8">
-    <CtaBand />
   </Section>
 </Layout>

@@ -46,7 +46,7 @@ const slotContent = await Astro.slots.render('default');
           ? 'animate-marquee flex-row [gap:var(--gap)]'
           : 'animate-marquee-vertical flex-col [gap:var(--gap)]'
       } ${pauseOnHover ? 'group-hover:[animation-play-state:paused]' : ''} ${
-        reverse ? '[animation-direction:reverse]' : ''
+        reverse ? 'marquee-reverse [animation-direction:reverse]' : ''
       }`}
     >
       <Fragment set:html={slotContent} />

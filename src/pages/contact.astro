@@ -13,16 +13,16 @@ const fallbackMailto = `mailto:${siteConfig.supportEmail}?subject=Inquiry%20abou
   title={`Contact & Support — ${siteConfig.name}`}
   description={`Get in touch with the ${siteConfig.name} team at ${siteConfig.legalName}. Questions about features, lifetime license, or onboarding support.`}
 >
-  <section class="py-16 md:py-24 bg-gradient-to-b from-brand-50/50 via-surface-50 to-surface-50 border-b border-surface-200">
+  <section class="py-16 md:py-24 bg-ink-50/60 border-b border-ink-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
-      <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-700 bg-brand-100/70 border border-brand-200 px-3.5 py-1 rounded-full mb-4">
-        <span>We're Here to Help</span>
+      <div class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-brand-700 bg-brand-50 border border-brand-100 px-3.5 py-1 rounded-full mb-4">
+        <span>Support & Inquiries</span>
       </div>
-      <h1 class="text-3xl sm:text-5xl font-extrabold text-surface-900 tracking-tight leading-tight">
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-ink-950 tracking-tight font-display leading-tight">
         Contact {siteConfig.name} Support
       </h1>
-      <p class="text-base sm:text-lg text-surface-600 mt-4 leading-relaxed">
-        Have questions before purchasing lifetime access? Need assistance with Meta Business verification? Reach out to our team directly.
+      <p class="text-base sm:text-lg text-ink-500 mt-4 leading-relaxed">
+        Questions before purchasing lifetime access or assistance with Meta Business onboarding? Reach out to our team directly.
       </p>
     </div>
   </section>
@@ -32,31 +32,31 @@ const fallbackMailto = `mailto:${siteConfig.supportEmail}?subject=Inquiry%20abou
       <!-- Left: Contact Information & Legal Entity -->
       <div class="lg:col-span-5 space-y-6">
         <div>
-          <h2 class="text-xl sm:text-2xl font-bold text-surface-900 mb-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-ink-950 font-display mb-2">
             Company & Office Details
           </h2>
-          <p class="text-sm text-surface-600 leading-relaxed">
-            {siteConfig.name} is operated by {siteConfig.legalName}. We provide honest, prompt email support to all customers.
+          <p class="text-sm text-ink-500 leading-relaxed">
+            {siteConfig.name} is operated by {siteConfig.legalName}. We provide email support to all customers.
           </p>
         </div>
 
-        <div class="space-y-4 pt-4 border-t border-surface-200 text-sm">
-          <div class="p-4 bg-surface-50 rounded-2xl border border-surface-200">
-            <span class="text-xs font-bold uppercase tracking-wider text-surface-500 block mb-1">Support Email</span>
+        <div class="space-y-4 pt-4 border-t border-ink-100 text-sm">
+          <div class="p-4 bg-ink-50 rounded-2xl border border-ink-100">
+            <span class="text-xs font-mono font-semibold uppercase tracking-wider text-ink-500 block mb-1">Support Email</span>
             <a href={`mailto:${siteConfig.supportEmail}`} class="text-base font-bold text-brand-700 hover:underline break-all">
               {siteConfig.supportEmail}
             </a>
-            <p class="text-xs text-surface-500 mt-1">Typical response time: under 24 business hours.</p>
+            <p class="text-xs text-ink-500 mt-1">Typical response time: under 24 business hours.</p>
           </div>
 
-          <div class="p-4 bg-surface-50 rounded-2xl border border-surface-200">
-            <span class="text-xs font-bold uppercase tracking-wider text-surface-500 block mb-1">Company Legal Name</span>
-            <p class="text-sm font-bold text-surface-900">{siteConfig.legalName}</p>
+          <div class="p-4 bg-ink-50 rounded-2xl border border-ink-100">
+            <span class="text-xs font-mono font-semibold uppercase tracking-wider text-ink-500 block mb-1">Company Legal Name</span>
+            <p class="text-sm font-bold text-ink-950">{siteConfig.legalName}</p>
           </div>
 
-          <div class="p-4 bg-surface-50 rounded-2xl border border-surface-200">
-            <span class="text-xs font-bold uppercase tracking-wider text-surface-500 block mb-1">Registered Address</span>
-            <p class="text-sm text-surface-800 leading-relaxed">{siteConfig.address}</p>
+          <div class="p-4 bg-ink-50 rounded-2xl border border-ink-100">
+            <span class="text-xs font-mono font-semibold uppercase tracking-wider text-ink-500 block mb-1">Registered Address</span>
+            <p class="text-sm text-ink-800 leading-relaxed">{siteConfig.address}</p>
           </div>
 
           <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-200 text-xs text-emerald-900 leading-relaxed">

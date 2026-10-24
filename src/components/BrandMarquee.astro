@@ -1,0 +1,13 @@
+---
+import ApiWebhooksCard from './ApiWebhooksCard.astro';
+
+interface Props {
+  headline?: string;
+  subline?: string;
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<ApiWebhooksCard class={className} />

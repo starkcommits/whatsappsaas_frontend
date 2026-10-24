@@ -1,0 +1,15 @@
+---
+import { siteConfig } from '../config/site';
+
+// Component preserved behind flag, default off per AGENTS.md truthfulness rules.
+const showTestimonials = siteConfig.flags?.showCustomerTestimonials ?? false;
+---
+
+{showTestimonials && (
+  <section class="py-20 border-t border-ink-100 bg-ink-50">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <h3 class="text-xs font-bold uppercase tracking-wider text-brand-700">Customer Feedback</h3>
+      <p class="text-sm text-ink-500 mt-2">Verified feedback will appear here.</p>
+    </div>
+  </section>
+)}

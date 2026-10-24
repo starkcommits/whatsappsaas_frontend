@@ -45,7 +45,7 @@ const lastUpdated = 'October 23, 2026';
         </p>
         <ul class="list-disc pl-5 space-y-2 text-xs sm:text-sm">
           <li><strong>Account Registration Data:</strong> Your name, business name, email address, password hash, and two-factor authentication credentials.</li>
-          <li><strong>Billing Information:</strong> Payment transaction references processed via authorized payment gateways (e.g., Razorpay / Stripe). We never store raw credit/debit card numbers on our servers.</li>
+          <li><strong>Billing Information:</strong> Payment transaction references processed via authorized payment gateways (e.g., Razorpay). We never store raw credit/debit card numbers on our servers.</li>
           <li><strong>WhatsApp Business Account Metadata:</strong> WhatsApp Business Account ID (WABA ID), phone number ID, and authorization tokens issued by Meta during Embedded Signup.</li>
           <li><strong>Customer Contact Lists:</strong> Contacts uploaded by you via CSV, including phone numbers, names, consent source labels, and tags.</li>
           <li><strong>Message Content and Logs:</strong> Text of customer inquiries, outbound template messages, delivery status timestamps (sent, delivered, read, failed), and incoming replies.</li>
@@ -55,7 +55,7 @@ const lastUpdated = 'October 23, 2026';
           3. How Data is Processed (Direct Meta Integration)
         </h2>
         <p>
-          {siteConfig.name} connects directly to the official <strong>Meta WhatsApp Cloud API</strong>. When you send or receive WhatsApp messages, message payloads transit directly between our servers and Meta's infrastructure. We do not sell, rent, or monetize your contact records or message content to any third parties.
+          {siteConfig.name} is built on <strong>Meta's WhatsApp Business Platform (Cloud API)</strong>. When you send or receive WhatsApp messages, message payloads transit directly between our servers and Meta's infrastructure. We do not sell, rent, or monetize your contact records or message content to any third parties.
         </p>
 
         <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">

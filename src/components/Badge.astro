@@ -1,0 +1,31 @@
+---
+interface Props {
+  variant?: 'brand' | 'signal' | 'neutral' | 'success' | 'warning' | 'danger';
+  size?: 'sm' | 'md';
+  class?: string;
+}
+
+const {
+  variant = 'brand',
+  size = 'md',
+  class: className = '',
+} = Astro.props;
+
+const variants = {
+  brand: 'bg-brand-50 text-brand-700 border-brand-100',
+  signal: 'bg-signal/20 text-ink-950 border-signal/40',
+  neutral: 'bg-ink-50 text-ink-700 border-ink-100',
+  success: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+  warning: 'bg-amber-50 text-amber-800 border-amber-200',
+  danger: 'bg-red-50 text-red-800 border-red-200',
+};
+
+const sizes = {
+  sm: 'text-[10px] px-2 py-0.5',
+  md: 'text-xs px-2.5 py-1',
+};
+---
+
+<span class={`inline-flex items-center gap-1.5 font-mono uppercase tracking-wider font-semibold rounded-full border ${variants[variant]} ${sizes[size]} ${className}`}>
+  <slot />
+</span>

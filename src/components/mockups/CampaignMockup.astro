@@ -1,82 +1,100 @@
 ---
-// Rich HTML/CSS mockup of Campaign Broadcasts & Live Tracking
+// Rich HTML/CSS mockup of Campaign Broadcasts & Live Tracking with animated stream
 ---
 
-<div class="bg-white rounded-xl shadow-lg border border-surface-200 overflow-hidden text-left text-xs font-sans">
+<div class="bg-white rounded-xl shadow-lg border border-surface-200 overflow-hidden text-left text-xs font-sans campaign-mockup-wrapper">
+  <!-- Top Bar with Pulsing Status -->
   <div class="bg-surface-900 text-white px-4 py-2.5 flex items-center justify-between border-b border-surface-800">
     <div class="flex items-center gap-2">
-      <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-      <span class="font-medium text-surface-200">Campaign: <strong class="text-white">November Product Launch Broadcast</strong></span>
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+      </span>
+      <span class="font-medium text-surface-200">Broadcast Campaign: <strong class="text-white">Festive Product Launch</strong></span>
     </div>
-    <span class="bg-emerald-950 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded text-[10px] font-semibold">COMPLETED</span>
+    <div class="flex items-center gap-2">
+      <span class="bg-emerald-950 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded text-[10px] font-semibold flex items-center gap-1">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+        LIVE DISPATCH COMPLETED
+      </span>
+    </div>
   </div>
 
   <div class="p-5 space-y-5 bg-white">
-    <!-- Top Stats Row -->
+    <!-- Top Stats Row with Hover Transitions -->
     <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 text-center">
-      <div class="bg-surface-50 border border-surface-200 rounded-lg p-2.5">
+      <div class="bg-surface-50 border border-surface-200/80 rounded-lg p-2.5 hover:border-brand-300 hover:shadow-2xs transition-all">
         <span class="text-[10px] text-surface-500 block uppercase font-medium">Audience</span>
         <span class="text-base font-bold text-surface-900">1,850</span>
         <span class="text-[9px] text-surface-400 block">Consent Verified</span>
       </div>
-      <div class="bg-surface-50 border border-surface-200 rounded-lg p-2.5">
+      <div class="bg-surface-50 border border-surface-200/80 rounded-lg p-2.5 hover:border-brand-300 hover:shadow-2xs transition-all">
         <span class="text-[10px] text-surface-500 block uppercase font-medium">Sent</span>
         <span class="text-base font-bold text-brand-700">1,850</span>
         <span class="text-[9px] text-emerald-600 block">100% Dispatched</span>
       </div>
-      <div class="bg-surface-50 border border-surface-200 rounded-lg p-2.5">
+      <div class="bg-surface-50 border border-surface-200/80 rounded-lg p-2.5 hover:border-brand-300 hover:shadow-2xs transition-all">
         <span class="text-[10px] text-surface-500 block uppercase font-medium">Delivered</span>
         <span class="text-base font-bold text-surface-900">1,822</span>
         <span class="text-[9px] text-emerald-600 block">98.5% Rate</span>
       </div>
-      <div class="bg-surface-50 border border-surface-200 rounded-lg p-2.5">
+      <div class="bg-surface-50 border border-surface-200/80 rounded-lg p-2.5 hover:border-brand-300 hover:shadow-2xs transition-all">
         <span class="text-[10px] text-surface-500 block uppercase font-medium">Read</span>
         <span class="text-base font-bold text-brand-700">1,548</span>
-        <span class="text-[9px] text-surface-500 block">84.9% Open Rate</span>
+        <span class="text-[9px] text-brand-700 font-semibold block">84.9% Open Rate</span>
       </div>
-      <div class="bg-surface-50 border border-surface-200 rounded-lg p-2.5">
-        <span class="text-[10px] text-surface-500 block uppercase font-medium">Inbound Replies</span>
+      <div class="bg-emerald-50/50 border border-emerald-200 rounded-lg p-2.5 hover:shadow-2xs transition-all">
+        <span class="text-[10px] text-emerald-700 block uppercase font-medium">Inbound Replies</span>
         <span class="text-base font-bold text-emerald-700">264</span>
-        <span class="text-[9px] text-surface-500 block">14.3% Conversion</span>
+        <span class="text-[9px] text-emerald-800 font-medium block">14.3% Conversion</span>
       </div>
     </div>
 
-    <!-- Progress Bars -->
+    <!-- Progress Bars with Animated Gradient -->
     <div class="space-y-2">
       <div class="flex justify-between text-[11px] text-surface-600">
-        <span class="font-medium">Delivery Completion Breakdown</span>
-        <span class="font-semibold text-surface-900">1,822 / 1,850 Delivered</span>
+        <span class="font-medium flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Delivery Completion Breakdown
+        </span>
+        <span class="font-semibold text-surface-900 font-mono">1,822 / 1,850 (98.5%) Delivered</span>
       </div>
-      <div class="w-full bg-surface-100 rounded-full h-3 overflow-hidden flex">
-        <div class="bg-emerald-600 h-full" style="width: 84.9%" title="Read"></div>
-        <div class="bg-brand-400 h-full" style="width: 13.6%" title="Delivered Unread"></div>
+      <div class="w-full bg-surface-100 rounded-full h-3 overflow-hidden flex relative">
+        <div class="bg-emerald-600 h-full transition-all duration-1000" style="width: 84.9%" title="Read"></div>
+        <div class="bg-brand-400 h-full transition-all duration-1000" style="width: 13.6%" title="Delivered Unread"></div>
         <div class="bg-red-400 h-full" style="width: 1.5%" title="Failed (Inactive Number)"></div>
       </div>
-      <div class="flex items-center gap-4 text-[10px] text-surface-500 pt-1">
-        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-600"></span> Read (84.9%)</span>
-        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-brand-400"></span> Delivered (13.6%)</span>
-        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-red-400"></span> Failed (1.5%)</span>
+      <div class="flex flex-wrap items-center gap-4 text-[10px] text-surface-500 pt-1">
+        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-600"></span> Read (84.9%)</span>
+        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-brand-400"></span> Delivered (13.6%)</span>
+        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-red-400"></span> Failed / Inactive (1.5%)</span>
       </div>
     </div>
 
-    <!-- Recent Message Log snippet -->
+    <!-- Recent Message Log snippet with Live Stream Animation -->
     <div class="border border-surface-200 rounded-lg overflow-hidden text-[11px]">
-      <div class="bg-surface-50 px-3 py-1.5 font-semibold text-surface-700 border-b border-surface-200 flex justify-between">
-        <span>Recipient Log (Live Stream)</span>
-        <span class="text-[10px] text-surface-500 font-normal">Updated 2m ago</span>
+      <div class="bg-surface-50 px-3 py-1.5 font-semibold text-surface-700 border-b border-surface-200 flex justify-between items-center">
+        <span class="flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          Recipient Log (Live Stream Webhook)
+        </span>
+        <span class="text-[9.5px] text-surface-500 font-normal">Auto-synced via Meta Webhooks</span>
       </div>
       <div class="divide-y divide-surface-100 text-[10.5px]">
-        <div class="px-3 py-1.5 flex justify-between items-center">
-          <span class="font-medium text-surface-800">+91 98201 •••• (Deepak M.)</span>
-          <span class="text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded font-medium">Read at 10:44 AM • Replied</span>
+        <div class="px-3 py-1.5 flex justify-between items-center bg-emerald-50/30">
+          <div class="flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+            <span class="font-medium text-surface-900">+91 98201 •••• (Tinkal Kumar)</span>
+          </div>
+          <span class="text-emerald-700 bg-emerald-100/80 px-1.5 py-0.5 rounded font-semibold text-[9.5px]">✓✓ Read • Inbound Reply</span>
         </div>
         <div class="px-3 py-1.5 flex justify-between items-center">
           <span class="font-medium text-surface-800">+91 98450 •••• (Sunita V.)</span>
-          <span class="text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded font-medium">Read at 10:42 AM</span>
+          <span class="text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded font-medium text-[9.5px]">✓✓ Read at 10:42 AM</span>
         </div>
         <div class="px-3 py-1.5 flex justify-between items-center">
           <span class="font-medium text-surface-800">+91 91672 •••• (Rohan K.)</span>
-          <span class="text-surface-600 bg-surface-100 px-1.5 py-0.5 rounded">Delivered at 10:41 AM</span>
+          <span class="text-surface-600 bg-surface-100 px-1.5 py-0.5 rounded text-[9.5px]">✓✓ Delivered at 10:41 AM</span>
         </div>
       </div>
     </div>

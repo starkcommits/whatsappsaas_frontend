@@ -1,79 +1,381 @@
 ---
-// Rich HTML/CSS mockup of WhatsApp Template Builder with Live Meta Preview
+// Rich HTML/CSS mockup of WhatsApp Template Builder with Live Animated Meta Preview
 ---
 
-<div class="bg-white rounded-xl shadow-lg border border-surface-200 overflow-hidden text-left text-xs font-sans">
-  <div class="bg-surface-900 text-white px-4 py-2 flex items-center justify-between border-b border-surface-800">
+<div class="bg-white rounded-xl shadow-lg border border-surface-200 overflow-hidden text-left text-xs font-sans template-mockup-wrapper relative">
+  <!-- Top App Navigation / Meta Status -->
+  <div class="bg-surface-900 text-white px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 border-b border-surface-800">
     <div class="flex items-center gap-2">
-      <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-      <span class="font-medium text-surface-200">Meta Template Builder • Status: <strong class="text-emerald-400 font-semibold">APPROVED BY META</strong></span>
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+      </span>
+      <span class="font-medium text-surface-200">Meta Template Builder • Status: <strong class="text-emerald-400 font-semibold tracking-wide">APPROVED BY META</strong></span>
     </div>
-    <span class="text-[10px] bg-surface-800 text-surface-300 px-2 py-0.5 rounded">Category: MARKETING</span>
+    <div class="flex items-center gap-2">
+      <span class="text-[10px] bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded border border-emerald-800 font-medium">⚡ 0% Markup Direct API</span>
+      <span id="category-badge" class="text-[10px] bg-surface-800 text-surface-300 px-2 py-0.5 rounded border border-surface-700">Category: MARKETING</span>
+    </div>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-12 min-h-[340px]">
+  <!-- Template Selector Tabs (Interactive) -->
+  <div class="bg-surface-100/80 px-4 py-2 border-b border-surface-200 flex items-center gap-2 overflow-x-auto text-[11px]">
+    <span class="text-surface-400 text-[10px] uppercase font-semibold tracking-wider shrink-0 mr-1">Templates:</span>
+    <button
+      type="button"
+      id="tab-btn-0"
+      class="template-tab-btn active px-3 py-1 rounded-md font-semibold bg-white text-brand-800 shadow-2xs border border-brand-200 flex items-center gap-1.5 transition-all shrink-0"
+      data-index="0"
+    >
+      <span>✨ Festive Sale</span>
+      <span class="text-[9px] bg-brand-100 text-brand-800 px-1 rounded">Marketing</span>
+    </button>
+    <button
+      type="button"
+      id="tab-btn-1"
+      class="template-tab-btn px-3 py-1 rounded-md font-medium text-surface-600 hover:text-surface-900 hover:bg-white/70 transition-all shrink-0 flex items-center gap-1.5"
+      data-index="1"
+    >
+      <span>📦 Order Update</span>
+      <span class="text-[9px] bg-surface-200 text-surface-700 px-1 rounded">Utility</span>
+    </button>
+    <button
+      type="button"
+      id="tab-btn-2"
+      class="template-tab-btn px-3 py-1 rounded-md font-medium text-surface-600 hover:text-surface-900 hover:bg-white/70 transition-all shrink-0 flex items-center gap-1.5"
+      data-index="2"
+    >
+      <span>📅 WhatsApp Flow</span>
+      <span class="text-[9px] bg-surface-200 text-surface-700 px-1 rounded">Flow Form</span>
+    </button>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-12 min-h-[380px]">
     <!-- Left: Template Form Fields (7 cols) -->
-    <div class="md:col-span-7 p-4 border-r border-surface-200 space-y-3 bg-surface-50/40">
+    <div class="md:col-span-7 p-4 border-r border-surface-200 space-y-3.5 bg-surface-50/40">
       <div>
         <label class="block text-[11px] font-semibold text-surface-700 mb-1">Template Name</label>
-        <input type="text" readonly value="diwali_exclusive_offer_v2" class="w-full bg-white border border-surface-300 rounded px-2.5 py-1 text-[11px] font-mono text-surface-800" />
-      </div>
-
-      <div>
-        <label class="block text-[11px] font-semibold text-surface-700 mb-1">Header Media</label>
-        <div class="flex items-center gap-2 text-[10px] text-surface-600 bg-white border border-surface-200 p-2 rounded">
-          <span class="bg-brand-100 text-brand-800 px-1.5 py-0.5 rounded font-medium">Image</span>
-          <span>festive_banner_2026.png (1080x600)</span>
+        <div class="flex items-center bg-white border border-surface-300 rounded px-2.5 py-1.5 text-[11px] font-mono text-surface-800 shadow-2xs">
+          <span id="form-template-name">diwali_exclusive_offer_v2</span>
+          <span class="ml-auto text-[10px] text-emerald-600 font-sans font-medium flex items-center gap-1">✓ Synced with Meta</span>
         </div>
       </div>
 
       <div>
-        <label class="block text-[11px] font-semibold text-surface-700 mb-1">Body Text (with variables)</label>
-        <div class="bg-white border border-surface-300 rounded p-2 text-[11px] font-mono text-surface-700 space-y-1">
-          <p>Hello {"{{1}}"},</p>
-          <p>Celebrate the festival with 25% off our premium collection. Use code <span class="text-brand-700 font-semibold">{"{{2}}"}</span> at checkout before <span class="text-brand-700 font-semibold">{"{{3}}"}</span>.</p>
-          <p class="text-[10px] text-surface-500">Reply STOP to unsubscribe.</p>
+        <label class="block text-[11px] font-semibold text-surface-700 mb-1">Header Media & Brand Asset</label>
+        <div class="flex items-center gap-2 text-[10px] text-surface-600 bg-white border border-surface-200 p-2 rounded shadow-2xs">
+          <span id="form-media-type" class="bg-brand-100 text-brand-800 px-1.5 py-0.5 rounded font-medium">Image</span>
+          <span id="form-media-filename" class="font-mono">festive_banner_2026.png (1080x600)</span>
+          <span class="ml-auto text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded font-medium text-[9px]">Verified</span>
         </div>
       </div>
 
       <div>
-        <label class="block text-[11px] font-semibold text-surface-700 mb-1">Interactive Buttons</label>
-        <div class="space-y-1 text-[10px]">
-          <div class="flex items-center gap-2 bg-white border border-surface-200 px-2 py-1 rounded">
+        <div class="flex items-center justify-between mb-1">
+          <label class="block text-[11px] font-semibold text-surface-700">Body Text (with Meta dynamic variables)</label>
+          <span id="form-variables-count" class="text-[9px] text-brand-700 font-medium bg-brand-50 px-1.5 py-0.5 rounded border border-brand-200">3 Variables detected</span>
+        </div>
+        <div id="form-body-box" class="bg-white border border-surface-300 rounded p-2.5 text-[11px] font-mono text-surface-700 space-y-1 shadow-2xs leading-relaxed">
+          <p>Hello <span class="bg-brand-100 text-brand-900 px-1 rounded font-semibold">&#123;&#123;1&#125;&#125;</span>,</p>
+          <p>Celebrate the festival with 25% off our premium collection. Use code <span class="bg-brand-100 text-brand-900 px-1 rounded font-semibold">&#123;&#123;2&#125;&#125;</span> at checkout before <span class="bg-brand-100 text-brand-900 px-1 rounded font-semibold">&#123;&#123;3&#125;&#125;</span>.</p>
+          <p class="text-[10px] text-surface-400 font-sans pt-1">Reply STOP to unsubscribe.</p>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-[11px] font-semibold text-surface-700 mb-1">Interactive Call-to-Action Buttons</label>
+        <div id="form-buttons-box" class="space-y-1.5 text-[10px]">
+          <div class="flex items-center gap-2 bg-white border border-surface-200 px-2.5 py-1.5 rounded shadow-2xs">
             <span class="text-surface-400">🔗 URL Button:</span>
             <span class="font-medium text-surface-800">Visit Offer Page</span>
+            <span class="ml-auto text-[9px] text-surface-400">https://example.com/offers</span>
           </div>
-          <div class="flex items-center gap-2 bg-white border border-surface-200 px-2 py-1 rounded">
+          <div class="flex items-center gap-2 bg-white border border-surface-200 px-2.5 py-1.5 rounded shadow-2xs">
             <span class="text-surface-400">⚡ Quick Reply:</span>
             <span class="font-medium text-surface-800">Chat with Agent</span>
+            <span class="ml-auto text-[9px] text-surface-400">Auto-routes to Inbox</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Right: WhatsApp Live Chat Preview (5 cols) -->
-    <div class="md:col-span-5 p-4 bg-emerald-50/50 flex flex-col justify-center items-center">
-      <div class="w-full max-w-[240px] bg-white rounded-xl shadow-md border border-surface-200 overflow-hidden text-[11px]">
-        <!-- Preview Banner -->
-        <div class="bg-brand-700 h-20 flex items-center justify-center text-white text-center p-2">
-          <span class="font-bold tracking-tight text-xs">Festive Festive Sale 25% OFF</span>
+    <!-- Right: Animated WhatsApp Live Preview (5 cols) -->
+    <div class="md:col-span-5 p-4 bg-gradient-to-b from-emerald-50/50 via-surface-100/40 to-surface-100/60 flex flex-col justify-center items-center relative">
+      <!-- Live Dynamic Sample Badge -->
+      <div class="flex items-center gap-1.5 text-[9px] text-surface-600 bg-white/95 border border-surface-200 px-2.5 py-1 rounded-full shadow-2xs mb-2.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse"></span>
+        <span>Recipient:</span>
+        <strong id="sample-status-pill" class="text-brand-800 font-bold transition-all duration-300">Tinkal Kumar (🇮🇳 India)</strong>
+      </div>
+
+      <div class="w-full max-w-[250px] bg-white rounded-xl shadow-md border border-surface-200 overflow-hidden text-[11px] transition-all duration-300 hover:shadow-lg relative">
+        <!-- Preview Banner with Shimmer Effect -->
+        <div id="preview-banner" class="bg-gradient-to-r from-brand-700 via-brand-600 to-brand-700 h-20 flex items-center justify-center text-white text-center p-2 relative overflow-hidden animate-shimmer transition-all duration-300">
+          <div class="relative z-10" id="preview-banner-content">
+            <span class="font-bold tracking-tight text-xs block">✨ Festive Exclusive Sale</span>
+            <span class="text-[10px] text-brand-200 font-medium">Flat 25% Off Storewide</span>
+          </div>
         </div>
-        <!-- Bubble Body -->
-        <div class="p-2.5 space-y-2">
-          <p class="text-surface-800 leading-relaxed text-[10.5px]">
-            Hello <strong>Rahul</strong>,<br/><br/>
-            Celebrate the festival with 25% off our premium collection. Use code <strong class="text-brand-700">FESTIVE25</strong> at checkout before <strong>Nov 15</strong>.<br/><br/>
-            <span class="text-[9px] text-surface-400">Reply STOP to unsubscribe.</span>
-          </p>
-          <div class="text-[8.5px] text-surface-400 text-right">11:05 AM</div>
+
+        <!-- WhatsApp Chat Bubble Body with Animated Personalized Content -->
+        <div class="p-3 space-y-2 bg-[#efeae2]/40">
+          <div id="live-preview-bubble" class="bg-white rounded-lg p-2.5 shadow-2xs border border-surface-200/50 transition-all duration-300">
+            <div id="live-preview-body" class="text-surface-800 leading-relaxed text-[10.5px]">
+              Hello <strong id="preview-name" class="text-surface-900 bg-brand-100 px-1 rounded transition-colors">Tinkal Kumar</strong>,<br/><br/>
+              Celebrate the festival with 25% off our premium collection. Use code <strong id="preview-code" class="text-brand-700 bg-brand-100 px-1 rounded font-mono font-bold transition-colors">DIWALI50</strong> at checkout before <strong id="preview-date" class="text-surface-900 bg-brand-100 px-1 rounded transition-colors">Oct 30</strong>.<br/><br/>
+              <span class="text-[9px] text-surface-400">Reply STOP to unsubscribe.</span>
+            </div>
+            <div class="text-[8.5px] text-surface-400 text-right flex items-center justify-end gap-1 mt-1">
+              <span id="preview-time">10:42 AM</span>
+              <span id="preview-ticks" class="text-emerald-600 font-bold text-[10px]">✓✓</span>
+            </div>
+          </div>
         </div>
-        <!-- Buttons -->
-        <div class="border-t border-surface-100 divide-y divide-surface-100 bg-surface-50/60 text-center font-medium text-brand-700 text-[10px]">
-          <div class="py-1.5 hover:bg-surface-100">Visit Offer Page ↗</div>
-          <div class="py-1.5 hover:bg-surface-100">Chat with Agent</div>
+
+        <!-- Interactive Action Buttons -->
+        <div id="preview-actions" class="border-t border-surface-100 divide-y divide-surface-100 bg-white text-center font-medium text-brand-700 text-[10px]">
+          <div class="py-2 hover:bg-brand-50/70 transition-colors cursor-pointer flex items-center justify-center gap-1 group">
+            <span id="preview-btn-1">Visit Offer Page</span>
+            <span class="text-[9px] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
+          </div>
+          <div class="py-2 hover:bg-brand-50/70 transition-colors cursor-pointer flex items-center justify-center gap-1">
+            <span id="preview-btn-2">⚡ Chat with Agent</span>
+          </div>
         </div>
       </div>
-      <span class="text-[10px] text-surface-500 mt-2">Live preview synced with Meta API</span>
+
+      <span class="text-[10px] text-surface-500 mt-2.5 flex items-center gap-1">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+        Live preview synced with Meta Graph API
+      </span>
     </div>
   </div>
 </div>
+
+<script>
+  // Interactive template switcher and animated variables
+  (() => {
+    const templates = [
+      {
+        name: 'diwali_exclusive_offer_v2',
+        category: 'Category: MARKETING',
+        mediaType: 'Image',
+        mediaFile: 'festive_banner_2026.png (1080x600)',
+        variablesCount: '3 Variables detected',
+        bannerGradient: 'from-brand-700 via-brand-600 to-brand-700',
+        bannerTitle: '✨ Festive Exclusive Sale',
+        bannerSubtitle: 'Flat 25% Off Storewide',
+        formBodyHtml: `
+          <p>Hello <span class="bg-brand-100 text-brand-900 px-1 rounded font-semibold">&#123;&#123;1&#125;&#125;</span>,</p>
+          <p>Celebrate the festival with 25% off our premium collection. Use code <span class="bg-brand-100 text-brand-900 px-1 rounded font-semibold">&#123;&#123;2&#125;&#125;</span> at checkout before <span class="bg-brand-100 text-brand-900 px-1 rounded font-semibold">&#123;&#123;3&#125;&#125;</span>.</p>
+          <p class="text-[10px] text-surface-400 font-sans pt-1">Reply STOP to unsubscribe.</p>
+        `,
+        formButtonsHtml: `
+          <div class="flex items-center gap-2 bg-white border border-surface-200 px-2.5 py-1.5 rounded shadow-2xs">
+            <span class="text-surface-400">🔗 URL Button:</span>
+            <span class="font-medium text-surface-800">Visit Offer Page</span>
+            <span class="ml-auto text-[9px] text-surface-400">https://example.com/offers</span>
+          </div>
+          <div class="flex items-center gap-2 bg-white border border-surface-200 px-2.5 py-1.5 rounded shadow-2xs">
+            <span class="text-surface-400">⚡ Quick Reply:</span>
+            <span class="font-medium text-surface-800">Chat with Agent</span>
+            <span class="ml-auto text-[9px] text-surface-400">Auto-routes to Inbox</span>
+          </div>
+        `,
+        actionsHtml: `
+          <div class="py-2 hover:bg-brand-50/70 transition-colors cursor-pointer flex items-center justify-center gap-1 group">
+            <span>Visit Offer Page</span>
+            <span class="text-[9px] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
+          </div>
+          <div class="py-2 hover:bg-brand-50/70 transition-colors cursor-pointer flex items-center justify-center gap-1">
+            <span>⚡ Chat with Agent</span>
+          </div>
+        `,
+        samples: [
+          { name: 'Tinkal Kumar', var2: 'DIWALI50', var3: 'Oct 30', time: '10:42 AM', label: 'Tinkal Kumar (🇮🇳 India)' },
+          { name: 'Rahul Sharma', var2: 'FESTIVE25', var3: 'Nov 15', time: '11:05 AM', label: 'Rahul Sharma (VIP Customer)' },
+          { name: 'Priya Patel', var2: 'SPECIAL25', var3: 'Nov 08', time: '11:20 AM', label: 'Priya Patel (Online Store)' },
+        ],
+        bodyTemplate: (s: any) => `
+          Hello <strong class="text-surface-900 bg-brand-100 px-1 rounded">${s.name}</strong>,<br/><br/>
+          Celebrate the festival with 25% off our premium collection. Use code <strong class="text-brand-700 bg-brand-100 px-1 rounded font-mono font-bold">${s.var2}</strong> at checkout before <strong class="text-surface-900 bg-brand-100 px-1 rounded">${s.var3}</strong>.<br/><br/>
+          <span class="text-[9px] text-surface-400">Reply STOP to unsubscribe.</span>
+        `,
+      },
+      {
+        name: 'order_shipping_update_v1',
+        category: 'Category: UTILITY',
+        mediaType: 'Document',
+        mediaFile: 'invoice_shipping_label.pdf',
+        variablesCount: '3 Variables detected',
+        bannerGradient: 'from-blue-700 via-indigo-600 to-blue-700',
+        bannerTitle: '📦 Order Dispatched',
+        bannerSubtitle: 'Tracking via Express Delivery',
+        formBodyHtml: `
+          <p>Hi <span class="bg-blue-100 text-blue-900 px-1 rounded font-semibold">&#123;&#123;1&#125;&#125;</span>,</p>
+          <p>Your order #<span class="bg-blue-100 text-blue-900 px-1 rounded font-semibold">&#123;&#123;2&#125;&#125;</span> has shipped via Express Air. Expected delivery by <span class="bg-blue-100 text-blue-900 px-1 rounded font-semibold">&#123;&#123;3&#125;&#125;</span>.</p>
+          <p class="text-[10px] text-surface-400 font-sans pt-1">Reply STOP to unsubscribe.</p>
+        `,
+        formButtonsHtml: `
+          <div class="flex items-center gap-2 bg-white border border-surface-200 px-2.5 py-1.5 rounded shadow-2xs">
+            <span class="text-surface-400">🚚 Tracking URL:</span>
+            <span class="font-medium text-surface-800">Track Package Live</span>
+            <span class="ml-auto text-[9px] text-surface-400">https://track.example.com</span>
+          </div>
+          <div class="flex items-center gap-2 bg-white border border-surface-200 px-2.5 py-1.5 rounded shadow-2xs">
+            <span class="text-surface-400">💬 Quick Reply:</span>
+            <span class="font-medium text-surface-800">Delivery Assistance</span>
+            <span class="ml-auto text-[9px] text-surface-400">Auto-routes to Inbox</span>
+          </div>
+        `,
+        actionsHtml: `
+          <div class="py-2 hover:bg-blue-50/70 transition-colors cursor-pointer flex items-center justify-center gap-1 group text-blue-700">
+            <span>Track Package Live</span>
+            <span class="text-[9px] group-hover:translate-x-0.5 transition-transform">🚚</span>
+          </div>
+          <div class="py-2 hover:bg-blue-50/70 transition-colors cursor-pointer flex items-center justify-center gap-1 text-surface-700">
+            <span>💬 Need Delivery Help?</span>
+          </div>
+        `,
+        samples: [
+          { name: 'Tinkal Kumar', var2: 'ONO-84920', var3: 'Tomorrow 4 PM', time: '01:15 PM', label: 'Tinkal Kumar (Express Order)' },
+          { name: 'Vikram Malhotra', var2: 'ONO-73114', var3: 'Friday 2 PM', time: '02:30 PM', label: 'Vikram Malhotra (Standard)' },
+          { name: 'Aarav Sharma', var2: 'ONO-91204', var3: 'Monday 11 AM', time: '03:10 PM', label: 'Aarav Sharma (Prepaid)' },
+        ],
+        bodyTemplate: (s: any) => `
+          Hi <strong class="text-surface-900 bg-blue-100 px-1 rounded">${s.name}</strong>,<br/><br/>
+          Your order #<strong class="text-blue-700 bg-blue-100 px-1 rounded font-mono font-bold">${s.var2}</strong> has shipped via Express Air. Expected delivery by <strong class="text-surface-900 bg-blue-100 px-1 rounded">${s.var3}</strong>.<br/><br/>
+          <span class="text-[9px] text-surface-400">Reply STOP to unsubscribe.</span>
+        `,
+      },
+      {
+        name: 'appointment_booking_flow',
+        category: 'Category: WHATSAPP FLOW',
+        mediaType: 'Interactive Flow',
+        mediaFile: 'flow_consultation_form_v3.json',
+        variablesCount: '3 Variables detected',
+        bannerGradient: 'from-emerald-700 via-teal-600 to-emerald-700',
+        bannerTitle: '🗓️ WhatsApp Flow Booking',
+        bannerSubtitle: 'Interactive in-chat appointment',
+        formBodyHtml: `
+          <p>Hello <span class="bg-emerald-100 text-emerald-900 px-1 rounded font-semibold">&#123;&#123;1&#125;&#125;</span>,</p>
+          <p>Your consultation slot for <span class="bg-emerald-100 text-emerald-900 px-1 rounded font-semibold">&#123;&#123;2&#125;&#125;</span> is ready. Tap the flow button below to pick your time slot directly in WhatsApp before <span class="bg-emerald-100 text-emerald-900 px-1 rounded font-semibold">&#123;&#123;3&#125;&#125;</span>.</p>
+        `,
+        formButtonsHtml: `
+          <div class="flex items-center gap-2 bg-emerald-50 border border-emerald-300 px-2.5 py-1.5 rounded shadow-2xs">
+            <span class="text-emerald-700">📱 WhatsApp Flow:</span>
+            <span class="font-medium text-emerald-900">Open Appointment Form</span>
+            <span class="ml-auto text-[9px] text-emerald-700 font-bold">Interactive</span>
+          </div>
+        `,
+        actionsHtml: `
+          <div class="py-2.5 bg-emerald-50/90 hover:bg-emerald-100 transition-colors cursor-pointer flex items-center justify-center gap-1.5 text-emerald-800 font-semibold">
+            <span>📅 Open Appointment Form (Flow)</span>
+          </div>
+        `,
+        samples: [
+          { name: 'Tinkal Kumar', var2: 'Strategy Session', var3: '6:00 PM', time: '11:45 AM', label: 'Tinkal Kumar (Consultation)' },
+          { name: 'Sunita Verma', var2: 'Product Onboarding', var3: '5:00 PM', time: '12:00 PM', label: 'Sunita Verma (Client)' },
+          { name: 'Rohan Mehta', var2: 'Executive Review', var3: '7:30 PM', time: '01:20 PM', label: 'Rohan Mehta (Partner)' },
+        ],
+        bodyTemplate: (s: any) => `
+          Hello <strong class="text-surface-900 bg-emerald-100 px-1 rounded">${s.name}</strong>,<br/><br/>
+          Your consultation slot for <strong class="text-emerald-700 bg-emerald-100 px-1 rounded font-bold">${s.var2}</strong> is ready. Tap the flow button below to pick your time slot directly in WhatsApp before <strong class="text-surface-900 bg-emerald-100 px-1 rounded">${s.var3}</strong>.<br/><br/>
+          <span class="text-[9px] text-surface-400">Interactive form opens natively inside WhatsApp.</span>
+        `,
+      },
+    ];
+
+    let currentTemplateIdx = 0;
+    let sampleIdx = 0;
+
+    function renderTemplate(idx: number) {
+      currentTemplateIdx = idx;
+      const t = templates[idx];
+
+      // Update tabs style
+      document.querySelectorAll('.template-tab-btn').forEach((btn, i) => {
+        if (i === idx) {
+          btn.className = 'template-tab-btn active px-3 py-1 rounded-md font-semibold bg-white text-brand-800 shadow-2xs border border-brand-200 flex items-center gap-1.5 transition-all shrink-0';
+        } else {
+          btn.className = 'template-tab-btn px-3 py-1 rounded-md font-medium text-surface-600 hover:text-surface-900 hover:bg-white/70 transition-all shrink-0 flex items-center gap-1.5';
+        }
+      });
+
+      // Update left form fields
+      const nameEl = document.getElementById('form-template-name');
+      const catEl = document.getElementById('category-badge');
+      const mediaTypeEl = document.getElementById('form-media-type');
+      const mediaFileEl = document.getElementById('form-media-filename');
+      const varCountEl = document.getElementById('form-variables-count');
+      const bodyBoxEl = document.getElementById('form-body-box');
+      const btnsBoxEl = document.getElementById('form-buttons-box');
+
+      if (nameEl) nameEl.textContent = t.name;
+      if (catEl) catEl.textContent = t.category;
+      if (mediaTypeEl) mediaTypeEl.textContent = t.mediaType;
+      if (mediaFileEl) mediaFileEl.textContent = t.mediaFile;
+      if (varCountEl) varCountEl.textContent = t.variablesCount;
+      if (bodyBoxEl) bodyBoxEl.innerHTML = t.formBodyHtml;
+      if (btnsBoxEl) btnsBoxEl.innerHTML = t.formButtonsHtml;
+
+      // Update preview banner
+      const bannerEl = document.getElementById('preview-banner');
+      const bannerContentEl = document.getElementById('preview-banner-content');
+      if (bannerEl && bannerContentEl) {
+        bannerEl.className = `bg-gradient-to-r ${t.bannerGradient} h-20 flex items-center justify-center text-white text-center p-2 relative overflow-hidden animate-shimmer transition-all duration-300`;
+        bannerContentEl.innerHTML = `
+          <span class="font-bold tracking-tight text-xs block">${t.bannerTitle}</span>
+          <span class="text-[10px] text-white/80 font-medium">${t.bannerSubtitle}</span>
+        `;
+      }
+
+      // Update actions
+      const actionsEl = document.getElementById('preview-actions');
+      if (actionsEl) actionsEl.innerHTML = t.actionsHtml;
+
+      // Render sample
+      renderSample();
+    }
+
+    function renderSample() {
+      const t = templates[currentTemplateIdx];
+      const s = t.samples[sampleIdx % t.samples.length];
+
+      const statusEl = document.getElementById('sample-status-pill');
+      const bodyEl = document.getElementById('live-preview-body');
+      const timeEl = document.getElementById('preview-time');
+
+      if (statusEl) statusEl.textContent = s.label;
+      if (timeEl) timeEl.textContent = s.time;
+      if (bodyEl) {
+        bodyEl.style.opacity = '0.3';
+        setTimeout(() => {
+          bodyEl.innerHTML = t.bodyTemplate(s);
+          bodyEl.style.opacity = '1';
+        }, 150);
+      }
+    }
+
+    // Tab button click listeners
+    document.querySelectorAll('.template-tab-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const idx = parseInt(target.getAttribute('data-index') || '0', 10);
+        sampleIdx = 0;
+        renderTemplate(idx);
+      });
+    });
+
+    // Cycle samples every 3.5s; cycle template every 10.5s
+    setInterval(() => {
+      sampleIdx++;
+      if (sampleIdx % 3 === 0) {
+        currentTemplateIdx = (currentTemplateIdx + 1) % templates.length;
+        renderTemplate(currentTemplateIdx);
+      } else {
+        renderSample();
+      }
+    }, 3500);
+  })();
+</script>
