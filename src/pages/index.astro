@@ -11,6 +11,7 @@ import ApiWebhooksCard from '../components/ApiWebhooksCard.astro';
 import ComparisonTable from '../components/ComparisonTable.astro';
 import CtaBand from '../components/CtaBand.astro';
 import HeroSampleConversations from '../islands/HeroSampleConversations';
+import HeroRotator from '../islands/HeroRotator';
 import TabbedTour from '../islands/TabbedTour';
 import PricingCard from '../islands/PricingCard';
 import FaqAccordion from '../islands/FaqAccordion';
@@ -115,26 +116,7 @@ const homeJsonLd = {
           <div class="flex gap-4 flex-col">
             <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-[2.2rem] xl:text-[2.5rem] font-extrabold text-ink-950 font-display tracking-tight leading-[1.18]">
               <span class="block text-ink-950">Every customer conversation on WhatsApp,</span>
-              <span class="relative flex w-full justify-start overflow-hidden text-brand-600 h-[1.3em]">
-                {[
-                  "in one shared team inbox.",
-                  "with zero message markup.",
-                  "with verified opt-in consent.",
-                  "with approved Meta templates.",
-                  "with interactive WhatsApp Flows."
-                ].map((title, index) => (
-                  <span
-                    class={`hero-rotator-title absolute inset-0 flex items-center font-bold left-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap ${
-                      index === 0
-                        ? 'opacity-100 translate-y-0'
-                        : 'opacity-0 translate-y-[140%] pointer-events-none'
-                    }`}
-                    data-index={index}
-                  >
-                    {title}
-                  </span>
-                ))}
-              </span>
+              <HeroRotator client:load />
             </h1>
 
             <!-- Subheading paragraph grounded in AGENTS.md -->
@@ -489,73 +471,4 @@ const homeJsonLd = {
   <Section background="white">
     <CtaBand />
   </Section>
-
-  <script>
-    function initHeroWordRotator() {
-      const titles = document.querySelectorAll<HTMLElement>('.hero-rotator-title');
-      if (!titles.length) return;
-      
-      let currentIndex = 0;
-      const total = titles.length;
-
-      const hashMatch = window.location.hash.match(/rotator-(\d+)/);
-      if (hashMatch) {
-        currentIndex = parseInt(hashMatch[1], 10) % total;
-      }
-
-      titles.forEach((el, idx) => {
-        if (idx === currentIndex) {
-          el.style.opacity = '1';
-          el.style.transform = 'translateY(0)';
-        } else {
-          el.style.opacity = '0';
-          el.style.transform = 'translateY(140%)';
-        }
-      });
-
-      // Expose manual switcher for testing or preview
-      (window as unknown as { __setHeroRotatorIndex?: (idx: number) => void }).__setHeroRotatorIndex = (idx: number) => {
-        const target = idx % total;
-        titles.forEach((el, i) => {
-          el.style.transition = 'none';
-          if (i === target) {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-          } else {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(140%)';
-          }
-        });
-        currentIndex = target;
-      };
-
-      setInterval(() => {
-        const prevIndex = currentIndex;
-        currentIndex = (currentIndex + 1) % total;
-
-        titles.forEach((el, idx) => {
-          if (idx === currentIndex) {
-            el.style.transition = 'transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease';
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-          } else if (idx === prevIndex) {
-            el.style.transition = 'transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease';
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(-140%)';
-          } else {
-            el.style.transition = 'none';
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(140%)';
-          }
-        });
-      }, 2400);
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initHeroWordRotator);
-    } else {
-      initHeroWordRotator();
-    }
-    document.addEventListener('astro:after-swap', initHeroWordRotator);
-  </script>
 </Layout>
