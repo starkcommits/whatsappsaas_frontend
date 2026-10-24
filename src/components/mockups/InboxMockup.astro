@@ -9,6 +9,7 @@ interface Props {
   consentSource?: string;
   templates?: Array<{ id: string; label: string; shortcut: string }>;
   compactSidebar?: boolean;
+  class?: string;
 }
 
 const {
@@ -23,6 +24,7 @@ const {
     { id: "meeting_link", label: "Meeting link", shortcut: "#meeting_link" },
   ],
   compactSidebar = false,
+  class: className = "",
 } = Astro.props;
 
 const consentConfig = {
@@ -68,31 +70,31 @@ const consentConfig = {
 };
 ---
 
-<div class="bg-white rounded-xl shadow-lg border border-surface-200 overflow-hidden text-left text-xs font-sans inbox-mockup-wrapper flex min-h-[460px]">
+<div class={`bg-white text-left font-sans inbox-mockup-wrapper flex ${className || 'rounded-xl shadow-lg border border-surface-200 min-h-[460px] overflow-hidden'}`}>
   
   <!-- Left App Sidebar (Matches real Django dashboard) -->
-  <aside class={`hidden sm:flex flex-col justify-between ${compactSidebar ? 'w-36' : 'w-38 sm:w-40 lg:w-42'} shrink-0 bg-[#0B1320] text-slate-300 border-r border-slate-800 p-2 sm:p-2.5 select-none`}>
-    <div class="space-y-3">
+  <aside class={`hidden sm:flex flex-col justify-between ${compactSidebar ? 'w-34 sm:w-36' : 'w-38 sm:w-40 lg:w-42'} shrink-0 bg-[#0B1320] text-slate-300 border-r border-slate-800 p-2 select-none`}>
+    <div class="space-y-2.5">
       
       <!-- Workspace Switcher Header -->
-      <div class="flex items-center gap-2 px-2 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800">
-        <div class="w-6 h-6 rounded-md bg-emerald-600 text-white flex items-center justify-center font-mono font-bold text-[11px] shrink-0 shadow-xs">
+      <div class="flex items-center gap-1.5 px-2 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800">
+        <div class="w-5 h-5 rounded-md bg-emerald-600 text-white flex items-center justify-center font-mono font-bold text-[10px] shrink-0 shadow-xs">
           &lt;/&gt;
         </div>
         <div class="min-w-0 flex-1">
-          <div class="font-semibold text-white text-xs truncate">Acme Workspace</div>
-          <div class="text-[9px] text-slate-400 flex items-center gap-1">
+          <div class="font-semibold text-white text-[11px] truncate leading-tight">Acme Workspace</div>
+          <div class="text-[8.5px] text-slate-400 flex items-center gap-1 leading-tight">
             <span>Switch workspace</span>
-            <span class="text-[8px]">⌄</span>
+            <span class="text-[7px]">⌄</span>
           </div>
         </div>
       </div>
 
       <!-- Navigation Menu -->
-      <nav class="space-y-0.5 text-[11px]" aria-label="Dashboard Navigation">
+      <nav class="space-y-0.5 text-[10.5px]" aria-label="Dashboard Navigation">
         
         <!-- Dashboard -->
-        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
+        <div class="flex items-center gap-2 px-2 py-1 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
           <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="3" y="3" width="7" height="7"></rect>
             <rect x="14" y="3" width="7" height="7"></rect>
@@ -102,20 +104,8 @@ const consentConfig = {
           <span class="truncate">Dashboard</span>
         </div>
 
-        <!-- Setup Wizard -->
-        <div class="flex items-center justify-between px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
-          <div class="flex items-center gap-2 min-w-0">
-            <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
-            </svg>
-            <span class="truncate">Setup Wizard</span>
-          </div>
-          <span class="text-[9px] font-mono px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0 ml-1">Active</span>
-        </div>
-
         <!-- Inbox (Active) -->
-        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md bg-[#0E8A68] text-white font-medium shadow-xs cursor-default">
+        <div class="flex items-center gap-2 px-2 py-1 rounded-md bg-[#0E8A68] text-white font-medium shadow-xs cursor-default">
           <svg class="w-3.5 h-3.5 text-white shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
           </svg>
@@ -123,7 +113,7 @@ const consentConfig = {
         </div>
 
         <!-- Contacts -->
-        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
+        <div class="flex items-center gap-2 px-2 py-1 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
           <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
             <circle cx="9" cy="7" r="4"></circle>
@@ -134,7 +124,7 @@ const consentConfig = {
         </div>
 
         <!-- Labels -->
-        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
+        <div class="flex items-center gap-2 px-2 py-1 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
           <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
             <line x1="7" y1="7" x2="7.01" y2="7"></line>
@@ -143,7 +133,7 @@ const consentConfig = {
         </div>
 
         <!-- Opt-in Links -->
-        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
+        <div class="flex items-center gap-2 px-2 py-1 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
           <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
             <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
@@ -151,17 +141,8 @@ const consentConfig = {
           <span class="truncate">Opt-in Links</span>
         </div>
 
-        <!-- Blocked Users -->
-        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
-          <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
-          </svg>
-          <span class="truncate">Blocked Users</span>
-        </div>
-
         <!-- Templates -->
-        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
+        <div class="flex items-center gap-2 px-2 py-1 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
           <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
             <polyline points="14 2 14 8 20 8"></polyline>
@@ -173,7 +154,7 @@ const consentConfig = {
         </div>
 
         <!-- Flows -->
-        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
+        <div class="flex items-center gap-2 px-2 py-1 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
           <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="2" y="3" width="6" height="6" rx="1"></rect>
             <rect x="16" y="3" width="6" height="6" rx="1"></rect>
@@ -185,7 +166,7 @@ const consentConfig = {
         </div>
 
         <!-- Campaigns -->
-        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
+        <div class="flex items-center gap-2 px-2 py-1 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
           <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="22" y1="2" x2="11" y2="13"></line>
             <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
@@ -194,7 +175,7 @@ const consentConfig = {
         </div>
 
         <!-- Analytics -->
-        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
+        <div class="flex items-center gap-2 px-2 py-1 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors cursor-default">
           <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="18" y1="20" x2="18" y2="10"></line>
             <line x1="12" y1="20" x2="12" y2="4"></line>
@@ -205,9 +186,9 @@ const consentConfig = {
       </nav>
 
       <!-- Settings Section -->
-      <div class="pt-2 border-t border-slate-800/80">
-        <div class="text-[9px] font-mono uppercase tracking-wider text-slate-500 px-2 mb-1">Settings</div>
-        <div class="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors text-[11px] cursor-default">
+      <div class="pt-1.5 border-t border-slate-800/80">
+        <div class="text-[8.5px] font-mono uppercase tracking-wider text-slate-500 px-2 mb-0.5">Settings</div>
+        <div class="flex items-center gap-2 px-2 py-1 rounded-md hover:bg-slate-800/60 text-slate-300 transition-colors text-[10.5px] cursor-default">
           <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
             <polyline points="14 2 14 8 20 8"></polyline>
@@ -219,14 +200,14 @@ const consentConfig = {
     </div>
 
     <!-- User Profile Footer -->
-    <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between">
-      <div class="flex items-center gap-2 min-w-0">
+    <div class="pt-1.5 border-t border-slate-800/80 flex items-center justify-between">
+      <div class="flex items-center gap-1.5 min-w-0">
         <div class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-[9px] shrink-0">
           T
         </div>
         <div class="min-w-0">
-          <div class="text-[10px] font-semibold text-white truncate">Tinkal Kumar</div>
-          <div class="text-[8px] text-slate-400 font-mono truncate">tinkal@flexing.in</div>
+          <div class="text-[9.5px] font-semibold text-white truncate leading-tight">Tinkal Kumar</div>
+          <div class="text-[8px] text-slate-400 font-mono truncate leading-tight">tinkal@flexing.in</div>
         </div>
       </div>
       <button type="button" aria-label="Sign out" class="text-slate-400 hover:text-white p-1 transition-colors">
@@ -243,19 +224,19 @@ const consentConfig = {
   <main class="flex-1 flex flex-col bg-slate-50 min-w-0">
     
     <!-- Top Contact Header Bar: Polished 2-Row Identity Layout & Actions -->
-    <header class="bg-white border-b border-slate-200 px-3 sm:px-3.5 py-2 flex items-center justify-between gap-2.5 shrink-0 min-w-0 select-none">
+    <header class="bg-white border-b border-slate-200 px-3 sm:px-3.5 py-1.5 sm:py-2 flex items-center justify-between gap-2 shrink-0 min-w-0 select-none">
       
-      <!-- Customer Identity & Status Metadata (Primary Focal Point) -->
+      <!-- Customer Identity & Status Metadata -->
       <div class="min-w-0 flex-1">
         
         <!-- Row 1: Customer Name + Aligned Compact VIP Lead Badge -->
         <div class="flex items-center gap-1.5 min-w-0">
-          <div class="font-bold text-slate-900 text-xs sm:text-sm tracking-tight truncate leading-tight">
+          <span class="font-bold text-slate-900 text-xs sm:text-[13px] tracking-tight truncate leading-tight">
             {customerName}
-          </div>
+          </span>
           {isVip && (
             <span 
-              class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[10px] font-medium leading-none whitespace-nowrap bg-emerald-50 text-emerald-700 border border-emerald-200/80 shrink-0"
+              class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[9px] font-semibold leading-none whitespace-nowrap bg-emerald-50 text-emerald-700 border border-emerald-200/90 shrink-0"
               title={`Customer tier: ${vipLabel}`}
               aria-label={`Status: ${vipLabel}`}
             >
@@ -268,13 +249,13 @@ const consentConfig = {
         </div>
 
         <!-- Row 2: Phone Number + Restrained Consent Status Metadata -->
-        <div class="flex items-center gap-1.5 mt-0.5 text-[11px] text-slate-500 font-mono min-w-0">
+        <div class="flex items-center gap-1.5 mt-0.5 text-[10px] text-slate-500 font-mono min-w-0 leading-none">
           <span class="shrink-0">{phoneNumber}</span>
-          <span class="text-slate-300 text-[9px] shrink-0" aria-hidden="true">•</span>
+          <span class="text-slate-300 text-[8px] shrink-0" aria-hidden="true">•</span>
           
-          <!-- Redesigned Compact Consent Indicator (Metadata status pill, not a CTA) -->
+          <!-- Compact Consent Indicator -->
           <span
-            class={`inline-flex items-center gap-1 px-1.5 py-0.2 rounded text-[10px] font-sans font-medium whitespace-nowrap shrink-0 ${consentConfig.bg} ${consentConfig.text} border ${consentConfig.border}`}
+            class={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] font-sans font-medium whitespace-nowrap shrink-0 ${consentConfig.bg} ${consentConfig.text} border ${consentConfig.border} leading-none`}
             title={`Opt-in consent verified via ${consentSource}`}
             role="status"
             aria-label={consentConfig.label}
@@ -290,14 +271,14 @@ const consentConfig = {
       <div class="flex items-center gap-1 sm:gap-1.5 shrink-0">
         <button 
           type="button" 
-          class="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md text-[10px] font-medium border border-slate-200 text-slate-700 bg-white hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-2xs whitespace-nowrap focus:outline-none focus:ring-1 focus:ring-emerald-500"
+          class="px-2 py-1 rounded-md text-[10px] font-medium border border-slate-200 text-slate-700 bg-white hover:bg-slate-50 transition-colors shadow-2xs whitespace-nowrap focus:outline-none focus:ring-1 focus:ring-emerald-500 leading-none"
           aria-label="Transfer conversation"
         >
           Transfer
         </button>
         <button 
           type="button" 
-          class="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md text-[10px] font-medium border border-slate-200 text-slate-700 bg-white hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-2xs whitespace-nowrap focus:outline-none focus:ring-1 focus:ring-emerald-500"
+          class="px-2 py-1 rounded-md text-[10px] font-medium border border-slate-200 text-slate-700 bg-white hover:bg-slate-50 transition-colors shadow-2xs whitespace-nowrap focus:outline-none focus:ring-1 focus:ring-emerald-500 leading-none"
           aria-label="Resolve conversation"
         >
           Resolve
@@ -306,7 +287,7 @@ const consentConfig = {
           type="button" 
           aria-label="Help & Keyboard Shortcuts" 
           title="Help & Shortcuts (?)"
-          class="w-6 h-6 rounded-md border border-slate-200 text-slate-500 bg-white hover:bg-slate-50 hover:text-slate-700 flex items-center justify-center text-xs shadow-2xs transition-colors focus:outline-none focus:ring-1 focus:ring-emerald-500"
+          class="w-5 h-5 sm:w-6 sm:h-6 rounded-md border border-slate-200 text-slate-500 bg-white hover:bg-slate-50 flex items-center justify-center text-[10px] font-medium shadow-2xs transition-colors focus:outline-none focus:ring-1 focus:ring-emerald-500 leading-none"
         >
           ?
         </button>
@@ -315,38 +296,38 @@ const consentConfig = {
     </header>
 
     <!-- Message Thread Pane (Production Active State) -->
-    <div class="flex-1 p-3 sm:p-4 space-y-3 overflow-y-auto bg-slate-100/60 flex flex-col justify-end">
+    <div class="flex-1 p-2.5 sm:p-3 space-y-1.5 sm:space-y-2 overflow-y-auto bg-slate-100/60 flex flex-col justify-start">
       
       <!-- Inbound Customer Inquiry -->
       <div class="flex justify-start">
-        <div class="max-w-[85%] sm:max-w-[70%] bg-white border border-slate-200 rounded-2xl rounded-tl-sm p-3 shadow-2xs">
-          <p class="text-slate-800 text-[11px] leading-relaxed">
+        <div class="max-w-[85%] sm:max-w-[75%] bg-white border border-slate-200 rounded-xl rounded-tl-xs p-2 sm:p-2.5 shadow-2xs">
+          <p class="text-slate-800 text-[10.5px] leading-relaxed">
             Hello! I saw your service broadcast. Can I book a consultation session for our team tomorrow?
           </p>
-          <div class="text-[9px] text-slate-400 text-right mt-1">10:38 AM</div>
+          <div class="text-[8.5px] text-slate-400 text-right mt-0.5">10:38 AM</div>
         </div>
       </div>
 
       <!-- Private Team Internal Note (Key ONO capability) -->
       <div class="flex justify-center my-0.5">
-        <div class="bg-amber-50 border border-amber-200 text-amber-900 rounded-lg px-3 py-1.5 text-[10px] flex items-center gap-1.5 shadow-2xs">
+        <div class="bg-amber-50/90 border border-amber-200/90 text-amber-900 rounded-md px-2.5 py-1 text-[9.5px] flex items-center gap-1.5 shadow-2xs">
           <span class="font-bold text-amber-800">🔒 Team Note:</span> High-priority client inquiry. Offered priority booking slot.
         </div>
       </div>
 
       <!-- Outbound Team Reply with WhatsApp Flow Form Button -->
       <div class="flex justify-end">
-        <div class="max-w-[85%] sm:max-w-[70%] bg-[#E7F6F1] border border-emerald-200 text-emerald-950 rounded-2xl rounded-tr-sm p-3 shadow-2xs">
-          <p class="text-[11px] leading-relaxed">
+        <div class="max-w-[88%] sm:max-w-[78%] bg-[#E7F6F1] border border-emerald-200 text-emerald-950 rounded-xl rounded-tr-xs p-2 sm:p-2.5 shadow-2xs">
+          <p class="text-[10.5px] leading-relaxed">
             Hi Aarav! Absolutely. Please tap below to choose your preferred time slot directly in WhatsApp:
           </p>
-          <div class="mt-2 pt-2 border-t border-emerald-200/80">
-            <div class="block text-center font-medium text-emerald-800 bg-white py-1.5 rounded-lg border border-emerald-300 text-[10px] shadow-2xs flex items-center justify-center gap-1.5">
+          <div class="mt-1.5 pt-1.5 border-t border-emerald-200/70">
+            <div class="block text-center font-medium text-emerald-800 bg-white py-1 px-2 rounded-md border border-emerald-300 text-[9.5px] shadow-2xs flex items-center justify-center gap-1.5">
               <span>📅 Open Booking Form (Flow)</span>
-              <span class="text-emerald-600 text-[10px]">→</span>
+              <span class="text-emerald-600 text-[9.5px]">→</span>
             </div>
           </div>
-          <div class="text-[9px] text-emerald-700 text-right mt-1.5 font-medium">
+          <div class="text-[8.5px] text-emerald-700 text-right mt-1 font-medium">
             10:40 AM • Read <span class="text-emerald-600 font-bold">✓✓</span>
           </div>
         </div>
@@ -354,31 +335,31 @@ const consentConfig = {
 
       <!-- Inbound Customer Confirmation -->
       <div class="flex justify-start">
-        <div class="max-w-[85%] sm:max-w-[70%] bg-white border border-slate-200 rounded-2xl rounded-tl-sm p-3 shadow-2xs">
-          <p class="text-slate-800 text-[11px] leading-relaxed">
+        <div class="max-w-[85%] sm:max-w-[75%] bg-white border border-slate-200 rounded-xl rounded-tl-xs p-2 sm:p-2.5 shadow-2xs">
+          <p class="text-slate-800 text-[10.5px] leading-relaxed">
             Form submitted! Selected tomorrow at 3:00 PM. Looking forward to it!
           </p>
-          <div class="text-[9px] text-slate-400 text-right mt-1">10:42 AM</div>
+          <div class="text-[8.5px] text-slate-400 text-right mt-0.5">10:42 AM</div>
         </div>
       </div>
 
       <!-- Simulated WhatsApp Live Typing Bubble -->
-      <div class="flex justify-start pt-0.5">
-        <div class="bg-white/90 border border-slate-200 rounded-2xl rounded-tl-sm px-3 py-1 shadow-2xs flex items-center gap-1.5">
+      <div class="flex justify-start">
+        <div class="bg-white/90 border border-slate-200 rounded-lg px-2.5 py-0.5 shadow-2xs flex items-center gap-1">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce [animation-delay:-0.3s]"></span>
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce [animation-delay:-0.15s]"></span>
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce"></span>
-          <span class="text-[9px] text-slate-400 ml-1">Customer is active</span>
+          <span class="text-[8.5px] text-slate-400 ml-1">Customer is active</span>
         </div>
       </div>
 
     </div>
 
     <!-- Message Composer Bar with Canned Replies & Accessible Quick-Reply Shortcuts -->
-    <footer class="bg-white border-t border-slate-200 p-2.5 sm:p-3 shrink-0 space-y-2">
+    <footer class="bg-white border-t border-slate-200 p-2 sm:p-2.5 shrink-0 space-y-1.5">
       
       <!-- Composer Toolbar Header: Tabs (Left) & Quick-Reply Template Chips (Right) -->
-      <div class="flex flex-wrap items-center justify-between gap-1.5 pb-0.5 text-[11px]">
+      <div class="flex flex-wrap items-center justify-between gap-1 text-[10px]">
         
         <!-- Reply Mode Tabs (Customer Reply vs Internal Note) -->
         <div class="flex items-center gap-1 shrink-0" role="tablist" aria-label="Reply mode switcher">
@@ -386,7 +367,7 @@ const consentConfig = {
             type="button"
             role="tab"
             aria-selected="true"
-            class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md font-medium text-[10px] text-emerald-800 bg-emerald-50/90 border border-emerald-200/90 transition-colors shadow-2xs cursor-default"
+            class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded font-medium text-[9px] text-emerald-800 bg-emerald-50 border border-emerald-200 transition-colors shadow-2xs cursor-default"
           >
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
             <span>Customer Reply</span>
@@ -395,7 +376,7 @@ const consentConfig = {
             type="button"
             role="tab"
             aria-selected="false"
-            class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md font-normal text-[10px] text-slate-500 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+            class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded font-normal text-[9px] text-slate-500 hover:text-slate-700 hover:bg-slate-100 transition-colors"
           >
             <svg class="w-2.5 h-2.5 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
@@ -405,7 +386,7 @@ const consentConfig = {
           </button>
         </div>
 
-        <!-- Quick-Reply Template Chips (Human-Readable Labels, Preserved Shortcuts, Non-Clipping Scroll) -->
+        <!-- Quick-Reply Template Chips -->
         <div 
           class="flex items-center gap-1 overflow-x-auto no-scrollbar py-0.5 max-w-full"
           role="toolbar" 
@@ -417,9 +398,9 @@ const consentConfig = {
               data-template-id={tpl.shortcut}
               title={`Insert template: ${tpl.shortcut}`}
               aria-label={`Quick reply: ${tpl.label} (${tpl.shortcut})`}
-              class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-medium text-slate-600 bg-slate-100/90 hover:bg-emerald-50 hover:text-emerald-800 hover:border-emerald-300 border border-slate-200 transition-colors whitespace-nowrap shrink-0 group focus:outline-none focus:ring-1 focus:ring-emerald-500 shadow-2xs"
+              class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] font-medium text-slate-600 bg-slate-100/90 hover:bg-emerald-50 hover:text-emerald-800 hover:border-emerald-300 border border-slate-200 transition-colors whitespace-nowrap shrink-0 group focus:outline-none focus:ring-1 focus:ring-emerald-500 shadow-2xs"
             >
-              <svg class="w-2.5 h-2.5 text-amber-500 group-hover:text-emerald-600 shrink-0 fill-current" viewBox="0 0 24 24">
+              <svg class="w-2 h-2 text-amber-500 group-hover:text-emerald-600 shrink-0 fill-current" viewBox="0 0 24 24">
                 <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
               </svg>
               <span>{tpl.label}</span>
@@ -430,14 +411,14 @@ const consentConfig = {
       </div>
 
       <!-- Main Message Composer Input Box & Sending Controls -->
-      <div class="flex items-center gap-1.5 pt-0.5">
+      <div class="flex items-center gap-1.5">
         
         <!-- Attachment Icon -->
         <button 
           type="button" 
           aria-label="Attach file or media" 
           title="Attach media"
-          class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100 transition-colors shrink-0 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+          class="text-slate-400 hover:text-slate-600 p-1 rounded-md hover:bg-slate-100 transition-colors shrink-0 focus:outline-none focus:ring-1 focus:ring-emerald-500"
         >
           <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
@@ -449,7 +430,7 @@ const consentConfig = {
           type="button" 
           aria-label="Browse message templates" 
           title="Browse approved Meta templates (/)" 
-          class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100 transition-colors shrink-0 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+          class="text-slate-400 hover:text-slate-600 p-1 rounded-md hover:bg-slate-100 transition-colors shrink-0 focus:outline-none focus:ring-1 focus:ring-emerald-500"
         >
           <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
@@ -457,18 +438,18 @@ const consentConfig = {
         </button>
 
         <!-- Text Input Box with Cursor -->
-        <div class="flex-1 min-w-0 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-[11px] text-slate-800 flex items-center shadow-2xs">
+        <div class="flex-1 min-w-0 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1 text-[10px] text-slate-800 flex items-center shadow-2xs">
           <span class="truncate">Great, you're booked! Calendar invite sent.</span>
-          <span class="inline-block w-0.5 h-3 bg-emerald-600 animate-pulse ml-0.5 align-middle shrink-0" aria-hidden="true"></span>
+          <span class="inline-block w-0.5 h-2.5 bg-emerald-600 animate-pulse ml-0.5 align-middle shrink-0" aria-hidden="true"></span>
         </div>
 
         <!-- Send Message Button -->
         <button
           type="button"
           aria-label="Send WhatsApp message"
-          class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#10B981] hover:bg-[#059669] text-white flex items-center justify-center shrink-0 shadow-xs cursor-pointer transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-1"
+          class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#10B981] hover:bg-[#059669] text-white flex items-center justify-center shrink-0 shadow-xs cursor-pointer transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-1"
         >
-          <svg class="w-3.5 h-3.5 -rotate-45 ml-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <svg class="w-3 h-3 -rotate-45 ml-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <line x1="22" y1="2" x2="11" y2="13"></line>
             <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
           </svg>

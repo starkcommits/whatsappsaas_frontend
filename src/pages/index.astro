@@ -10,7 +10,8 @@ import CampaignMockup from '../components/mockups/CampaignMockup.astro';
 import ApiWebhooksCard from '../components/ApiWebhooksCard.astro';
 import ComparisonTable from '../components/ComparisonTable.astro';
 import CtaBand from '../components/CtaBand.astro';
-import HeroMockup from '../components/mockups/HeroMockup.astro';
+import HeroSampleConversations from '../islands/HeroSampleConversations';
+import HeroRotator from '../islands/HeroRotator';
 import TabbedTour from '../islands/TabbedTour';
 import PricingCard from '../islands/PricingCard';
 import FaqAccordion from '../islands/FaqAccordion';
@@ -81,37 +82,48 @@ const homeJsonLd = {
   jsonLd={homeJsonLd}
 >
   <!-- 1. Hero Section -->
-  <section class="relative pt-12 pb-16 sm:pt-20 sm:pb-24 border-b border-ink-100 bg-ink-50/40 overflow-hidden">
+  <section class="relative pt-12 pb-18 sm:pt-20 sm:pb-24 border-b border-ink-100 bg-ink-50/50 overflow-hidden">
     <!-- Subtle Grid Background -->
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#E2E8F0_1px,transparent_1px),linear-gradient(to_bottom,#E2E8F0_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_20%,#000_70%,transparent_100%)] opacity-50 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#E8ECF0_1px,transparent_1px),linear-gradient(to_bottom,#E8ECF0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40 pointer-events-none"></div>
+
+    <!-- Animated Sample Conversation Chips in Background (React Island) -->
+    <HeroSampleConversations client:idle />
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
         
-        <!-- Left Hero Copy (Exact match to provided design) -->
+        <!-- Left Hero Copy (Core ONO Value Proposition with Animated Rotator) -->
         <div class="lg:col-span-6 space-y-6 text-left">
           
-          <!-- One-Time License Pill Badge -->
-          <div class="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-mono font-medium tracking-wide text-ink-800 bg-white border border-ink-200/80 shadow-soft">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
-            <span>ONE-TIME LICENSE · ${lifetimePlan.priceUSD} · ABOUT {lifetimePlan.priceINRFormatted}</span>
-          </div>
-
-          <!-- Bold Multi-line Headline -->
+          <!-- One-Time License & Zero Markup Badge -->
           <div>
-            <h1 class="text-4xl sm:text-5xl lg:text-[3.4rem] xl:text-[3.9rem] font-extrabold text-ink-950 font-display tracking-tight leading-[1.08]">
-              Every customer<br />
-              conversation on<br />
-              WhatsApp.<br />
-              <span class="text-brand-600">One inbox.</span><br />
-              Zero chaos.
-            </h1>
+            <Button
+              href="/pricing"
+              variant="secondary"
+              size="sm"
+              class="gap-2.5 rounded-full px-4 text-xs font-mono font-medium text-ink-800 bg-white hover:bg-ink-50 border border-ink-200/80 shadow-soft"
+            >
+              <span class="w-2 h-2 rounded-full bg-brand-500 shrink-0"></span>
+              <span>One-time license: ${lifetimePlan.priceUSD} ({lifetimePlan.priceINRFormatted}) • Zero message markup</span>
+              <svg class="w-3.5 h-3.5 text-ink-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14"></path>
+                <path d="M12 5l7 7-7 7"></path>
+              </svg>
+            </Button>
           </div>
 
-          <!-- Subtitle -->
-          <p class="text-base sm:text-lg leading-relaxed text-ink-500 max-w-xl font-normal">
-            Connect your business number via Meta Cloud API, run consent-based campaigns, and reply together from a shared team inbox.
-          </p>
+          <!-- Headline with Animated Rotating Core Capabilities -->
+          <div class="flex gap-4 flex-col">
+            <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-[2.2rem] xl:text-[2.5rem] font-extrabold text-ink-950 font-display tracking-tight leading-[1.18]">
+              <span class="block text-ink-950">Every customer conversation on WhatsApp,</span>
+              <HeroRotator client:load />
+            </h1>
+
+            <!-- Subheading paragraph grounded in AGENTS.md -->
+            <p class="text-base sm:text-lg leading-relaxed tracking-tight text-ink-500 max-w-2xl font-normal">
+              ONO helps your team connect your business WhatsApp number via Meta Cloud API, broadcast template campaigns to contacts who agreed, and reply together from a shared team inbox. Pay once for lifetime access. No monthly subscription, and zero per-message markup.
+            </p>
+          </div>
 
           <!-- Primary & Secondary CTAs -->
           <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
@@ -119,67 +131,72 @@ const homeJsonLd = {
               href={siteConfig.links.signup}
               variant="primary"
               size="lg"
-              class="gap-2.5 font-semibold shadow-soft rounded-xl px-6 py-3.5 text-base"
+              class="gap-3 font-semibold shadow-soft"
               isAppCta={true}
             >
-              <span>Get lifetime access — ${lifetimePlan.priceUSD}</span>
-              <span class="font-bold">→</span>
+              <span>Get lifetime access (${lifetimePlan.priceUSD})</span>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14"></path>
+                <path d="M12 5l7 7-7 7"></path>
+              </svg>
             </Button>
 
             <Button
               href="#how-it-works"
               variant="secondary"
               size="lg"
-              class="gap-2.5 font-semibold shadow-soft rounded-xl px-6 py-3.5 text-base bg-ink-100/70 hover:bg-ink-100 border border-ink-200/70 text-ink-900"
+              class="gap-3 font-semibold shadow-soft"
             >
               <span>See how it works</span>
-              <svg class="w-3.5 h-3.5 fill-current text-ink-900 shrink-0" viewBox="0 0 24 24">
-                <polygon points="6 4 20 12 6 20 6 4"></polygon>
+              <svg class="w-4 h-4 text-ink-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="10 8 16 12 10 16 10 8"></polygon>
               </svg>
             </Button>
           </div>
 
-          <!-- 4-Item Feature Strip with Green Filled Check Circles -->
-          <div class="pt-4 flex flex-wrap items-center gap-x-6 gap-y-2.5 text-xs sm:text-sm font-medium text-ink-800">
-            <div class="flex items-center gap-2">
-              <span class="w-4 h-4 rounded-full bg-brand-600 text-white flex items-center justify-center shrink-0">
-                <svg class="w-2.5 h-2.5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                </svg>
-              </span>
-              <span>No monthly fee</span>
+          <!-- 4-Item Fact Strip with Verified Icons -->
+          <div class="pt-6 border-t border-ink-100 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs text-ink-700">
+            <div class="flex items-center gap-1.5 font-medium">
+              <svg class="w-4 h-4 text-emerald-600 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" />
+              </svg>
+              <span>Pay once</span>
             </div>
-            <div class="flex items-center gap-2">
-              <span class="w-4 h-4 rounded-full bg-brand-600 text-white flex items-center justify-center shrink-0">
-                <svg class="w-2.5 h-2.5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                </svg>
-              </span>
+            <div class="flex items-center gap-1.5 font-medium">
+              <svg class="w-4 h-4 text-emerald-600 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" />
+              </svg>
               <span>No message markup</span>
             </div>
-            <div class="flex items-center gap-2">
-              <span class="w-4 h-4 rounded-full bg-brand-600 text-white flex items-center justify-center shrink-0">
-                <svg class="w-2.5 h-2.5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                </svg>
-              </span>
+            <div class="flex items-center gap-1.5 font-medium">
+              <svg class="w-4 h-4 text-emerald-600 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" />
+              </svg>
               <span>7-day refund</span>
             </div>
-            <div class="flex items-center gap-2">
-              <span class="w-4 h-4 rounded-full bg-brand-600 text-white flex items-center justify-center shrink-0">
-                <svg class="w-2.5 h-2.5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                </svg>
-              </span>
+            <div class="flex items-center gap-1.5 font-medium">
+              <svg class="w-4 h-4 text-emerald-600 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" />
+              </svg>
               <span>Consent built in</span>
             </div>
           </div>
 
+          <p class="text-xs text-ink-500 font-mono">
+            Built on Meta's WhatsApp Business Platform (Cloud API).
+          </p>
+
         </div>
 
-        <!-- Right Hero Visual: Exact Browser Window Mockup -->
+        <!-- Right Hero Visual with Layered ProductFrame -->
         <div class="lg:col-span-6 relative">
-          <HeroMockup />
+          
+          <!-- Main Hero Inbox ProductFrame -->
+          <ProductFrame path="/whatsapp/inbox/+919876543210/" caption="Sample data • ONO dashboard inbox preview" bodyClass="p-0">
+            <InboxMockup class="w-full h-[430px] sm:h-[440px] border-0 shadow-none rounded-none" compactSidebar={true} />
+          </ProductFrame>
+
         </div>
 
       </div>
