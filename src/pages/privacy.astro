@@ -3,94 +3,288 @@ import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
 import { siteConfig } from '../config/site';
 
-const lastUpdated = 'October 23, 2026';
+const lastUpdated = 'October 24, 2026';
 ---
 
 <Layout
   title={`Privacy Policy — ${siteConfig.name}`}
-  description={`Privacy Policy for ${siteConfig.name}, operated by ${siteConfig.legalName}. Learn how customer data, messages, and contact records are handled.`}
+  description={`Privacy Policy for ${siteConfig.name}, operated by ${siteConfig.legalName}. Learn how customer data, WhatsApp Business messages, and contact records are handled under the DPDP Act 2023 and GDPR.`}
 >
   <Section background="default" class="py-12 md:py-16">
     <div class="max-w-3xl mx-auto bg-white border border-surface-200 rounded-3xl p-6 sm:p-10 shadow-card">
-      <!-- Draft Banner -->
-      <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs font-medium mb-8 flex items-center justify-between">
-        <span>⚠️ <strong>DRAFT — Pending Formal Legal Review</strong></span>
-        <span class="text-amber-700">Last Updated: {lastUpdated}</span>
+      
+      <!-- Official Policy Notice Banner -->
+      <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950 text-xs font-medium mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <span class="flex items-center gap-1.5">
+          <span class="size-2 rounded-full bg-emerald-500 inline-block"></span>
+          <strong>Official Privacy Policy · DPDP Act, 2023 & GDPR Compliant</strong>
+        </span>
+        <span class="text-emerald-700 font-mono text-[11px]">Last Updated: {lastUpdated}</span>
       </div>
 
-      <h1 class="text-2xl sm:text-4xl font-extrabold text-surface-900 tracking-tight mb-4">
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-surface-900 tracking-tight mb-2">
         Privacy Policy
       </h1>
+      <p class="text-xs sm:text-sm text-surface-500 mb-8 pb-6 border-b border-surface-100">
+        <strong>{siteConfig.legalName}</strong> · {siteConfig.address} · Effective: {lastUpdated}
+      </p>
 
       <div class="prose prose-sm max-w-none text-surface-700 space-y-6 leading-relaxed">
         <p>
-          This Privacy Policy explains how <strong>{siteConfig.legalName}</strong> ("Company", "we", "us", or "our") collects, uses, processes, and safeguards information when you register for and use the <strong>{siteConfig.name}</strong> platform located at <code>{siteConfig.domain}</code> and its dashboard at <code>{siteConfig.appUrl}</code>.
+          This Privacy Policy explains how <strong>{siteConfig.legalName}</strong> (“ONO”, “we”, “us”, “our”) collects, uses, shares and protects personal data when you visit <a href={`https://${siteConfig.domain}`} class="text-brand-700 underline font-medium">{siteConfig.domain}</a>, create an account, or use the ONO dashboard at <a href={siteConfig.appUrl} class="text-brand-700 underline font-medium">{siteConfig.appUrl.replace('https://', '')}</a> (together, the “Service”). By using the Service you confirm that you have read this policy.
         </p>
 
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          1. Data Controller and Entity
+        <!-- 1. Who we are and our roles -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          1. Who we are and our roles
         </h2>
         <p>
-          The data controller responsible for personal data processed under this policy is:<br/>
-          <strong>{siteConfig.legalName}</strong><br/>
-          {siteConfig.address}<br/>
-          Contact email: <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-700 underline">{siteConfig.supportEmail}</a>
+          <strong>{siteConfig.legalName}</strong>, {siteConfig.address}. Email: <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-700 underline">{siteConfig.supportEmail}</a>.
         </p>
-
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          2. Information We Collect
-        </h2>
         <p>
-          We collect information strictly necessary to provide the messaging platform service:
+          We act in two distinct roles:
         </p>
         <ul class="list-disc pl-5 space-y-2 text-xs sm:text-sm">
-          <li><strong>Account Registration Data:</strong> Your name, business name, email address, password hash, and two-factor authentication credentials.</li>
-          <li><strong>Billing Information:</strong> Payment transaction references processed via authorized payment gateways (e.g., Razorpay). We never store raw credit/debit card numbers on our servers.</li>
-          <li><strong>WhatsApp Business Account Metadata:</strong> WhatsApp Business Account ID (WABA ID), phone number ID, and authorization tokens issued by Meta during Embedded Signup.</li>
-          <li><strong>Customer Contact Lists:</strong> Contacts uploaded by you via CSV, including phone numbers, names, consent source labels, and tags.</li>
-          <li><strong>Message Content and Logs:</strong> Text of customer inquiries, outbound template messages, delivery status timestamps (sent, delivered, read, failed), and incoming replies.</li>
+          <li>
+            <strong>Data fiduciary (controller)</strong> for the information about our own customers and website visitors: account details, billing records, security logs, support messages and website enquiries. We decide why and how this information is used.
+          </li>
+          <li>
+            <strong>Data processor (service provider)</strong> for the contact lists and message content that business customers upload or exchange through the Service. The business customer is the data fiduciary (controller) for that data and decides why and how it is used. We process it only on the customer’s instructions, to provide the Service, as described in this policy and our Terms of Service. A data processing agreement is available on request.
+          </li>
         </ul>
 
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          3. How Data is Processed (Direct Meta Integration)
+        <!-- 2. Information we collect -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          2. Information we collect
         </h2>
-        <p>
-          {siteConfig.name} is built on <strong>Meta's WhatsApp Business Platform (Cloud API)</strong>. When you send or receive WhatsApp messages, message payloads transit directly between our servers and Meta's infrastructure. We do not sell, rent, or monetize your contact records or message content to any third parties.
-        </p>
 
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          4. No Third-Party Tracking or Ad Pixels
-        </h2>
-        <p>
-          The marketing website (<code>{siteConfig.domain}</code>) does not load Google Analytics, Meta tracking pixels, or third-party behavioral trackers. As a result, no intrusive cookie banners or cross-site tracking scripts are deployed.
-        </p>
-
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          5. Customer Consent & Data Protection Obligations
-        </h2>
-        <p>
-          You (the business customer) act as the primary data controller for the individual end-user phone numbers uploaded to your workspace. You warrant that you have obtained all necessary, explicit opt-in consents under applicable privacy laws (such as GDPR, DPDP Act 2023, and Meta Business Terms) before importing contacts or triggering broadcast campaigns.
-        </p>
-
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          6. Data Retention, Export, and Deletion
-        </h2>
-        <p>
-          You retain full ownership of your data at all times:
-        </p>
-        <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm">
-          <li>You may export full CSV archives of contact records and campaign analytics from your dashboard.</li>
-          <li>You may delete individual contact records, message threads, or your entire workspace at any time.</li>
-          <li>Upon account deletion, all associated workspace tokens, contacts, and logs are permanently purged from active databases within 30 days.</li>
+        <h3 class="text-base font-semibold text-surface-900 pt-2">
+          2.1 Information you give us
+        </h3>
+        <ul class="list-disc pl-5 space-y-2 text-xs sm:text-sm">
+          <li><strong>Account data:</strong> name, business name, email address, phone number (if provided), hashed password, two-factor authentication secret and recovery details, role in a workspace, and team invitations you send.</li>
+          <li><strong>Business and billing details:</strong> legal name, address, GSTIN (if provided) and billing contact, used for invoices.</li>
+          <li><strong>Support and contact requests:</strong> your name, email address, message and any attachments you send us.</li>
         </ul>
 
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          7. Contact Information
+        <h3 class="text-base font-semibold text-surface-900 pt-2">
+          2.2 WhatsApp Business account data
+        </h3>
+        <p>
+          When you connect a number through Meta’s Embedded Signup we receive and store your WhatsApp Business Account ID, phone number ID, display phone number, business profile details, quality rating and messaging limits, template names and approval status, and an access token issued by Meta. Access tokens are stored encrypted.
+        </p>
+
+        <h3 class="text-base font-semibold text-surface-900 pt-2">
+          2.3 Customer content processed on behalf of business customers
+        </h3>
+        <ul class="list-disc pl-5 space-y-2 text-xs sm:text-sm">
+          <li><strong>Contacts:</strong> phone numbers, names, labels and custom attributes that you import by CSV, add manually, or that are created when someone opts in through a link or QR code.</li>
+          <li><strong>Consent records:</strong> the method and source of each opt-in, supporting evidence, the wording shown, timestamps, and opt-out status.</li>
+          <li><strong>Messages and activity:</strong> the content and media of inbound and outbound WhatsApp messages, template messages, button replies, WhatsApp Flow responses, delivery statuses (sent, delivered, read, failed), conversation assignments, internal notes and canned replies.</li>
+        </ul>
+
+        <h3 class="text-base font-semibold text-surface-900 pt-2">
+          2.4 Payment information
+        </h3>
+        <p>
+          Payments are processed by Razorpay. We receive order and payment identifiers, the amount, currency, status and invoice details. We do not see or store full card numbers, UPI PINs or bank credentials.
+        </p>
+
+        <h3 class="text-base font-semibold text-surface-900 pt-2">
+          2.5 Technical and usage information
+        </h3>
+        <p>
+          IP address, browser and device type, log-in times, actions taken in the dashboard, API and webhook request logs, audit logs of security and administrative actions, and error reports.
+        </p>
+
+        <!-- 3. How and why we use information -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          3. How and why we use information
         </h2>
         <p>
-          If you have questions or data protection requests regarding this policy, please write to our privacy officer at <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-700 underline">{siteConfig.supportEmail}</a>.
+          We use personal data to:
         </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm">
+          <li>provide and operate the Service: connect WhatsApp numbers, send and receive messages, run the shared inbox and campaigns, and show analytics;</li>
+          <li>authenticate users, secure accounts, enforce rate limits, prevent fraud and abuse, and enforce our Acceptable Use Policy;</li>
+          <li>process payments, issue invoices and meet tax and accounting obligations;</li>
+          <li>respond to support requests and enquiries;</li>
+          <li>send service emails such as verification, password reset, team invitations, billing, security and important product notices;</li>
+          <li>find and fix errors and keep the Service reliable;</li>
+          <li>comply with the law and protect our rights, users and the public.</li>
+        </ul>
+        <div class="p-3.5 bg-surface-50 border border-surface-200 rounded-xl text-xs sm:text-sm">
+          <strong>Strict Non-Monetization Commitment:</strong> We do not sell or rent personal data. We do not use customer contact lists or message content for advertising or to build profiles of individuals.
+        </div>
+        <p>
+          <strong>Legal bases.</strong> Under India’s Digital Personal Data Protection Act, 2023 we process personal data with your consent or for the legitimate uses the Act permits, such as providing the service you asked for, meeting legal obligations and keeping the Service secure. For people in the European Economic Area or the United Kingdom, our bases are performance of a contract, our legitimate interests in running and securing the Service, compliance with legal obligations, and consent where we ask for it (for example, optional emails).
+        </p>
+
+        <!-- 4. WhatsApp and Meta -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          4. WhatsApp and Meta
+        </h2>
+        <p>
+          The Service is built on Meta’s WhatsApp Business Platform (Cloud API). When you connect a number, Meta shares account identifiers and an access token with us. Messages and their metadata travel between our servers and Meta’s infrastructure, and Meta processes them under its own terms and privacy policy, including phone numbers and message content needed to deliver them. We do not control Meta’s practices, and your use of WhatsApp Business is also governed by Meta’s terms and policies. ONO is an independent company. WhatsApp and Meta are trademarks of Meta Platforms, Inc.
+        </p>
+
+        <!-- 5. Who we share information with -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          5. Who we share information with
+        </h2>
+        <p>
+          We share personal data only with:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-xs sm:text-sm">
+          <li><strong>Meta</strong>, as described above;</li>
+          <li><strong>Razorpay</strong>, to process payments;</li>
+          <li><strong>Infrastructure providers</strong> that host our servers and databases, store files and backups, and deliver our transactional emails;</li>
+          <li><strong>An error-monitoring provider</strong> (Sentry), if enabled, which receives technical error reports; we aim to exclude message content and secrets from these reports;</li>
+          <li><strong>Professional advisers</strong> such as lawyers, auditors and accountants, under confidentiality duties;</li>
+          <li><strong>Authorities and courts</strong>, where required by law or to protect rights, safety or security;</li>
+          <li><strong>A successor business</strong>, if we are involved in a merger, acquisition or sale of assets, in which case we will notify you.</li>
+        </ul>
+        <p>
+          Providers act under written terms, on our instructions, and only for the services they provide to us.
+        </p>
+
+        <!-- 6. International processing -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          6. International processing
+        </h2>
+        <p>
+          Our providers may process data in India and other countries, and Meta processes WhatsApp data on its global infrastructure. We transfer personal data only as permitted by Indian law and other applicable laws, and where required we use contractual and technical safeguards.
+        </p>
+
+        <!-- 7. Cookies and similar technologies -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          7. Cookies and similar technologies
+        </h2>
+        <p>
+          The dashboard uses only essential cookies and similar storage: a session cookie to keep you signed in, a security token to protect against cross-site request forgery, and settings such as your selected workspace and two-factor verification state. These are strictly needed for the Service to work.
+        </p>
+        <p>
+          The marketing website does not use advertising, analytics or cross-site tracking cookies or pixels, so it does not show a cookie banner. If we add analytics in the future, we will update this policy and ask for consent where the law requires.
+        </p>
+
+        <!-- 8. How long we keep information -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          8. How long we keep information
+        </h2>
+        <ul class="list-disc pl-5 space-y-2 text-xs sm:text-sm">
+          <li><strong>Account and workspace data:</strong> retained while your account remains active.</li>
+          <li><strong>Contacts, messages, consent records and campaign data:</strong> retained until you delete them or delete your workspace. You can delete individual contacts, conversations and records at any time.</li>
+          <li><strong>After deletion:</strong> data is removed from our active systems within 30 days. Backup copies expire in our normal backup cycle, no later than 60 days after deletion.</li>
+          <li><strong>Billing and invoice records:</strong> retained for as long as Indian tax, accounting and company laws require.</li>
+          <li><strong>Security, access and audit logs:</strong> retained for at least one year, then deleted or anonymised.</li>
+          <li><strong>Support messages:</strong> retained as long as needed to resolve your request and for a reasonable period afterwards.</li>
+        </ul>
+        <p>
+          You can export your contacts and campaign analytics from the dashboard at any time.
+        </p>
+
+        <!-- 9. Security -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          9. Security
+        </h2>
+        <p>
+          We protect personal data with robust measures that include:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm">
+          <li>Encryption in transit (TLS) and encrypted storage of WhatsApp access tokens;</li>
+          <li>Hashed storage of passwords and API keys;</li>
+          <li>Two-factor authentication for workspace owners;</li>
+          <li>Role-based access and strict separation between customer workspaces;</li>
+          <li>Signature verification of webhooks from Meta and our payment provider;</li>
+          <li>Audit logging of security and administrative actions, and automated rate limiting;</li>
+          <li>Regular backups and limits on staff access to what their work requires.</li>
+        </ul>
+        <p>
+          No system is completely secure. Please use a strong, unique password, turn on two-factor authentication and keep your API keys private.
+        </p>
+
+        <!-- 10. Data breaches -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          10. Data breaches
+        </h2>
+        <p>
+          If a personal data breach affects information we hold, we will investigate and contain it, and notify affected customers without undue delay. We will also notify the Data Protection Board of India, affected individuals and other authorities where the law requires. Where we are the processor, we will give the business customer what it needs to meet its own notification duties.
+        </p>
+
+        <!-- 11. Your rights -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          11. Your rights
+        </h2>
+        <p>
+          Subject to applicable law, you may ask us to:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm">
+          <li>give you a summary of the personal data we hold about you and how it is used;</li>
+          <li>correct, complete or update it;</li>
+          <li>erase it;</li>
+          <li>withdraw your consent, which will not affect past processing;</li>
+          <li>resolve a grievance, and nominate another person to exercise your rights if you die or become unable to;</li>
+          <li>if you are in the EEA or UK, also provide your data in a portable format, restrict or object to processing, and lodge a complaint with your supervisory authority.</li>
+        </ul>
+        <p>
+          Account holders can export data, edit details and delete their workspace in the dashboard. For other requests, email <a href={`mailto:${siteConfig.supportEmail}?subject=Privacy%20request`} class="text-brand-700 underline font-medium">{siteConfig.supportEmail}</a> with the subject “Privacy request”. We may need to verify your identity, and we will respond within 30 days where possible and in any case within the time the law requires.
+        </p>
+        <div class="p-3.5 bg-surface-50 border border-surface-200 rounded-xl text-xs sm:text-sm">
+          <strong>If a business messaged you through ONO:</strong> We hold your phone number and messages on behalf of that business, which decides how they are used. Please contact the business to exercise your rights. You can reply STOP at any time to stop receiving messages from that business. If you write to us, we will pass your request to the business and help it respond.
+        </div>
+
+        <!-- 12. Customer responsibilities -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          12. Customer responsibilities
+        </h2>
+        <p>
+          Business customers are responsible for their own contact data. By using the Service you confirm that you:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm">
+          <li>have a lawful basis and, for marketing messages, valid opt-in consent from every contact before you import or message them;</li>
+          <li>will honour opt-outs and keep accurate consent records;</li>
+          <li>have given your contacts the privacy notices the law requires;</li>
+          <li>will follow Meta’s WhatsApp Business policies and will not use the Service to collect payment card numbers, passwords or government ID numbers;</li>
+          <li>will not upload personal data of children (under 18) unless the legal requirements for processing it are met.</li>
+        </ul>
+        <p>
+          The Service provides consent tracking and STOP handling to help, but responsibility for lawful use stays with you.
+        </p>
+
+        <!-- 13. Children -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          13. Children
+        </h2>
+        <p>
+          The Service is for businesses and adults aged 18 and over. We do not knowingly collect children’s personal data for our own purposes. If we learn that we have, we will delete it.
+        </p>
+
+        <!-- 14. Changes to this policy -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          14. Changes to this policy
+        </h2>
+        <p>
+          We may update this policy from time to time. We will post the new version with a new “Last updated” date, and for material changes we will email you or show a notice in the dashboard at least 14 days before they take effect, unless the law requires sooner. By continuing to use the Service after changes take effect, you accept the updated policy.
+        </p>
+
+        <!-- 15. Contact and grievance officer -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          15. Contact and grievance officer
+        </h2>
+        <div class="p-4 bg-surface-50 border border-surface-200 rounded-2xl text-xs sm:text-sm space-y-1.5">
+          <p class="font-bold text-surface-900">Privacy Officer and Grievance Officer</p>
+          <p class="font-medium text-surface-800">{siteConfig.legalName}</p>
+          <p class="text-surface-600">{siteConfig.address}</p>
+          <p>
+            Email: <a href={`mailto:${siteConfig.supportEmail}?subject=Privacy%20request`} class="text-brand-700 underline font-medium">{siteConfig.supportEmail}</a> (subject: “Privacy request”)
+          </p>
+        </div>
+        <p>
+          We acknowledge requests promptly and resolve them within the time the law requires. If you are not satisfied with our response, you may approach the Data Protection Board of India once its complaint process is in operation, or your local data protection authority. This policy is governed by the laws of India.
+        </p>
+
       </div>
     </div>
   </Section>
 </Layout>
+
