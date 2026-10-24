@@ -4,106 +4,231 @@ import Section from '../components/Section.astro';
 import { siteConfig } from '../config/site';
 import { lifetimePlan } from '../data/plans';
 
-const lastUpdated = 'October 23, 2026';
+const lastUpdated = 'October 24, 2026';
 ---
 
 <Layout
   title={`Terms of Service — ${siteConfig.name}`}
-  description={`Terms of Service for ${siteConfig.name}, operated by ${siteConfig.legalName}. Scope of lifetime license, fair-use limits, Meta terms, and compliance.`}
+  description={`Official Terms of Service for ${siteConfig.name}, operated by ${siteConfig.legalName}. Scope of lifetime software license, fair-use limits, Meta Cloud API direct billing, and compliance obligations.`}
 >
   <Section background="default" class="py-12 md:py-16">
     <div class="max-w-3xl mx-auto bg-white border border-surface-200 rounded-3xl p-6 sm:p-10 shadow-card">
-      <!-- Draft Banner -->
-      <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs font-medium mb-8 flex items-center justify-between">
-        <span>⚠️ <strong>DRAFT — Pending Formal Legal Review</strong></span>
-        <span class="text-amber-700">Last Updated: {lastUpdated}</span>
+      
+      <!-- Official Policy Notice Banner -->
+      <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950 text-xs font-medium mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <span class="flex items-center gap-1.5">
+          <span class="size-2 rounded-full bg-emerald-500 inline-block"></span>
+          <strong>Official Terms of Service · Legally Binding Agreement</strong>
+        </span>
+        <span class="text-emerald-700 font-mono text-[11px]">Last Updated: {lastUpdated}</span>
       </div>
 
-      <h1 class="text-2xl sm:text-4xl font-extrabold text-surface-900 tracking-tight mb-4">
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-surface-900 tracking-tight mb-2">
         Terms of Service
       </h1>
+      <p class="text-xs sm:text-sm text-surface-500 mb-8 pb-6 border-b border-surface-100">
+        <strong>{siteConfig.legalName}</strong> · {siteConfig.address} · Effective: {lastUpdated}
+      </p>
 
       <div class="prose prose-sm max-w-none text-surface-700 space-y-6 leading-relaxed">
         <p>
-          These Terms of Service ("Terms") govern your purchase, access, and use of <strong>{siteConfig.name}</strong>, a WhatsApp Business management software platform provided by <strong>{siteConfig.legalName}</strong> ("Company", "we", "us", or "our").
+          These Terms of Service (“Terms”, “Agreement”) constitute a legally binding agreement between <strong>{siteConfig.legalName}</strong> (“Company”, “we”, “us”, “our”) and the individual or legal entity (“Customer”, “you”, “your”) purchasing, accessing, or using the <strong>{siteConfig.name}</strong> WhatsApp Business software platform available at <a href={`https://${siteConfig.domain}`} class="text-brand-700 underline font-medium">{siteConfig.domain}</a> and the dashboard at <a href={siteConfig.appUrl} class="text-brand-700 underline font-medium">{siteConfig.appUrl.replace('https://', '')}</a> (collectively, the “Service”).
+        </p>
+        <p>
+          By creating an account, paying the one-time software license fee, or accessing the Service, you represent and warrant that you are at least 18 years of age, have the full legal capacity to enter into this Agreement, and, if acting on behalf of a business entity, possess the requisite corporate authority to bind that entity to these Terms. If you do not agree to these Terms, you must not purchase or access the Service.
         </p>
 
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          1. The "Lifetime Access" License
+        <!-- 1. Scope of the "Lifetime Access" License -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          1. Scope of the "Lifetime Access" Software License
         </h2>
-        <div class="p-4 bg-surface-50 border border-surface-200 rounded-xl text-xs sm:text-sm">
-          <p class="font-bold text-surface-900 mb-1">Definition of "Lifetime":</p>
+        <div class="p-4 bg-surface-50 border border-surface-200 rounded-2xl text-xs sm:text-sm space-y-2">
+          <p class="font-bold text-surface-900">Definition of "Lifetime Access":</p>
           <p>
-            "Lifetime Access" refers strictly to the <strong>operational lifetime of the {siteConfig.name} software product</strong>, not the lifetime of the individual purchaser or customer. While we intend to support and maintain the platform indefinitely, in the event of unforeseen product retirement or insolvency, we will provide at least 60 days advance notice to all active users with full data export options.
+            “Lifetime Access” designates a perpetual, non-exclusive, non-transferable, and revocable commercial license to access and use the hosted software features of {siteConfig.name} for the <strong>commercial lifetime of the software product</strong>. It does <em>not</em> refer to the natural lifespan of any human individual or purchaser.
+          </p>
+          <p class="text-surface-600">
+            Upon payment of the one-time software license fee of ${lifetimePlan.priceUSD}{lifetimePlan.priceINR ? ` (₹${lifetimePlan.priceINR.toLocaleString('en-IN')})` : ''}, you are exempt from recurring monthly or annual platform subscription fees charged by {siteConfig.legalName} for core platform access.
           </p>
         </div>
         <p>
-          Upon payment of the one-time software license fee of ${lifetimePlan.priceUSD}{lifetimePlan.priceINR ? ` (₹${lifetimePlan.priceINR.toLocaleString('en-IN')})` : ''}, you receive a non-exclusive, non-transferable license to access the platform without ongoing recurring platform software fees.
+          We commit to maintaining, updating, and operating the platform diligently. In the unlikely event of product sunset, restructuring, or platform discontinuance, we will provide at least sixty (60) days advance written notice to your registered account email, accompanied by tools to export all contact databases, campaign logs, and message histories.
         </p>
 
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          2. Fair-Use Workspace Limits
+        <!-- 2. Fair-Use Capacity & Architectural Limits -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          2. Fair-Use Capacity & Architectural Limits
         </h2>
         <p>
-          To maintain platform stability and service quality across all users, the Lifetime Access plan is subject to the following default fair-use capacity limits:
+          To maintain tenant isolation, platform responsiveness, and server reliability across all organizations sharing our cloud infrastructure, each Lifetime Access workspace operates under standard fair-use capacity allowances:
         </p>
-        <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm">
+        <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm">
           {lifetimePlan.limits.map((limit) => (
-            <li><strong>{limit.label}:</strong> {limit.value} ({limit.description})</li>
+            <li>
+              <strong>{limit.label}:</strong> {limit.value} — {limit.description}
+            </li>
           ))}
         </ul>
         <p>
-          Workspaces exceeding these allowances may purchase modular add-ons as they become available or contact support for tailored capacity.
+          These thresholds are structured to generously serve growing small and mid-sized businesses. Workspaces that regularly exceed these operational boundaries may request custom resource allocation or modular expansions as made available by the Company.
         </p>
 
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          3. Direct Meta Billing and Relationship
+        <!-- 3. Direct Meta Cloud API Telephony & Message Fees -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          3. Direct Meta Cloud API Telephony & Conversation Billing
         </h2>
         <p>
-          <strong>You are directly responsible for all conversation fees charged by Meta Platforms, Inc.</strong> {siteConfig.name} does not charge or collect per-message fees and does not mark up Meta rates. You must maintain a valid payment method inside your own Meta Business Manager. Any rate changes, billing disputes, or payment suspensions originating from Meta are governed exclusively by Meta's Terms of Service.
-        </p>
-
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          4. WhatsApp & Meta Policy Compliance
-        </h2>
-        <p>
-          You agree to comply fully with the <a href="https://www.whatsapp.com/legal/business-policy" target="_blank" rel="noopener noreferrer" class="text-brand-700 underline">WhatsApp Business Messaging Policy</a> and <a href="https://www.whatsapp.com/legal/commerce-policy" target="_blank" rel="noopener noreferrer" class="text-brand-700 underline">WhatsApp Commerce Policy</a>. You explicitly warrant that:
+          <strong>{siteConfig.name} is a software workflow interface; we are not a telecommunications carrier.</strong> Messaging infrastructure is powered directly by Meta Platforms, Inc. (“Meta”) via the WhatsApp Business Platform (Cloud API).
         </p>
         <ul class="list-disc pl-5 space-y-2 text-xs sm:text-sm">
-          <li>You have secured explicit, verifiable opt-in consent from every recipient before sending any broadcast message.</li>
-          <li>You will never upload scraped, purchased, or third-party phone lists.</li>
-          <li>You will respect all automated and manual opt-out requests (STOP / UNSUBSCRIBE) immediately.</li>
-          <li>You will not use the platform for unauthorized spam, phishing, unlawful goods, or misleading promotional campaigns.</li>
+          <li>
+            <strong>Zero Software Markup on Messages:</strong> {siteConfig.legalName} never marks up, surcharges, or bills you for WhatsApp message fees. You pay zero per-message commission to ONO.
+          </li>
+          <li>
+            <strong>Direct Payment to Meta:</strong> All conversation-based fees (marketing, utility, authentication, and service conversations) are billed directly to your payment method stored inside your own Meta Business Manager, at Meta’s published regional rates.
+          </li>
+          <li>
+            <strong>Account Standing with Meta:</strong> You are solely responsible for maintaining a valid payment method, verified Meta Business Manager account, and active WhatsApp Business Account (WABA). Any disruptions or suspensions originating from Meta’s billing or credit systems are strictly between you and Meta.
+          </li>
         </ul>
 
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          5. Meta Non-Affiliation
+        <!-- 4. Mandatory Compliance with WhatsApp & Meta Policies -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          4. Mandatory Compliance with WhatsApp & Meta Policies
         </h2>
         <p>
+          You explicitly warrant and covenant that all messaging conducted through {siteConfig.name} strictly adheres to the <a href="https://www.whatsapp.com/legal/business-policy" target="_blank" rel="noopener noreferrer" class="text-brand-700 underline font-medium">WhatsApp Business Messaging Policy</a>, <a href="https://www.whatsapp.com/legal/commerce-policy" target="_blank" rel="noopener noreferrer" class="text-brand-700 underline font-medium">WhatsApp Commerce Policy</a>, and our <a href="/acceptable-use" class="text-brand-700 underline font-medium">Acceptable Use Policy</a>. Specifically:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-xs sm:text-sm">
+          <li>
+            <strong>Verifiable Consent:</strong> You must obtain and document verifiable, active opt-in consent from every contact before transmitting any proactive broadcast or marketing template message.
+          </li>
+          <li>
+            <strong>Prohibition of Third-Party Lists:</strong> You shall never upload, import, or target telephone numbers obtained from purchased marketing databases, scraped public websites, lead brokers, or automated harvesting software.
+          </li>
+          <li>
+            <strong>Immediate Opt-Out Honor:</strong> You must honor all STOP, UNSUBSCRIBE, or revocation requests immediately. Our built-in suppression tools must never be bypassed or altered.
+          </li>
+          <li>
+            <strong>Approved Templates Only:</strong> All proactive business-initiated notifications must utilize templates reviewed and approved by Meta.
+          </li>
+        </ul>
+
+        <!-- 5. Customer Data Ownership & Processing -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          5. Customer Data Ownership & Data Protection
+        </h2>
+        <p>
+          You retain exclusive ownership of all proprietary data, contact registries, message text, and customer information uploaded to your workspace (“Customer Data”). {siteConfig.legalName} claims no intellectual property rights or ownership in Customer Data.
+        </p>
+        <p>
+          In handling Customer Data, we act strictly as a <strong>Data Processor</strong> (service provider) under your instructions, while you remain the <strong>Data Fiduciary</strong> (data controller) pursuant to the <em>Digital Personal Data Protection Act, 2023 (DPDP Act)</em> and applicable global privacy regulations (including GDPR). For detailed commitments on encryption, retention, and access rights, refer to our <a href="/privacy" class="text-brand-700 underline font-medium">Privacy Policy</a>.
+        </p>
+
+        <!-- 6. Intellectual Property & Meta Non-Affiliation -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          6. Intellectual Property & Brand Non-Affiliation
+        </h2>
+        <p>
+          All software code, database architecture, UI designs, brand marks, and documentation relating to {siteConfig.name} are the proprietary intellectual property of {siteConfig.legalName}. You may not reverse-engineer, decompile, resell, white-label, or redistribute our software code without prior written consent.
+        </p>
+        <div class="p-3.5 rounded-xl bg-ink-50 border border-ink-100 text-xs text-ink-700 font-mono">
           {siteConfig.metaDisclaimer}
-        </p>
+        </div>
 
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          6. Account Termination
+        <!-- 7. Payments, Taxes & Invoicing -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          7. Payments, Taxes & Invoicing
         </h2>
         <p>
-          We reserve the right to suspend or terminate workspace access immediately, without refund, if we detect fraudulent activity, egregious spamming that jeopardizes platform IP reputations, or violations of Meta's acceptable use policies.
+          Payment for the software license is due in full at the time of purchase through our authorized payment gateways (e.g., Razorpay, Stripe). All fees are quoted exclusive of applicable Goods and Services Tax (GST) or regional value-added taxes, which will be calculated and displayed at checkout according to your jurisdiction. An electronic tax invoice with GST breakdown is provided for every order.
         </p>
 
+        <!-- 8. 7-Day Money-Back Guarantee -->
         <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          7. Governing Law and Jurisdiction
+          8. 7-Day Money-Back Guarantee
         </h2>
         <p>
-          These Terms are governed by and construed in accordance with the laws of India. Any disputes arising out of these Terms shall be subject to the exclusive jurisdiction of the competent courts in Uttar Pradesh, India.
+          We provide an unconditional <strong>7-day money-back guarantee</strong> for all new software license purchases. If you determine within seven (7) calendar days of payment that {siteConfig.name} does not meet your operational requirements, email <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-700 underline">{siteConfig.supportEmail}</a> to receive a 100% refund of your software license fee. Complete terms and refund mechanics are set forth in our <a href="/refund" class="text-brand-700 underline font-medium">Refund and Cancellation Policy</a>.
         </p>
 
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          8. Support Contact
+        <!-- 9. Disclaimer of Warranties -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          9. Disclaimer of Warranties
         </h2>
         <p>
-          For questions regarding these Terms, contact <strong>{siteConfig.legalName}</strong> at <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-700 underline">{siteConfig.supportEmail}</a>.
+          TO THE MAXIMUM EXTENT PERMITTED UNDER APPLICABLE LAW, THE SERVICE IS PROVIDED ON AN “AS IS” AND “AS AVAILABLE” BASIS WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
+        </p>
+        <p>
+          While we strive for 99.9% uptime, we do not guarantee uninterrupted, error-free, or bug-free operation. We are not responsible for delivery delays or failures caused by Meta network outages, telecommunications disruptions, device offline states, or third-party internet service failures.
+        </p>
+
+        <!-- 10. Limitation of Liability -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          10. Limitation of Liability
+        </h2>
+        <p>
+          TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL {siteConfig.legalName}, ITS DIRECTORS, EMPLOYEES, OR AFFILIATES BE LIABLE FOR ANY INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, PUNITIVE, OR EXEMPLARY DAMAGES (INCLUDING LOSS OF PROFITS, DATA LOSS, BUSINESS INTERRUPTION, OR REPUTATIONAL HARM) ARISING OUT OF OR IN CONNECTION WITH YOUR USE OR INABILITY TO USE THE SERVICE.
+        </p>
+        <p>
+          IN ALL CIRCUMSTANCES, OUR AGGREGATE LIABILITY ARISING UNDER OR RELATED TO THIS AGREEMENT SHALL BE STRICTLY LIMITED TO THE ACTUAL SOFTWARE LICENSE FEE AMOUNT PAID BY YOU TO {siteConfig.legalName} DURING THE TRANSACTION GIVING RISE TO THE CLAIM.
+        </p>
+
+        <!-- 11. Indemnification -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          11. Indemnification
+        </h2>
+        <p>
+          You agree to defend, indemnify, and hold harmless {siteConfig.legalName}, its officers, directors, agents, and employees against any third-party claims, liabilities, damages, fines, regulatory penalties, and reasonable legal expenses arising from: (a) your breach of these Terms or our Acceptable Use Policy; (b) your violation of Meta's messaging policies; (c) any message content transmitted by your workspace; or (d) your failure to secure lawful consent from contacts.
+        </p>
+
+        <!-- 12. Account Suspension & Termination -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          12. Account Suspension & Termination
+        </h2>
+        <p>
+          We reserve the right to immediately suspend or revoke workspace access, without liability or refund, upon: (a) material breach of this Agreement or the Acceptable Use Policy; (b) detected transmission of fraudulent, phishing, or illegal communications; (c) formal notification from Meta regarding severe spam violation or phone number termination; or (d) compliance with court or regulatory orders.
+        </p>
+
+        <!-- 13. Governing Law & Dispute Resolution -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          13. Governing Law & Dispute Resolution
+        </h2>
+        <p>
+          This Agreement and any dispute or claim arising out of it shall be governed by and construed in accordance with the laws of the Republic of India, without regard to its conflict-of-law principles.
+        </p>
+        <p>
+          In the event of any controversy or dispute, the parties agree to first seek amicable resolution through good-faith negotiation within thirty (30) days. Failing such resolution, the dispute shall be subject to the exclusive jurisdiction of the competent courts situated in Gautam Buddha Nagar / Noida, Uttar Pradesh, India.
+        </p>
+
+        <!-- 14. Grievance Redressal Officer -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          14. Grievance Redressal Officer
+        </h2>
+        <p>
+          In accordance with the <em>Information Technology Act, 2000</em> and the <em>Consumer Protection (E-Commerce) Rules, 2020</em>, the designated Grievance Redressal Officer for {siteConfig.name} is:
+        </p>
+        <div class="p-4 bg-surface-50 border border-surface-200 rounded-2xl text-xs sm:text-sm space-y-1">
+          <p><strong>Name:</strong> Tinkal Kumar</p>
+          <p><strong>Designation:</strong> Grievance & Compliance Officer</p>
+          <p><strong>Company:</strong> {siteConfig.legalName}</p>
+          <p><strong>Address:</strong> {siteConfig.address}</p>
+          <p><strong>Email:</strong> <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-700 underline font-medium">{siteConfig.supportEmail}</a> (Subject: “Grievance Attention”)</p>
+          <p class="text-surface-500 pt-1 text-xs">Acknowledgment within 36 hours; resolution within 15 business days.</p>
+        </div>
+
+        <!-- 15. Amendments & Inquiries -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          15. Amendments & Contact
+        </h2>
+        <p>
+          We may update these Terms from time to time to reflect operational, architectural, or legal changes. Material revisions will be highlighted on our website or notified to your account email address. Continued use of the Service following published updates constitutes acceptance of the amended Terms.
+        </p>
+        <p>
+          For general questions regarding these Terms, contact our legal desk at <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-700 underline font-medium">{siteConfig.supportEmail}</a>.
         </p>
       </div>
+
     </div>
   </Section>
 </Layout>

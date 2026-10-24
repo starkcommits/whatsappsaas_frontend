@@ -3,96 +3,187 @@ import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
 import { siteConfig } from '../config/site';
 
-const lastUpdated = 'October 23, 2026';
+const lastUpdated = 'October 24, 2026';
 ---
 
 <Layout
   title={`Acceptable Use Policy — ${siteConfig.name}`}
-  description={`Acceptable Use Policy for ${siteConfig.name}. Strict rules prohibiting spam, scraped contact lists, and enforcing WhatsApp messaging standards.`}
+  description={`Official Acceptable Use Policy for ${siteConfig.name}. Strict rules prohibiting spam, scraped contact registries, and enforcing Meta WhatsApp Business platform compliance.`}
 >
   <Section background="default" class="py-12 md:py-16">
     <div class="max-w-3xl mx-auto bg-white border border-surface-200 rounded-3xl p-6 sm:p-10 shadow-card">
-      <!-- Draft Banner -->
-      <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs font-medium mb-8 flex items-center justify-between">
-        <span>⚠️ <strong>DRAFT — Pending Formal Legal Review</strong></span>
-        <span class="text-amber-700">Last Updated: {lastUpdated}</span>
+      
+      <!-- Official Policy Notice Banner -->
+      <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950 text-xs font-medium mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <span class="flex items-center gap-1.5">
+          <span class="size-2 rounded-full bg-emerald-500 inline-block"></span>
+          <strong>Official Acceptable Use Policy · Anti-Spam & Meta Compliance Standards</strong>
+        </span>
+        <span class="text-emerald-700 font-mono text-[11px]">Last Updated: {lastUpdated}</span>
       </div>
 
-      <h1 class="text-2xl sm:text-4xl font-extrabold text-surface-900 tracking-tight mb-4">
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-surface-900 tracking-tight mb-2">
         Acceptable Use Policy (AUP)
       </h1>
+      <p class="text-xs sm:text-sm text-surface-500 mb-8 pb-6 border-b border-surface-100">
+        <strong>{siteConfig.legalName}</strong> · {siteConfig.address} · Effective: {lastUpdated}
+      </p>
 
       <div class="prose prose-sm max-w-none text-surface-700 space-y-6 leading-relaxed">
         <p>
-          This Acceptable Use Policy ("AUP") defines the rules and restrictions governing all messaging and API usage on the <strong>{siteConfig.name}</strong> platform, operated by <strong>{siteConfig.legalName}</strong> ("Company").
+          This Acceptable Use Policy (“AUP”) establishes the mandatory operating rules, content restrictions, and compliance standards governing all messaging, campaign broadcasts, and API activities conducted through the <strong>{siteConfig.name}</strong> platform, operated by <strong>{siteConfig.legalName}</strong> (“Company”, “we”, “us”).
+        </p>
+        <p>
+          Every customer, workspace owner, and authorized team member agrees to comply strictly with this AUP as a condition of accessing the Service. This policy is designed to protect customer recipients from unsolicited messages, preserve your Meta phone number quality score, and safeguard the shared IP and delivery reputation of our infrastructure.
         </p>
 
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          1. Zero Tolerance for Spam
+        <!-- 1. Zero Tolerance Anti-Spam Mandate -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          1. Zero-Tolerance Anti-Spam Mandate
         </h2>
-        <p>
-          {siteConfig.name} is built strictly for legitimate business-to-customer communication. We enforce a zero-tolerance policy against unsolicited bulk messaging (spam). Every outbound template message or campaign broadcast must be sent to an individual who has explicitly opted in to receive communication from your organization.
-        </p>
+        <div class="p-4 bg-surface-50 border border-surface-200 rounded-2xl text-xs sm:text-sm space-y-2">
+          <p class="font-bold text-surface-900">Unsolicited Messaging is Strictly Forbidden:</p>
+          <p>
+            {siteConfig.name} is engineered exclusively for legitimate, consensual business communications. We enforce a zero-tolerance policy against unsolicited bulk messaging (spam). Every outbound broadcast, template alert, or marketing flow must be addressed exclusively to individuals who have provided verifiable, active consent to receive communications from your organization.
+          </p>
+        </div>
 
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          2. Prohibited Contact Sourcing
+        <!-- 2. Prohibited Contact Sourcing -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          2. Prohibited Contact Sourcing & Acquisition
         </h2>
         <p>
-          You are strictly prohibited from uploading, importing, or targeting contacts obtained via:
+          You are strictly prohibited from importing, uploading, or transmitting messages to contacts acquired through any of the following channels:
         </p>
         <ul class="list-disc pl-5 space-y-2 text-xs sm:text-sm">
-          <li><strong>Purchased Lists:</strong> Third-party marketing directories, business registries, or lead generation databases.</li>
-          <li><strong>Scraped Numbers:</strong> Phone numbers extracted automatically from websites, social media directories, Google Maps, or public databases.</li>
-          <li><strong>Co-Registration Schemes:</strong> Contacts gained through deceptive or bundled opt-in checkboxes on unrelated websites.</li>
+          <li>
+            <strong>Purchased Marketing Databases:</strong> Third-party lead registries, commercially sold phone lists, corporate directories, or cold marketing databases.
+          </li>
+          <li>
+            <strong>Scraped or Harvested Numbers:</strong> Telephone numbers gathered automatically using software bots, web scraping scripts, social media harvesting, Google Maps scrapers, or public web directories.
+          </li>
+          <li>
+            <strong>Co-Registration & Pre-Ticked Boxes:</strong> Contacts procured via deceptive opt-in tactics, shared multi-brand registries, or pre-checked agreement boxes on unrelated websites.
+          </li>
+          <li>
+            <strong>Stale or Dormant Registries:</strong> Contact lists where the recipient has had no active interaction or communication with your business for more than twelve (12) months.
+          </li>
         </ul>
 
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          3. Mandatory Opt-In and Consent Logging
+        <!-- 3. Mandatory Verifiable Consent Logging -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          3. Mandatory Verifiable Opt-In Consent Tracking
         </h2>
         <p>
-          Whenever importing contacts into {siteConfig.name}, you must tag the verified consent origin (e.g., website contact form, in-store QR code, past customer purchase, or paper contract). You must maintain verifiable proof of opt-in and produce it upon request in the event of a customer dispute or Meta compliance audit.
+          Under the <em>Digital Personal Data Protection Act, 2023 (DPDP Act)</em> and Meta’s WhatsApp Business Messaging Policy:
         </p>
-
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          4. Obligation to Honor STOP / Opt-Outs
-        </h2>
-        <p>
-          Under WhatsApp Business guidelines, recipients must have an effortless way to stop receiving communications:
-        </p>
-        <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm">
-          <li>Our automated compliance engine detects keywords such as <code>STOP</code>, <code>UNSUBSCRIBE</code>, and <code>CANCEL</code>.</li>
-          <li>You may not attempt to circumvent or clear automated suppression records for unsubscribed contacts.</li>
-          <li>Any manual request by a contact via chat to cease messages must be resolved immediately by your team.</li>
+        <ul class="list-disc pl-5 space-y-2 text-xs sm:text-sm">
+          <li>
+            <strong>Consent Source Tagging:</strong> Whenever importing a CSV contact registry into ONO, you must tag the verified origin of consent (e.g., website contact form, checkout checkbox, in-store QR code, or signed customer contract).
+          </li>
+          <li>
+            <strong>Audit Evidence:</strong> You must maintain verifiable proof of opt-in consent (e.g., form submission timestamps, IP records, or digital receipt copies) and provide it to our compliance team or Meta auditors upon request.
+          </li>
+          <li>
+            <strong>Consent Links & QR Codes:</strong> We encourage customers to use our built-in opt-in chat links and QR code generators to capture auditable digital consent directly within WhatsApp.
+          </li>
         </ul>
 
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          5. Prohibited Content and Use Cases
+        <!-- 4. Mandatory Opt-Out Compliance & STOP Handling -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          4. Mandatory Opt-Out Handling (STOP & UNSUBSCRIBE)
         </h2>
         <p>
-          You may not use {siteConfig.name} to transmit, broadcast, or facilitate:
+          Recipients must possess a clear, effortless, and instantaneous mechanism to revoke consent and opt out of receiving communications:
         </p>
-        <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm">
-          <li>Illegal goods, unregulated pharmaceuticals, or prescription drugs</li>
-          <li>Pyramid schemes, multi-level marketing (MLM), or deceptive "get rich quick" offers</li>
-          <li>Phishing, malware delivery, or fraudulent impersonation of financial institutions or government agencies</li>
-          <li>Hate speech, harassment, defamation, or sexually explicit content</li>
-          <li>Unauthorized lottery, gambling, or predatory lending promotions</li>
+        <ul class="list-disc pl-5 space-y-2 text-xs sm:text-sm">
+          <li>
+            <strong>Automated Keyword Suppression:</strong> Our compliance engine automatically detects universal opt-out keywords (including <code>STOP</code>, <code>UNSUBSCRIBE</code>, <code>CANCEL</code>, and <code>QUIT</code>) and immediately adds the phone number to your workspace suppression ledger.
+          </li>
+          <li>
+            <strong>No Circumvention:</strong> You may not manually un-suppress, bypass, or re-target any telephone number that has recorded an opt-out, unless that customer subsequently initiates a fresh, verifiable opt-in transaction.
+          </li>
+          <li>
+            <strong>Agent Conversational Opt-Outs:</strong> If a customer requests cessation of messages conversationally in the shared team inbox, agents must immediately flag the contact as unsubscribed.
+          </li>
         </ul>
 
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          6. Meta Quality Rating Protection
+        <!-- 5. Prohibited Content & Use Cases -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          5. Prohibited Content Categories & Commercial Use Cases
         </h2>
         <p>
-          Meta assigns a phone number quality rating (Green / Yellow / Red) based on customer block and report rates. If your workspace generates an abnormally high block rate or receives repeated spam flags from Meta, {siteConfig.legalName} reserves the right to immediately suspend campaign broadcast functionality to protect the shared infrastructure and platform integrity.
+          You may not use {siteConfig.name} to transmit, broadcast, or facilitate messaging involving:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm">
+          <li>
+            <strong>Illegal Goods & Services:</strong> Illicit drugs, unregulated prescription pharmaceuticals, weapons, explosives, or hazardous materials.
+          </li>
+          <li>
+            <strong>Deceptive Financial Schemes:</strong> Multi-level marketing (MLM), pyramid schemes, predatory lending, unregistered cryptocurrency investments, or "get rich quick" promises.
+          </li>
+          <li>
+            <strong>Gambling & Betting:</strong> Online casinos, sports betting, lottery operations, or games of chance without verifiable statutory licenses.
+          </li>
+          <li>
+            <strong>Phishing & Malware:</strong> Social engineering attacks, credential harvesting, malware distribution, or deceptive impersonation of banking institutions, government bodies, or postal services.
+          </li>
+          <li>
+            <strong>Adult & Inappropriate Content:</strong> Sexually explicit material, adult products, or age-inappropriate communications directed at minors.
+          </li>
+          <li>
+            <strong>Defamation, Hate Speech & Harassment:</strong> Threatening, abusive, discriminatory, or defamatory communications targeting individuals or communities.
+          </li>
+        </ul>
+
+        <!-- 6. Meta Quality Rating Protection -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          6. Meta Quality Rating Protection & Rate-Limiting
+        </h2>
+        <p>
+          Meta continuously monitors telephone number quality ratings (categorized as <strong>Green (High Quality)</strong>, <strong>Yellow (Medium Quality)</strong>, or <strong>Red (Low Quality)</strong>) based on recipient feedback, block rates, and spam reports.
+        </p>
+        <p>
+          If your workspace generates an elevated block or report rate, Meta will automatically downgrade your messaging tier or temporarily rate-limit your broadcasts. {siteConfig.legalName} reserves the right to temporarily pause broadcast campaign capabilities for workspaces that trigger severe quality warnings until the contact list is scrubbed and re-verified.
         </p>
 
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          7. Reporting Violations
+        <!-- 7. Platform Auditing & Multi-Tenant Protection -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          7. Platform Auditing & Multi-Tenant Protection
         </h2>
         <p>
-          If you suspect an account is abusing {siteConfig.name} or sending unauthorized broadcasts, please report the details to our compliance desk at <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-700 underline">{siteConfig.supportEmail}</a>.
+          To protect our network, maintain cloud stability, and satisfy legal obligations under the <em>Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021</em>, we employ automated rate-limiting, delivery failure analysis, and administrative audit logging. We do not inspect message bodies for advertising purposes, but we actively monitor delivery error patterns (e.g., high ratios of Meta Error Code 131026: Message Undeliverable / Number Ineligible).
         </p>
+
+        <!-- 8. Enforcement Actions & Non-Refundable Termination -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          8. Enforcement & Workspace Termination
+        </h2>
+        <p>
+          Violations of this Acceptable Use Policy will result in immediate corrective action, determined at our sole discretion based on the severity and frequency of the violation:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm">
+          <li><strong>Formal Warning:</strong> Issuance of a compliance notice requiring list remediation.</li>
+          <li><strong>Feature Suspension:</strong> Temporary suspension of campaign broadcast or CSV import tools.</li>
+          <li><strong>Immediate Account Revocation:</strong> Permanent deactivation of workspace access and API keys <strong>without liability, refund, or recourse</strong> for egregious spamming, fraud, or intentional harassment.</li>
+        </ul>
+
+        <!-- 9. Reporting Abuse & Compliance Desk -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          9. Reporting Abuse & Compliance Contact
+        </h2>
+        <p>
+          If you have received an unauthorized or abusive broadcast originating from an account utilizing {siteConfig.name}, or wish to report a compliance violation, please submit the details (including sender number, timestamp, and message copy) to:
+        </p>
+        <div class="p-4 bg-surface-50 border border-surface-200 rounded-2xl text-xs sm:text-sm space-y-1">
+          <p><strong>Compliance & Abuse Desk:</strong> <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-700 underline font-medium">{siteConfig.supportEmail}</a></p>
+          <p><strong>Subject:</strong> Compliance Report / Abuse Notification</p>
+          <p><strong>Entity:</strong> {siteConfig.legalName}</p>
+          <p><strong>Address:</strong> {siteConfig.address}</p>
+          <p class="text-surface-500 pt-1 text-xs">All reports are investigated within 24 business hours.</p>
+        </div>
       </div>
+
     </div>
   </Section>
 </Layout>

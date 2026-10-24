@@ -3,79 +3,136 @@ import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
 import { siteConfig } from '../config/site';
 
-const lastUpdated = 'October 23, 2026';
+const lastUpdated = 'October 24, 2026';
 ---
 
 <Layout
   title={`Shipping & Delivery Policy — ${siteConfig.name}`}
-  description={`Digital fulfillment and service delivery policy for ${siteConfig.name} by ${siteConfig.legalName}. Immediate digital software provisioning.`}
+  description={`Official Digital fulfillment and service delivery policy for ${siteConfig.name} by ${siteConfig.legalName}. Immediate digital software provisioning, fulfillment timelines, and access credentials.`}
 >
   <Section background="default" class="py-12 md:py-16">
     <div class="max-w-3xl mx-auto bg-white border border-surface-200 rounded-3xl p-6 sm:p-10 shadow-card">
-      <!-- Draft Banner -->
-      <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs font-medium mb-8 flex items-center justify-between">
-        <span>⚠️ <strong>DRAFT — Pending Formal Legal Review</strong></span>
-        <span class="text-amber-700">Last Updated: {lastUpdated}</span>
+      
+      <!-- Official Policy Notice Banner -->
+      <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950 text-xs font-medium mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <span class="flex items-center gap-1.5">
+          <span class="size-2 rounded-full bg-emerald-500 inline-block"></span>
+          <strong>Official Shipping & Delivery Policy · 100% Digital Fulfillment</strong>
+        </span>
+        <span class="text-emerald-700 font-mono text-[11px]">Last Updated: {lastUpdated}</span>
       </div>
 
-      <h1 class="text-2xl sm:text-4xl font-extrabold text-surface-900 tracking-tight mb-4">
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-surface-900 tracking-tight mb-2">
         Shipping and Delivery Policy
       </h1>
+      <p class="text-xs sm:text-sm text-surface-500 mb-8 pb-6 border-b border-surface-100">
+        <strong>{siteConfig.legalName}</strong> · {siteConfig.address} · Effective: {lastUpdated}
+      </p>
 
       <div class="prose prose-sm max-w-none text-surface-700 space-y-6 leading-relaxed">
         <p>
-          This Shipping and Delivery Policy applies to all purchases of the <strong>{siteConfig.name}</strong> Lifetime Access software license, provided by <strong>{siteConfig.legalName}</strong> ("Company", "we", "us").
+          This Shipping and Delivery Policy governs the electronic fulfillment and provisioning of the <strong>{siteConfig.name}</strong> Lifetime Access software license, provided and operated by <strong>{siteConfig.legalName}</strong> (“Company”, “we”, “us”, “our”).
         </p>
-
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          1. 100% Digital Delivery (No Physical Shipment)
-        </h2>
         <p>
-          {siteConfig.name} is a purely digital, web-based Software-as-a-Service (SaaS) application hosted in cloud infrastructure. <strong>No physical goods, hardware, USB drives, or paper materials are packaged or shipped to your physical address.</strong>
+          This document is published in compliance with the <em>Consumer Protection (E-Commerce) Rules, 2020</em> and rules established by major payment networks (Visa, Mastercard, RuPay, American Express) and payment aggregator partners (e.g., Razorpay, Stripe).
         </p>
 
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          2. Fulfillment Timeline & Method
+        <!-- 1. Purely Digital Delivery -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          1. Purely Digital Delivery (Zero Physical Shipment)
         </h2>
-        <div class="p-4 bg-surface-50 border border-surface-200 rounded-xl space-y-3 text-xs sm:text-sm">
+        <div class="p-4 bg-surface-50 border border-surface-200 rounded-2xl text-xs sm:text-sm space-y-2">
+          <p class="font-bold text-surface-900">No Physical Goods or Parcels:</p>
           <p>
-            <strong>Instant Provisioning:</strong> Digital access is delivered immediately upon successful completion and verification of payment:
+            {siteConfig.name} is a 100% cloud-hosted Software-as-a-Service (SaaS) web application. <strong>No tangible goods, physical media, boxed CD/DVDs, USB drives, or paper license keys are packaged, dispatched, or shipped to your postal address.</strong>
           </p>
-          <ul class="list-disc pl-5 space-y-1.5 text-surface-700">
-            <li><strong>Automated Dashboard Access:</strong> Upon successful checkout, your account is immediately provisioned and you are redirected directly into the web dashboard at <code>{siteConfig.appUrl}</code>.</li>
-            <li><strong>Email Confirmation:</strong> An automated confirmation receipt containing your account activation details and invoice is dispatched immediately to your registered billing email address.</li>
-            <li><strong>Delivery Timeframe:</strong> Immediate (typically under 60 seconds from payment authorization).</li>
-          </ul>
+          <p class="text-surface-600">
+            All fulfillment occurs electronically via authenticated cloud provisioning and secure email transmission.
+          </p>
         </div>
 
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          3. Delivery Fees
+        <!-- 2. Fulfillment Timeline & Method of Delivery -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          2. Fulfillment Timeline & Method of Delivery
         </h2>
         <p>
-          Because fulfillment is purely digital and electronic, <strong>no shipping, handling, or courier charges apply</strong> to any order.
+          Upon successful payment authorization by your bank or payment gateway:
         </p>
-
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          4. Troubleshooting Delayed Access
-        </h2>
-        <p>
-          If you have completed your payment transaction but have not received your account confirmation email or cannot access the dashboard within 15 minutes:
-        </p>
-        <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm">
-          <li>Check your email spam / junk or promotions folder for the receipt.</li>
-          <li>Ensure your payment was successfully debited from your card or bank account.</li>
-          <li>Contact our priority support desk with your payment reference ID at <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-700 underline">{siteConfig.supportEmail}</a> and we will verify your workspace manually within a few hours.</li>
+        <ul class="list-disc pl-5 space-y-2 text-xs sm:text-sm">
+          <li>
+            <strong>Immediate Automated Provisioning:</strong> Your unique workspace is generated instantly in our multi-tenant cloud architecture, and your browser session is redirected automatically to the authenticated dashboard at <a href={siteConfig.appUrl} class="text-brand-700 underline font-medium">{siteConfig.appUrl.replace('https://', '')}</a>.
+          </li>
+          <li>
+            <strong>Electronic Tax Invoice & Order Confirmation:</strong> An automated confirmation receipt containing your order reference ID, tax breakdown, and license activation record is dispatched immediately to your registered billing email address.
+          </li>
+          <li>
+            <strong>Delivery Service Level Agreement (SLA):</strong> Delivery is completed in real-time, typically <strong>within sixty (60) seconds</strong> of payment authorization. Under standard network conditions, electronic delivery will never exceed twenty-four (24) hours.
+          </li>
         </ul>
 
-        <h2 class="text-lg font-bold text-surface-900 pt-4 border-t border-surface-100">
-          5. Company Identification
+        <!-- 3. Delivery Fees -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          3. Delivery & Handling Charges
         </h2>
         <p>
-          <strong>{siteConfig.legalName}</strong><br/>
-          {siteConfig.address}<br/>
-          Contact email: <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-700 underline">{siteConfig.supportEmail}</a>
+          Because fulfillment is conducted entirely over secure electronic channels, <strong>no shipping, handling, courier, postal, or fulfillment charges apply</strong> to your order. The total price presented at checkout represents the complete license and statutory tax amount.
         </p>
+
+        <!-- 4. Onboarding & WhatsApp Cloud API Connection -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          4. Onboarding & Number Connection
+        </h2>
+        <p>
+          Once your workspace is delivered, connecting your WhatsApp Business phone number is handled directly inside the dashboard using <strong>Meta’s official Embedded Signup</strong> workflow:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm">
+          <li>You log into your verified Meta Business Manager account through the secure Meta popup dialog.</li>
+          <li>You select or register your business phone number and approve WhatsApp messaging permissions.</li>
+          <li>Encrypted access credentials and signature-verified webhooks are exchanged automatically between Meta Cloud API and your ONO workspace.</li>
+        </ul>
+
+        <!-- 5. Troubleshooting Delivery Delays -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          5. Troubleshooting Non-Receipt or Delayed Access
+        </h2>
+        <p>
+          In rare instances where your payment has cleared but you have not received your account confirmation email or cannot access the web dashboard within fifteen (15) minutes:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-xs sm:text-sm">
+          <li>
+            <strong>Verify Email Folders:</strong> Check your email spam, junk, or promotions tabs for an email originating from <code>{siteConfig.domain}</code> or our payment gateway partner.
+          </li>
+          <li>
+            <strong>Bank Processing Holds:</strong> Ensure your card or bank account was successfully debited and that the transaction was not placed on temporary hold for fraud review by your card issuer.
+          </li>
+          <li>
+            <strong>Priority Support Escalation:</strong> Email our dedicated fulfillment desk at <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-700 underline font-medium">{siteConfig.supportEmail}</a> with your payment transaction ID or bank debit screenshot. Our technical team will manually verify the payment record and provision your workspace credentials within a few business hours.
+          </li>
+        </ul>
+
+        <!-- 6. Redelivery Guarantee & Cancellation -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          6. Redelivery Guarantee & Refund Linkage
+        </h2>
+        <p>
+          If for any reason electronic delivery of your software license fails and cannot be completed within twenty-four (24) hours of payment verification, you are entitled to cancel the order for an immediate, full 100% refund in accordance with our <a href="/refund" class="text-brand-700 underline font-medium">Refund and Cancellation Policy</a>.
+        </p>
+
+        <!-- 7. Corporate Identification & Contact -->
+        <h2 class="text-lg font-bold text-surface-900 pt-6 border-t border-surface-100">
+          7. Corporate Identification & Support Desk
+        </h2>
+        <p>
+          For any fulfillment, licensing, or access inquiries, please reach out to:
+        </p>
+        <div class="p-4 bg-surface-50 border border-surface-200 rounded-2xl text-xs sm:text-sm space-y-1">
+          <p><strong>Company Name:</strong> {siteConfig.legalName}</p>
+          <p><strong>Registered Corporate Office:</strong> {siteConfig.address}</p>
+          <p><strong>Customer Fulfillment Desk:</strong> <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-700 underline font-medium">{siteConfig.supportEmail}</a></p>
+          <p><strong>Operational Hours:</strong> Monday through Saturday, 9:00 AM – 6:00 PM IST</p>
+        </div>
       </div>
+
     </div>
   </Section>
 </Layout>
