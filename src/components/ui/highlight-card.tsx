@@ -1,7 +1,6 @@
 "use client";
 
 import React, { type FC, type ReactNode } from "react";
-import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { 
   Building2, 
@@ -13,14 +12,17 @@ import {
   Users, 
   Sparkles,
   Lock,
-  Workflow
+  Workflow,
+  ArrowRight
 } from "lucide-react";
 
 export interface HighlightCardProps {
   title: string;
-  description: string[];
+  description: string[] | string;
   icon?: ReactNode;
   iconName?: string;
+  actionText?: string;
+  href?: string;
   className?: string;
 }
 
@@ -29,94 +31,93 @@ function resolveIcon(icon?: ReactNode, iconName?: string): ReactNode {
   switch (iconName) {
     case 'meta':
     case 'business':
-      return <Building2 className="w-8 h-8 text-emerald-400" />;
+      return <Building2 className="w-5 h-5 text-current" />;
     case 'phone':
-      return <Smartphone className="w-8 h-8 text-emerald-400" />;
+      return <Smartphone className="w-5 h-5 text-current" />;
     case 'payment':
     case 'card':
-      return <CreditCard className="w-8 h-8 text-emerald-400" />;
+      return <CreditCard className="w-5 h-5 text-current" />;
     case 'inbox':
-      return <Inbox className="w-8 h-8 text-emerald-400" />;
+      return <Inbox className="w-5 h-5 text-current" />;
     case 'consent':
     case 'shield':
-      return <ShieldCheck className="w-8 h-8 text-emerald-400" />;
+      return <ShieldCheck className="w-5 h-5 text-current" />;
     case 'rates':
     case 'zap':
-      return <Zap className="w-8 h-8 text-emerald-400" />;
+      return <Zap className="w-5 h-5 text-current" />;
     case 'users':
-      return <Users className="w-8 h-8 text-emerald-400" />;
+      return <Users className="w-5 h-5 text-current" />;
     case 'lock':
-      return <Lock className="w-8 h-8 text-emerald-400" />;
+      return <Lock className="w-5 h-5 text-current" />;
     case 'workflow':
-      return <Workflow className="w-8 h-8 text-emerald-400" />;
+      return <Workflow className="w-5 h-5 text-current" />;
     default:
-      return <Sparkles className="w-8 h-8 text-emerald-400" />;
+      return <Sparkles className="w-5 h-5 text-current" />;
   }
 }
 
-const HighlightCard: FC<HighlightCardProps> = ({ title, description, icon, iconName, className }) => {
+const HighlightCard: FC<HighlightCardProps> = ({ 
+  title, 
+  description, 
+  icon, 
+  iconName, 
+  actionText = "DISCOVER MORE",
+  href,
+  className 
+}) => {
   const renderedIcon = resolveIcon(icon, iconName);
 
-  return (
-    <div className={cn("group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1 h-full flex justify-center", className)}>
-      <Card className="text-white rounded-2xl border border-[#1E3A5F]/60 bg-gradient-to-br from-[#07111F] via-[#0B1B2E] to-[#07111F] shadow-2xl relative backdrop-blur-xl overflow-hidden hover:border-emerald-500/40 hover:shadow-emerald-950/20 w-full max-w-[360px] flex flex-col justify-between h-full">
-        
-        {/* Glow & animated background light artifacts */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-white/10 opacity-40 group-hover:opacity-60 transition-opacity duration-500"></div>
-          <div className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-emerald-500/10 to-transparent blur-3xl opacity-30 group-hover:opacity-50 transform group-hover:scale-110 transition-all duration-700 animate-bounce"></div>
-          <div className="absolute top-10 left-10 w-16 h-16 rounded-full bg-white/5 blur-xl animate-ping"></div>
-          <div className="absolute bottom-16 right-16 w-12 h-12 rounded-full bg-white/5 blur-lg animate-ping"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000"></div>
-        </div>
-
-        {/* Card Content */}
-        <div className="p-8 relative z-10 flex flex-col items-center text-center flex-1 justify-between">
-          <div className="flex flex-col items-center w-full">
-            <div className="relative mb-6">
-              <div className="absolute inset-0 rounded-full border-2 border-white/20 animate-ping"></div>
-              <div className="absolute inset-0 rounded-full border border-white/10 animate-pulse"></div>
-
-              <div className="p-5 sm:p-6 rounded-full backdrop-blur-lg border border-[#1E3A5F]/80 bg-gradient-to-br from-[#10233B] to-[#07111F] shadow-2xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 hover:shadow-emerald-500/20">
-                <div className="transform group-hover:rotate-180 transition-transform duration-700 flex items-center justify-center">
-                  {renderedIcon}
-                </div>
-              </div>
-            </div>
-
-            <h3 className="mb-4 text-xl sm:text-2xl font-bold bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent animate-pulse transform group-hover:scale-105 transition-transform duration-300">
-              {title}
-            </h3>
-
-            <div className="space-y-1.5 max-w-sm">
-              {description.map((line, idx) => (
-                <p
-                  key={idx}
-                  className="text-gray-300 text-xs sm:text-sm leading-relaxed transform group-hover:text-gray-200 transition-colors duration-300"
-                >
-                  {line}
-                </p>
-              ))}
-            </div>
-          </div>
-
-          <div className="w-full flex flex-col items-center pt-6">
-            <div className="w-1/3 h-0.5 bg-gradient-to-r from-transparent via-white to-transparent rounded-full transform group-hover:w-1/2 group-hover:h-1 transition-all duration-500 animate-pulse"></div>
-
-            <div className="flex space-x-2 mt-4 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-              <div className="w-2 h-2 bg-emerald-400 rounded-full animate-bounce"></div>
-              <div className="w-2 h-2 bg-white rounded-full animate-bounce" style={{ animationDelay: "0.1s" }}></div>
-              <div className="w-2 h-2 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
-            </div>
+  const cardInner = (
+    <div
+      className={cn(
+        "group cursor-pointer rounded-[28px] sm:rounded-[32px] border border-zinc-200/90 bg-white p-7 sm:p-8 lg:p-9 shadow-soft hover:shadow-soft-lg hover:border-zinc-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between h-full w-full relative overflow-hidden",
+        className
+      )}
+    >
+      <div>
+        {/* Top-left squircle icon badge */}
+        <div className="w-12 h-12 rounded-2xl bg-zinc-50 border border-zinc-200/80 flex items-center justify-center text-zinc-900 group-hover:bg-zinc-100 group-hover:scale-105 group-hover:border-zinc-300 transition-all duration-300 mb-6 sm:mb-7">
+          <div className="w-6 h-6 text-zinc-800 group-hover:text-brand-700 transition-colors flex items-center justify-center [&>svg]:w-6 [&>svg]:h-6 [&>svg]:text-current [&>svg]:stroke-[1.75]">
+            {renderedIcon}
           </div>
         </div>
 
-        {/* Corner Accents */}
-        <div className="absolute top-0 left-0 w-20 h-20 bg-gradient-to-br from-white/10 to-transparent rounded-br-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-        <div className="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-white/10 to-transparent rounded-tl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-      </Card>
+        {/* Title */}
+        <h3 className="text-xl sm:text-2xl font-bold font-display text-ink-950 tracking-tight mb-3 group-hover:text-brand-700 transition-colors">
+          {title}
+        </h3>
+
+        {/* Description */}
+        <div className="text-sm text-ink-500 leading-relaxed space-y-1.5">
+          {Array.isArray(description) ? (
+            description.map((line, idx) => (
+              <p key={idx} className="leading-relaxed">
+                {line}
+              </p>
+            ))
+          ) : (
+            <p className="leading-relaxed">{description}</p>
+          )}
+        </div>
+      </div>
+
+      {/* Bottom action link */}
+      <div className="mt-8 sm:mt-10 pt-2 flex items-center gap-2 text-xs font-mono font-bold tracking-wider uppercase text-ink-950 group-hover:text-brand-600 transition-colors">
+        <span>{actionText}</span>
+        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform duration-200" />
+      </div>
     </div>
   );
+
+  if (href) {
+    return (
+      <a href={href} className="block h-full w-full no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded-[28px] sm:rounded-[32px]">
+        {cardInner}
+      </a>
+    );
+  }
+
+  return cardInner;
 };
 
 export default HighlightCard;

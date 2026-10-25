@@ -13,7 +13,9 @@ export default function PrinciplesGrid() {
         "Pay once for lifetime access to the team inbox,",
         "broadcast campaigns, and WhatsApp Flows."
       ],
-      icon: <Zap className="w-8 h-8 text-emerald-400" />
+      icon: <Zap className="w-6 h-6" />,
+      href: "/pricing",
+      actionText: "VIEW PRICING"
     },
     {
       title: "Direct Meta Cloud API",
@@ -22,7 +24,9 @@ export default function PrinciplesGrid() {
         "Connect your own WABA directly via Embedded Signup.",
         "Zero scraping, zero unofficial hacks."
       ],
-      icon: <Building2 className="w-8 h-8 text-emerald-400" />
+      icon: <Building2 className="w-6 h-6" />,
+      href: "/how-it-works",
+      actionText: "HOW IT WORKS"
     },
     {
       title: "Data Ownership",
@@ -31,18 +35,22 @@ export default function PrinciplesGrid() {
         "Export CSVs or delete records at any time.",
         "Full compliance with DPDP Act 2023 & GDPR."
       ],
-      icon: <ShieldCheck className="w-8 h-8 text-emerald-400" />
+      icon: <ShieldCheck className="w-6 h-6" />,
+      href: "/privacy",
+      actionText: "PRIVACY POLICY"
     }
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto items-stretch justify-items-center">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto items-stretch">
       {principles.map((item, idx) => (
         <HighlightCard
           key={idx}
           title={item.title}
           description={item.description}
           icon={item.icon}
+          href={item.href}
+          actionText={item.actionText}
         />
       ))}
     </div>
