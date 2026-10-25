@@ -364,7 +364,7 @@ export function ShineBorder({
         } as React.CSSProperties
       }
       className={cn(
-        "relative grid place-items-center rounded-2xl bg-white p-1 text-black",
+        "relative grid place-items-center rounded-2xl bg-white p-1 text-ink-950",
         className
       )}
     >

@@ -53,8 +53,8 @@ function OnoLogo() {
 
 function SharedInboxPreview() {
   return (
-    <div className="relative z-10 flex w-full flex-col gap-1.5 rounded-lg border border-zinc-800/80 bg-zinc-950 p-2 shadow-sm font-sans text-[9px] leading-tight text-zinc-300">
-      <div className="flex items-center justify-between border-b border-zinc-900 pb-1 text-zinc-400">
+    <div className="relative z-10 flex w-full flex-col gap-1.5 rounded-lg border border-[#1E3A5F]/60 bg-[#07111F] p-2 shadow-sm font-sans text-[9px] leading-tight text-zinc-300">
+      <div className="flex items-center justify-between border-b border-[#172D47] pb-1 text-zinc-400">
         <div className="flex items-center gap-1.5">
           <span className="size-2 rounded-full bg-emerald-500" />
           <span className="font-semibold text-white">Aarav Sharma</span>
@@ -63,7 +63,7 @@ function SharedInboxPreview() {
         <span className="text-[7.5px] text-zinc-500">10:42 AM</span>
       </div>
       <div className="space-y-1 pt-0.5">
-        <div className="rounded bg-zinc-900/90 p-1.5 text-zinc-300">
+        <div className="rounded bg-[#10233B] p-1.5 text-zinc-300">
           "Can I confirm our team consultation tomorrow at 3pm?"
         </div>
         <div className="rounded bg-emerald-950/40 p-1.5 text-emerald-300 border border-emerald-900/40">
@@ -76,19 +76,19 @@ function SharedInboxPreview() {
 
 function TemplatePreview() {
   return (
-    <div className="relative z-10 flex w-full flex-col gap-1.5 rounded-lg border border-zinc-800/80 bg-zinc-950 p-2 shadow-sm font-sans text-[9px] leading-tight text-zinc-300">
-      <div className="flex items-center justify-between border-b border-zinc-900 pb-1">
+    <div className="relative z-10 flex w-full flex-col gap-1.5 rounded-lg border border-[#1E3A5F]/60 bg-[#07111F] p-2 shadow-sm font-sans text-[9px] leading-tight text-zinc-300">
+      <div className="flex items-center justify-between border-b border-[#172D47] pb-1">
         <span className="font-mono text-[8px] text-zinc-400">appointment_confirmed</span>
         <span className="flex items-center gap-0.5 rounded bg-emerald-950/80 px-1 py-0.5 text-[7.5px] font-bold text-emerald-400 border border-emerald-800/60">
           <Check className="size-2.5" /> APPROVED
         </span>
       </div>
-      <div className="rounded bg-zinc-900/90 p-1.5 text-zinc-300">
+      <div className="rounded bg-[#10233B] p-1.5 text-zinc-300">
         Hello &#123;&#123;1&#125;&#125;, your booking for &#123;&#123;2&#125;&#125; is confirmed with our team.
       </div>
       <div className="flex gap-1 pt-0.5">
-        <span className="rounded bg-zinc-800/90 px-1.5 py-0.5 text-[8px] text-zinc-300">📅 View Details</span>
-        <span className="rounded bg-zinc-800/90 px-1.5 py-0.5 text-[8px] text-zinc-300">Reschedule</span>
+        <span className="rounded bg-[#172D47] px-1.5 py-0.5 text-[8px] text-zinc-300">📅 View Details</span>
+        <span className="rounded bg-[#172D47] px-1.5 py-0.5 text-[8px] text-zinc-300">Reschedule</span>
       </div>
     </div>
   );
@@ -126,7 +126,7 @@ function PanelCard({
       <a
         href={item.href}
         onClick={handleClick}
-        className="group relative flex h-[195px] flex-col justify-between overflow-hidden rounded-xl border border-zinc-900 bg-zinc-950/60 p-3 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/40 block text-left"
+        className="group relative flex h-[195px] flex-col justify-between overflow-hidden rounded-xl border border-[#1E3A5F]/50 bg-[#07111F]/75 p-3 transition-all duration-200 hover:border-emerald-500/50 hover:bg-[#10233B]/90 block text-left"
       >
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(18,165,125,0.08),transparent_50%)] opacity-0 transition-opacity group-hover:opacity-100" />
         {item.component}
@@ -153,8 +153,8 @@ function PanelCard({
       onClick={handleClick}
       className={
         compact
-          ? "group relative flex h-[92px] flex-col justify-center overflow-hidden rounded-xl border border-zinc-900 bg-zinc-950/60 p-3 transition-all hover:border-zinc-700 hover:bg-zinc-900/40 block text-left"
-          : "group relative flex min-h-[140px] flex-col justify-between overflow-hidden rounded-xl border border-zinc-900 bg-zinc-950/60 p-4 transition-all hover:border-zinc-700 hover:bg-zinc-900/40 block text-left"
+          ? "group relative flex h-[92px] flex-col justify-center overflow-hidden rounded-xl border border-[#1E3A5F]/50 bg-[#07111F]/75 p-3 transition-all hover:border-emerald-500/50 hover:bg-[#10233B]/90 block text-left"
+          : "group relative flex min-h-[140px] flex-col justify-between overflow-hidden rounded-xl border border-[#1E3A5F]/50 bg-[#07111F]/75 p-4 transition-all hover:border-emerald-500/50 hover:bg-[#10233B]/90 block text-left"
       }
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(18,165,125,0.06),transparent_50%)] opacity-0 transition-opacity group-hover:opacity-100" />
@@ -186,7 +186,7 @@ function DropdownPanel({ panel, onSelect }: { panel: MenuPanel; onSelect: () => 
   if (panel.id === "product") {
     const [inbox, templates, flows, consent] = panel.items;
     return (
-      <div className="grid grid-cols-[1.3fr_1.3fr_1fr] gap-3 bg-black p-4">
+      <div className="grid grid-cols-[1.3fr_1.3fr_1fr] gap-3 bg-[#0B1B2E] p-4">
         <PanelCard item={inbox} onSelect={onSelect} />
         <PanelCard item={templates} onSelect={onSelect} />
         <div className="flex flex-col gap-2.5">
@@ -198,7 +198,7 @@ function DropdownPanel({ panel, onSelect }: { panel: MenuPanel; onSelect: () => 
   }
 
   return (
-    <div className="grid grid-cols-3 gap-3 bg-black p-4">
+    <div className="grid grid-cols-3 gap-3 bg-[#0B1B2E] p-4">
       {panel.items.map((item) => (
         <PanelCard key={item.title} item={item} onSelect={onSelect} />
       ))}
@@ -355,7 +355,7 @@ export default function NavbarSection2({
             viewBox="0 0 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="pointer-events-none absolute -left-[18px] top-0 z-10 text-black"
+            className="pointer-events-none absolute -left-[18px] top-0 z-10 text-[#0B1B2E]"
             aria-hidden="true"
           >
             <path d="M 20 20 L 20 0 L 0 0 C 11.046 0 20 11.046 20 20 Z" fill="currentColor" />
@@ -368,7 +368,7 @@ export default function NavbarSection2({
             viewBox="0 0 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="pointer-events-none absolute -right-[18px] top-0 z-10 text-black"
+            className="pointer-events-none absolute -right-[18px] top-0 z-10 text-[#0B1B2E]"
             aria-hidden="true"
           >
             <path d="M 0 0 L 20 0 C 8.954 0 0 8.954 0 20 Z" fill="currentColor" />
@@ -376,7 +376,7 @@ export default function NavbarSection2({
 
           {/* Central Notch Ribbon */}
           <div
-            className="relative flex w-full flex-col justify-start overflow-hidden bg-black transition-[height] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="relative flex w-full flex-col justify-start overflow-hidden bg-[#0B1B2E] transition-[height] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={{
               height: activePanel ? 275 : 48,
               borderBottomLeftRadius: "16px",
@@ -385,7 +385,7 @@ export default function NavbarSection2({
           >
             {/* Top Bar Tabs */}
             <div className="z-20 flex h-12 items-center justify-center px-6">
-              <nav className="flex w-full items-center justify-center gap-5 text-xs font-medium text-zinc-400">
+              <nav className="flex w-full items-center justify-center gap-5 text-xs font-medium text-zinc-300">
                 {navItems.map((item) =>
                   item.panelId ? (
                     <button
@@ -394,8 +394,8 @@ export default function NavbarSection2({
                       onClick={() => toggleMenu(item.panelId!)}
                       className={`flex cursor-pointer items-center gap-1.5 rounded-md px-3 py-1 outline-none transition-all hover:text-white ${
                         activeMenu === item.panelId
-                          ? "bg-zinc-800 text-white font-semibold"
-                          : "text-zinc-400"
+                          ? "bg-[#172D47] text-white font-semibold"
+                          : "text-zinc-300"
                       }`}
                       aria-expanded={activeMenu === item.panelId}
                     >
@@ -411,7 +411,7 @@ export default function NavbarSection2({
                       key={item.label}
                       href={item.href}
                       className={`px-2 py-1 transition-colors duration-200 hover:text-white ${
-                        currentPath === item.href ? "text-white font-semibold" : "text-zinc-400"
+                        currentPath === item.href ? "text-white font-semibold" : "text-zinc-300"
                       }`}
                     >
                       {item.label}
@@ -423,7 +423,7 @@ export default function NavbarSection2({
 
             {/* Expanding Dropdown Mega-Menu */}
             <div
-              className={`overflow-hidden border-t border-zinc-900 bg-black transition-all duration-200 ${
+              className={`overflow-hidden border-t border-[#172D47] bg-[#0B1B2E] transition-all duration-200 ${
                 activePanel ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-2 invisible pointer-events-none"
               }`}
             >
@@ -474,7 +474,7 @@ export default function NavbarSection2({
 
       {/* Mobile Drawer */}
       {mobileOpen && (
-        <div className="relative z-40 w-full overflow-hidden border-b border-zinc-800 bg-black text-white shadow-2xl lg:hidden animate-fade-rise">
+        <div className="relative z-40 w-full overflow-hidden border-b border-[#1E3A5F]/60 bg-[#07111F] text-white shadow-2xl lg:hidden animate-fade-rise">
           <div className="grid gap-1.5 p-4 text-xs">
             {navItems.map((item) => {
               const panel = item.panelId ? menuPanels.find((p) => p.id === item.panelId) : null;
@@ -493,7 +493,7 @@ export default function NavbarSection2({
               }
 
               return (
-                <div key={item.label} className="border-b border-zinc-900 pb-1">
+                <div key={item.label} className="border-b border-[#172D47] pb-1">
                   <button
                     type="button"
                     onClick={() => setMobileActiveMenu(isOpen ? null : item.panelId!)}
@@ -505,7 +505,7 @@ export default function NavbarSection2({
                     />
                   </button>
                   {isOpen && panel && (
-                    <div className="mx-2 mb-2 grid gap-1.5 border-l border-zinc-800 pl-3 pt-1">
+                    <div className="mx-2 mb-2 grid gap-1.5 border-l border-[#1E3A5F]/60 pl-3 pt-1">
                       {panel.items.map((panelItem) => (
                         <a
                           key={panelItem.title}
@@ -529,7 +529,7 @@ export default function NavbarSection2({
             <div className="pt-2 flex flex-col gap-2">
               <a
                 href={loginUrl}
-                className="w-full text-center py-2 text-xs font-semibold text-zinc-300 hover:text-white rounded-lg border border-zinc-800"
+                className="w-full text-center py-2 text-xs font-semibold text-zinc-300 hover:text-white rounded-lg border border-[#1E3A5F]/60 bg-[#0B1B2E]"
               >
                 App Login
               </a>

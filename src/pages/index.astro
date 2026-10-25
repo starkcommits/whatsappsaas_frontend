@@ -7,11 +7,9 @@ import ConsentMockup from '../components/mockups/ConsentMockup.astro';
 import TemplateMockup from '../components/mockups/TemplateMockup.astro';
 import CampaignMockup from '../components/mockups/CampaignMockup.astro';
 import ApiWebhooksCard from '../components/ApiWebhooksCard.astro';
-import ComparisonTable from '../components/ComparisonTable.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Hero from '../islands/Hero';
 import TabbedTour from '../islands/TabbedTour';
-import PricingCard from '../islands/PricingCard';
 import FaqAccordion from '../islands/FaqAccordion';
 import OutcomesGrid from '../islands/OutcomesGrid';
 import { homeFAQ } from '../data/faq';
@@ -209,30 +207,6 @@ const homeJsonLd = {
     </div>
   </Section>
 
-  <!-- 7. Pricing & Two-Column Comparison -->
-  <Section background="white">
-    <div class="max-w-7xl mx-auto space-y-12">
-      <div class="text-center max-w-2xl mx-auto">
-        <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-brand-700 mb-2">
-          Straightforward Pricing
-        </h2>
-        <h3 class="text-3xl sm:text-4xl font-extrabold text-ink-950 font-display tracking-tight">
-          One payment. Zero recurring fees.
-        </h3>
-        <p class="text-sm sm:text-base text-ink-500 mt-2">
-          No monthly tiers. You own the software and pay Meta directly for messaging.
-        </p>
-      </div>
-
-      <div class="max-w-4xl mx-auto">
-        <PricingCard client:visible showFullDetails={false} />
-      </div>
-
-      <div class="max-w-5xl mx-auto pt-6">
-        <ComparisonTable />
-      </div>
-    </div>
-  </Section>
 
   <!-- 8. Security & Tenancy Summary -->
   <Section background="default" class="border-y border-ink-100">

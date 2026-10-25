@@ -59,7 +59,7 @@ const HighlightCard: FC<HighlightCardProps> = ({ title, description, icon, iconN
 
   return (
     <div className={cn("group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-rotate-1 h-full flex justify-center", className)}>
-      <Card className="text-white rounded-2xl border border-white/10 bg-gradient-to-br from-[#010101] via-[#090909] to-[#010101] shadow-2xl relative backdrop-blur-xl overflow-hidden hover:border-white/25 hover:shadow-white/5 hover:shadow-3xl w-full max-w-[360px] flex flex-col justify-between h-full">
+      <Card className="text-white rounded-2xl border border-[#1E3A5F]/60 bg-gradient-to-br from-[#07111F] via-[#0B1B2E] to-[#07111F] shadow-2xl relative backdrop-blur-xl overflow-hidden hover:border-emerald-500/40 hover:shadow-emerald-950/20 w-full max-w-[360px] flex flex-col justify-between h-full">
         
         {/* Glow & animated background light artifacts */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -77,7 +77,7 @@ const HighlightCard: FC<HighlightCardProps> = ({ title, description, icon, iconN
               <div className="absolute inset-0 rounded-full border-2 border-white/20 animate-ping"></div>
               <div className="absolute inset-0 rounded-full border border-white/10 animate-pulse"></div>
 
-              <div className="p-5 sm:p-6 rounded-full backdrop-blur-lg border border-white/20 bg-gradient-to-br from-black/80 to-black/60 shadow-2xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 hover:shadow-white/20">
+              <div className="p-5 sm:p-6 rounded-full backdrop-blur-lg border border-[#1E3A5F]/80 bg-gradient-to-br from-[#10233B] to-[#07111F] shadow-2xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 hover:shadow-emerald-500/20">
                 <div className="transform group-hover:rotate-180 transition-transform duration-700 flex items-center justify-center">
                   {renderedIcon}
                 </div>
