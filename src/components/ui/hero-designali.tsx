@@ -197,13 +197,10 @@ export function renderCanvas(canvasId = "canvas") {
   function renderLoop() {
     if (!isRunning || !ctx || !canvas) return;
 
-    ctx.globalCompositeOperation = "source-over";
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Subtle WhatsApp emerald ribbon stroke
+    // Vibrant WhatsApp emerald-teal fluid ribbon stroke
     const currentHue = Math.round(colorOscillator.update());
-    ctx.strokeStyle = `hsla(${currentHue}, 85%, 38%, 0.038)`;
-    ctx.lineWidth = 7;
+    ctx.strokeStyle = `hsla(${currentHue}, 90%, 36%, 0.12)`;
+    ctx.lineWidth = 10;
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
