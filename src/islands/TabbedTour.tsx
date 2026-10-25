@@ -117,54 +117,61 @@ export default function TabbedTour({
   return (
     <section
       id={id}
-      className={`py-20 sm:py-28 bg-ink-950 text-white border-y border-ink-900 ${className}`}
-      style={{ backgroundColor: '#07111F' }}
+      className={`relative py-20 sm:py-28 bg-white text-ink-950 border-y border-zinc-200/80 overflow-hidden ${className}`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Subtle background texture */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px] opacity-35"
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-ink-900 border border-ink-800 text-xs font-mono uppercase tracking-wider text-brand-300 font-semibold mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-50 border border-brand-200/80 text-xs font-mono uppercase tracking-wider text-brand-700 font-semibold mb-3 shadow-xs">
             <span>Product Tour</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight font-display text-white">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight font-display text-ink-950">
             Explore ONO's operational workflow
           </h2>
-          <p className="text-ink-400 text-base sm:text-lg mt-3 leading-relaxed">
+          <p className="text-ink-500 text-base sm:text-lg mt-3 leading-relaxed max-w-2xl mx-auto">
             Four integrated capabilities designed for calm, transparent WhatsApp customer communication.
           </p>
         </div>
 
-        {/* WAI-ARIA Accessible Tablist with Full Keyboard Arrow Navigation */}
-        <div
-          role="tablist"
-          aria-label="Product Tour Capabilities"
-          className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10 max-w-4xl mx-auto"
-        >
-          {tourTabs.map((tab, idx) => {
-            const isSelected = activeTab === tab.id;
-            return (
-              <button
-                key={tab.id}
-                ref={(el) => { tabRefs.current[idx] = el; }}
-                role="tab"
-                id={`tour-tab-${tab.id}`}
-                aria-selected={isSelected}
-                aria-controls={`tour-panel-${tab.id}`}
-                tabIndex={isSelected ? 0 : -1}
-                onClick={() => setActiveTab(tab.id)}
-                onKeyDown={(e) => handleKeyDown(e, idx)}
-                type="button"
-                className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 border select-none cursor-pointer ${
-                  isSelected
-                    ? 'bg-ink-800 text-white border-brand-500 shadow-soft'
-                    : 'bg-ink-900/60 text-ink-400 border-ink-800 hover:text-white hover:bg-ink-900'
-                }`}
-              >
-                {tab.title}
-              </button>
-            );
-          })}
+        {/* WAI-ARIA Accessible Segmented Pill Tablist */}
+        <div className="flex justify-center mb-12 max-w-4xl mx-auto">
+          <div
+            role="tablist"
+            aria-label="Product Tour Capabilities"
+            className="inline-flex p-1.5 rounded-2xl bg-zinc-100/90 border border-zinc-200/80 shadow-xs gap-1.5 flex-wrap justify-center"
+          >
+            {tourTabs.map((tab, idx) => {
+              const isSelected = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  ref={(el) => { tabRefs.current[idx] = el; }}
+                  role="tab"
+                  id={`tour-tab-${tab.id}`}
+                  aria-selected={isSelected}
+                  aria-controls={`tour-panel-${tab.id}`}
+                  tabIndex={isSelected ? 0 : -1}
+                  onClick={() => setActiveTab(tab.id)}
+                  onKeyDown={(e) => handleKeyDown(e, idx)}
+                  type="button"
+                  className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 select-none cursor-pointer ${
+                    isSelected
+                      ? 'bg-white text-zinc-950 border border-zinc-200/90 shadow-sm'
+                      : 'text-zinc-600 hover:text-zinc-950 hover:bg-white/60 border border-transparent'
+                  }`}
+                >
+                  {tab.title}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Tab Panels */}
@@ -181,30 +188,32 @@ export default function TabbedTour({
                 tabIndex={0}
                 className={`${
                   isSelected ? 'grid' : 'hidden'
-                } grid-cols-1 lg:grid-cols-12 gap-8 items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded-2xl`}
+                } grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded-2xl`}
               >
                 {/* Left Column: Feature Highlights */}
                 <div className="lg:col-span-5 space-y-4">
-                  <span className="inline-block text-[11px] font-mono uppercase tracking-wider text-brand-300 bg-brand-950/60 border border-brand-800/80 px-2.5 py-1 rounded-md">
+                  <span className="inline-block text-[11px] font-mono uppercase tracking-wider text-brand-700 bg-brand-50 border border-brand-200/80 px-2.5 py-1 rounded-md font-semibold">
                     {tab.badge}
                   </span>
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-display">
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-ink-950 font-display tracking-tight">
                     {tab.title}
                   </h3>
-                  <p className="text-sm text-ink-300 leading-relaxed">
+                  <p className="text-sm sm:text-base text-ink-500 leading-relaxed">
                     {tab.description}
                   </p>
-                  <ul className="space-y-2 pt-2 text-xs text-ink-300">
+                  <ul className="space-y-2.5 pt-2 text-xs sm:text-sm text-ink-700">
                     {tab.features.map((item, idx) => (
-                      <li key={idx} className="flex items-center gap-2">
-                        <svg className="w-4 h-4 text-brand-400 shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                        <span>{item}</span>
+                      <li key={idx} className="flex items-center gap-2.5">
+                        <div className="size-5 rounded-full bg-brand-50 border border-brand-200/80 flex items-center justify-center text-brand-600 shrink-0">
+                          <svg className="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
+                            <path
+                              fillRule="evenodd"
+                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </div>
+                        <span className="font-medium text-ink-700">{item}</span>
                       </li>
                     ))}
                   </ul>
