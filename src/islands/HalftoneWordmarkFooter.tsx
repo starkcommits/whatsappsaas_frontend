@@ -150,88 +150,119 @@ const HWF_CSS = `
 .hwf-root canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; max-width: none; }
 .hwf-top {
   position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.35fr) repeat(4, minmax(0, 1fr));
-  gap: clamp(16px, 2.5vw, 32px); padding: clamp(28px, 4vw, 52px) clamp(20px, 4vw, 64px) 0;
-  font-family: var(--hwf-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; line-height: 1.75;
+  gap: clamp(24px, 3.5vw, 48px); padding: clamp(36px, 5vw, 64px) clamp(24px, 4.5vw, 64px) 0;
+  font-family: var(--hwf-mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; line-height: 1.75;
 }
-.hwf-brand strong { display: block; font-weight: 700; font-family: ${SANS_STACK}; font-size: 14px; letter-spacing: 0.02em; text-transform: none; color: #FFFFFF; }
-.hwf-brand span { opacity: .75; font-size: 11px; text-transform: none; display: block; margin-top: 4px; line-height: 1.5; color: var(--hwf-ink); }
-.hwf-col h3 { margin: 0 0 10px 0; font: inherit; opacity: .9; font-weight: 700; color: #FFFFFF; letter-spacing: .14em; }
-.hwf-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.hwf-brand strong { display: block; font-weight: 700; font-family: ${SANS_STACK}; font-size: 15px; letter-spacing: 0.02em; text-transform: none; color: #FFFFFF; }
+.hwf-brand span { opacity: .75; font-size: 12px; text-transform: none; display: block; margin-top: 6px; line-height: 1.6; color: var(--hwf-ink); max-width: 340px; }
+.hwf-col h3 { margin: 0 0 16px 0; font: inherit; opacity: .9; font-weight: 700; color: #FFFFFF; letter-spacing: .14em; font-size: 11.5px; }
+.hwf-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 11px; }
 .hwf-col a, .hwf-up {
   color: inherit; text-decoration: none; opacity: .78; background: none; border: 0; padding: 0;
   font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer;
   background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px;
   background-repeat: no-repeat; background-position: 0 100%; transition: opacity .25s ease, background-size .35s cubic-bezier(.2,.7,.1,1);
+  line-height: 1.5; font-size: 11.5px;
 }
 .hwf-col a:hover, .hwf-up:hover { opacity: 1; color: #FFFFFF; background-size: 100% 1px; }
 .hwf-col a:focus-visible, .hwf-up:focus-visible { outline: 2px solid #12A57D; outline-offset: 3px; opacity: 1; }
 .hwf-rule {
-  position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;
-  margin: clamp(24px, 3.5vw, 40px) clamp(20px, 4vw, 64px) 0; padding-top: 16px;
+  position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;
+  margin: clamp(36px, 5vw, 56px) clamp(24px, 4.5vw, 64px) 0; padding-top: 24px;
   border-top: 0.5px solid color-mix(in srgb, var(--hwf-ink) 18%, transparent);
   font-family: var(--hwf-mono); font-size: 11px; letter-spacing: .1em;
 }
-.hwf-legal { display: flex; flex-direction: column; gap: 6px; }
-.hwf-copy { opacity: .7; text-transform: none; }
-.hwf-disclaimer { opacity: .45; font-size: 10px; text-transform: none; max-width: 680px; line-height: 1.5; letter-spacing: 0.02em; }
+.hwf-legal { display: flex; flex-direction: column; gap: 10px; }
+.hwf-copy { opacity: .75; text-transform: none; font-size: 11px; }
+.hwf-disclaimer { opacity: .5; font-size: 10.5px; text-transform: none; max-width: 680px; line-height: 1.6; letter-spacing: 0.02em; }
 .hwf-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 @media (max-width: 960px) {
-  .hwf-top { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 24px; }
-  .hwf-brand { grid-column: 1 / -1; }
+  .hwf-top { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 36px; column-gap: 28px; }
+  .hwf-brand { grid-column: 1 / -1; margin-bottom: 8px; }
 }
 @media (max-width: 768px) {
   .hwf-root {
     height: auto !important;
-    min-height: 560px;
-    padding-bottom: clamp(60px, 14vw, 100px);
+    min-height: 600px;
+    padding-bottom: clamp(140px, 32vw, 220px);
   }
   .hwf-top {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: 24px;
-    column-gap: 16px;
-    padding: 32px clamp(16px, 4vw, 24px) 0;
+    row-gap: 36px;
+    column-gap: 28px;
+    padding: 36px clamp(20px, 5vw, 32px) 0;
   }
   .hwf-brand {
     grid-column: 1 / -1;
+    margin-bottom: 8px;
+    padding-bottom: 20px;
+    border-bottom: 0.5px solid color-mix(in srgb, var(--hwf-ink) 12%, transparent);
+  }
+  .hwf-col h3 {
+    margin-bottom: 14px;
+    font-size: 11.5px;
+  }
+  .hwf-col ul {
+    gap: 11px;
+  }
+  .hwf-col a {
+    font-size: 11.5px;
+    line-height: 1.5;
   }
   .hwf-rule {
     flex-direction: column-reverse;
     align-items: flex-start;
-    gap: 16px;
-    margin: 28px clamp(16px, 4vw, 24px) 0;
-    padding-top: 16px;
+    gap: 20px;
+    margin: 36px clamp(20px, 5vw, 32px) 0;
+    padding-top: 24px;
   }
 }
 @media (max-width: 480px) {
+  .hwf-root {
+    padding-bottom: clamp(160px, 36vw, 240px);
+  }
   .hwf-top {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: 22px;
-    column-gap: 12px;
-    padding: 28px 16px 0;
+    row-gap: 32px;
+    column-gap: 20px;
+    padding: 32px 20px 0;
+  }
+  .hwf-brand {
+    margin-bottom: 6px;
+    padding-bottom: 18px;
   }
   .hwf-brand strong {
-    font-size: 13px;
+    font-size: 14px;
   }
   .hwf-brand span {
-    font-size: 10.5px;
+    font-size: 11.5px;
+    margin-top: 6px;
+    line-height: 1.55;
   }
   .hwf-col h3 {
-    font-size: 10.5px;
-    margin-bottom: 8px;
+    font-size: 11px;
+    margin-bottom: 12px;
+    letter-spacing: .16em;
   }
   .hwf-col ul {
-    gap: 6px;
+    gap: 10px;
   }
   .hwf-col a {
-    font-size: 10.5px;
-    line-height: 1.4;
+    font-size: 11px;
+    line-height: 1.5;
   }
   .hwf-rule {
-    margin: 24px 16px 0;
-    font-size: 10px;
+    margin: 32px 20px 0;
+    padding-top: 20px;
+    font-size: 10.5px;
+    gap: 18px;
+  }
+  .hwf-legal {
+    gap: 8px;
   }
   .hwf-disclaimer {
-    font-size: 9px;
+    font-size: 9.5px;
+    line-height: 1.55;
   }
 }
 @media (prefers-reduced-motion: reduce) {
