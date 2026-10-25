@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, type ReactNode } from "react";
-import { Plus, CheckCircle2, Play, ArrowRight } from "lucide-react";
+import { CheckCircle2, Play, ArrowRight } from "lucide-react";
 import {
   renderCanvas,
   ShineBorder,
@@ -44,16 +44,16 @@ export function Hero({
         id="hero"
         className="relative pt-10 pb-16 sm:pt-16 sm:pb-24"
       >
-        {/* Subtle WhatsApp-Green Grid Pattern across the entire hero */}
+        {/* Prominent Architectural Blueprint Grid Pattern (matching Designali UI screenshot) */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 max-md:hidden top-[100px] -z-10 h-[550px] w-full bg-transparent bg-[linear-gradient(to_right,#C8EDD9_1px,transparent_1px),linear-gradient(to_bottom,#C8EDD9_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-45 [mask-image:radial-gradient(ellipse_80%_50%_at_50%_35%,#000_70%,transparent_110%)]"
+          className="pointer-events-none absolute inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,rgba(11,27,46,0.085)_1px,transparent_1px),linear-gradient(to_bottom,rgba(11,27,46,0.085)_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] [mask-image:radial-gradient(ellipse_85%_70%_at_50%_45%,#000_60%,transparent_100%)]"
         />
 
-        {/* Ambient Top Glow */}
+        {/* Ambient Top Glow (behind grid) */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[480px] w-[900px] -translate-x-1/2 rounded-full bg-gradient-to-b from-emerald-200/40 via-emerald-100/20 to-transparent blur-3xl opacity-70"
+          className="pointer-events-none absolute left-1/2 top-0 -z-20 h-[480px] w-[900px] -translate-x-1/2 rounded-full bg-gradient-to-b from-emerald-200/40 via-emerald-100/20 to-transparent blur-3xl opacity-70"
         />
 
         <div className="relative z-10 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center">
@@ -77,26 +77,26 @@ export function Hero({
             </div>
           </div>
 
-          <div className="mx-auto max-w-5xl w-full">
+          <div className="mx-auto max-w-4xl w-full">
             
-            {/* Center Hero Card with Sharp Corners and 4 Embedded Corner Pluses */}
-            <div className="relative mx-auto w-full border border-emerald-400/70 bg-white/85 py-10 px-6 sm:py-14 sm:px-12 backdrop-blur-md [mask-image:radial-gradient(800rem_96rem_at_center,white,transparent)]">
-              {/* 4 Corner Plus Icons — Exactly Embedded on the 90-degree Corner Vertices */}
-              <Plus
-                strokeWidth={4}
-                className="text-emerald-500 absolute -left-5 -top-5 h-10 w-10 z-20 pointer-events-none"
+            {/* Center Hero Card with Sharp Corners and 4 Framing Corner Brackets */}
+            <div className="relative mx-auto w-full border border-zinc-200/90 bg-white/95 py-10 px-6 sm:py-14 sm:px-12 backdrop-blur-md shadow-sm">
+              {/* 4 Corner Framing Brackets (Exact Designali UI corner markers matching screenshot) */}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -left-[2px] -top-[2px] h-6 w-6 border-l-[3.5px] border-t-[3.5px] border-[#0B1B2E]"
               />
-              <Plus
-                strokeWidth={4}
-                className="text-emerald-500 absolute -bottom-5 -left-5 h-10 w-10 z-20 pointer-events-none"
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-[2px] -top-[2px] h-6 w-6 border-r-[3.5px] border-t-[3.5px] border-[#0B1B2E]"
               />
-              <Plus
-                strokeWidth={4}
-                className="text-emerald-500 absolute -right-5 -top-5 h-10 w-10 z-20 pointer-events-none"
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -left-[2px] -bottom-[2px] h-6 w-6 border-l-[3.5px] border-b-[3.5px] border-[#0B1B2E]"
               />
-              <Plus
-                strokeWidth={4}
-                className="text-emerald-500 absolute -bottom-5 -right-5 h-10 w-10 z-20 pointer-events-none"
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-[2px] -bottom-[2px] h-6 w-6 border-r-[3.5px] border-b-[3.5px] border-[#0B1B2E]"
               />
 
               <h1 className="flex flex-col text-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.08] text-ink-950 font-display">
