@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
-import Button from '../components/Button.astro';
 import ProductFrame from '../components/ProductFrame.astro';
 import InboxMockup from '../components/mockups/InboxMockup.astro';
 import ConsentMockup from '../components/mockups/ConsentMockup.astro';
@@ -10,8 +9,7 @@ import CampaignMockup from '../components/mockups/CampaignMockup.astro';
 import ApiWebhooksCard from '../components/ApiWebhooksCard.astro';
 import ComparisonTable from '../components/ComparisonTable.astro';
 import CtaBand from '../components/CtaBand.astro';
-import HeroSampleConversations from '../islands/HeroSampleConversations';
-import HeroRotator from '../islands/HeroRotator';
+import Hero from '../islands/Hero';
 import TabbedTour from '../islands/TabbedTour';
 import PricingCard from '../islands/PricingCard';
 import FaqAccordion from '../islands/FaqAccordion';
@@ -64,127 +62,17 @@ const homeJsonLd = {
   description={siteConfig.description}
   jsonLd={homeJsonLd}
 >
-  <!-- 1. Hero Section -->
-  <section class="relative pt-12 pb-18 sm:pt-20 sm:pb-24 border-b border-emerald-100/80 bg-gradient-to-b from-[#E7F8EE] via-[#F2FAF5] to-white overflow-hidden">
-    <!-- Subtle Grid Background matching WhatsApp theme -->
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#C8EDD9_1px,transparent_1px),linear-gradient(to_bottom,#C8EDD9_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-35 pointer-events-none"></div>
-
-    <!-- Animated Sample Conversation Chips in Background (React Island) -->
-    <HeroSampleConversations client:idle />
-
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-        
-        <!-- Left Hero Copy (Core ONO Value Proposition with Animated Rotator) -->
-        <div class="lg:col-span-6 space-y-6 text-left">
-          
-          <!-- One-Time License & Zero Markup Badge -->
-          <div>
-            <Button
-              href="/pricing"
-              variant="secondary"
-              size="sm"
-              class="gap-2.5 rounded-full px-4 text-xs font-mono font-medium text-emerald-950 bg-white/95 hover:bg-white border border-emerald-200/90 shadow-soft"
-            >
-              <span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
-              <span>One-time license: ${lifetimePlan.priceUSD} ({lifetimePlan.priceINRFormatted}) • Zero message markup</span>
-              <svg class="w-3.5 h-3.5 text-emerald-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14"></path>
-                <path d="M12 5l7 7-7 7"></path>
-              </svg>
-            </Button>
-          </div>
-
-          <!-- Headline with Animated Rotating Core Capabilities -->
-          <div class="flex gap-4 flex-col">
-            <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-[2.2rem] xl:text-[2.5rem] font-extrabold text-ink-950 font-display tracking-tight leading-[1.18]">
-              <span class="block text-ink-950">Every customer conversation on WhatsApp,</span>
-              <HeroRotator client:load />
-            </h1>
-
-            <!-- Subheading paragraph grounded in AGENTS.md -->
-            <p class="text-base sm:text-lg leading-relaxed tracking-tight text-ink-500 max-w-2xl font-normal">
-              ONO helps your team connect your business WhatsApp number via Meta Cloud API, broadcast template campaigns to contacts who agreed, and reply together from a shared team inbox. Pay once for lifetime access. No monthly subscription, and zero per-message markup.
-            </p>
-          </div>
-
-          <!-- Primary & Secondary CTAs -->
-          <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
-            <Button
-              href={siteConfig.links.signup}
-              variant="primary"
-              size="lg"
-              class="gap-3 font-semibold shadow-soft"
-              isAppCta={true}
-            >
-              <span>Get lifetime access (${lifetimePlan.priceUSD})</span>
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14"></path>
-                <path d="M12 5l7 7-7 7"></path>
-              </svg>
-            </Button>
-
-            <Button
-              href="#how-it-works"
-              variant="secondary"
-              size="lg"
-              class="gap-3 font-semibold shadow-soft"
-            >
-              <span>See how it works</span>
-              <svg class="w-4 h-4 text-ink-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polygon points="10 8 16 12 10 16 10 8"></polygon>
-              </svg>
-            </Button>
-          </div>
-
-          <!-- 4-Item Fact Strip with Verified Icons -->
-          <div class="pt-6 border-t border-ink-100 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs text-ink-700">
-            <div class="flex items-center gap-1.5 font-medium">
-              <svg class="w-4 h-4 text-emerald-600 shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" />
-              </svg>
-              <span>Pay once</span>
-            </div>
-            <div class="flex items-center gap-1.5 font-medium">
-              <svg class="w-4 h-4 text-emerald-600 shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" />
-              </svg>
-              <span>No message markup</span>
-            </div>
-            <div class="flex items-center gap-1.5 font-medium">
-              <svg class="w-4 h-4 text-emerald-600 shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" />
-              </svg>
-              <span>7-day refund</span>
-            </div>
-            <div class="flex items-center gap-1.5 font-medium">
-              <svg class="w-4 h-4 text-emerald-600 shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" />
-              </svg>
-              <span>Consent built in</span>
-            </div>
-          </div>
-
-          <p class="text-xs text-ink-500 font-mono">
-            Built on Meta's WhatsApp Business Platform (Cloud API).
-          </p>
-
-        </div>
-
-        <!-- Right Hero Visual with Layered ProductFrame -->
-        <div class="lg:col-span-6 relative">
-          
-          <!-- Main Hero Inbox ProductFrame -->
-          <ProductFrame path="/whatsapp/inbox/+919876543210/" caption="Sample data • ONO dashboard inbox preview" bodyClass="p-0">
-            <InboxMockup class="w-full h-[430px] sm:h-[440px] border-0 shadow-none rounded-none" compactSidebar={true} />
-          </ProductFrame>
-
-        </div>
-
-      </div>
-    </div>
-  </section>
+  <!-- 1. Hero Section (Designali UI with WhatsApp Green theme, fluid canvas, corner pluses, TypeWriter & ShineBorder) -->
+  <Hero
+    client:load
+    signupUrl={siteConfig.links.signup}
+    priceUSD={lifetimePlan.priceUSD}
+    priceINR={lifetimePlan.priceINRFormatted}
+  >
+    <ProductFrame path="/whatsapp/inbox/+919876543210/" caption="Sample data • ONO dashboard inbox preview" bodyClass="p-0">
+      <InboxMockup class="w-full h-[400px] sm:h-[460px] border-0 shadow-none rounded-none" compactSidebar={true} />
+    </ProductFrame>
+  </Hero>
 
   <!-- 2. "From scattered chats to one workflow" (3 Outcome Cards) -->
   <Section background="white">

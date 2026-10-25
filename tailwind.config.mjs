@@ -80,12 +80,18 @@ export default {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0px' },
         },
+        'shine-pulse': {
+          '0%': { 'background-position': '0% 0%' },
+          '50%': { 'background-position': '100% 100%' },
+          '100%': { 'background-position': '0% 0%' },
+        },
       },
       animation: {
         'fade-rise': 'fade-rise 0.4s ease-out forwards',
         marquee: 'marquee var(--duration, 40s) linear infinite',
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'shine-pulse': 'shine-pulse var(--shine-pulse-duration, 14s) infinite linear',
       },
     },
   },

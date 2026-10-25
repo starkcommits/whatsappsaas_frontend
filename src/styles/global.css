@@ -107,6 +107,23 @@ details summary::-webkit-details-marker {
   animation-direction: reverse !important;
 }
 
+/* Shine Border Pulse Animation */
+@keyframes shine-pulse {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+.animate-shine-pulse {
+  animation: shine-pulse var(--shine-pulse-duration, 14s) infinite linear;
+}
+
 /* Shimmer Highlight Animation */
 @keyframes shimmer {
   0% { background-position: 200% 0; }
