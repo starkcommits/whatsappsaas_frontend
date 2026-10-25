@@ -118,10 +118,10 @@ export function Hero({
               </div>
             </div>
 
-            {/* Static Supporting Headline */}
-            <h2 className="mt-8 text-2xl sm:text-3xl md:text-4xl font-extrabold text-ink-950 font-display tracking-tight text-center">
+            {/* Static Supporting Headline - Guaranteed in one line */}
+            <h2 className="mt-8 w-full text-base min-[400px]:text-lg sm:text-2xl md:text-[1.65rem] lg:text-[2.1rem] font-extrabold text-ink-950 font-display tracking-tight text-center whitespace-nowrap">
               <span>Calm, reliable WhatsApp operations for </span>
-              <span className="text-emerald-600 font-extrabold whitespace-nowrap">growing teams</span>
+              <span className="text-emerald-600 font-extrabold">growing teams</span>
             </h2>
 
             {/* Supporting Subtitle with TypeWriter Animation (Stable container preventing CLS) */}
