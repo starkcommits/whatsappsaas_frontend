@@ -99,12 +99,10 @@ export function Hero({
                 className="pointer-events-none absolute -right-[2px] -bottom-[2px] h-6 w-6 border-r-[3.5px] border-b-[3.5px] border-[#0B1B2E]"
               />
 
-              <h1 className="flex flex-col text-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.08] text-ink-950 font-display">
-                <span>
-                  Your complete platform for{" "}
-                  <span className="text-emerald-600 block sm:inline bg-gradient-to-r from-emerald-600 via-[#128C7E] to-emerald-700 bg-clip-text text-transparent">
-                    WhatsApp Business.
-                  </span>
+              <h1 className="flex flex-col items-center text-center text-3xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-extrabold tracking-tight leading-[1.12] text-ink-950 font-display">
+                <span className="block">Your complete platform for</span>
+                <span className="block whitespace-nowrap text-emerald-600 bg-gradient-to-r from-emerald-600 via-[#128C7E] to-emerald-700 bg-clip-text text-transparent">
+                  WhatsApp Business.
                 </span>
               </h1>
 
