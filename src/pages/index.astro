@@ -68,26 +68,7 @@ const homeJsonLd = {
     priceINR={lifetimePlan.priceINRFormatted}
   />
 
-  <!-- 2. "From scattered chats to one workflow" (3 Outcome Cards) -->
-  <Section background="white">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-        <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-brand-700 mb-2">
-          Operational Clarity
-        </h2>
-        <h3 class="text-3xl sm:text-4xl font-extrabold text-ink-950 font-display tracking-tight">
-          From scattered chats to one workflow
-        </h3>
-        <p class="text-sm sm:text-base text-ink-500 mt-3 leading-relaxed">
-          Centralize your incoming messages, template broadcasts, and contact lists into one structured workspace.
-        </p>
-      </div>
-
-      <OutcomesGrid client:visible />
-    </div>
-  </Section>
-
-  <!-- 3. Dark Ink Section: Tabbed Tour (React Island via Radix Tabs with ARIA Keyboard Support) -->
+  <!-- 2. Dark Ink Section: Tabbed Tour (React Island via Radix Tabs with ARIA Keyboard Support) -->
   <TabbedTour client:visible id="tour">
     <div slot="inbox">
       <ProductFrame path="/whatsapp/inbox/+919876543210/" caption="Sample data • Live inbox mockup">
@@ -110,6 +91,25 @@ const homeJsonLd = {
       </ProductFrame>
     </div>
   </TabbedTour>
+
+  <!-- 3. Operational Clarity: "From scattered chats to one workflow" (3 Outcome Cards) -->
+  <Section background="white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+        <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-brand-700 mb-2">
+          Operational Clarity
+        </h2>
+        <h3 class="text-3xl sm:text-4xl font-extrabold text-ink-950 font-display tracking-tight">
+          From scattered chats to one workflow
+        </h3>
+        <p class="text-sm sm:text-base text-ink-500 mt-3 leading-relaxed">
+          Centralize your incoming messages, template broadcasts, and contact lists into one structured workspace.
+        </p>
+      </div>
+
+      <OutcomesGrid client:visible />
+    </div>
+  </Section>
 
   <!-- 4. API & Webhooks Strip (Zero Logos) -->
   <ApiWebhooksCard />
