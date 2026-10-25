@@ -19,27 +19,51 @@ import { siteConfig } from '../config/site';
 const steps = [
   {
     step: '01',
-    title: 'Connect number',
-    desc: 'Link your business phone number via Meta Embedded Signup in a few clicks.',
-    icon: 'connect',
+    title: 'Create workspace',
+    desc: 'Set up your organization, assign Owner, Admin, or Agent roles, and enable 2FA security.',
+    icon: 'workspace',
   },
   {
     step: '02',
-    title: 'Import contacts with consent',
-    desc: 'Upload CSV lists with verified opt-in sources and assign targeted audience tags.',
-    icon: 'contacts',
+    title: 'Connect phone number',
+    desc: 'Link your business number via Meta Embedded Signup directly to your WABA in minutes.',
+    icon: 'connect',
   },
   {
     step: '03',
-    title: 'Send template campaigns',
-    desc: 'Compose approved Meta templates, add dynamic variables, and schedule delivery.',
-    icon: 'campaign',
+    title: 'Import contacts & consent',
+    desc: 'Upload CSV lists with verified opt-in origins, custom labels, and automated STOP handling.',
+    icon: 'contacts',
   },
   {
     step: '04',
+    title: 'Draft & approve templates',
+    desc: 'Compose rich outbound templates with variables and CTA buttons, synced live with Meta.',
+    icon: 'templates',
+  },
+  {
+    step: '05',
+    title: 'Build WhatsApp Flows',
+    desc: 'Deploy native in-chat interactive forms for lead capture, appointments, and feedback.',
+    icon: 'flows',
+  },
+  {
+    step: '06',
+    title: 'Schedule campaigns',
+    desc: 'Choose approved templates, filter audience segments, schedule broadcasts, and track delivery.',
+    icon: 'campaigns',
+  },
+  {
+    step: '07',
     title: 'Reply from shared inbox',
-    desc: 'Triage customer inquiries, assign chats to teammates, and answer with canned replies.',
+    desc: 'Triage customer inquiries, assign chats to teammates, and reply fast with canned snippets.',
     icon: 'inbox',
+  },
+  {
+    step: '08',
+    title: 'Connect API & webhooks',
+    desc: 'Integrate external CRM workflows and receive real-time message events via REST webhooks.',
+    icon: 'api',
   },
 ];
 
@@ -150,91 +174,125 @@ const homeJsonLd = {
   <!-- 4. API & Webhooks Strip (Zero Logos) -->
   <ApiWebhooksCard />
 
-  <!-- 5. How It Works Timeline (4 Steps) -->
+  <!-- 5. How It Works (8-Step Complete Onboarding) -->
   <Section id="how-it-works" background="white" class="border-b border-ink-100">
     <div class="max-w-7xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
         <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-brand-700 mb-2">
-          Simple 4-Step Process
+          Complete Onboarding & Operations
         </h2>
         <h3 class="text-3xl sm:text-4xl font-extrabold text-ink-950 font-display tracking-tight">
           How ONO works
         </h3>
         <p class="text-sm sm:text-base text-ink-500 mt-2">
-          From connecting your number to broadcasting your first campaign.
+          From workspace setup and Meta number registration to campaigns and shared inbox triage.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 relative z-10 max-w-6xl mx-auto border border-zinc-200/90 rounded-2xl bg-white shadow-soft overflow-hidden divide-y md:divide-y-0 md:divide-x divide-zinc-200/80">
-        {steps.map((item) => (
-          <div class="flex flex-col py-10 px-6 sm:px-8 relative group/feature transition-all duration-300">
-            {/* Hover subtle background gradient highlight */}
-            <div
-              aria-hidden="true"
-              class="opacity-0 group-hover/feature:opacity-100 transition duration-300 absolute inset-0 h-full w-full bg-gradient-to-t from-emerald-50/50 via-zinc-50/20 to-transparent pointer-events-none"
-            />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 relative z-10 max-w-6xl mx-auto border border-zinc-200/90 rounded-2xl bg-white shadow-soft overflow-hidden">
+        {steps.map((item, index) => {
+          const isLastMobile = index === steps.length - 1;
+          const mobileBorder = !isLastMobile ? 'border-b border-zinc-200/80' : '';
+          const tabletBorderR = index % 2 === 0 ? 'md:border-r md:border-zinc-200/80' : 'md:border-r-0';
+          const tabletBorderB = index < 6 ? 'md:border-b md:border-zinc-200/80' : 'md:border-b-0';
+          const desktopBorderR = index % 4 !== 3 ? 'lg:border-r lg:border-zinc-200/80' : 'lg:border-r-0';
+          const desktopBorderB = index < 4 ? 'lg:border-b lg:border-zinc-200/80' : 'lg:border-b-0';
 
-            {/* Top row: Minimalist Icon + Step Number */}
-            <div class="mb-5 relative z-10 flex items-center justify-between text-zinc-500 group-hover/feature:text-emerald-600 transition-colors">
-              <div class="p-2 rounded-lg bg-zinc-50 border border-zinc-100 group-hover/feature:bg-emerald-50 group-hover/feature:border-emerald-100 transition-colors">
-                {item.icon === 'connect' && (
-                  <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-                  </svg>
-                )}
-                {item.icon === 'contacts' && (
-                  <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                    <circle cx="9" cy="7" r="4" />
-                    <polyline points="16 11 18 13 22 9" />
-                  </svg>
-                )}
-                {item.icon === 'campaign' && (
-                  <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 2L11 13"/>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                  </svg>
-                )}
-                {item.icon === 'inbox' && (
-                  <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/>
-                    <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>
-                  </svg>
-                )}
-              </div>
-              <span class="text-xs font-mono font-bold text-zinc-400 group-hover/feature:text-emerald-700 transition-colors">
-                {item.step}
-              </span>
-            </div>
-
-            {/* Title with Left Accent Bar (Aceternity UI / 21st.dev signature hover effect) */}
-            <div class="relative z-10 mb-2">
+          return (
+            <div class={`flex flex-col py-10 px-6 sm:px-8 relative group/feature transition-all duration-300 ${mobileBorder} ${tabletBorderR} ${tabletBorderB} ${desktopBorderR} ${desktopBorderB}`}>
+              {/* Hover subtle background gradient highlight */}
               <div
                 aria-hidden="true"
-                class="absolute -left-6 sm:-left-8 inset-y-0 h-6 group-hover/feature:h-8 w-1 rounded-tr-full rounded-br-full bg-zinc-200 group-hover/feature:bg-emerald-600 transition-all duration-200 origin-center"
+                class={`opacity-0 group-hover/feature:opacity-100 transition duration-300 absolute inset-0 h-full w-full pointer-events-none ${
+                  index < 4
+                    ? 'bg-gradient-to-t from-emerald-50/50 via-zinc-50/20 to-transparent'
+                    : 'bg-gradient-to-b from-emerald-50/50 via-zinc-50/20 to-transparent'
+                }`}
               />
-              <h4 class="text-base sm:text-lg font-bold text-ink-950 font-display group-hover/feature:translate-x-1.5 transition-transform duration-200 inline-block">
-                {item.title}
-              </h4>
+
+              {/* Top row: Minimalist Icon + Step Number */}
+              <div class="mb-5 relative z-10 flex items-center justify-between text-zinc-500 group-hover/feature:text-emerald-600 transition-colors">
+                <div class="p-2 rounded-lg bg-zinc-50 border border-zinc-100 group-hover/feature:bg-emerald-50 group-hover/feature:border-emerald-100 transition-colors">
+                  {item.icon === 'workspace' && (
+                    <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect width="18" height="18" x="3" y="3" rx="2" />
+                      <path d="M3 9h18" />
+                      <path d="M9 21V9" />
+                    </svg>
+                  )}
+                  {item.icon === 'connect' && (
+                    <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                    </svg>
+                  )}
+                  {item.icon === 'contacts' && (
+                    <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                      <polyline points="16 11 18 13 22 9" />
+                    </svg>
+                  )}
+                  {item.icon === 'templates' && (
+                    <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                      <polyline points="14 2 14 8 20 8" />
+                      <line x1="8" y1="13" x2="16" y2="13" />
+                      <line x1="8" y1="17" x2="12" y2="17" />
+                    </svg>
+                  )}
+                  {item.icon === 'flows' && (
+                    <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect width="6" height="6" x="3" y="3" rx="1" />
+                      <rect width="6" height="6" x="15" y="3" rx="1" />
+                      <rect width="6" height="6" x="9" y="15" rx="1" />
+                      <path d="M6 9v3a3 3 0 0 0 3 3h3" />
+                      <path d="M18 9v3a3 3 0 0 1-3 3h-3" />
+                    </svg>
+                  )}
+                  {item.icon === 'campaigns' && (
+                    <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 2L11 13"/>
+                      <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                  )}
+                  {item.icon === 'inbox' && (
+                    <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/>
+                      <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>
+                    </svg>
+                  )}
+                  {item.icon === 'api' && (
+                    <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="16 18 22 12 16 6" />
+                      <polyline points="8 6 2 12 8 18" />
+                      <line x1="12" y1="2" x2="12" y2="22" stroke-dasharray="2 2" />
+                    </svg>
+                  )}
+                </div>
+                <span class="text-xs font-mono font-bold text-zinc-400 group-hover/feature:text-emerald-700 transition-colors">
+                  {item.step}
+                </span>
+              </div>
+
+              {/* Title with Left Accent Bar (Aceternity UI / 21st.dev signature hover effect) */}
+              <div class="relative z-10 mb-2">
+                <div
+                  aria-hidden="true"
+                  class="absolute -left-6 sm:-left-8 inset-y-0 h-6 group-hover/feature:h-8 w-1 rounded-tr-full rounded-br-full bg-zinc-200 group-hover/feature:bg-emerald-600 transition-all duration-200 origin-center"
+                />
+                <h4 class="text-base sm:text-lg font-bold text-ink-950 font-display group-hover/feature:translate-x-1.5 transition-transform duration-200 inline-block">
+                  {item.title}
+                </h4>
+              </div>
+
+              {/* Description */}
+              <p class="text-xs sm:text-sm text-ink-500 leading-relaxed max-w-xs relative z-10 group-hover/feature:text-ink-700 transition-colors">
+                {item.desc}
+              </p>
             </div>
-
-            {/* Description */}
-            <p class="text-xs sm:text-sm text-ink-500 leading-relaxed max-w-xs relative z-10 group-hover/feature:text-ink-700 transition-colors">
-              {item.desc}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      <div class="text-center mt-10">
-        <a
-          href="/how-it-works"
-          class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-700 hover:text-brand-800 underline underline-offset-4"
-        >
-          <span>Read detailed onboarding guide</span>
-          <span>→</span>
-        </a>
+          );
+        })}
       </div>
     </div>
   </Section>
