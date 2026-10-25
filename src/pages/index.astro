@@ -15,6 +15,7 @@ import HeroRotator from '../islands/HeroRotator';
 import TabbedTour from '../islands/TabbedTour';
 import PricingCard from '../islands/PricingCard';
 import FaqAccordion from '../islands/FaqAccordion';
+import OutcomesGrid from '../islands/OutcomesGrid';
 import { homeFAQ } from '../data/faq';
 import { lifetimePlan } from '../data/plans';
 import { siteConfig } from '../config/site';
@@ -39,24 +40,6 @@ const steps = [
     step: '04',
     title: 'Reply from shared inbox',
     desc: 'Triage customer inquiries, assign chats to teammates, and answer with canned replies.',
-  },
-];
-
-const outcomes = [
-  {
-    title: 'Never lose track of a customer conversation',
-    desc: 'Replace chaotic personal phones with a shared workspace. Multiple agents work the inbox simultaneously, assign chats, and leave private internal notes.',
-    tag: 'Shared Inbox',
-  },
-  {
-    title: 'Broadcast campaigns without getting banned',
-    desc: 'Deliver approved Meta message templates only to contacts with verified opt-in. Inbound STOP replies automatically unsubscribe contacts from future broadcasts.',
-    tag: 'Consent Ledger',
-  },
-  {
-    title: 'Protect your margins with zero markup',
-    desc: 'Pay a one-time software license. Connect directly to Meta\'s Cloud API and pay Meta at their baseline rates, with zero middleman per-message fees.',
-    tag: 'Direct Meta Rates',
   },
 ];
 
@@ -218,23 +201,7 @@ const homeJsonLd = {
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        {outcomes.map((item) => (
-          <div class="rounded-2xl border border-ink-100 bg-ink-50/50 p-6 sm:p-8 flex flex-col justify-between shadow-soft hover:border-ink-200 transition-all duration-150">
-            <div class="space-y-3">
-              <span class="text-[10px] font-mono font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-white text-ink-700 border border-ink-100">
-                {item.tag}
-              </span>
-              <h4 class="text-xl font-bold text-ink-950 font-display leading-snug">
-                {item.title}
-              </h4>
-              <p class="text-xs sm:text-sm text-ink-500 leading-relaxed">
-                {item.desc}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
+      <OutcomesGrid client:visible />
     </div>
   </Section>
 

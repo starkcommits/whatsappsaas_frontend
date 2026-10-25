@@ -5,25 +5,8 @@ import Icon from '../components/Icon.astro';
 import CtaBand from '../components/CtaBand.astro';
 import ProductFrame from '../components/ProductFrame.astro';
 import InboxMockup from '../components/mockups/InboxMockup.astro';
+import PrerequisitesGrid from '../islands/PrerequisitesGrid';
 import { siteConfig } from '../config/site';
-
-const prerequisites = [
-  {
-    title: 'A Meta Business Account',
-    desc: 'A verified or standard Meta Business Account (business.facebook.com). If you run Facebook or Instagram ads, you likely already have one.',
-    icon: 'connect',
-  },
-  {
-    title: 'A Dedicated Phone Number',
-    desc: 'A mobile or landline number that can receive an SMS or voice OTP code. It must not currently be registered on the consumer WhatsApp or WhatsApp Business mobile app.',
-    icon: 'inbox',
-  },
-  {
-    title: 'A Valid Payment Method in Meta',
-    desc: 'You link your own credit or debit card directly inside Meta Business Manager so Meta can bill you at their standard conversation rates with zero markup.',
-    icon: 'tag',
-  },
-];
 
 const onboardingSteps = [
   {
@@ -100,8 +83,8 @@ const onboardingSteps = [
 
   <!-- Prerequisites Checklist -->
   <Section background="white">
-    <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-10">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-10 sm:mb-14">
         <h2 class="text-xs font-bold uppercase tracking-wider text-brand-700 mb-1">
           What you need to start
         </h2>
@@ -113,30 +96,14 @@ const onboardingSteps = [
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {prerequisites.map((item) => (
-          <div class="bg-surface-50 border border-surface-200 rounded-2xl p-6 flex flex-col justify-between">
-            <div>
-              <div class="w-10 h-10 rounded-xl bg-brand-50 border border-brand-200 text-brand-700 flex items-center justify-center mb-4">
-                <Icon name={item.icon} class="w-5 h-5" />
-              </div>
-              <h4 class="text-base font-bold text-surface-900 mb-2">
-                {item.title}
-              </h4>
-              <p class="text-xs sm:text-sm text-surface-600 leading-relaxed">
-                {item.desc}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
+      <PrerequisitesGrid client:visible />
     </div>
   </Section>
 
   <!-- Detailed Onboarding Steps -->
   <Section background="default">
     <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-14">
+      <div class="text-center mb-12">
         <h2 class="text-xs font-bold uppercase tracking-wider text-brand-700 mb-1">
           Step-by-Step Flow
         </h2>
@@ -145,7 +112,7 @@ const onboardingSteps = [
         </h3>
       </div>
 
-      <div class="space-y-8 relative before:absolute before:inset-0 before:left-8 md:before:left-1/2 before:w-0.5 before:bg-surface-200 before:hidden md:before:block">
+      <div class="space-y-6 max-w-3xl mx-auto">
         {onboardingSteps.map((step) => (
           <div class="bg-white rounded-2xl border border-surface-200 p-6 sm:p-8 shadow-card hover:border-brand-300 transition-all">
             <div class="flex items-center gap-3 mb-3">

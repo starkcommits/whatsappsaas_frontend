@@ -1,26 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
-import Icon from '../components/Icon.astro';
+import PrinciplesGrid from '../islands/PrinciplesGrid';
 import { siteConfig } from '../config/site';
-
-const values = [
-  {
-    title: 'One-Time Licensing',
-    desc: 'Small businesses do not need another recurring software subscription for basic team inbox and broadcast campaigns.',
-    icon: 'check',
-  },
-  {
-    title: 'Direct Meta Cloud API',
-    desc: 'All messaging runs on Meta\'s WhatsApp Business Platform (Cloud API) via your own Business Manager. Zero scrapers or unofficial workarounds.',
-    icon: 'connect',
-  },
-  {
-    title: 'Customer Data Ownership',
-    desc: 'Your contacts and conversation records belong to you. We provide export and deletion tools so you maintain complete control.',
-    icon: 'lock',
-  },
-];
 ---
 
 <Layout
@@ -79,21 +61,7 @@ const values = [
         </h3>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-        {values.map((v) => (
-          <div class="p-6 rounded-2xl bg-white border border-ink-100 shadow-soft space-y-3">
-            <div class="w-10 h-10 rounded-xl bg-brand-50 border border-brand-100 text-brand-700 flex items-center justify-center">
-              <Icon name={v.icon} class="w-5 h-5" />
-            </div>
-            <h4 class="text-base font-bold text-ink-950 font-display">
-              {v.title}
-            </h4>
-            <p class="text-xs sm:text-sm text-ink-500 leading-relaxed">
-              {v.desc}
-            </p>
-          </div>
-        ))}
-      </div>
+      <PrinciplesGrid client:visible />
     </div>
   </Section>
 </Layout>
