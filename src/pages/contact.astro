@@ -1,8 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
-import Button from '../components/Button.astro';
-import Icon from '../components/Icon.astro';
 import { siteConfig } from '../config/site';
 
 const contactEndpoint = siteConfig.contactEndpoint;
@@ -13,7 +11,7 @@ const fallbackMailto = `mailto:${siteConfig.supportEmail}?subject=Inquiry%20abou
   title={`Contact & Support — ${siteConfig.name}`}
   description={`Get in touch with the ${siteConfig.name} team at ${siteConfig.legalName}. Questions about features, lifetime license, or onboarding support.`}
 >
-  <section class="py-16 md:py-24 bg-gradient-to-b from-[#E7F8EE] via-[#F2FAF5] to-white border-b border-emerald-100/70">
+  <section class="py-14 md:py-20 bg-gradient-to-b from-[#E7F8EE] via-[#F2FAF5] to-white border-b border-emerald-100/70">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
       <div class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-brand-700 bg-brand-50 border border-brand-100 px-3.5 py-1 rounded-full mb-4">
         <span>Support & Inquiries</span>
@@ -21,131 +19,235 @@ const fallbackMailto = `mailto:${siteConfig.supportEmail}?subject=Inquiry%20abou
       <h1 class="text-3xl sm:text-5xl font-extrabold text-ink-950 tracking-tight font-display leading-tight">
         Contact {siteConfig.name} Support
       </h1>
-      <p class="text-base sm:text-lg text-ink-500 mt-4 leading-relaxed">
+      <p class="text-base sm:text-lg text-ink-500 mt-3 leading-relaxed">
         Questions before purchasing lifetime access or assistance with Meta Business onboarding? Reach out to our team directly.
       </p>
     </div>
   </section>
 
-  <Section background="white">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-5xl mx-auto">
-      <!-- Left: Contact Information & Legal Entity -->
-      <div class="lg:col-span-5 space-y-6">
-        <div>
-          <h2 class="text-xl sm:text-2xl font-bold text-ink-950 font-display mb-2">
-            Company & Office Details
-          </h2>
-          <p class="text-sm text-ink-500 leading-relaxed">
-            {siteConfig.name} is operated by {siteConfig.legalName}. We provide email support to all customers.
-          </p>
-        </div>
-
-        <div class="space-y-4 pt-4 border-t border-ink-100 text-sm">
-          <div class="p-4 bg-ink-50 rounded-2xl border border-ink-100">
-            <span class="text-xs font-mono font-semibold uppercase tracking-wider text-ink-500 block mb-1">Support Email</span>
-            <a href={`mailto:${siteConfig.supportEmail}`} class="text-base font-bold text-brand-700 hover:underline break-all">
-              {siteConfig.supportEmail}
-            </a>
-            <p class="text-xs text-ink-500 mt-1">Typical response time: under 24 business hours.</p>
-          </div>
-
-          <div class="p-4 bg-ink-50 rounded-2xl border border-ink-100">
-            <span class="text-xs font-mono font-semibold uppercase tracking-wider text-ink-500 block mb-1">Company Legal Name</span>
-            <p class="text-sm font-bold text-ink-950">{siteConfig.legalName}</p>
-          </div>
-
-          <div class="p-4 bg-ink-50 rounded-2xl border border-ink-100">
-            <span class="text-xs font-mono font-semibold uppercase tracking-wider text-ink-500 block mb-1">Registered Address</span>
-            <p class="text-sm text-ink-800 leading-relaxed">{siteConfig.address}</p>
-          </div>
-
-          <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-200 text-xs text-emerald-900 leading-relaxed">
-            <strong class="font-bold block mb-1">7-Day Guarantee Support:</strong>
-            Refund requests can be emailed directly to <a href={`mailto:${siteConfig.supportEmail}`} class="font-bold underline">{siteConfig.supportEmail}</a> with your order transaction ID for swift processing.
-          </div>
-        </div>
-      </div>
-
-      <!-- Right: Contact Form -->
-      <div class="lg:col-span-7 bg-white rounded-3xl border border-surface-200 p-6 sm:p-8 shadow-card">
-        <h3 class="text-xl font-bold text-surface-900 mb-1">
-          Send Us a Message
-        </h3>
-        <p class="text-xs text-surface-500 mb-6">
-          Fill out the form below or write directly to <a href={`mailto:${siteConfig.supportEmail}`} class="text-brand-600 underline">{siteConfig.supportEmail}</a>.
-        </p>
-
-        <form
-          id="contact-form"
-          action={contactEndpoint || fallbackMailto}
-          method={contactEndpoint ? 'POST' : 'GET'}
-          class="space-y-4"
+  <Section background="white" class="py-12 sm:py-16">
+    <div class="max-w-5xl mx-auto px-2 sm:px-4">
+      {/* 21st.dev @efferd/contact-card Component */}
+      <div class="relative bg-[#111317] border border-zinc-800 rounded-2xl shadow-2xl text-white">
+        {/* 4 Corner Plus Crosshairs matching 21st.dev component */}
+        <svg
+          class="absolute -top-3 -left-3 h-6 w-6 text-zinc-400 select-none pointer-events-none"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
         >
-          <!-- Spam Honeypot Field (Hidden from humans) -->
-          <div style="display: none !important;" aria-hidden="true">
-            <label for="honeypot_website">Do not fill this field</label>
-            <input type="text" id="honeypot_website" name="honeypot_website" tabindex="-1" autocomplete="off" />
+          <path d="M5 12h14" />
+          <path d="M12 5v14" />
+        </svg>
+        <svg
+          class="absolute -top-3 -right-3 h-6 w-6 text-zinc-400 select-none pointer-events-none"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M5 12h14" />
+          <path d="M12 5v14" />
+        </svg>
+        <svg
+          class="absolute -bottom-3 -left-3 h-6 w-6 text-zinc-400 select-none pointer-events-none"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M5 12h14" />
+          <path d="M12 5v14" />
+        </svg>
+        <svg
+          class="absolute -bottom-3 -right-3 h-6 w-6 text-zinc-400 select-none pointer-events-none"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M5 12h14" />
+          <path d="M12 5v14" />
+        </svg>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          {/* Left: Contact Info Section */}
+          <div class="flex flex-col justify-between lg:col-span-2 p-6 sm:p-10 lg:p-12">
+            <div class="space-y-4">
+              <h2 class="text-3xl font-extrabold md:text-4xl lg:text-5xl text-white font-display tracking-tight">
+                Get in touch
+              </h2>
+              <p class="text-zinc-400 max-w-xl text-sm md:text-base leading-relaxed">
+                If you have any questions regarding our Services, lifetime license, or need help with Meta Business onboarding, please fill out the form here. We do our best to respond within 1 business day.
+              </p>
+
+              {/* Info Badges */}
+              <div class="grid gap-4 pt-4 sm:pt-6 sm:grid-cols-2">
+                {/* Email */}
+                <div class="flex items-center gap-3.5 p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-emerald-500/30 transition-colors">
+                  <div class="bg-zinc-800/80 rounded-lg p-3 text-zinc-300 flex-shrink-0 border border-zinc-700/60">
+                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect width="20" height="16" x="2" y="4" rx="2"/>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="font-medium text-xs font-mono uppercase tracking-wider text-zinc-400">Email</p>
+                    <a href={`mailto:${siteConfig.supportEmail}`} class="text-sm font-semibold text-white hover:text-emerald-400 transition-colors truncate block">
+                      {siteConfig.supportEmail}
+                    </a>
+                  </div>
+                </div>
+
+                {/* Response Time / Hours */}
+                <div class="flex items-center gap-3.5 p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-emerald-500/30 transition-colors">
+                  <div class="bg-zinc-800/80 rounded-lg p-3 text-zinc-300 flex-shrink-0 border border-zinc-700/60">
+                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="font-medium text-xs font-mono uppercase tracking-wider text-zinc-400">Response Time</p>
+                    <p class="text-sm font-semibold text-white truncate">
+                      Under 24 business hours
+                    </p>
+                  </div>
+                </div>
+
+                {/* Address */}
+                <div class="flex items-center gap-3.5 p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-emerald-500/30 transition-colors sm:col-span-2">
+                  <div class="bg-zinc-800/80 rounded-lg p-3 text-zinc-300 flex-shrink-0 border border-zinc-700/60">
+                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                      <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="font-medium text-xs font-mono uppercase tracking-wider text-zinc-400">Address</p>
+                    <p class="text-sm font-semibold text-white leading-relaxed">
+                      {siteConfig.address}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Trust Guarantee Banner */}
+            <div class="mt-8 pt-6 border-t border-zinc-800/80 flex items-center gap-3 text-xs text-zinc-400">
+              <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex-shrink-0">
+                <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <p>
+                <span class="text-white font-medium">7-Day Money-Back Guarantee.</span> Operated by {siteConfig.legalName}.
+              </p>
+            </div>
           </div>
 
-          <div>
-            <label for="name" class="block text-xs font-bold uppercase tracking-wider text-surface-700 mb-1.5">
-              Your Full Name <span class="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              placeholder="e.g. Rahul Sharma"
-              class="w-full bg-surface-50 border border-surface-300 rounded-xl px-4 py-2.5 text-sm text-surface-900 focus:bg-white focus:border-brand-600 transition-colors"
-            />
-          </div>
-
-          <div>
-            <label for="email" class="block text-xs font-bold uppercase tracking-wider text-surface-700 mb-1.5">
-              Work Email Address <span class="text-red-500">*</span>
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              placeholder="you@company.com"
-              class="w-full bg-surface-50 border border-surface-300 rounded-xl px-4 py-2.5 text-sm text-surface-900 focus:bg-white focus:border-brand-600 transition-colors"
-            />
-          </div>
-
-          <div>
-            <label for="message" class="block text-xs font-bold uppercase tracking-wider text-surface-700 mb-1.5">
-              Your Message or Question <span class="text-red-500">*</span>
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              required
-              placeholder="How can we help you? (e.g., questions about connecting a phone number, team permissions, etc.)"
-              class="w-full bg-surface-50 border border-surface-300 rounded-xl p-4 text-sm text-surface-900 focus:bg-white focus:border-brand-600 transition-colors leading-relaxed"
-            ></textarea>
-          </div>
-
-          <div class="pt-2">
-            <Button
-              type="submit"
-              size="lg"
-              class="w-full font-bold shadow-md"
+          {/* Right: Form Section */}
+          <div class="bg-zinc-900/40 flex flex-col justify-center border-t md:border-t-0 md:border-l border-zinc-800 p-6 sm:p-8 lg:p-10">
+            <form
+              id="contact-form"
+              action={contactEndpoint || fallbackMailto}
+              method={contactEndpoint ? 'POST' : 'GET'}
+              class="w-full space-y-4"
             >
-              Send Message
-              <Icon name="arrow-right" class="w-4 h-4 ml-1" />
-            </Button>
+              {/* Spam Honeypot Field */}
+              <div style="display: none !important;" aria-hidden="true">
+                <label for="honeypot_website">Do not fill this field</label>
+                <input type="text" id="honeypot_website" name="honeypot_website" tabindex="-1" autocomplete="off" />
+              </div>
+
+              {/* Name */}
+              <div class="flex flex-col gap-1.5">
+                <label for="name" class="text-xs font-semibold text-zinc-300">
+                  Name <span class="text-emerald-400">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="Your name"
+                  class="flex h-10 w-full rounded-md border border-zinc-700/80 bg-zinc-900/90 px-3 py-2 text-sm text-white placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/60 focus-visible:border-emerald-500 transition-colors"
+                />
+              </div>
+
+              {/* Email */}
+              <div class="flex flex-col gap-1.5">
+                <label for="email" class="text-xs font-semibold text-zinc-300">
+                  Email <span class="text-emerald-400">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="you@company.com"
+                  class="flex h-10 w-full rounded-md border border-zinc-700/80 bg-zinc-900/90 px-3 py-2 text-sm text-white placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/60 focus-visible:border-emerald-500 transition-colors"
+                />
+              </div>
+
+              {/* Phone */}
+              <div class="flex flex-col gap-1.5">
+                <label for="phone" class="text-xs font-semibold text-zinc-300">
+                  Phone
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="+91 98765 43210"
+                  class="flex h-10 w-full rounded-md border border-zinc-700/80 bg-zinc-900/90 px-3 py-2 text-sm text-white placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/60 focus-visible:border-emerald-500 transition-colors"
+                />
+              </div>
+
+              {/* Message */}
+              <div class="flex flex-col gap-1.5">
+                <label for="message" class="text-xs font-semibold text-zinc-300">
+                  Message <span class="text-emerald-400">*</span>
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  required
+                  placeholder="Your message or inquiry..."
+                  class="flex min-h-[90px] w-full rounded-md border border-zinc-700/80 bg-zinc-900/90 px-3 py-2 text-sm text-white placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/60 focus-visible:border-emerald-500 transition-colors leading-relaxed"
+                ></textarea>
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                class="w-full inline-flex items-center justify-center rounded-md bg-zinc-200 hover:bg-white text-zinc-950 font-semibold h-10 px-4 text-sm transition-all duration-200 shadow hover:shadow-md cursor-pointer active:scale-[0.98] mt-2"
+              >
+                Submit
+              </button>
+
+              <div id="form-status" class="hidden text-xs p-3 rounded-lg text-center mt-3 font-medium"></div>
+
+              <p class="text-center text-[11px] text-zinc-500 pt-1">
+                We value your privacy. We never share or sell contact details.
+              </p>
+            </form>
           </div>
-
-          <div id="form-status" class="hidden text-xs p-3 rounded-lg text-center mt-3 font-medium"></div>
-
-          <p class="text-center text-xs text-surface-400 pt-2">
-            We value your privacy. We never share or sell contact details to third parties.
-          </p>
-        </form>
+        </div>
       </div>
     </div>
   </Section>
@@ -170,15 +272,17 @@ const fallbackMailto = `mailto:${siteConfig.supportEmail}?subject=Inquiry%20abou
         e.preventDefault();
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone') ? document.getElementById('phone').value : '';
         const message = document.getElementById('message').value;
 
         const subject = encodeURIComponent(`${productName} Inquiry from ${name}`);
-        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+        const phoneLine = phone ? `Phone: ${phone}\n` : '';
+        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n${phoneLine}\nMessage:\n${message}`);
         
         window.location.href = `mailto:${supportEmail}?subject=${subject}&body=${body}`;
         
         if (statusDiv) {
-          statusDiv.className = 'text-xs p-3 rounded-lg text-center mt-3 font-medium bg-emerald-50 text-emerald-800 border border-emerald-200';
+          statusDiv.className = 'text-xs p-3 rounded-lg text-center mt-3 font-medium bg-emerald-950/80 text-emerald-300 border border-emerald-500/30';
           statusDiv.textContent = 'Opening your email client to send message...';
           statusDiv.classList.remove('hidden');
         }
