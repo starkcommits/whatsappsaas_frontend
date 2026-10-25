@@ -17,6 +17,14 @@ const featuresJsonLd = {
     description: feature.shortDesc,
   })),
 };
+
+const aliasMap: Record<string, string[]> = {
+  'shared-team-inbox': ['inbox', 'team-inbox'],
+  'template-editor': ['templates', 'template-builder'],
+  'whatsapp-flows': ['flows', 'in-chat-forms'],
+  'consent-tracking': ['consent', 'opt-in', 'consent-and-stop'],
+  'campaign-broadcasts': ['campaigns', 'broadcasts'],
+};
 ---
 
 <Layout
@@ -25,7 +33,7 @@ const featuresJsonLd = {
   jsonLd={featuresJsonLd}
 >
   <!-- Page Header -->
-  <section class="py-16 md:py-24 bg-ink-50/60 border-b border-ink-100">
+  <section class="py-16 md:py-24 bg-gradient-to-b from-[#E7F8EE] via-[#F2FAF5] to-white border-b border-emerald-100/70">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
       <div class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-brand-700 bg-brand-50 border border-brand-100 px-3.5 py-1 rounded-full mb-4">
         <span>Verified Capabilities</span>
@@ -42,7 +50,7 @@ const featuresJsonLd = {
         {featuresList.map((feature) => (
           <a
             href={`#${feature.id}`}
-            class="bg-white hover:bg-ink-50 text-ink-700 hover:text-ink-950 border border-ink-100 px-3 py-1.5 rounded-lg transition-colors shadow-soft"
+            class="bg-white hover:bg-emerald-50 text-ink-700 hover:text-emerald-950 border border-emerald-200/60 px-3 py-1.5 rounded-lg transition-colors shadow-soft"
           >
             {feature.number}. {feature.title}
           </a>
@@ -53,9 +61,16 @@ const featuresJsonLd = {
 
   <!-- Detailed Feature Sections (One section per FEATURES item) -->
   <div class="divide-y divide-ink-100">
-    {featuresList.map((feature, index) => (
-      <Section id={feature.id} background={index % 2 === 0 ? 'white' : 'default'} class="scroll-mt-20">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    {featuresList.map((feature, index) => {
+      const aliases = aliasMap[feature.id] || [];
+
+      return (
+        <div class="relative">
+          {aliases.map((alias) => (
+            <div id={alias} class="scroll-mt-32 block h-px -mt-px pointer-events-none" aria-hidden="true" />
+          ))}
+          <Section id={feature.id} background={index % 2 === 0 ? 'white' : 'default'} class="scroll-mt-32">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           <!-- Column 1: Feature Title & Number -->
           <div class="lg:col-span-5 space-y-3">
@@ -107,11 +122,28 @@ const featuresJsonLd = {
 
         </div>
       </Section>
-    ))}
-  </div>
+    </div>
+  ); })}
+</div>
 
   <!-- Bottom CTA -->
   <Section background="white">
     <CtaBand />
   </Section>
+
+  <script is:inline>
+    function handleAnchorScroll() {
+      if (window.location.hash) {
+        const hash = window.location.hash.substring(1);
+        const el = document.getElementById(hash);
+        if (el) {
+          setTimeout(() => {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      }
+    }
+    window.addEventListener('load', handleAnchorScroll);
+    window.addEventListener('hashchange', handleAnchorScroll);
+  </script>
 </Layout>

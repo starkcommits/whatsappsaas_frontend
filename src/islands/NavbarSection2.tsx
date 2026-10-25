@@ -94,11 +94,38 @@ function TemplatePreview() {
   );
 }
 
-function PanelCard({ item, compact = false }: { item: ProductCard; compact?: boolean }) {
+function PanelCard({
+  item,
+  compact = false,
+  onSelect,
+}: {
+  item: ProductCard;
+  compact?: boolean;
+  onSelect?: () => void;
+}) {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    onSelect?.();
+    if (typeof window !== "undefined") {
+      const [path, hash] = item.href.split("#");
+      const currentPath = window.location.pathname.replace(/\/$/, "");
+      const targetPath = (path || "").replace(/\/$/, "");
+
+      if (hash && (targetPath === "" || targetPath === currentPath)) {
+        e.preventDefault();
+        window.history.pushState(null, "", `#${hash}`);
+        const el = document.getElementById(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    }
+  };
+
   if (item.component) {
     return (
       <a
         href={item.href}
+        onClick={handleClick}
         className="group relative flex h-[195px] flex-col justify-between overflow-hidden rounded-xl border border-zinc-900 bg-zinc-950/60 p-3 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/40 block text-left"
       >
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(18,165,125,0.08),transparent_50%)] opacity-0 transition-opacity group-hover:opacity-100" />
@@ -123,6 +150,7 @@ function PanelCard({ item, compact = false }: { item: ProductCard; compact?: boo
   return (
     <a
       href={item.href}
+      onClick={handleClick}
       className={
         compact
           ? "group relative flex h-[92px] flex-col justify-center overflow-hidden rounded-xl border border-zinc-900 bg-zinc-950/60 p-3 transition-all hover:border-zinc-700 hover:bg-zinc-900/40 block text-left"
@@ -158,21 +186,21 @@ function DropdownPanel({ panel, onSelect }: { panel: MenuPanel; onSelect: () => 
   if (panel.id === "product") {
     const [inbox, templates, flows, consent] = panel.items;
     return (
-      <div className="grid grid-cols-[1.3fr_1.3fr_1fr] gap-3 bg-black p-4" onClick={onSelect}>
-        <PanelCard item={inbox} />
-        <PanelCard item={templates} />
+      <div className="grid grid-cols-[1.3fr_1.3fr_1fr] gap-3 bg-black p-4">
+        <PanelCard item={inbox} onSelect={onSelect} />
+        <PanelCard item={templates} onSelect={onSelect} />
         <div className="flex flex-col gap-2.5">
-          <PanelCard item={flows} compact />
-          <PanelCard item={consent} compact />
+          <PanelCard item={flows} compact onSelect={onSelect} />
+          <PanelCard item={consent} compact onSelect={onSelect} />
         </div>
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-3 gap-3 bg-black p-4" onClick={onSelect}>
+    <div className="grid grid-cols-3 gap-3 bg-black p-4">
       {panel.items.map((item) => (
-        <PanelCard key={item.title} item={item} />
+        <PanelCard key={item.title} item={item} onSelect={onSelect} />
       ))}
     </div>
   );
@@ -202,27 +230,27 @@ export default function NavbarSection2({
       items: [
         {
           title: "Shared Team Inbox",
-          href: "/features",
+          href: "/features#shared-team-inbox",
           description: "Live sync, assignments, team notes & quick replies",
           mediaType: "component",
           component: <SharedInboxPreview />,
         },
         {
           title: "Approved Meta Templates",
-          href: "/features#templates",
+          href: "/features#template-editor",
           description: "Sync, build & submit directly to Meta Cloud API",
           mediaType: "component",
           component: <TemplatePreview />,
         },
         {
           title: "WhatsApp Flows",
-          href: "/features#flows",
+          href: "/features#whatsapp-flows",
           description: "In-chat interactive forms for leads & bookings",
           badge: "Interactive",
         },
         {
           title: "Consent & Opt-in Tracking",
-          href: "/features#consent",
+          href: "/features#consent-tracking",
           description: "QR codes, opt-in links & STOP handling",
           badge: "Compliant",
         },
@@ -238,7 +266,7 @@ export default function NavbarSection2({
         },
         {
           title: "Audience Campaigns",
-          href: "/features#campaigns",
+          href: "/features#campaign-broadcasts",
           description: "Broadcast pre-approved templates to segmented CSV lists with real-time delivery tracking.",
         },
         {
