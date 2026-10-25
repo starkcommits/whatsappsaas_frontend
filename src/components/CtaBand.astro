@@ -1,7 +1,7 @@
 ---
 import { siteConfig } from '../config/site';
 import { lifetimePlan } from '../data/plans';
-import Button from './Button.astro';
+import { AnimatedCta } from './ui/animated-hero';
 
 interface Props {
   title?: string;
@@ -11,59 +11,24 @@ interface Props {
 }
 
 const {
-  title = 'Every customer conversation on WhatsApp, in one shared inbox',
+  title = 'Every customer conversation on WhatsApp,',
   subtitle = `Get lifetime access for $${lifetimePlan.priceUSD} (${lifetimePlan.priceINRFormatted}) one-time. No monthly fees, no markup on WhatsApp messages.`,
   buttonText = 'Get lifetime access',
   class: className = '',
 } = Astro.props;
+
+const staticTitle = title.includes('in one shared inbox')
+  ? 'Every customer conversation on WhatsApp,'
+  : title;
 ---
 
-<div class={`relative bg-white text-ink-950 rounded-[32px] p-8 sm:p-12 md:p-16 border border-zinc-200/90 shadow-soft-lg overflow-hidden ${className}`}>
-  {/* Subtle radial dot grid texture and top emerald ambient glow */}
-  <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px] opacity-40"></div>
-  <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 bg-brand-500/10 blur-3xl rounded-full pointer-events-none"></div>
-
-  <div class="relative z-10 max-w-3xl mx-auto text-center space-y-6">
-    <div class="inline-flex items-center gap-2 bg-brand-50 border border-brand-200/80 text-brand-700 px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider font-semibold shadow-xs">
-      <span>One-time license</span>
-      <span>•</span>
-      <span>7-day refund guarantee</span>
-    </div>
-
-    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-ink-950 font-display leading-tight">
-      {title}
-    </h2>
-
-    <p class="text-base sm:text-lg text-ink-500 leading-relaxed max-w-2xl mx-auto">
-      {subtitle}
-    </p>
-
-    <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
-      <Button
-        href={siteConfig.links.signup}
-        variant="primary"
-        size="lg"
-        class="w-full sm:w-auto font-bold shadow-soft"
-        isAppCta={true}
-      >
-        <span>{buttonText}</span>
-        <svg class="w-4 h-4 ml-1.5" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-        </svg>
-      </Button>
-
-      <Button
-        href="/how-it-works"
-        variant="secondary"
-        size="lg"
-        class="w-full sm:w-auto bg-white text-ink-900 hover:bg-zinc-50 border-zinc-200/90 shadow-xs"
-      >
-        See how it works
-      </Button>
-    </div>
-
-    <p class="text-xs text-ink-400 pt-2 font-mono">
-      Built on Meta's WhatsApp Business Platform (Cloud API).
-    </p>
-  </div>
-</div>
+<AnimatedCta
+  client:visible
+  staticTitle={staticTitle}
+  subtitle={subtitle}
+  primaryButtonText={buttonText}
+  primaryButtonUrl={siteConfig.links.signup}
+  secondaryButtonText="See how it works"
+  secondaryButtonUrl="/how-it-works"
+  className={className}
+/>
