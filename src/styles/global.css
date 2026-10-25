@@ -124,6 +124,24 @@ details summary::-webkit-details-marker {
   animation: shine-pulse var(--shine-pulse-duration, 14s) infinite linear;
 }
 
+/* TypeWriter Blinking Vertical Cursor */
+.typed-cursor {
+  opacity: 1;
+  color: #059669;
+  font-weight: 300;
+  margin-left: 2px;
+  animation: typed-blink 0.75s infinite;
+}
+
+@keyframes typed-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
 /* Shimmer Highlight Animation */
 @keyframes shimmer {
   0% { background-position: 200% 0; }

@@ -4,111 +4,139 @@ import React, { type FC, type ReactNode } from "react";
 import { ReactTyped } from "react-typed";
 import { cn } from "@/lib/utils";
 
-// --- Sine Wave Generator for Emerald / Cyan Dynamic Hue ---
-function PhaseOscillator(this: any, options: { phase?: number; offset?: number; frequency?: number; amplitude?: number }) {
-  this.init(options || {});
+// ============================================================================
+// 1. Fluid Canvas Cursor Trail Simulation (Spring Physics + WhatsApp Palette)
+// ============================================================================
+
+interface OscillatorOptions {
+  phase?: number;
+  offset?: number;
+  frequency?: number;
+  amplitude?: number;
 }
 
-PhaseOscillator.prototype = {
-  init: function (options: { phase?: number; offset?: number; frequency?: number; amplitude?: number }) {
+class PhaseOscillator {
+  phase: number;
+  offset: number;
+  frequency: number;
+  amplitude: number;
+  currentValue: number;
+
+  constructor(options: OscillatorOptions = {}) {
     this.phase = options.phase || 0;
-    this.offset = options.offset || 155; // 155° = Emerald / WhatsApp Green
-    this.frequency = options.frequency || 0.0015;
-    this.amplitude = options.amplitude || 35; // Swings from 120° (Vibrant Green) to 190° (Teal / Cyan)
+    this.offset = options.offset || 160; // 160° = WhatsApp Emerald/Teal
+    this.frequency = options.frequency || 0.0018;
+    this.amplitude = options.amplitude || 25; // Swings 135° (Green) to 185° (Teal)
     this.currentValue = this.offset;
-  },
-  update: function () {
+  }
+
+  update(): number {
     this.phase += this.frequency;
     this.currentValue = this.offset + Math.sin(this.phase) * this.amplitude;
     return this.currentValue;
-  },
-  value: function () {
-    return this.currentValue;
-  },
-};
-
-// --- Physics Particle Node ---
-function RibbonNode(this: any) {
-  this.x = 0;
-  this.y = 0;
-  this.vx = 0;
-  this.vy = 0;
+  }
 }
 
-// --- Fluid Silk Ribbon Line ---
-function RibbonLine(this: any, options: { spring: number }, EConfig: any, mousePos: { x: number; y: number }) {
-  this.init(options || {}, EConfig, mousePos);
+class TrailNode {
+  x = 0;
+  y = 0;
+  vx = 0;
+  vy = 0;
 }
 
-RibbonLine.prototype = {
-  init: function (options: { spring: number }, EConfig: any, mousePos: { x: number; y: number }) {
-    this.spring = options.spring + 0.1 * Math.random() - 0.05;
-    this.friction = EConfig.friction + 0.01 * Math.random() - 0.005;
-    this.nodes = [];
-    this.E = EConfig;
-    this.pos = mousePos;
-    for (let i = 0; i < EConfig.size; i++) {
-      const node = new (RibbonNode as any)();
-      node.x = mousePos.x;
-      node.y = mousePos.y;
+interface PhysicsConfig {
+  trails: number;
+  size: number;
+  friction: number;
+  dampening: number;
+  tension: number;
+}
+
+class TrailLine {
+  spring: number;
+  friction: number;
+  nodes: TrailNode[] = [];
+  config: PhysicsConfig;
+  targetPos: { x: number; y: number };
+
+  constructor(springBase: number, config: PhysicsConfig, targetPos: { x: number; y: number }) {
+    this.spring = springBase + 0.08 * Math.random() - 0.04;
+    this.friction = config.friction + 0.01 * Math.random() - 0.005;
+    this.config = config;
+    this.targetPos = targetPos;
+
+    for (let i = 0; i < config.size; i++) {
+      const node = new TrailNode();
+      node.x = targetPos.x;
+      node.y = targetPos.y;
       this.nodes.push(node);
     }
-  },
-  update: function () {
+  }
+
+  update(): void {
     let springForce = this.spring;
-    let node0 = this.nodes[0];
-    node0.vx += (this.pos.x - node0.x) * springForce;
-    node0.vy += (this.pos.y - node0.y) * springForce;
+    const node0 = this.nodes[0];
+    node0.vx += (this.targetPos.x - node0.x) * springForce;
+    node0.vy += (this.targetPos.y - node0.y) * springForce;
 
     for (let i = 0, len = this.nodes.length; i < len; i++) {
-      let node = this.nodes[i];
+      const node = this.nodes[i];
       if (i > 0) {
-        let prevNode = this.nodes[i - 1];
-        node.vx += (prevNode.x - node.x) * springForce;
-        node.vy += (prevNode.y - node.y) * springForce;
-        node.vx += prevNode.vx * this.E.dampening;
-        node.vy += prevNode.vy * this.E.dampening;
+        const prev = this.nodes[i - 1];
+        node.vx += (prev.x - node.x) * springForce;
+        node.vy += (prev.y - node.y) * springForce;
+        node.vx += prev.vx * this.config.dampening;
+        node.vy += prev.vy * this.config.dampening;
       }
       node.vx *= this.friction;
       node.vy *= this.friction;
       node.x += node.vx;
       node.y += node.vy;
-      springForce *= this.E.tension;
+      springForce *= this.config.tension;
     }
-  },
-  draw: function (ctx: CanvasRenderingContext2D) {
+  }
+
+  draw(ctx: CanvasRenderingContext2D): void {
     if (this.nodes.length < 2) return;
-    let currNode: any;
-    let nextNode: any;
-    let midX = this.nodes[0].x;
-    let midY = this.nodes[0].y;
 
     ctx.beginPath();
-    ctx.moveTo(midX, midY);
+    ctx.moveTo(this.nodes[0].x, this.nodes[0].y);
 
     const limit = this.nodes.length - 2;
     let a = 1;
     for (; a < limit; a++) {
-      currNode = this.nodes[a];
-      nextNode = this.nodes[a + 1];
-      midX = 0.5 * (currNode.x + nextNode.x);
-      midY = 0.5 * (currNode.y + nextNode.y);
-      ctx.quadraticCurveTo(currNode.x, currNode.y, midX, midY);
+      const current = this.nodes[a];
+      const next = this.nodes[a + 1];
+      const midX = 0.5 * (current.x + next.x);
+      const midY = 0.5 * (current.y + next.y);
+      ctx.quadraticCurveTo(current.x, current.y, midX, midY);
     }
 
-    currNode = this.nodes[a];
-    nextNode = this.nodes[a + 1];
-    if (currNode && nextNode) {
-      ctx.quadraticCurveTo(currNode.x, currNode.y, nextNode.x, nextNode.y);
+    const current = this.nodes[a];
+    const next = this.nodes[a + 1];
+    if (current && next) {
+      ctx.quadraticCurveTo(current.x, current.y, next.x, next.y);
     }
+
     ctx.stroke();
     ctx.closePath();
-  },
-};
+  }
+}
 
-// --- Main Canvas Controller ---
-export function renderCanvas(canvasId = "canvas") {
+/**
+ * Renders an interactive, spring-interpolated fluid cursor trail on the specified canvas.
+ * - Respects prefers-reduced-motion
+ * - Scales properly with devicePixelRatio
+ * - Fades gracefully when cursor is idle to conserve resources
+ * - Cleans up event listeners and animation frames
+ */
+export function renderCanvas(canvasId = "canvas"): () => void {
   if (typeof window === "undefined") return () => {};
+
+  // Check prefers-reduced-motion
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return () => {};
+  }
 
   const canvas = document.getElementById(canvasId) as HTMLCanvasElement | null;
   if (!canvas) return () => {};
@@ -117,140 +145,169 @@ export function renderCanvas(canvasId = "canvas") {
   if (!ctx) return () => {};
 
   let isRunning = true;
-  let animationFrameId: number;
+  let animId = 0;
+  let dpr = 1;
+  let width = 0;
+  let height = 0;
 
-  const EConfig = {
-    debug: false,
-    friction: 0.5,
-    trails: 65,
-    size: 45,
+  // Spring physics parameters tuned for organic, elegant fluidity
+  const config: PhysicsConfig = {
+    trails: 50,
+    size: 38,
+    friction: 0.52,
     dampening: 0.025,
     tension: 0.99,
   };
 
-  const mousePos = {
-    x: window.innerWidth / 2,
-    y: 260,
-  };
+  const mousePos = { x: -1000, y: -1000 };
+  let activity = 0; // 0 (idle/invisible) to 1 (active movement)
+  let lastMoveTime = 0;
+  let lines: TrailLine[] = [];
 
-  let lines: any[] = [];
+  const colorOscillator = new PhaseOscillator({
+    offset: 160,
+    amplitude: 25,
+    frequency: 0.0018,
+  });
 
-  function resizeCanvas() {
-    if (!canvas) return;
+  function resize() {
+    if (!canvas || !ctx) return;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
     const parent = canvas.parentElement;
-    if (parent) {
-      const rect = parent.getBoundingClientRect();
-      canvas.width = rect.width;
-      canvas.height = rect.height;
-    } else {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
+    const rect = parent ? parent.getBoundingClientRect() : { width: window.innerWidth, height: window.innerHeight };
+    width = rect.width;
+    height = rect.height;
+
+    canvas.width = Math.floor(width * dpr);
+    canvas.height = Math.floor(height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
-  function initLines() {
+  function initLines(initialX: number, initialY: number) {
     lines = [];
-    for (let i = 0; i < EConfig.trails; i++) {
+    mousePos.x = initialX;
+    mousePos.y = initialY;
+    for (let i = 0; i < config.trails; i++) {
       lines.push(
-        new (RibbonLine as any)(
-          { spring: 0.45 + (i / EConfig.trails) * 0.025 },
-          EConfig,
+        new TrailLine(
+          0.44 + (i / config.trails) * 0.024,
+          config,
           mousePos
         )
       );
     }
   }
 
-  const colorOscillator = new (PhaseOscillator as any)({
-    phase: Math.random() * 2 * Math.PI,
-    amplitude: 35,
-    frequency: 0.0015,
-    offset: 155, // WhatsApp Green / Emerald
-  });
-
-  function updatePosition(clientX: number, clientY: number) {
+  function handlePointerMove(e: MouseEvent | TouchEvent) {
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
-    mousePos.x = clientX - rect.left;
-    mousePos.y = clientY - rect.top;
-  }
+    let clientX = 0;
+    let clientY = 0;
 
-  function onFirstInteraction(e: MouseEvent | TouchEvent) {
-    if ("touches" in e && e.touches.length > 0) {
-      updatePosition(e.touches[0].clientX, e.touches[0].clientY);
-    } else if ("clientX" in e) {
-      updatePosition(e.clientX, e.clientY);
+    if ("touches" in e) {
+      if (e.touches.length === 0) return;
+      clientX = e.touches[0].clientX;
+      clientY = e.touches[0].clientY;
+    } else {
+      clientX = e.clientX;
+      clientY = e.clientY;
     }
-    initLines();
-  }
 
-  function handleMouseMove(e: MouseEvent) {
-    updatePosition(e.clientX, e.clientY);
-  }
+    const relX = clientX - rect.left;
+    const relY = clientY - rect.top;
 
-  function handleTouchMove(e: TouchEvent) {
-    if (e.touches.length > 0) {
-      updatePosition(e.touches[0].clientX, e.touches[0].clientY);
+    if (lines.length === 0) {
+      initLines(relX, relY);
     }
+
+    mousePos.x = relX;
+    mousePos.y = relY;
+    activity = Math.min(activity + 0.15, 1);
+    lastMoveTime = performance.now();
   }
 
-  function renderLoop() {
+  function render(timestamp: number) {
     if (!isRunning || !ctx || !canvas) return;
 
-    // Vibrant WhatsApp emerald-teal fluid ribbon stroke
-    const currentHue = Math.round(colorOscillator.update());
-    ctx.strokeStyle = `hsla(${currentHue}, 90%, 36%, 0.12)`;
-    ctx.lineWidth = 10;
+    // Smoothly decay activity when cursor stops moving
+    const elapsedSinceMove = timestamp - lastMoveTime;
+    if (elapsedSinceMove > 60) {
+      activity *= 0.95;
+    }
+
+    if (activity < 0.002) {
+      // Clear canvas when completely idle to eliminate unnecessary paint cycles
+      ctx.clearRect(0, 0, width, height);
+      animId = window.requestAnimationFrame(render);
+      return;
+    }
+
+    ctx.clearRect(0, 0, width, height);
+
+    // Subtle WhatsApp emerald/teal hue
+    const hue = Math.round(colorOscillator.update());
+    const alpha = (0.05 * activity).toFixed(4);
+
+    ctx.save();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.strokeStyle = `hsla(${hue}, 80%, 35%, ${alpha})`;
+    ctx.lineWidth = 8;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+
+    // Soft glow
+    ctx.shadowBlur = 8;
+    ctx.shadowColor = `rgba(18, 140, 126, ${(0.15 * activity).toFixed(3)})`;
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
       line.update();
       line.draw(ctx);
     }
+    ctx.restore();
 
-    animationFrameId = window.requestAnimationFrame(renderLoop);
+    animId = window.requestAnimationFrame(render);
   }
 
-  // Setup
-  resizeCanvas();
-  initLines();
-  renderLoop();
+  // Initial setup
+  resize();
+  window.addEventListener("resize", resize, { passive: true });
+  window.addEventListener("mousemove", handlePointerMove, { passive: true });
+  window.addEventListener("touchmove", handlePointerMove, { passive: true });
 
-  window.addEventListener("resize", resizeCanvas);
-  document.addEventListener("mousemove", onFirstInteraction, { once: true });
-  document.addEventListener("touchstart", onFirstInteraction, { once: true });
-  document.addEventListener("mousemove", handleMouseMove, { passive: true });
-  document.addEventListener("touchmove", handleTouchMove, { passive: true });
-
-  const handleFocus = () => {
-    if (!isRunning) {
-      isRunning = true;
-      renderLoop();
+  const handleVisibilityChange = () => {
+    if (document.hidden) {
+      isRunning = false;
+      window.cancelAnimationFrame(animId);
+    } else {
+      if (!isRunning) {
+        isRunning = true;
+        lastMoveTime = performance.now();
+        animId = window.requestAnimationFrame(render);
+      }
     }
   };
 
-  const handleBlur = () => {
-    // Keep running or pause gently
-  };
+  document.addEventListener("visibilitychange", handleVisibilityChange);
 
-  window.addEventListener("focus", handleFocus);
-  window.addEventListener("blur", handleBlur);
+  // Start loop
+  animId = window.requestAnimationFrame(render);
 
-  // Return cleanup function
+  // Return cleanup
   return () => {
     isRunning = false;
-    window.cancelAnimationFrame(animationFrameId);
-    window.removeEventListener("resize", resizeCanvas);
-    document.removeEventListener("mousemove", onFirstInteraction);
-    document.removeEventListener("touchstart", onFirstInteraction);
-    document.removeEventListener("mousemove", handleMouseMove);
-    document.removeEventListener("touchmove", handleTouchMove);
-    window.removeEventListener("focus", handleFocus);
-    window.removeEventListener("blur", handleBlur);
+    window.cancelAnimationFrame(animId);
+    window.removeEventListener("resize", resize);
+    window.removeEventListener("mousemove", handlePointerMove);
+    window.removeEventListener("touchmove", handlePointerMove);
+    document.removeEventListener("visibilitychange", handleVisibilityChange);
   };
 }
 
-// --- TypeWriter Component using react-typed ---
+// ============================================================================
+// 2. TypeWriter Component (ReactTyped with 80ms type, 20ms back, 1s pause)
+// ============================================================================
+
 export interface TypeWriterProps {
   strings: string[];
   className?: string;
@@ -258,25 +315,28 @@ export interface TypeWriterProps {
 
 export const TypeWriter: FC<TypeWriterProps> = ({ strings, className }) => {
   return (
-    <span className={className}>
+    <span className={cn("inline-flex items-baseline", className)} aria-live="polite">
       <ReactTyped
-        loop
-        typeSpeed={60}
-        backSpeed={25}
         strings={strings}
-        smartBackspace
-        backDelay={1600}
-        loopCount={0}
-        showCursor
+        typeSpeed={80}
+        backSpeed={20}
+        backDelay={1000}
+        smartBackspace={true}
+        loop={true}
+        showCursor={true}
         cursorChar="|"
       >
+        {/* Visible SSR fallback text to guarantee zero layout shifts and immediate readability */}
         <span>{strings[0] || ""}</span>
       </ReactTyped>
     </span>
   );
 };
 
-// --- Shine Border Component ---
+// ============================================================================
+// 3. ShineBorder Component (Animated WhatsApp Green Border)
+// ============================================================================
+
 export type TColorProp = string | string[];
 
 export interface ShineBorderProps {

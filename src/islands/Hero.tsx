@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useRef, type ReactNode } from "react";
+import React, { useEffect, type ReactNode } from "react";
 import { Plus, CheckCircle2, Play, ArrowRight } from "lucide-react";
 import {
   renderCanvas,
@@ -21,51 +21,28 @@ export function Hero({
   priceINR = "₹4,199",
   children,
 }: HeroProps) {
-  // Short capability words rotating in TypeWriter (matching Designali style)
-  const talkAbout = [
-    "Shared Team Inbox",
-    "Approved Meta Templates",
-    "WhatsApp Flows",
-    "Opt-in Consent Tracking",
-    "Zero Markup Broadcasts",
-    "Live Team Assignment",
-    "Cloud API Integration",
+  // Contextually relevant feature phrases accurately describing ONO capabilities per AGENTS.md
+  const typewriterPhrases = [
+    "manage your shared team inbox",
+    "broadcast approved Meta templates",
+    "collect leads with WhatsApp Flows",
+    "track verified opt-in consent",
+    "scale operations with zero markup",
   ];
 
-  // Interactive Cursor Follower state
-  const heroRef = useRef<HTMLElement>(null);
-  const [cursorPos, setCursorPos] = useState({ x: -100, y: -100 });
-  const [cursorVisible, setCursorVisible] = useState(false);
-
   useEffect(() => {
+    // Canvas fluid spring trail animation (requestAnimationFrame, DPR-scaled, fades on idle)
     const cleanup = renderCanvas("canvas");
     return () => {
       cleanup?.();
     };
   }, []);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    if (!heroRef.current) return;
-    const rect = heroRef.current.getBoundingClientRect();
-    setCursorPos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-    setCursorVisible(true);
-  };
-
-  const handleMouseLeave = () => {
-    setCursorVisible(false);
-  };
-
   return (
     <main className="relative overflow-hidden bg-gradient-to-b from-[#E7F8EE] via-[#F2FAF5] to-white border-b border-emerald-100/80">
       <section
         id="hero"
-        ref={heroRef}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        className="relative pt-10 pb-16 sm:pt-16 sm:pb-24 select-none cursor-default"
+        className="relative pt-10 pb-16 sm:pt-16 sm:pb-24"
       >
         {/* Subtle WhatsApp-Green Grid Pattern across the entire hero */}
         <div
@@ -78,24 +55,6 @@ export function Hero({
           aria-hidden="true"
           className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[480px] w-[900px] -translate-x-1/2 rounded-full bg-gradient-to-b from-emerald-200/40 via-emerald-100/20 to-transparent blur-3xl opacity-70"
         />
-
-        {/* Interactive Glowing Cursor Follower Effect */}
-        {cursorVisible && (
-          <div
-            className="pointer-events-none absolute z-40 -translate-x-1/2 -translate-y-1/2 transition-transform duration-75 ease-out max-md:hidden"
-            style={{
-              left: `${cursorPos.x}px`,
-              top: `${cursorPos.y}px`,
-            }}
-          >
-            <div className="relative flex items-center justify-center">
-              {/* Outer glowing emerald halo */}
-              <div className="w-9 h-9 rounded-full border border-emerald-500/80 bg-emerald-400/20 shadow-[0_0_24px_rgba(16,185,129,0.55)] animate-pulse" />
-              {/* Center crisp dot */}
-              <div className="absolute w-2 h-2 rounded-full bg-emerald-600 shadow-sm" />
-            </div>
-          </div>
-        )}
 
         <div className="relative z-10 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center">
           
@@ -121,7 +80,7 @@ export function Hero({
           <div className="mx-auto max-w-5xl w-full">
             
             {/* Center Hero Card with Sharp Corners and 4 Embedded Corner Pluses */}
-            <div className="relative mx-auto w-full border border-emerald-400/70 bg-white/80 py-10 px-6 sm:py-14 sm:px-12 backdrop-blur-md [mask-image:radial-gradient(800rem_96rem_at_center,white,transparent)]">
+            <div className="relative mx-auto w-full border border-emerald-400/70 bg-white/85 py-10 px-6 sm:py-14 sm:px-12 backdrop-blur-md [mask-image:radial-gradient(800rem_96rem_at_center,white,transparent)]">
               {/* 4 Corner Plus Icons — Exactly Embedded on the 90-degree Corner Vertices */}
               <Plus
                 strokeWidth={4}
@@ -161,20 +120,20 @@ export function Hero({
               </div>
             </div>
 
-            {/* Sub-headline (matching "Welcome to my creative playground! I'm Ali") */}
+            {/* Static Supporting Headline */}
             <h2 className="mt-8 text-2xl sm:text-3xl md:text-4xl font-extrabold text-ink-950 font-display tracking-tight">
-              Welcome to ONO! Calm, reliable WhatsApp operations for{" "}
+              Calm, reliable WhatsApp operations for{" "}
               <span className="text-emerald-600 font-extrabold">growing teams</span>
             </h2>
 
-            {/* Dynamic TypeWriter Rotating Words (matching "I am an expert in design like UI UX") */}
-            <p className="text-ink-600 py-4 max-w-3xl mx-auto text-base sm:text-lg leading-relaxed font-normal">
-              Connect your Meta WhatsApp number, import consent-tagged contacts, and scale support with{" "}
+            {/* Supporting Subtitle with TypeWriter Animation (Stable container preventing CLS) */}
+            <div className="py-3 max-w-3xl mx-auto flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-base sm:text-lg leading-relaxed text-ink-600 min-h-[3rem]">
+              <span>Everything you need to</span>
               <span className="text-emerald-700 font-bold underline decoration-emerald-400 decoration-2 underline-offset-4">
-                <TypeWriter strings={talkAbout} />
+                <TypeWriter strings={typewriterPhrases} />
               </span>
-              .
-            </p>
+              <span>.</span>
+            </div>
 
             {/* Interactive CTAs with ShineBorder */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 mt-2">
@@ -236,10 +195,11 @@ export function Hero({
           </div>
         </div>
 
-        {/* Dynamic Fluid Silk Ribbon Canvas */}
+        {/* Dynamic Fluid Silk Ribbon Canvas (pointer-events-none behind all interactive elements) */}
         <canvas
           id="canvas"
           className="pointer-events-none absolute inset-0 mx-auto w-full h-full z-0"
+          aria-hidden="true"
         />
       </section>
     </main>
