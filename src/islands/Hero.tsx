@@ -59,22 +59,32 @@ export function Hero({
         <div className="relative z-10 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center">
           
           {/* Top Announcement Pill */}
-          <div className="mb-6 mt-4 sm:justify-center md:mb-8 md:mt-4">
-            <div className="relative inline-flex items-center gap-2 rounded-full border border-emerald-200/90 bg-white/95 px-4 py-1.5 text-xs text-ink-700 shadow-soft backdrop-blur-sm transition-all hover:border-emerald-300">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75"></span>
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
-              </span>
-              <span className="font-mono font-medium text-emerald-950">
-                Lifetime License: ${priceUSD} ({priceINR}) • Zero Monthly Subscriptions
-              </span>
-              <a
-                href="/pricing"
-                className="ml-1 flex items-center font-semibold text-emerald-700 hover:text-emerald-800"
-              >
-                Pricing details →
-              </a>
-            </div>
+          <div className="mb-6 mt-4 flex justify-center md:mb-8 md:mt-4">
+            <a
+              href="/pricing"
+              className="group relative inline-flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2.5 rounded-2xl sm:rounded-full border border-emerald-200/90 bg-white/95 px-4 py-2 sm:px-4 sm:py-1.5 text-xs text-ink-700 shadow-soft backdrop-blur-sm transition-all hover:border-emerald-400 hover:shadow-soft-md"
+            >
+              <div className="flex items-center gap-2">
+                <span className="relative flex h-2 w-2 shrink-0">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75"></span>
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+                </span>
+                <span className="font-mono font-medium text-emerald-950 text-[11.5px] sm:text-xs">
+                  Lifetime License: ${priceUSD} ({priceINR})
+                </span>
+                <span className="hidden sm:inline text-emerald-300">•</span>
+                <span className="hidden sm:inline font-mono font-medium text-emerald-950 text-xs">
+                  Zero Monthly Subscriptions
+                </span>
+              </div>
+              <div className="flex items-center gap-1.5 font-semibold text-emerald-700 group-hover:text-emerald-800 text-[11px] sm:text-xs">
+                <span className="sm:hidden font-mono font-medium text-emerald-950 text-[11px]">
+                  Zero Monthly Subscriptions •
+                </span>
+                <span>Pricing details</span>
+                <span className="transition-transform group-hover:translate-x-0.5">→</span>
+              </div>
+            </a>
           </div>
 
           <div className="mx-auto max-w-4xl w-full">
