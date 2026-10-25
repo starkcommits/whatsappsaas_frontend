@@ -7,43 +7,75 @@ import { siteConfig } from '../config/site';
 const securityFeatures = [
   {
     title: 'Two-Factor Authentication (2FA)',
+    subtext: 'TOTP / RFC 6238',
     desc: 'Workspace owners can enforce standard TOTP two-factor authentication for login using apps like Google Authenticator or 1Password.',
-    tag: 'Authentication',
+    badge: 'Enforced',
+    iconColor: 'bg-indigo-50 text-indigo-600 border-indigo-100/70',
+    iconType: 'shield',
+    tags: ['#TOTP', '#MFA', '#OwnerSecurity'],
   },
   {
     title: 'Tenant Isolation',
+    subtext: 'Scoped ORM',
     desc: 'All database queries are scoped by workspace ID at the ORM layer. Data from one organization is never accessible by another.',
-    tag: 'Architecture',
+    badge: 'Isolated',
+    iconColor: 'bg-blue-50 text-blue-600 border-blue-100/70',
+    iconType: 'database',
+    tags: ['#MultiTenant', '#WorkspaceID', '#DataPrivacy'],
   },
   {
     title: 'Hashed API Keys',
+    subtext: 'SHA-256 One-Way',
     desc: 'API keys are hashed with SHA-256 before storage in the database. The plaintext secret is displayed only once upon creation.',
-    tag: 'API Security',
+    badge: 'Hashed',
+    iconColor: 'bg-amber-50 text-amber-600 border-amber-100/70',
+    iconType: 'key',
+    tags: ['#SHA256', '#APIKeys', '#ZeroPlaintext'],
   },
   {
     title: 'Encrypted Meta Tokens',
+    subtext: 'AES-256 at Rest',
     desc: 'Permanent WhatsApp Cloud API access tokens and embedded signup credentials are encrypted at rest using industry-standard cryptography.',
-    tag: 'Data at Rest',
+    badge: 'Encrypted',
+    iconColor: 'bg-emerald-50 text-emerald-600 border-emerald-100/70',
+    iconType: 'lock',
+    tags: ['#MetaTokens', '#CloudAPI', '#EncryptedAtRest'],
   },
   {
     title: 'Signature-Verified Webhooks',
+    subtext: 'HMAC SHA-256',
     desc: 'Incoming WhatsApp events from Meta are authenticated using HMAC SHA-256 signature verification to prevent spoofing.',
-    tag: 'Network',
+    badge: 'Verified',
+    iconColor: 'bg-sky-50 text-sky-600 border-sky-100/70',
+    iconType: 'webhook',
+    tags: ['#HMAC', '#AntiSpoofing', '#Webhooks'],
   },
   {
     title: 'Unalterable Audit Logs',
+    subtext: 'Append-Only',
     desc: 'Every sensitive action—user logins, agent assignment changes, contact exports, and API key revocations—is recorded with timestamp and actor.',
-    tag: 'Auditing',
+    badge: 'Audited',
+    iconColor: 'bg-purple-50 text-purple-600 border-purple-100/70',
+    iconType: 'fileText',
+    tags: ['#AuditTrail', '#Timestamped', '#ActorTracking'],
   },
   {
     title: 'Data Export & Deletion',
+    subtext: 'DPDP & GDPR',
     desc: 'You can export complete contact files and message logs in CSV format at any time. When you close your workspace, your data is permanently deleted.',
-    tag: 'Data Control',
+    badge: 'Portable',
+    iconColor: 'bg-rose-50 text-rose-600 border-rose-100/70',
+    iconType: 'download',
+    tags: ['#CSVExport', '#DataDeletion', '#Ownership'],
   },
   {
     title: 'Consent-Guarded Delivery',
+    subtext: 'Opt-in Ledger',
     desc: 'Campaign messages are checked against an opt-in ledger and suppression list before dispatch to prevent delivery to unsubscribed numbers.',
-    tag: 'Compliance',
+    badge: 'Guarded',
+    iconColor: 'bg-teal-50 text-teal-600 border-teal-100/70',
+    iconType: 'checkCircle',
+    tags: ['#ConsentLedger', '#OptIn', '#SuppressionList'],
   },
 ];
 ---
@@ -52,8 +84,8 @@ const securityFeatures = [
   title={`Security & Tenancy — ${siteConfig.name}`}
   description="Security architecture, two-factor authentication, tenant isolation, hashed API keys, and data privacy controls in ONO."
 >
-  <!-- Header -->
-  <section class="py-16 md:py-24 bg-gradient-to-b from-[#E7F8EE] via-[#F2FAF5] to-white border-b border-emerald-100/70">
+  <!-- Header with clean breathing room -->
+  <section class="pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-40 md:pb-24 bg-gradient-to-b from-[#E7F8EE] via-[#F2FAF5] to-white border-b border-emerald-100/70">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
       <div class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-brand-700 bg-brand-50 border border-brand-100 px-3.5 py-1 rounded-full mb-4">
         <span>Security & Architecture</span>
@@ -62,7 +94,7 @@ const securityFeatures = [
         Calm, reliable security and tenant control
       </h1>
       <p class="text-base sm:text-lg text-ink-500 mt-4 leading-relaxed">
-        We prioritize transparency and defensive software engineering. Here are the exact technical safeguards implemented in ONO.
+        We prioritize transparency and defensive software engineering. Here are the exact technical safeguards implemented in {siteConfig.name}.
       </p>
     </div>
   </section>
@@ -84,29 +116,116 @@ const securityFeatures = [
   <!-- Security Controls Grid -->
   <Section background="default" class="border-t border-ink-100">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center max-w-2xl mx-auto mb-12">
+      <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
         <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-brand-700 mb-2">
           Technical Controls
         </h2>
         <h3 class="text-2xl sm:text-3xl font-extrabold text-ink-950 font-display tracking-tight">
-          How ONO protects your customer conversations
+          How {siteConfig.name} protects your customer conversations
         </h3>
+        <p class="text-sm sm:text-base text-ink-500 mt-3 leading-relaxed">
+          Built defensively with multi-tenant data boundaries, encrypted credentials, and cryptographic integrity.
+        </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
         {securityFeatures.map((item) => (
-          <div class="p-6 sm:p-7 rounded-2xl bg-white border border-ink-100 shadow-soft space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-ink-50 text-ink-700 border border-ink-100">
-                {item.tag}
-              </span>
+          <div class="group relative overflow-hidden rounded-2xl border border-zinc-200/80 bg-white p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:border-zinc-300 flex flex-col justify-between">
+            {/* Interactive grid texture matching 21st.dev component (shrinks grid size on hover) */}
+            <div
+              aria-hidden="true"
+              class="pointer-events-none absolute inset-0 card-grid-texture"
+            />
+
+            <div class="relative z-10">
+              {/* Card Top Row: Icon Box + Status Pill Badge */}
+              <div class="flex items-center justify-between">
+                <div class={`flex size-10 items-center justify-center rounded-xl border ${item.iconColor}`}>
+                  {item.iconType === 'shield' && (
+                    <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+                      <path d="m9 12 2 2 4-4" />
+                    </svg>
+                  )}
+                  {item.iconType === 'database' && (
+                    <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <ellipse cx="12" cy="5" rx="9" ry="3" />
+                      <path d="M3 5V19A9 3 0 0 0 21 19V5" />
+                      <path d="M3 12A9 3 0 0 0 21 12" />
+                    </svg>
+                  )}
+                  {item.iconType === 'key' && (
+                    <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="7.5" cy="15.5" r="5.5" />
+                      <path d="m21 2-9.6 9.6" />
+                      <path d="m15.5 7.5 3 3L22 7l-3-3" />
+                    </svg>
+                  )}
+                  {item.iconType === 'lock' && (
+                    <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    </svg>
+                  )}
+                  {item.iconType === 'webhook' && (
+                    <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="m10 8 4 4-4 4" />
+                    </svg>
+                  )}
+                  {item.iconType === 'fileText' && (
+                    <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                      <line x1="16" y1="13" x2="8" y2="13" />
+                      <line x1="16" y1="17" x2="8" y2="17" />
+                      <polyline points="10 9 9 9 8 9" />
+                    </svg>
+                  )}
+                  {item.iconType === 'download' && (
+                    <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                      <polyline points="7 10 12 15 17 10" />
+                      <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                  )}
+                  {item.iconType === 'checkCircle' && (
+                    <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                      <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg>
+                  )}
+                </div>
+
+                <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-zinc-100/90 text-zinc-600 border border-zinc-200/60">
+                  {item.badge}
+                </span>
+              </div>
+
+              {/* Title & Technical Subtext */}
+              <div class="mt-4 flex items-baseline gap-2 flex-wrap">
+                <h4 class="text-base font-semibold text-zinc-900 font-display">
+                  {item.title}
+                </h4>
+                <span class="text-xs text-zinc-400 font-mono">
+                  {item.subtext}
+                </span>
+              </div>
+
+              {/* Description */}
+              <p class="mt-2 text-xs sm:text-sm text-zinc-500 leading-relaxed">
+                {item.desc}
+              </p>
             </div>
-            <h4 class="text-lg font-bold text-ink-950 font-display">
-              {item.title}
-            </h4>
-            <p class="text-xs sm:text-sm text-ink-500 leading-relaxed">
-              {item.desc}
-            </p>
+
+            {/* Bottom Hashtag Tag Pills */}
+            <div class="relative z-10 mt-5 flex flex-wrap gap-1.5 pt-1">
+              {item.tags.map((tag) => (
+                <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-zinc-100/80 text-zinc-600 text-[11px] font-medium border border-zinc-200/50 hover:bg-zinc-200/70 transition-colors">
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
         ))}
       </div>
@@ -120,7 +239,7 @@ const securityFeatures = [
         Your data belongs to you
       </h3>
       <p class="text-sm text-ink-500 leading-relaxed">
-        ONO is a software tool, not a data broker. We never sell, rent, or monetize your contact records or message content. Read our full <a href="/privacy" class="text-brand-700 font-semibold underline underline-offset-2">Privacy Policy</a> and <a href="/acceptable-use" class="text-brand-700 font-semibold underline underline-offset-2">Acceptable Use Policy</a>.
+        {siteConfig.name} is a software tool, not a data broker. We never sell, rent, or monetize your contact records or message content. Read our full <a href="/privacy" class="text-brand-700 font-semibold underline underline-offset-2">Privacy Policy</a> and <a href="/acceptable-use" class="text-brand-700 font-semibold underline underline-offset-2">Acceptable Use Policy</a>.
       </p>
     </div>
   </Section>
