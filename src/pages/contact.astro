@@ -27,11 +27,11 @@ const fallbackMailto = `mailto:${siteConfig.supportEmail}?subject=Inquiry%20abou
 
   <Section background="white" class="py-12 sm:py-16">
     <div class="max-w-5xl mx-auto px-2 sm:px-4">
-      {/* 21st.dev @efferd/contact-card Component - Styled with ONO Enterprise Dark Blue */}
-      <div class="relative bg-[#0B1B2E] border border-[#1E344F] rounded-2xl shadow-2xl text-white">
+      {/* 21st.dev @efferd/contact-card Component - Styled with ONO Clean Modern White Theme */}
+      <div class="relative bg-white border border-zinc-200/90 rounded-2xl sm:rounded-3xl shadow-soft-xl text-ink-900">
         {/* 4 Corner Plus Crosshairs matching 21st.dev component */}
         <svg
-          class="absolute -top-3 -left-3 h-6 w-6 text-[#5A7B9F] select-none pointer-events-none"
+          class="absolute -top-3 -left-3 h-6 w-6 text-zinc-300 select-none pointer-events-none"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -44,7 +44,7 @@ const fallbackMailto = `mailto:${siteConfig.supportEmail}?subject=Inquiry%20abou
           <path d="M12 5v14" />
         </svg>
         <svg
-          class="absolute -top-3 -right-3 h-6 w-6 text-[#5A7B9F] select-none pointer-events-none"
+          class="absolute -top-3 -right-3 h-6 w-6 text-zinc-300 select-none pointer-events-none"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -57,7 +57,7 @@ const fallbackMailto = `mailto:${siteConfig.supportEmail}?subject=Inquiry%20abou
           <path d="M12 5v14" />
         </svg>
         <svg
-          class="absolute -bottom-3 -left-3 h-6 w-6 text-[#5A7B9F] select-none pointer-events-none"
+          class="absolute -bottom-3 -left-3 h-6 w-6 text-zinc-300 select-none pointer-events-none"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -70,7 +70,7 @@ const fallbackMailto = `mailto:${siteConfig.supportEmail}?subject=Inquiry%20abou
           <path d="M12 5v14" />
         </svg>
         <svg
-          class="absolute -bottom-3 -right-3 h-6 w-6 text-[#5A7B9F] select-none pointer-events-none"
+          class="absolute -bottom-3 -right-3 h-6 w-6 text-zinc-300 select-none pointer-events-none"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -87,58 +87,58 @@ const fallbackMailto = `mailto:${siteConfig.supportEmail}?subject=Inquiry%20abou
           {/* Left: Contact Info Section */}
           <div class="flex flex-col justify-between lg:col-span-2 p-6 sm:p-10 lg:p-12">
             <div class="space-y-4">
-              <h2 class="text-3xl font-extrabold md:text-4xl lg:text-5xl text-white font-display tracking-tight">
+              <h2 class="text-3xl font-extrabold md:text-4xl lg:text-5xl text-ink-950 font-display tracking-tight">
                 Get in touch
               </h2>
-              <p class="text-slate-300 max-w-xl text-sm md:text-base leading-relaxed">
+              <p class="text-ink-600 max-w-xl text-sm md:text-base leading-relaxed">
                 If you have any questions regarding our Services, lifetime license, or need help with Meta Business onboarding, please fill out the form here. We do our best to respond within 1 business day.
               </p>
 
               {/* Info Badges */}
               <div class="grid gap-4 pt-4 sm:pt-6 sm:grid-cols-2">
                 {/* Email */}
-                <div class="flex items-center gap-3.5 p-3.5 rounded-xl bg-[#0F233B]/80 border border-[#1F395A] hover:border-emerald-500/50 hover:bg-[#122A46] transition-colors">
-                  <div class="bg-[#163152] rounded-lg p-3 text-emerald-400 flex-shrink-0 border border-[#274B75]">
+                <div class="flex items-center gap-3.5 p-3.5 rounded-xl bg-zinc-50/80 border border-zinc-200/80 hover:border-emerald-500/50 hover:bg-emerald-50/20 transition-all">
+                  <div class="bg-emerald-50 rounded-lg p-3 text-emerald-600 flex-shrink-0 border border-emerald-100">
                     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <rect width="20" height="16" x="2" y="4" rx="2"/>
                       <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
                     </svg>
                   </div>
                   <div class="min-w-0">
-                    <p class="font-medium text-xs font-mono uppercase tracking-wider text-slate-400">Email</p>
-                    <a href={`mailto:${siteConfig.supportEmail}`} class="text-sm font-semibold text-white hover:text-emerald-400 transition-colors truncate block">
+                    <p class="font-medium text-xs font-mono uppercase tracking-wider text-ink-400">Email</p>
+                    <a href={`mailto:${siteConfig.supportEmail}`} class="text-sm font-semibold text-ink-950 hover:text-emerald-600 transition-colors truncate block">
                       {siteConfig.supportEmail}
                     </a>
                   </div>
                 </div>
 
                 {/* Response Time / Hours */}
-                <div class="flex items-center gap-3.5 p-3.5 rounded-xl bg-[#0F233B]/80 border border-[#1F395A] hover:border-emerald-500/50 hover:bg-[#122A46] transition-colors">
-                  <div class="bg-[#163152] rounded-lg p-3 text-emerald-400 flex-shrink-0 border border-[#274B75]">
+                <div class="flex items-center gap-3.5 p-3.5 rounded-xl bg-zinc-50/80 border border-zinc-200/80 hover:border-emerald-500/50 hover:bg-emerald-50/20 transition-all">
+                  <div class="bg-emerald-50 rounded-lg p-3 text-emerald-600 flex-shrink-0 border border-emerald-100">
                     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <circle cx="12" cy="12" r="10" />
                       <polyline points="12 6 12 12 16 14" />
                     </svg>
                   </div>
                   <div class="min-w-0">
-                    <p class="font-medium text-xs font-mono uppercase tracking-wider text-slate-400">Response Time</p>
-                    <p class="text-sm font-semibold text-white truncate">
+                    <p class="font-medium text-xs font-mono uppercase tracking-wider text-ink-400">Response Time</p>
+                    <p class="text-sm font-semibold text-ink-950 truncate">
                       Under 24 business hours
                     </p>
                   </div>
                 </div>
 
                 {/* Address */}
-                <div class="flex items-center gap-3.5 p-3.5 rounded-xl bg-[#0F233B]/80 border border-[#1F395A] hover:border-emerald-500/50 hover:bg-[#122A46] transition-colors sm:col-span-2">
-                  <div class="bg-[#163152] rounded-lg p-3 text-emerald-400 flex-shrink-0 border border-[#274B75]">
+                <div class="flex items-center gap-3.5 p-3.5 rounded-xl bg-zinc-50/80 border border-zinc-200/80 hover:border-emerald-500/50 hover:bg-emerald-50/20 transition-all sm:col-span-2">
+                  <div class="bg-emerald-50 rounded-lg p-3 text-emerald-600 flex-shrink-0 border border-emerald-100">
                     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
                       <circle cx="12" cy="10" r="3"/>
                     </svg>
                   </div>
                   <div class="min-w-0">
-                    <p class="font-medium text-xs font-mono uppercase tracking-wider text-slate-400">Address</p>
-                    <p class="text-sm font-semibold text-white leading-relaxed">
+                    <p class="font-medium text-xs font-mono uppercase tracking-wider text-ink-400">Address</p>
+                    <p class="text-sm font-semibold text-ink-950 leading-relaxed">
                       {siteConfig.address}
                     </p>
                   </div>
@@ -147,20 +147,20 @@ const fallbackMailto = `mailto:${siteConfig.supportEmail}?subject=Inquiry%20abou
             </div>
 
             {/* Bottom Trust Guarantee Banner */}
-            <div class="mt-8 pt-6 border-t border-[#1C334D] flex items-center gap-3 text-xs text-slate-300">
-              <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex-shrink-0">
+            <div class="mt-8 pt-6 border-t border-zinc-100 flex items-center gap-3 text-xs text-ink-600">
+              <div class="p-2 rounded-lg bg-emerald-50 text-emerald-600 border border-emerald-200/80 flex-shrink-0">
                 <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                 </svg>
               </div>
               <p>
-                <span class="text-white font-medium">7-Day Money-Back Guarantee.</span> Operated by {siteConfig.legalName}.
+                <span class="text-ink-950 font-semibold">7-Day Money-Back Guarantee.</span> Operated by {siteConfig.legalName}.
               </p>
             </div>
           </div>
 
           {/* Right: Form Section */}
-          <div class="bg-[#07111F]/60 flex flex-col justify-center border-t md:border-t-0 md:border-l border-[#1A2E46] p-6 sm:p-8 lg:p-10">
+          <div class="bg-zinc-50/60 flex flex-col justify-center border-t md:border-t-0 md:border-l border-zinc-200/80 p-6 sm:p-8 lg:p-10 rounded-b-2xl sm:rounded-b-3xl md:rounded-b-none md:rounded-r-2xl sm:md:rounded-r-3xl">
             <form
               id="contact-form"
               action={contactEndpoint || fallbackMailto}
@@ -175,8 +175,8 @@ const fallbackMailto = `mailto:${siteConfig.supportEmail}?subject=Inquiry%20abou
 
               {/* Name */}
               <div class="flex flex-col gap-1.5">
-                <label for="name" class="text-xs font-semibold text-slate-200">
-                  Name <span class="text-emerald-400">*</span>
+                <label for="name" class="text-xs font-semibold text-ink-800">
+                  Name <span class="text-emerald-600">*</span>
                 </label>
                 <input
                   type="text"
@@ -184,14 +184,14 @@ const fallbackMailto = `mailto:${siteConfig.supportEmail}?subject=Inquiry%20abou
                   name="name"
                   required
                   placeholder="Your name"
-                  class="flex h-10 w-full rounded-md border border-[#1E3756] bg-[#0C1B2E] px-3 py-2 text-sm text-white placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/60 focus-visible:border-emerald-500 transition-colors"
+                  class="flex h-10 w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-ink-950 placeholder:text-zinc-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/60 focus-visible:border-emerald-500 transition-colors shadow-xs"
                 />
               </div>
 
               {/* Email */}
               <div class="flex flex-col gap-1.5">
-                <label for="email" class="text-xs font-semibold text-slate-200">
-                  Email <span class="text-emerald-400">*</span>
+                <label for="email" class="text-xs font-semibold text-ink-800">
+                  Email <span class="text-emerald-600">*</span>
                 </label>
                 <input
                   type="email"
@@ -199,13 +199,13 @@ const fallbackMailto = `mailto:${siteConfig.supportEmail}?subject=Inquiry%20abou
                   name="email"
                   required
                   placeholder="you@company.com"
-                  class="flex h-10 w-full rounded-md border border-[#1E3756] bg-[#0C1B2E] px-3 py-2 text-sm text-white placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/60 focus-visible:border-emerald-500 transition-colors"
+                  class="flex h-10 w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-ink-950 placeholder:text-zinc-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/60 focus-visible:border-emerald-500 transition-colors shadow-xs"
                 />
               </div>
 
               {/* Phone */}
               <div class="flex flex-col gap-1.5">
-                <label for="phone" class="text-xs font-semibold text-slate-200">
+                <label for="phone" class="text-xs font-semibold text-ink-800">
                   Phone
                 </label>
                 <input
@@ -213,14 +213,14 @@ const fallbackMailto = `mailto:${siteConfig.supportEmail}?subject=Inquiry%20abou
                   id="phone"
                   name="phone"
                   placeholder="+91 98765 43210"
-                  class="flex h-10 w-full rounded-md border border-[#1E3756] bg-[#0C1B2E] px-3 py-2 text-sm text-white placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/60 focus-visible:border-emerald-500 transition-colors"
+                  class="flex h-10 w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-ink-950 placeholder:text-zinc-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/60 focus-visible:border-emerald-500 transition-colors shadow-xs"
                 />
               </div>
 
               {/* Message */}
               <div class="flex flex-col gap-1.5">
-                <label for="message" class="text-xs font-semibold text-slate-200">
-                  Message <span class="text-emerald-400">*</span>
+                <label for="message" class="text-xs font-semibold text-ink-800">
+                  Message <span class="text-emerald-600">*</span>
                 </label>
                 <textarea
                   id="message"
@@ -228,21 +228,21 @@ const fallbackMailto = `mailto:${siteConfig.supportEmail}?subject=Inquiry%20abou
                   rows="4"
                   required
                   placeholder="Your message or inquiry..."
-                  class="flex min-h-[90px] w-full rounded-md border border-[#1E3756] bg-[#0C1B2E] px-3 py-2 text-sm text-white placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/60 focus-visible:border-emerald-500 transition-colors leading-relaxed"
+                  class="flex min-h-[90px] w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-ink-950 placeholder:text-zinc-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/60 focus-visible:border-emerald-500 transition-colors leading-relaxed shadow-xs"
                 ></textarea>
               </div>
 
               {/* Submit Button */}
               <button
                 type="submit"
-                class="w-full inline-flex items-center justify-center rounded-md bg-white hover:bg-slate-100 text-[#07111F] font-bold h-10 px-4 text-sm transition-all duration-200 shadow hover:shadow-md cursor-pointer active:scale-[0.98] mt-2"
+                class="w-full inline-flex items-center justify-center rounded-md bg-emerald-600 hover:bg-emerald-700 text-white font-bold h-10 px-4 text-sm transition-all duration-200 shadow hover:shadow-md cursor-pointer active:scale-[0.98] mt-2"
               >
                 Submit
               </button>
 
               <div id="form-status" class="hidden text-xs p-3 rounded-lg text-center mt-3 font-medium"></div>
 
-              <p class="text-center text-[11px] text-slate-400 pt-1">
+              <p class="text-center text-[11px] text-zinc-500 pt-1">
                 We value your privacy. We never share or sell contact details.
               </p>
             </form>
@@ -282,7 +282,7 @@ const fallbackMailto = `mailto:${siteConfig.supportEmail}?subject=Inquiry%20abou
         window.location.href = `mailto:${supportEmail}?subject=${subject}&body=${body}`;
         
         if (statusDiv) {
-          statusDiv.className = 'text-xs p-3 rounded-lg text-center mt-3 font-medium bg-emerald-950/80 text-emerald-300 border border-emerald-500/30';
+          statusDiv.className = 'text-xs p-3 rounded-lg text-center mt-3 font-medium bg-emerald-50 text-emerald-800 border border-emerald-200';
           statusDiv.textContent = 'Opening your email client to send message...';
           statusDiv.classList.remove('hidden');
         }

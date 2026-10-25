@@ -107,8 +107,8 @@ export function Hero({
               </h1>
 
               {/* Status Badge */}
-              <div className="flex items-center mt-5 justify-center gap-2">
-                <span className="relative flex h-3 w-3 items-center justify-center">
+              <div className="flex items-center mt-5 justify-center gap-2 flex-wrap text-center">
+                <span className="relative flex h-3 w-3 items-center justify-center shrink-0">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75"></span>
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
                 </span>
@@ -118,8 +118,8 @@ export function Hero({
               </div>
             </div>
 
-            {/* Static Supporting Headline - Guaranteed in one line */}
-            <h2 className="mt-8 w-full text-base min-[400px]:text-lg sm:text-2xl md:text-[1.65rem] lg:text-[2.1rem] font-extrabold text-ink-950 font-display tracking-tight text-center whitespace-nowrap">
+            {/* Static Supporting Headline - Guaranteed in one line across mobile & desktop */}
+            <h2 className="mt-8 w-full text-[clamp(0.72rem,3.4vw,1.35rem)] min-[540px]:text-xl sm:text-2xl md:text-[1.65rem] lg:text-[2.1rem] font-extrabold text-ink-950 font-display tracking-tight text-center whitespace-nowrap">
               <span>Calm, reliable WhatsApp operations for </span>
               <span className="text-emerald-600 font-extrabold">growing teams</span>
             </h2>

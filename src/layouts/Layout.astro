@@ -84,7 +84,7 @@ const structuredData = jsonLd
       <script type="application/ld+json" set:html={JSON.stringify(data)} />
     ))}
   </head>
-  <body class="min-h-screen flex flex-col bg-white text-ink-900 font-sans antialiased selection:bg-brand-100 selection:text-brand-700">
+  <body class="min-h-screen flex flex-col bg-white text-ink-900 font-sans antialiased selection:bg-brand-100 selection:text-brand-700 overflow-x-hidden w-full max-w-full">
     <!-- Skip to main content link for accessibility -->
     <a
       href="#main-content"
@@ -95,7 +95,7 @@ const structuredData = jsonLd
 
     <Header currentPath={currentPath} />
 
-    <main id="main-content" class="flex-1">
+    <main id="main-content" class="flex-1 w-full max-w-full overflow-x-clip">
       <slot />
     </main>
 

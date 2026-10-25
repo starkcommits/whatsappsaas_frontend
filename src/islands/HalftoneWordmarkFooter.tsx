@@ -179,9 +179,60 @@ const HWF_CSS = `
   .hwf-top { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 24px; }
   .hwf-brand { grid-column: 1 / -1; }
 }
-@media (max-width: 640px) {
-  .hwf-top { grid-template-columns: minmax(0, 1fr); row-gap: 20px; }
-  .hwf-rule { flex-direction: column-reverse; align-items: flex-start; gap: 14px; }
+@media (max-width: 768px) {
+  .hwf-root {
+    height: auto !important;
+    min-height: 560px;
+    padding-bottom: clamp(60px, 14vw, 100px);
+  }
+  .hwf-top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 24px;
+    column-gap: 16px;
+    padding: 32px clamp(16px, 4vw, 24px) 0;
+  }
+  .hwf-brand {
+    grid-column: 1 / -1;
+  }
+  .hwf-rule {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 16px;
+    margin: 28px clamp(16px, 4vw, 24px) 0;
+    padding-top: 16px;
+  }
+}
+@media (max-width: 480px) {
+  .hwf-top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 22px;
+    column-gap: 12px;
+    padding: 28px 16px 0;
+  }
+  .hwf-brand strong {
+    font-size: 13px;
+  }
+  .hwf-brand span {
+    font-size: 10.5px;
+  }
+  .hwf-col h3 {
+    font-size: 10.5px;
+    margin-bottom: 8px;
+  }
+  .hwf-col ul {
+    gap: 6px;
+  }
+  .hwf-col a {
+    font-size: 10.5px;
+    line-height: 1.4;
+  }
+  .hwf-rule {
+    margin: 24px 16px 0;
+    font-size: 10px;
+  }
+  .hwf-disclaimer {
+    font-size: 9px;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .hwf-col a, .hwf-up { transition: none; }
